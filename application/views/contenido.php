@@ -1,5 +1,4 @@
 
-	<!-- END: Left Aside -->
 	<div class="m-grid__item m-grid__item--fluid m-wrapper">
 		<!-- BEGIN: Subheader -->
 		<div class="m-subheader ">
@@ -102,10 +101,26 @@
 													
 													<a href="#" class="m-list-search__result-item">
 														<span class="m-list-search__result-item-pic">
-															<img class="m--img-rounded" src="<?php echo base_url().'publico/assets/app/media/img/users/user1.jpg' ;?>" title="">
+															<img class="m--img-rounded" src="<?php echo base_url().'publico/assets/app/media/img/users/perfil.jpg' ;?>" title="">
 														</span>
 														<span class="m-list-search__result-item-text">
-															Amanda Anderson
+														<b>
+															<?php
+																echo $_SESSION['usuario'];
+															?>
+														</b><br>
+															
+															<?php 
+																//$id = $this->session->userdata("persona_perfil_id");
+																$id = $_SESSION['persona_perfil_id'];
+																$this->load->model('usuario_model');
+																$res = $this->usuario_model->getUsuario($id);
+																/*
+																$datos = $this->db->query("select * from persona_perfil ")->result();
+																foreach ($datos as $data) {
+																	echo $data->persona_id;
+																}*/
+															?>
 														</span>
 													</a>
 													
@@ -113,15 +128,15 @@
 														Datos personales
 													</span>
 												<?php
-            										foreach($datos as $dato)
-										            {
+            										/*foreach($datos as $dato)
+										            {*/
 										                ?>
 													<a href="#" class="m-list-search__result-item">
 														<span class="m-list-search__result-item-icon">
 															<i class="flaticon-lifebuoy m--font-warning"></i>
 														</span>
 														<span class="m-list-search__result-item-text">
-															<?=$datos->nombres?> <?=$datos->paterno?> <?=$datos->materno?>
+															<?php echo $res->nombres;?> <?php echo $res->paterno;?> <?php echo $res->materno;?>
 														</span>
 													</a>
 													<a href="#" class="m-list-search__result-item">
@@ -129,7 +144,7 @@
 															<i class="flaticon-coins m--font-primary"></i>
 														</span>
 														<span class="m-list-search__result-item-text">
-															<?=$datos->ci?>
+															<?=$res->ci?>
 														</span>
 													</a>
 													<a href="#" class="m-list-search__result-item">
@@ -137,11 +152,11 @@
 															<i class="flaticon-calendar m--font-danger"></i>
 														</span>
 														<span class="m-list-search__result-item-text">
-															<?=$datos->fec_nacimiento?>
+															<?=$res->fec_nacimiento?>
 														</span>
 													</a>
 													<?php
-										            }
+										            //}
 										            ?>
 												</div>
 											</div>

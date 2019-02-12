@@ -25,6 +25,7 @@ class Dashboard extends CI_Controller {
 		if (!$this->session->userdata("login")) {
 			redirect(base_url());
 		}
+		$this->load->model('usuario_model');
 		
 	}
 

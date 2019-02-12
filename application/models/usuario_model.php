@@ -30,4 +30,11 @@ class Usuario_model extends CI_Model {
 	{
 		var_dump('hola');
 	}
+
+	public function getUsuario($id) {
+		$res = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+		$dato = $res->persona_id;
+		$res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
+		return $res;
+	}
 }
