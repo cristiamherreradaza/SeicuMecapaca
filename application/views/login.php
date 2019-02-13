@@ -42,7 +42,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	</head>
 	<!-- end::Head -->
 	<!-- end::Body -->
-	<body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default"  >
+	<body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
 			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-2" id="m_login" style="background-image: url(publico/assets/app/media/img//bg/bg-3.jpg);">
@@ -84,7 +84,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									Llene todos los campos:
 								</div>
 							</div>
-							<form action="action="<?php echo base_url();?>login/login" class="m-login__form m-form" action="">
+							<form action="<?php echo base_url();?>persona/insertar" method="POST" class="m-login__form m-form">
 								<div class="form-group m-form__group">
 									<input class="form-control m-input" type="text" placeholder="Nombres" name="nombres" >
 								</div>
@@ -98,17 +98,20 @@ License: You must have a valid license purchased only from themeforest(the above
 									<input class="form-control m-input" type="integer" placeholder="Carnet de Identidad" name="ci" >
 								</div>
 								<div class="form-group m-form__group">
-									<input class="form-control m-input" type="text" placeholder="Fecha de Nacimiento (dd-mm-aaaa)" name="fec_nacimiento" autocomplete="off">
+									<input class="form-control m-input" type="date" placeholder="Fecha de Nacimiento (dd-mm-aaaa)" name="fec_nacimiento">
 								</div>
+
+								<!--
 								<div class="form-group m-form__group">
 									<input class="form-control m-input" type="text" placeholder="Nombre de Usuario" name="usuario" autocomplete="off">
 								</div>
 								<div class="form-group m-form__group">
 									<input class="form-control m-input" type="password" placeholder="Contrase&ntilde;a" name="contrasenia">
 								</div>
+							     -->
 								
 								<div class="m-login__form-action">
-									<button type="submit" id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
+									<button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
 										Regristrarte
 									</button>
 									&nbsp;&nbsp;
@@ -123,7 +126,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								¿A&uacute;n no tienes una cuenta?
 							</span>
 							&nbsp;&nbsp;
-							<a href="javascript:;" id="m_login_signup" class="m-link m-link--light m-login__account-link">
+							<a id="m_login_signup" class="m-link m-link--light m-login__account-link">
 								Reg&iacute;strate
 							</a>
 						</div>
