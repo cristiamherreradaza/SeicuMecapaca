@@ -658,9 +658,7 @@
 				<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 					<div class="m-stack__item m-topbar__nav-wrapper">
 						<ul class="m-topbar__nav m-nav m-nav--inline">
-							<li class="
-		m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light" 
-		data-dropdown-toggle="click" data-dropdown-persistent="true" id="m_quicksearch" data-search-type="dropdown">
+							<li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light m-list-search m-list-search--skin-light" data-dropdown-toggle="click" data-dropdown-persistent="true" id="m_quicksearch" data-search-type="dropdown">
 								<a href="#" class="m-nav__link m-dropdown__toggle">
 									<span class="m-nav__link-icon">
 										<i class="flaticon-search-1"></i>
@@ -958,7 +956,7 @@
 							<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
 								<a href="#" class="m-nav__link m-dropdown__toggle">
 									<span class="m-topbar__userpic">
-										<img src="<?php echo base_url().'publico/assets/app/media/img/users/perfil1.jpg' ;?>" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+										<img src="<?php echo base_url().'publico/assets/app/media/img/users/perfil.jpg' ;?>" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 									</span>
 									<span class="m-topbar__username m--hide">
 										Nick
@@ -990,7 +988,7 @@
 															Section
 														</span>
 													</li>
-													<li class="m-nav__item">
+													<!--<li class="m-nav__item">
 														<a href="header/profile.html" class="m-nav__link">
 															<i class="m-nav__link-icon flaticon-profile-1"></i>
 															<span class="m-nav__link-title">
@@ -1006,37 +1004,31 @@
 																</span>
 															</span>
 														</a>
-													</li>
+													</li>-->
+
 													<li class="m-nav__item">
-														<a href="header/profile.html" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-share"></i>
+														<a href="#" class="m-nav__link" data-toggle="modal" data-target="#m_modal_1">
+															<i class="m-nav__link-icon flaticon-interface-6"></i>
 															<span class="m-nav__link-text">
-																Activity
+																Ver información de perfil
 															</span>
 														</a>
 													</li>
+
 													<li class="m-nav__item">
-														<a href="header/profile.html" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-chat-1"></i>
+														<a href="#" class="m-nav__link" data-toggle="modal" data-target="#m_modal_5">
+															<i class="m-nav__link-icon flaticon-edit"></i>
 															<span class="m-nav__link-text">
-																Messages
+																Editar mi perfil
 															</span>
 														</a>
 													</li>
-													<li class="m-nav__separator m-nav__separator--fit"></li>
+
 													<li class="m-nav__item">
 														<a href="header/profile.html" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-info"></i>
+															<i class="m-nav__link-icon flaticon-delete"></i>
 															<span class="m-nav__link-text">
-																FAQ
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a href="header/profile.html" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-															<span class="m-nav__link-text">
-																Support
+																Dar de baja perfil
 															</span>
 														</a>
 													</li>
@@ -1067,3 +1059,167 @@
 		</div>
 	</div>
 </header>
+<!--begin::Modal-->
+<div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">
+					Datos del perfil
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="m-portlet__body">
+							<!--begin::Section-->
+							<div class="m-section m-section--last">
+								<div class="m-section__content">
+									<!--begin::Preview-->
+									<div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+										<div class="m-demo__preview">
+											<div class="m-list-search">
+												<div class="m-list-search__results">
+													
+													<a href="#" class="m-list-search__result-item">
+														<span class="m-list-search__result-item-pic">
+															<img class="m--img-rounded" src="<?php echo base_url().'publico/assets/app/media/img/users/perfil.jpg' ;?>" title="">
+														</span>
+														<span class="m-list-search__result-item-text">
+														<b>
+															<?php
+																echo $_SESSION['usuario'];
+															?>
+														</b><br>
+															
+															<?php 
+																//$id = $this->session->userdata("persona_perfil_id");
+																$id = $_SESSION['persona_perfil_id'];
+																$this->load->model('usuario_model');
+																$res = $this->usuario_model->getUsuario($id);
+																/*
+																$datos = $this->db->query("select * from persona_perfil ")->result();
+																foreach ($datos as $data) {
+																	echo $data->persona_id;
+																}*/
+															?>
+														</span>
+													</a>
+													
+													<span class="m-list-search__result-category">
+														Datos personales
+													</span>
+													<?php
+            										/*foreach($datos as $dato)
+										            {*/
+										                ?>
+													<a href="#" class="m-list-search__result-item">
+														<span class="m-list-search__result-item-icon">
+															<i class="flaticon-lifebuoy m--font-warning"></i>
+														</span>
+														<span class="m-list-search__result-item-text">
+															<?php echo $res->nombres;?> <?php echo $res->paterno;?> <?php echo $res->materno;?>
+														</span>
+													</a>
+													<a href="#" class="m-list-search__result-item">
+														<span class="m-list-search__result-item-icon">
+															<i class="flaticon-coins m--font-primary"></i>
+														</span>
+														<span class="m-list-search__result-item-text">
+															<?=$res->ci?>
+														</span>
+													</a>
+													<a href="#" class="m-list-search__result-item">
+														<span class="m-list-search__result-item-icon">
+															<i class="flaticon-calendar m--font-danger"></i>
+														</span>
+														<span class="m-list-search__result-item-text">
+															<?=$res->fec_nacimiento?>
+														</span>
+													</a>
+													<?php
+										            //}
+										            ?>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--end::Preview-->
+									<!--begin::Dropdown-->
+									
+									<!--end::Dropdown-->
+								</div>
+							</div>
+							<!--end::Section-->
+						</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">
+					Cerrar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="m_modal_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">
+					New message
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">
+						&times;
+					</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="recipient-name" class="form-control-label">
+							Nombres	
+						</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="form-control-label">
+							Paterno
+						</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="form-control-label">
+							Materno
+						</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="form-control-label">
+							CI
+						</label>
+						<input type="text" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="form-control-label">
+							Fecha de nacimiento
+						</label>
+						<input type="date" class="form-control" id="recipient-name">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">
+					Close
+				</button>
+				<button type="button" class="btn btn-primary">
+					Send message
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--end::Modal-->
