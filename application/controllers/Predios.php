@@ -13,7 +13,7 @@ class Predios extends CI_Controller {
 		// $crt = 'Holas';
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
-		$this->load->view('admin/contenido');
+		$this->load->view('admin/contenidos');
 		$this->load->view('admin/footer');
 		// $this->load->view('header');
 		// $this->load->view('menu');

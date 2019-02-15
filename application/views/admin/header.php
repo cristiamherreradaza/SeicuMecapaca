@@ -1,594 +1,311 @@
 <!DOCTYPE html>
-
 <html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>public/assets/images/favicon.png">
+    <title>MOP</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="<?php echo base_url(); ?>public/css/style.css" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="<?php echo base_url(); ?>public/css/colors/blue-dark.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
 
-	<!-- begin::Head -->
-	<head>
-		<meta charset="utf-8" />
-		<title>Ministerio de Obras Publicas PMGM</title>
-		<meta name="description" content="State colors">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+<body class="fix-header card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon -->
+                        <b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="<?php echo base_url(); ?>public/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                            <!-- Light Logo icon -->
+                            <img src="<?php echo base_url(); ?>public/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span>
+                         <!-- dark Logo text -->
+                         <img src="<?php echo base_url(); ?>public/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                         <!-- Light Logo text -->    
+                         <img src="<?php echo base_url(); ?>public/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="icon-arrow-left-circle"></i></a> </li>
+                        <!-- ============================================================== -->
+                        <!-- Comment -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-message"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div class="dropdown-menu mailbox animated bounceInDown">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span> </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>Settings</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span> </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-email"></i>
+                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                            </a>
+                            <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">You have 4 new messages</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online float-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span> </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy float-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/3.jpg" alt="user" class="img-circle"> <span class="profile-status away float-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Arijit Sinh</h5> <span class="mail-desc">I am a singer!</span> <span class="time">9:08 AM</span> </div>
+                                            </a>
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="user-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline float-right"></span> </div>
+                                                <div class="mail-contnet">
+                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Messages -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="mdi mdi-view-grid"></i></a>
+                            <div class="dropdown-menu animated bounceInDown">
+                                <ul class="mega-dropdown-menu row">
+                                    <li class="col-lg-3 col-xlg-2 mb-4">
+                                        <h4 class="mb-3">CAROUSEL</h4>
+                                        <!-- CAROUSEL -->
+                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                            <div class="carousel-inner" role="listbox">
+                                                <div class="carousel-item active">
+                                                    <div class="container"> <img class="d-block img-fluid" src="<?php echo base_url(); ?>public/assets/images/big/img1.jpg" alt="First slide"></div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="container"><img class="d-block img-fluid" src="<?php echo base_url(); ?>public/assets/images/big/img2.jpg" alt="Second slide"></div>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <div class="container"><img class="d-block img-fluid" src="<?php echo base_url(); ?>public/assets/images/big/img3.jpg" alt="Third slide"></div>
+                                                </div>
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+                                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+                                        </div>
+                                        <!-- End CAROUSEL -->
+                                    </li>
+                                    <li class="col-lg-3 mb-4">
+                                        <h4 class="mb-3">ACCORDION</h4>
+                                        <!-- Accordian -->
+                                        <div id="accordion" class="nav-accordion" role="tablist" aria-multiselectable="true">
+                                            <div class="card">
+                                                <div class="card-header" role="tab" id="headingOne">
+                                                    <h5 class="mb-0">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                  Collapsible Group Item #1
+                                                </a>
+                                              </h5> </div>
+                                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high. </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" role="tab" id="headingTwo">
+                                                    <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                  Collapsible Group Item #2
+                                                </a>
+                                              </h5> </div>
+                                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" role="tab" id="headingThree">
+                                                    <h5 class="mb-0">
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                  Collapsible Group Item #3
+                                                </a>
+                                              </h5> </div>
+                                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                                    <div class="card-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="col-lg-3  mb-4">
+                                        <h4 class="mb-3">CONTACT US</h4>
+                                        <!-- Contact -->
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Name"> </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"> </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Message"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-info">Submit</button>
+                                        </form>
+                                    </li>
+                                    <li class="col-lg-3 col-xlg-4 mb-4">
+                                        <h4 class="mb-3">List style</h4>
+                                        <!-- List style -->
+                                        <ul class="list-style-none">
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> You can give link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Give link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Another Give link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Forth link</a></li>
+                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> Another fifth link</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- End Messages -->
+                        <!-- ============================================================== -->
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item hidden-sm-down">
+                            <form class="app-search">
+                                <input type="text" class="form-control" placeholder="Search for..."> <a class="srh-btn"><i class="ti-search"></i></a> </form>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>public/assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-img"><img src="<?php echo base_url(); ?>public/assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-text">
+                                                <h4>Steave Jobs</h4>
+                                                <p class="text-muted">varun@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
+                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
+                            <div class="dropdown-menu  dropdown-menu-right animated bounceInDown"> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+       
 
-		<!--begin::Web font -->
-		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-		<script>
-			WebFont.load({
-            google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
-            active: function() {
-                sessionStorage.fonts = true;
-            }
-          });
-        </script>
-
-		<!--end::Web font -->
-		
-		<!--begin::Global Theme Styles -->
-		<link href="<?php echo base_url(); ?>publico/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-
-		<!--RTL version:<link href="../../assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-		<link href="<?php echo base_url(); ?>publico/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
-
-		<!--RTL version:<link href="../../assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
-
-		<!--end::Global Theme Styles -->
-		<link rel="shortcut icon" href="<?php echo base_url(); ?>publico/assets/demo/default/media/img/logo/favicon.ico" />
-	</head>
-
-	<!-- end::Head -->
-
-	<!-- begin::Body -->
-	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
-
-		<!-- begin:: Page -->
-		<div class="m-grid m-grid--hor m-grid--root m-page">
-
-			<!-- BEGIN: Header -->
-			<header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200">
-				<div class="m-container m-container--fluid m-container--full-height">
-					<div class="m-stack m-stack--ver m-stack--desktop">
-
-						<!-- BEGIN: Brand -->
-						<div class="m-stack__item m-brand  m-brand--skin-dark ">
-							<div class="m-stack m-stack--ver m-stack--general">
-								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="../../index.html" class="m-brand__logo-wrapper">
-										<img alt="" src="../../assets/demo/default/media/img/logo/logo_default_dark.png" />
-									</a>
-								</div>
-								<div class="m-stack__item m-stack__item--middle m-brand__tools">
-
-									<!-- BEGIN: Left Aside Minimize Toggle -->
-									<a href="javascript:;" id="m_aside_left_minimize_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block  ">
-										<span></span>
-									</a>
-
-									<!-- END -->
-
-									<!-- BEGIN: Responsive Aside Left Menu Toggler -->
-									<a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
-										<span></span>
-									</a>
-
-									<!-- END -->
-
-									<!-- BEGIN: Responsive Header Menu Toggler -->
-									<a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
-										<span></span>
-									</a>
-
-									<!-- END -->
-
-									<!-- BEGIN: Topbar Toggler -->
-									<a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
-										<i class="flaticon-more"></i>
-									</a>
-
-									<!-- BEGIN: Topbar Toggler -->
-								</div>
-							</div>
-						</div>
-
-						<!-- END: Brand -->
-						<div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
-
-							<!-- BEGIN: Horizontal Menu -->
-							<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
-							<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark ">
-								<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
-									<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" class="m-menu__link m-menu__toggle" title="Non functional dummy link"><i
-											 class="m-menu__link-icon flaticon-add"></i><span class="m-menu__link-text">Actions</span><i class="m-menu__hor-arrow la la-angle-down"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-										<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left"><span class="m-menu__arrow m-menu__arrow--adjust"></span>
-											<ul class="m-menu__subnav">
-												<li class="m-menu__item " aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-file"></i><span class="m-menu__link-text">Create New Post</span></a></li>
-												<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-diagram"></i><span class="m-menu__link-title"> <span class="m-menu__link-wrap">
-																<span class="m-menu__link-text">Generate Reports</span> <span class="m-menu__link-badge"><span class="m-badge m-badge--success">2</span></span> </span></span></a></li>
-												<li class="m-menu__item  m-menu__item--submenu" m-menu-submenu-toggle="hover" m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" class="m-menu__link m-menu__toggle" title="Non functional dummy link"><i class="m-menu__link-icon flaticon-business"></i><span
-														 class="m-menu__link-text">Manage Orders</span><i class="m-menu__hor-arrow la la-angle-right"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-													<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right"><span class="m-menu__arrow "></span>
-														<ul class="m-menu__subnav">
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Latest Orders</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Pending Orders</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Processed Orders</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Delivery Reports</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Payments</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Customers</span></a></li>
-														</ul>
-													</div>
-												</li>
-												<li class="m-menu__item  m-menu__item--submenu" m-menu-submenu-toggle="hover" m-menu-link-redirect="1" aria-haspopup="true"><a href="#" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-chat-1"></i><span class="m-menu__link-text">Customer
-															Feedbacks</span><i class="m-menu__hor-arrow la la-angle-right"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-													<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right"><span class="m-menu__arrow "></span>
-														<ul class="m-menu__subnav">
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Customer Feedbacks</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Supplier Feedbacks</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Reviewed Feedbacks</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Resolved Feedbacks</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Feedback Reports</span></a></li>
-														</ul>
-													</div>
-												</li>
-												<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-users"></i><span class="m-menu__link-text">Register Member</span></a></li>
-											</ul>
-										</div>
-									</li>
-									<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" class="m-menu__link m-menu__toggle" title="Non functional dummy link"><i
-											 class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">Reports</span><i class="m-menu__hor-arrow la la-angle-down"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-										<div class="m-menu__submenu  m-menu__submenu--fixed m-menu__submenu--left" style="width:1000px"><span class="m-menu__arrow m-menu__arrow--adjust"></span>
-											<div class="m-menu__subnav">
-												<ul class="m-menu__content">
-													<li class="m-menu__item">
-														<h3 class="m-menu__heading m-menu__toggle"><span class="m-menu__link-text">Finance Reports</span><i class="m-menu__ver-arrow la la-angle-right"></i></h3>
-														<ul class="m-menu__inner">
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-map"></i><span class="m-menu__link-text">Annual Reports</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-user"></i><span class="m-menu__link-text">HR Reports</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-clipboard"></i><span class="m-menu__link-text">IPO Reports</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-graphic-1"></i><span class="m-menu__link-text">Finance Margins</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-graphic-2"></i><span class="m-menu__link-text">Revenue Reports</span></a></li>
-														</ul>
-													</li>
-													<li class="m-menu__item">
-														<h3 class="m-menu__heading m-menu__toggle"><span class="m-menu__link-text">Project Reports</span><i class="m-menu__ver-arrow la la-angle-right"></i></h3>
-														<ul class="m-menu__inner">
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--line"><span></span></i><span class="m-menu__link-text">Coca
-																		Cola CRM</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--line"><span></span></i><span class="m-menu__link-text">Delta
-																		Airlines Booking Site</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--line"><span></span></i><span class="m-menu__link-text">Malibu
-																		Accounting</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--line"><span></span></i><span class="m-menu__link-text">Vineseed
-																		Website Rewamp</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--line"><span></span></i><span class="m-menu__link-text">Zircon
-																		Mobile App</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--line"><span></span></i><span class="m-menu__link-text">Mercury
-																		CMS</span></a></li>
-														</ul>
-													</li>
-													<li class="m-menu__item">
-														<h3 class="m-menu__heading m-menu__toggle"><span class="m-menu__link-text">HR Reports</span><i class="m-menu__ver-arrow la la-angle-right"></i></h3>
-														<ul class="m-menu__inner">
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Staff
-																		Directory</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Client
-																		Directory</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Salary
-																		Reports</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Staff
-																		Payslips</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Corporate
-																		Expenses</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Project
-																		Expenses</span></a></li>
-														</ul>
-													</li>
-													<li class="m-menu__item">
-														<h3 class="m-menu__heading m-menu__toggle"><span class="m-menu__link-text">Reporting Apps</span><i class="m-menu__ver-arrow la la-angle-right"></i></h3>
-														<ul class="m-menu__inner">
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Report Adjusments</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Sources & Mediums</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Reporting Settings</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Conversions</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Report Flows</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><span class="m-menu__link-text">Audit & Logs</span></a></li>
-														</ul>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" class="m-menu__link m-menu__toggle" title="Non functional dummy link"><i
-											 class="m-menu__link-icon flaticon-paper-plane"></i><span class="m-menu__link-title"> <span class="m-menu__link-wrap"> <span class="m-menu__link-text">Apps</span> <span class="m-menu__link-badge"><span class="m-badge m-badge--brand m-badge--wide">new</span></span>
-												</span></span><i class="m-menu__hor-arrow la la-angle-down"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-										<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left"><span class="m-menu__arrow m-menu__arrow--adjust"></span>
-											<ul class="m-menu__subnav">
-												<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-business"></i><span class="m-menu__link-text">eCommerce</span></a></li>
-												<li class="m-menu__item  m-menu__item--submenu" m-menu-submenu-toggle="hover" m-menu-link-redirect="1" aria-haspopup="true"><a href="../../crud/datatable_v1.html" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-computer"></i><span
-														 class="m-menu__link-text">Audience</span><i class="m-menu__hor-arrow la la-angle-right"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-													<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--right"><span class="m-menu__arrow "></span>
-														<ul class="m-menu__subnav">
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-users"></i><span class="m-menu__link-text">Active Users</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-interface-1"></i><span class="m-menu__link-text">User Explorer</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-lifebuoy"></i><span class="m-menu__link-text">Users Flows</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-graphic-1"></i><span class="m-menu__link-text">Market Segments</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-graphic"></i><span class="m-menu__link-text">User Reports</span></a></li>
-														</ul>
-													</div>
-												</li>
-												<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-map"></i><span class="m-menu__link-text">Marketing</span></a></li>
-												<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-graphic-2"></i><span class="m-menu__link-title"> <span class="m-menu__link-wrap">
-																<span class="m-menu__link-text">Campaigns</span> <span class="m-menu__link-badge"><span class="m-badge m-badge--success">3</span></span> </span></span></a></li>
-												<li class="m-menu__item  m-menu__item--submenu" m-menu-submenu-toggle="hover" m-menu-link-redirect="1" aria-haspopup="true"><a href="javascript:;" class="m-menu__link m-menu__toggle" title="Non functional dummy link"><i class="m-menu__link-icon flaticon-infinity"></i><span
-														 class="m-menu__link-text">Cloud Manager</span><i class="m-menu__hor-arrow la la-angle-right"></i><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-													<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left"><span class="m-menu__arrow "></span>
-														<ul class="m-menu__subnav">
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-add"></i><span class="m-menu__link-title"> <span class="m-menu__link-wrap">
-																			<span class="m-menu__link-text">File Upload</span> <span class="m-menu__link-badge"><span class="m-badge m-badge--danger">3</span></span> </span></span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-signs-1"></i><span class="m-menu__link-text">File Attributes</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-folder"></i><span class="m-menu__link-text">Folders</span></a></li>
-															<li class="m-menu__item " m-menu-link-redirect="1" aria-haspopup="true"><a href="../../header/actions.html" class="m-menu__link "><i class="m-menu__link-icon flaticon-cogwheel-2"></i><span class="m-menu__link-text">System Settings</span></a></li>
-														</ul>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</li>
-								</ul>
-							</div>
-
-							<!-- END: Horizontal Menu -->
-
-							<!-- BEGIN: Topbar -->
-							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general m-stack--fluid">
-								<div class="m-stack__item m-topbar__nav-wrapper">
-									<ul class="m-topbar__nav m-nav m-nav--inline">
-										<li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light" m-dropdown-toggle="click" id="m_quicksearch"
-										 m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-nav__link-icon"><i class="flaticon-search-1"></i></span>
-											</a>
-											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
-												<div class="m-dropdown__inner ">
-													<div class="m-dropdown__header">
-														<form class="m-list-search__form">
-															<div class="m-list-search__form-wrapper">
-																<span class="m-list-search__form-input-wrapper">
-																	<input id="m_quicksearch_input" autocomplete="off" type="text" name="q" class="m-list-search__form-input" value="" placeholder="Search...">
-																</span>
-																<span class="m-list-search__form-icon-close" id="m_quicksearch_close">
-																	<i class="la la-remove"></i>
-																</span>
-															</div>
-														</form>
-													</div>
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__scrollable m-scrollable" data-scrollable="true" data-height="300" data-mobile-height="200">
-															<div class="m-dropdown__content">
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click"
-										 m-dropdown-persistent="1">
-											<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
-												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
-												<span class="m-nav__link-icon"><i class="flaticon-alarm"></i></span>
-											</a>
-											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/notification_bg.jpg); background-size: cover;">
-														<span class="m-dropdown__header-title">9 New</span>
-														<span class="m-dropdown__header-subtitle">User Notifications</span>
-													</div>
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__content">
-															<ul class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
-																<li class="nav-item m-tabs__item">
-																	<a class="nav-link m-tabs__link active" data-toggle="tab" href="#topbar_notifications_notifications" role="tab">
-																		Alerts
-																	</a>
-																</li>
-																<li class="nav-item m-tabs__item">
-																	<a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_events" role="tab">Events</a>
-																</li>
-																<li class="nav-item m-tabs__item">
-																	<a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_logs" role="tab">Logs</a>
-																</li>
-															</ul>
-															<div class="tab-content">
-																<div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
-																	<div class="m-scrollable" data-scrollable="true" data-height="250" data-mobile-height="200">
-																		<div class="m-list-timeline m-list-timeline--skin-light">
-																			<div class="m-list-timeline__items">
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>
-																					<span class="m-list-timeline__text">12 new users registered</span>
-																					<span class="m-list-timeline__time">Just now</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">System shutdown <span class="m-badge m-badge--success m-badge--wide">pending</span></span>
-																					<span class="m-list-timeline__time">14 mins</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">New invoice received</span>
-																					<span class="m-list-timeline__time">20 mins</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">DB overloaded 80% <span class="m-badge m-badge--info m-badge--wide">settled</span></span>
-																					<span class="m-list-timeline__time">1 hr</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">System error - <a href="#" class="m-link">Check</a></span>
-																					<span class="m-list-timeline__time">2 hrs</span>
-																				</div>
-																				<div class="m-list-timeline__item m-list-timeline__item--read">
-																					<span class="m-list-timeline__badge"></span>
-																					<span href="" class="m-list-timeline__text">New order received <span class="m-badge m-badge--danger m-badge--wide">urgent</span></span>
-																					<span class="m-list-timeline__time">7 hrs</span>
-																				</div>
-																				<div class="m-list-timeline__item m-list-timeline__item--read">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">Production server down</span>
-																					<span class="m-list-timeline__time">3 hrs</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">Production server up</span>
-																					<span class="m-list-timeline__time">5 hrs</span>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="tab-pane" id="topbar_notifications_events" role="tabpanel">
-																	<div class="m-scrollable" data-scrollable="true" data-height="250" data-mobile-height="200">
-																		<div class="m-list-timeline m-list-timeline--skin-light">
-																			<div class="m-list-timeline__items">
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-																					<a href="" class="m-list-timeline__text">New order received</a>
-																					<span class="m-list-timeline__time">Just now</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-danger"></span>
-																					<a href="" class="m-list-timeline__text">New invoice received</a>
-																					<span class="m-list-timeline__time">20 mins</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-																					<a href="" class="m-list-timeline__text">Production server up</a>
-																					<span class="m-list-timeline__time">5 hrs</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																					<a href="" class="m-list-timeline__text">New order received</a>
-																					<span class="m-list-timeline__time">7 hrs</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																					<a href="" class="m-list-timeline__text">System shutdown</a>
-																					<span class="m-list-timeline__time">11 mins</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																					<a href="" class="m-list-timeline__text">Production server down</a>
-																					<span class="m-list-timeline__time">3 hrs</span>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="tab-pane" id="topbar_notifications_logs" role="tabpanel">
-																	<div class="m-stack m-stack--ver m-stack--general" style="min-height: 180px;">
-																		<div class="m-stack__item m-stack__item--center m-stack__item--middle">
-																			<span class="">All caught up!<br>No new logs.</span>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li class="m-nav__item m-topbar__quick-actions m-topbar__quick-actions--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"
-										 m-dropdown-toggle="click">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
-												<span class="m-nav__link-icon"><i class="flaticon-share"></i></span>
-											</a>
-											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/quick_actions_bg.jpg); background-size: cover;">
-														<span class="m-dropdown__header-title">Quick Actions</span>
-														<span class="m-dropdown__header-subtitle">Shortcuts</span>
-													</div>
-													<div class="m-dropdown__body m-dropdown__body--paddingless">
-														<div class="m-dropdown__content">
-															<div class="data" data="false" data-height="380" data-mobile-height="200">
-																<div class="m-nav-grid m-nav-grid--skin-light">
-																	<div class="m-nav-grid__row">
-																		<a href="#" class="m-nav-grid__item">
-																			<i class="m-nav-grid__icon flaticon-file"></i>
-																			<span class="m-nav-grid__text">Generate Report</span>
-																		</a>
-																		<a href="#" class="m-nav-grid__item">
-																			<i class="m-nav-grid__icon flaticon-time"></i>
-																			<span class="m-nav-grid__text">Add New Event</span>
-																		</a>
-																	</div>
-																	<div class="m-nav-grid__row">
-																		<a href="#" class="m-nav-grid__item">
-																			<i class="m-nav-grid__icon flaticon-folder"></i>
-																			<span class="m-nav-grid__text">Create New Task</span>
-																		</a>
-																		<a href="#" class="m-nav-grid__item">
-																			<i class="m-nav-grid__icon flaticon-clipboard"></i>
-																			<span class="m-nav-grid__text">Completed Tasks</span>
-																		</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li class="m-nav__item m-topbar__languages m-dropdown m-dropdown--small m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width" m-dropdown-toggle="click">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-nav__link-text">
-													<img class="m-topbar__language-selected-img" src="../../assets/app/media/img/flags/020-flag.svg">
-												</span>
-											</a>
-											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/quick_actions_bg.jpg); background-size: cover;">
-														<span class="m-dropdown__header-subtitle">Select your language</span>
-													</div>
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__content">
-															<ul class="m-nav m-nav--skin-light">
-																<li class="m-nav__item m-nav__item--active">
-																	<a href="#" class="m-nav__link m-nav__link--active">
-																		<span class="m-nav__link-icon"><img class="m-topbar__language-img" src="../../assets/app/media/img/flags/020-flag.svg"></span>
-																		<span class="m-nav__link-title m-topbar__language-text m-nav__link-text">USA</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="#" class="m-nav__link">
-																		<span class="m-nav__link-icon"><img class="m-topbar__language-img" src="../../assets/app/media/img/flags/015-china.svg"></span>
-																		<span class="m-nav__link-title m-topbar__language-text m-nav__link-text">China</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="#" class="m-nav__link">
-																		<span class="m-nav__link-icon"><img class="m-topbar__language-img" src="../../assets/app/media/img/flags/016-spain.svg"></span>
-																		<span class="m-nav__link-title m-topbar__language-text m-nav__link-text">Spain</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="#" class="m-nav__link">
-																		<span class="m-nav__link-icon"><img class="m-topbar__language-img" src="../../assets/app/media/img/flags/014-japan.svg"></span>
-																		<span class="m-nav__link-title m-topbar__language-text m-nav__link-text">Japan</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="#" class="m-nav__link">
-																		<span class="m-nav__link-icon"><img class="m-topbar__language-img" src="../../assets/app/media/img/flags/017-germany.svg"></span>
-																		<span class="m-nav__link-title m-topbar__language-text m-nav__link-text">Germany</span>
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
-										 m-dropdown-toggle="click">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-topbar__userpic">
-													<img src="../../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
-												</span>
-												<span class="m-topbar__username m--hide">Nick</span>
-											</a>
-											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center" style="background: url(../../assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
-														<div class="m-card-user m-card-user--skin-dark">
-															<div class="m-card-user__pic">
-																<img src="../../assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
-
-																<!--
-						<span class="m-type m-type--lg m--bg-danger"><span class="m--font-light">S<span><span>
-						-->
-															</div>
-															<div class="m-card-user__details">
-																<span class="m-card-user__name m--font-weight-500">Mark Andre</span>
-																<a href="" class="m-card-user__email m--font-weight-300 m-link">mark.andre@gmail.com</a>
-															</div>
-														</div>
-													</div>
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__content">
-															<ul class="m-nav m-nav--skin-light">
-																<li class="m-nav__section m--hide">
-																	<span class="m-nav__section-text">Section</span>
-																</li>
-																<li class="m-nav__item">
-																	<a href="../../header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-profile-1"></i>
-																		<span class="m-nav__link-title">
-																			<span class="m-nav__link-wrap">
-																				<span class="m-nav__link-text">My Profile</span>
-																				<span class="m-nav__link-badge"><span class="m-badge m-badge--success">2</span></span>
-																			</span>
-																		</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="../../header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-share"></i>
-																		<span class="m-nav__link-text">Activity</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="../../header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-chat-1"></i>
-																		<span class="m-nav__link-text">Messages</span>
-																	</a>
-																</li>
-																<li class="m-nav__separator m-nav__separator--fit">
-																</li>
-																<li class="m-nav__item">
-																	<a href="../../header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-info"></i>
-																		<span class="m-nav__link-text">FAQ</span>
-																	</a>
-																</li>
-																<li class="m-nav__item">
-																	<a href="../../header/profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																		<span class="m-nav__link-text">Support</span>
-																	</a>
-																</li>
-																<li class="m-nav__separator m-nav__separator--fit">
-																</li>
-																<li class="m-nav__item">
-																	<a href="../../snippets/pages/user/login-1.html" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-										<li id="m_quick_sidebar_toggle" class="m-nav__item">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-nav__link-icon"><i class="flaticon-grid-menu"></i></span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- END: Topbar -->
-						</div>
-					</div>
-				</div>
-			</header>
-
-			<!-- END: Header -->
-
-			
-
-		
