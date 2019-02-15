@@ -31,7 +31,7 @@
     <!--stickey kit -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
-    <script src="<?php echo base_url(); ?>public/js/custom.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/custom.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
