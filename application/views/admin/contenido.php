@@ -30,7 +30,7 @@
 									
 								</span>
 								<div class="m-section__content">
-									<?php echo $contenido; ?>
+									<?php echo $crt; ?>
 								</div>
 							</div>
 
