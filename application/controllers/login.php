@@ -11,7 +11,7 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		//mod
+		
 		if($this->session->userdata("login"))
 		{
 			redirect(base_url()."Welcome");
