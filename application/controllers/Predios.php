@@ -32,7 +32,7 @@ class Predios extends CI_Controller {
 */		
 		$data['hola'] = "Mi cuate es un Pillin";
 		// $this->load->model('Tipopredio');
-		// $tipos_predios = $this->db->get('bloque');
+		$tipos_predios = $this->db->get('bloque');
 		// print_r($tipos_predios);die;
 		
 		$this->load->view('admin/header');
