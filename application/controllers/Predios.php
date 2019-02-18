@@ -4,7 +4,7 @@ class Predios extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        // $this->load->model('news_model');
+        $this->load->model('tipopredio_model');
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
     }
@@ -24,27 +24,27 @@ class Predios extends CI_Controller {
 	}
 
 	public function nuevo(){
-		// $data = 'Demo';
 
 /*		$data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
 		$data['title'] = "My Real Title";
 		$data['heading'] = "My Real Heading";
 */
 
+		$data['dc'] = $this->tipopredio_model->listado_combo();
+
+		// vdebug($this->tipopredio_model->hola());
+
 		$data['hola'] = "Mi cuate es un Pillin";
 		$con = $this->db->get('catastro.tipo_predio');
 		// log_message('debug', print_r($con,TRUE));
 		// vdebug($con);
 		// $this->load->model('Tipopredio');
-		$tipos_predios = $this->db->query('SELECT * FROM catastro.tipo_predio');
-		$tp = $tipos_predios->result();
-		vdebug($tipos_predios);
-		die();
-		foreach ($tp as $t) {
-			echo $t->descripcion. "<br />";
-		}
+		// $tipos_predios = $this->db->query('SELECT * FROM catastro.tipo_predio');
+		// $tp = $tipos_predios->result();
+		// vdebug($tp);
+		// die();
 		// print_r($tipos_predios);die;
-		echo $tipos_predios; die;
+		// echo $tipos_predios; die;
 
 		
 		$this->load->view('admin/header');
