@@ -22,15 +22,15 @@
                     <div class="card-body">
                         <h4 class="card-title">Formulario de registro de predio</h4>
                         <h6 class="card-subtitle">ingrese los datos llenados correctamente</h6>
-                        <form action="#" class="validation-wizard wizard-circle">
-                        <?php echo form_open('guarda'); ?>
+                        <!-- <form action="#" class="validation-wizard wizard-circle"> -->
+                        <?php echo form_open('predios/guardar', array('class'=>'validation-wizard wizard-circle')); ?>
                             <!-- Step 1 -->
                             <h6>Datos del terreno</h6>
                             <section>
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wfirstName2"> Tpo Predio: <span class="danger">*</span> </label>
+                                            <label for="tipo_predio_id"> Tpo Predio: <span class="danger">*</span> </label>
                                             <?php // echo vdebug($dc); ?>
                                             <select class="custom-select form-control required" id="tipo_predio" name="data[tipo_predio]">
                                                 <option value="">Selccione tipo</option>
@@ -50,14 +50,14 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="wemailAddress2"> Numero puerta : <span class="danger">*</span> </label>
-                                            <input type="email" class="form-control required" id="data[n_puerta]" name="emailAddress"> 
+                                            <input type="text" class="form-control required" id="data[n_puerta]" name="emailAddress"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="wemailAddress2"> Latitud : <span class="danger">*</span> </label>
-                                            <input type="email" class="form-control required" id="data[latitud]" name="emailAddress"> 
+                                            <input type="text" class="form-control required" id="data[latitud]" name="emailAddress"> 
                                         </div>
                                     </div>
 
@@ -212,9 +212,9 @@
                                     </div>
 
                                 </div>
-
                                 
                             </section>
+                            <!-- <input type="submit" value="Guardar"> -->
                             <!-- Step 2 -->
                             <h6>Step 2</h6>
                             <section>

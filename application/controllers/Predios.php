@@ -23,6 +23,10 @@ class Predios extends CI_Controller {
 		// $this->load->view('complementos');
 	}
 
+	public function guardar(){
+		
+	}
+
 	public function nuevo(){
 
 /*		$data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
