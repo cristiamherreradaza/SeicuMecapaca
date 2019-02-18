@@ -18,56 +18,200 @@
             <div class="col-12">
 
                 <div class="card wizard-content">
-                    
+
                     <div class="card-body">
-                        <h4 class="card-title">Step wizard with validation</h4>
-                        <h6 class="card-subtitle">You can us the validation like what we did</h6>
+                        <h4 class="card-title">Formulario de registro de predio</h4>
+                        <h6 class="card-subtitle">ingrese los datos llenados correctamente</h6>
                         <form action="#" class="validation-wizard wizard-circle">
                             <!-- Step 1 -->
-                            <h6>Step 1</h6>
+                            <h6>Datos del terreno</h6>
                             <section>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wfirstName2"> First Name : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="wfirstName2" name="firstName"> </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wlastName2"> Last Name : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="wlastName2" name="lastName"> </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wemailAddress2"> Email Address : <span class="danger">*</span> </label>
-                                            <input type="email" class="form-control required" id="wemailAddress2" name="emailAddress"> </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wphoneNumber2">Phone Number :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wlocation2"> Select City : <span class="danger">*</span> </label>
-                                            <select class="custom-select form-control required" id="wlocation2" name="location">
-                                                <option value="">Select City</option>
-                                                <option value="India">India</option>
-                                                <option value="USA">USA</option>
-                                                <option value="Dubai">Dubai</option>
+                                            <label for="wfirstName2"> Tpo Predio: <span class="danger">*</span> </label>
+                                            <select class="custom-select form-control required" id="tipo_predio" name="data[tipo_predio]">
+                                                <option value="">Selccione tipo predio</option>
+                                                <option value="India">Tipo 1</option>
+                                                <option value="USA">Tipo 2</option>
+                                                <option value="Dubai">Tipo 3</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wdate2">Date of Birth :</label>
-                                            <input type="date" class="form-control" id="wdate2"> </div>
+                                            <label for="wlastName2"> Numero inmueble : <span class="danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="wlastName2" name="data[n_inmueble]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="wemailAddress2"> Numero puerta : <span class="danger">*</span> </label>
+                                            <input type="email" class="form-control required" id="data[n_puerta]" name="emailAddress"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="wemailAddress2"> Latitud : <span class="danger">*</span> </label>
+                                            <input type="email" class="form-control required" id="data[latitud]" name="emailAddress"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="wemailAddress2"> Longitud : <span class="danger">*</span> </label>
+                                            <input type="email" class="form-control required" id="data[longitud]" name="emailAddress"> 
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Calle Principal :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Zona :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Superficie CAD:</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Superficie Levantada :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Superficie Legal :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Frente :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Fondo :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Ubicacion :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Pendiente :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Nivel :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Forma :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Servicios Basicos:</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Observaciones :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Superficie Legal :</label>
+                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Fotografia Frete :</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Foto</span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Seleccionar</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="wphoneNumber2">Fotografia Plano :</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Foto</span>
+                                                </div>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Seleccionar</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                
                             </section>
                             <!-- Step 2 -->
                             <h6>Step 2</h6>

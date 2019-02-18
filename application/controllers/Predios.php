@@ -28,7 +28,12 @@ class Predios extends CI_Controller {
 /*		$data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
 		$data['title'] = "My Real Title";
 		$data['heading'] = "My Real Heading";
-*/		$data['hola'] = "Mi cuate es un Pillin";
+
+*/		
+		$data['hola'] = "Mi cuate es un Pillin";
+		// $this->load->model('Tipopredio');
+		// $tipos_predios = $this->db->get('bloque');
+		// print_r($tipos_predios);die;
 		
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
