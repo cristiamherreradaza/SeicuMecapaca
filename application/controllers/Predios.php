@@ -25,9 +25,10 @@ class Predios extends CI_Controller {
 	public function nuevo(){
 		// $data = 'Demo';
 
-		$data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
+/*		$data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
 		$data['title'] = "My Real Title";
 		$data['heading'] = "My Real Heading";
+*/		$data['hola'] = "Mi cuate es un Pillin";
 		
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
