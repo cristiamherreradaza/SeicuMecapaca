@@ -29,17 +29,49 @@ class Predios extends CI_Controller {
 
 	public function nuevo(){
 
-/*		$data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
-		$data['title'] = "My Real Title";
-		$data['heading'] = "My Real Heading";
-*/
-
 		$this->db->select('tipo_predio_id, descripcion');
 		$query = $this->db->get('catastro.tipo_predio');
-		return $query->result();
+		$data['dc_tipos_predio'] = $query->result();
 
-		$data['dc'] = $this->tipopredio_model->listado_combo();
+		$this->db->select('zonaurb_id, descripcion');
+		$query = $this->db->get('catastro.zona_urbana');
+		$data['dc_zona_urbana'] = $query->result();
 
+		$this->db->select('via_id, codcatas');
+		$query = $this->db->get('catastro.predio_via');
+		$data['dc_predio_via'] = $query->result();
+
+		$this->db->select('ubicacion_id, descripcion');
+		$query = $this->db->get('catastro.ubicacion');
+		$data['dc_ubicacion'] = $query->result();
+
+		$this->db->select('pendiente_id, descripcion');
+		$query = $this->db->get('catastro.pendiente');
+		$data['dc_pendiente'] = $query->result();
+
+		$this->db->select('nivel_id, descripcion');
+		$query = $this->db->get('catastro.nivel');
+		$data['dc_nivel'] = $query->result();
+
+		$this->db->select('forma_id, descripcion');
+		$query = $this->db->get('catastro.forma');
+		$data['dc_forma'] = $query->result();
+
+		$this->db->select('clase_predio_id, descripcion');
+		$query = $this->db->get('catastro.clase_predio');
+		$data['dc_clase_predio'] = $query->result();
+
+		$this->db->select('uso_suelo_id, descripcion');
+		$query = $this->db->get('catastro.uso_suelo');
+		$data['dc_uso_suelo'] = $query->result();
+
+		$this->db->select('edificio_id, descripcion');
+		$query = $this->db->get('catastro.edificio');
+		$data['dc_edificio'] = $query->result();
+
+
+
+		// $data['dc'] = $this->tipopredio_model->listado_combo();
 		// vdebug($this->tipopredio_model->hola());
 
 		$data['hola'] = "Mi cuate es un Pillin";
@@ -53,7 +85,6 @@ class Predios extends CI_Controller {
 		// die();
 		// print_r($tipos_predios);die;
 		// echo $tipos_predios; die;
-
 		
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');

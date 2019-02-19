@@ -30,30 +30,59 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="codigo_catastral"> Codigo Catastral : <span class="danger">*</span> </label>
+                                            <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control required" id="codigo_catastral" name="data[codigo_catastral]"> 
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="codigo_catastral_anterior"> Codigo Catastral Anterior : <span class="danger">*</span> </label>
+                                            <label for="codigo_catastral_anterior"> Cod Cat Ant : <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control required" id="codigo_catastral_anterior" name="data[codigo_catastral_anterior]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="n_inmueble"> Num inmueble : <span class="text-danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="n_inmueble" name="data[n_inmueble]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="distrito"> Distrito : <span class="text-danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="distrito" name="data[distrito]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="manzana"> Manzana : <span class="text-danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="manzana" name="data[manzana]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="predio"> Predio : <span class="text-danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="predio" name="data[predio]"> 
                                         </div>
                                     </div>
                                     
                                 </div>
 
                                 <div class="row">
+                                
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="tipo_predio_id"> Tpo Predio: <span class="danger">*</span> </label>
-                                            <?php // echo vdebug($dc); ?>
+                                            <label for="tipo_predio_id"> Tpo Predio: <span class="text-danger">*</span> </label>
+                                            <?php //echo vdebug($dc_tipos_predio); ?>
                                             <select class="custom-select form-control required" id="tipo_predio" name="data[tipo_predio]">
                                                 <option value="">Seleccione tipo</option>
-                                                <?php foreach ($dc as $d): ?>
+                                                <?php foreach ($dc_tipos_predio as $d): ?>
                                                     <option value="<?php echo $d->tipo_predio_id; ?>"><?php echo $d->descripcion; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -62,45 +91,140 @@
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="n_inmueble"> Numero inmueble : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="n_inmueble" name="data[n_inmueble]"> 
+                                            <label for="zona_econo"> Zona eco : <span class="text-danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="zona_econo" name="data[zona_econo]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="n_puerta"> Numero puerta : <span class="danger">*</span> </label>
+                                        <?php //echo vdebug($dc_tipos_predio); ?>
+                                            <label for="zonaurb_id"> Zona urbana: <span class="text-danger">*</span> </label>
+                                            <select class="custom-select form-control required" id="zonaurb_id" name="data[zonaurb_id]">
+                                                <option value="">Seleccione zona</option>
+                                                <?php foreach ($dc_zona_urbana as $d): ?>
+                                                    <option value="<?php echo $d->zonaurb_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="n_puerta"> Numero puerta : <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control required" id="n_puerta" name="data[n_puerta]"> 
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="latitud"> Latitud : <span class="danger">*</span> </label>
+                                            <label for="latitud"> Latitud : <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control required" id="latitud" name="data[latitud]"> 
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="longintud"> Longitud : <span class="danger">*</span> </label>
+                                            <label for="longintud"> Longitud : <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control required" id="longitud" name="data[longitud]"> 
                                         </div>
                                     </div>
+
                                 </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="superficie_geo">Superficie Geo : <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control required" id="superficie_geo" name="data[superficie_geo]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="superficie_campo">Superficie Campo : <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control required" id="superficie_campo" name="data[superficie_campo]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="superficie_legal">Superficie Legal : <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control required" id="superficie_legal" name="data[superficie_legal]"> 
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="ubicacion_id"> Ubicacion : <span class="text-danger">*</span> </label>
+                                        <?php //echo vdebug($dc_tipos_predio); ?>
+                                        <select class="custom-select form-control required" id="ubicacion_id" name="data[ubicacion_id]">
+                                            <option value="">Seleccione ubicacion</option>
+                                            <?php foreach ($dc_ubicacion as $d): ?>
+                                                <option value="<?php echo $d->ubicacion_id; ?>"><?php echo $d->descripcion; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="pendiente_id"> Pendiente : <span class="text-danger">*</span> </label>
+                                        <?php //echo vdebug($dc_tipos_predio); ?>
+                                        <select class="custom-select form-control required" id="pendiente_id" name="data[pendiente_id]">
+                                            <option value="">Seleccione pendiente</option>
+                                            <?php foreach ($dc_pendiente as $d): ?>
+                                                <option value="<?php echo $d->pendiente_id; ?>"><?php echo $d->descripcion; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                    <?php //echo vdebug($dc_tipos_predio); ?>
+                                        <label for="nivel_id"> Nivel : <span class="text-danger">*</span> </label>
+                                        <select class="custom-select form-control required" id="nivel_id" name="data[nivel_id]">
+                                            <option value="">Seleccione nivel</option>
+                                            <?php foreach ($dc_nivel as $d): ?>
+                                                <option value="<?php echo $d->nivel_id; ?>"><?php echo $d->descripcion; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                    <?php //echo vdebug($dc_tipos_predio); ?>
+                                        <label for="forma_id"> Forma : <span class="text-danger">*</span> </label>
+                                        <select class="custom-select form-control required" id="forma_id" name="data[forma_id]">
+                                            <option value="">Seleccione zona</option>
+                                            <?php foreach ($dc_forma as $d): ?>
+                                                <option value="<?php echo $d->forma_id; ?>"><?php echo $d->descripcion; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
 
                                 <div class="row">
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="c_principal">Calle Principal : <span class="danger">*</span></label>
+                                            <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control required" id="c_principal" name="data[longitud]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="zona">Zona : <span class="danger">*</span></label>
+                                            <label for="zona">Zona : <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control required" id="zona" name="data[zona]"> 
                                         </div>
                                     </div>
@@ -109,70 +233,63 @@
 
                                 <div class="row">
 
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="superficie_cad">Superficie CAD: <span class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="superficie_cad" name="data[superficie_cad]"> 
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="superficie_levantada">Superficie Levantada : <span class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="superficie_levantada" name="data[superfcie_levantada]"> 
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="superficie_legal">Superficie Legal : <span class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="superficie_legal" name="data[superficie_legal]"> 
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="frente">Frente : <span class="danger">*</span></label>
+                                            <label for="frente">Frente : <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control required" id="frente" name="data[frente]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="fondo">Fondo : <span class="danger">*</span></label>
+                                            <label for="fondo">Fondo : <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control required" id="fondo" name="data[fondo]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="ubicacion">Ubicacion : <span class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="ubicacion" name="data[ubicacion]"> 
+                                        <?php //echo vdebug($dc_tipos_predio); ?>
+                                            <label for="forma_id"> Clase Predio : <span class="text-danger">*</span> </label>
+                                            <select class="custom-select form-control required" id="forma_id" name="data[forma_id]">
+                                                <option value="">Seleccione clase</option>
+                                                <?php foreach ($dc_clase_predio as $d): ?>
+                                                    <option value="<?php echo $d->clase_predio_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>                                    
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <?php //echo vdebug($dc_tipos_predio); ?>
+                                            <label for="forma_id"> Uso Suelo : <span class="text-danger">*</span> </label>
+                                            <select class="custom-select form-control required" id="forma_id" name="data[forma_id]">
+                                                <option value="">Seleccione clase</option>
+                                                <?php foreach ($dc_uso_suelo as $d): ?>
+                                                    <option value="<?php echo $d->uso_suelo_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="pendiente">Pendiente : <span class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="pendiente" name="data[pendiente]"> 
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label for="nivel">Nivel : <span class="danger">*</span></label>
-                                            <input type="text" class="form-control required" id="nivel" name="data[nivel]"> 
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label for="forma">Forma : <span class="danger">*</span></label>
+                                            <label for="forma">Matriz PH : <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control required" id="forma" name="data[forma]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                        <?php //echo vdebug($dc_tipos_predio); ?>
+                                            <label for="forma_id"> Edificio : <span class="text-danger">*</span> </label>
+                                            <select class="custom-select form-control required" id="forma_id" name="data[forma_id]">
+                                                <option value="">Seleccione clase</option>
+                                                <?php foreach ($dc_edificio_id as $d): ?>
+                                                    <option value="<?php echo $d->edificio_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -182,7 +299,7 @@
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="servicios_basicos">Servicios Basicos: <span class="danger">*</span></label>
+                                            <label for="servicios_basicos">Servicios Basicos: <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control required" id="servicios_basicos" name="data[servicios_basicos]"> 
                                         </div>
                                     </div>
