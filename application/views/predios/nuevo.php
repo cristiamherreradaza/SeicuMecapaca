@@ -27,44 +27,64 @@
                             <!-- Step 1 -->
                             <h6>Datos del terreno</h6>
                             <section>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="codigo_catastral"> Codigo Catastral : <span class="danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="codigo_catastral" name="data[codigo_catastral]"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="codigo_catastral_anterior"> Codigo Catastral Anterior : <span class="danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="codigo_catastral_anterior" name="data[codigo_catastral_anterior]"> 
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <label for="tipo_predio_id"> Tpo Predio: <span class="danger">*</span> </label>
                                             <?php // echo vdebug($dc); ?>
                                             <select class="custom-select form-control required" id="tipo_predio" name="data[tipo_predio]">
-                                                <option value="">Selccione tipo</option>
+                                                <option value="">Seleccione tipo</option>
                                                 <?php foreach ($dc as $d): ?>
                                                     <option value="<?php echo $d->tipo_predio_id; ?>"><?php echo $d->descripcion; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
+
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wlastName2"> Numero inmueble : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="wlastName2" name="data[n_inmueble]"> 
+                                            <label for="n_inmueble"> Numero inmueble : <span class="danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="n_inmueble" name="data[n_inmueble]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wemailAddress2"> Numero puerta : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="data[n_puerta]" name="emailAddress"> 
+                                            <label for="n_puerta"> Numero puerta : <span class="danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="n_puerta" name="data[n_puerta]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="wemailAddress2"> Latitud : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="data[latitud]" name="emailAddress"> 
+                                            <label for="latitud"> Latitud : <span class="danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="latitud" name="data[latitud]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="wemailAddress2"> Longitud : <span class="danger">*</span> </label>
-                                            <input type="email" class="form-control required" id="data[longitud]" name="emailAddress"> 
+                                            <label for="longintud"> Longitud : <span class="danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="longitud" name="data[longitud]"> 
                                         </div>
                                     </div>
                                 </div>
@@ -73,15 +93,15 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Calle Principal :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="c_principal">Calle Principal : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="c_principal" name="data[longitud]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Zona :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="zona">Zona : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="zona" name="data[zona]"> 
                                         </div>
                                     </div>
 
@@ -91,22 +111,22 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Superficie CAD:</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="superficie_cad">Superficie CAD: <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="superficie_cad" name="data[superficie_cad]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Superficie Levantada :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="superficie_levantada">Superficie Levantada : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="superficie_levantada" name="data[superfcie_levantada]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Superficie Legal :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="superficie_legal">Superficie Legal : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="superficie_legal" name="data[superficie_legal]"> 
                                         </div>
                                     </div>
 
@@ -116,43 +136,43 @@
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Frente :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="frente">Frente : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="frente" name="data[frente]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Fondo :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="fondo">Fondo : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="fondo" name="data[fondo]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Ubicacion :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="ubicacion">Ubicacion : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="ubicacion" name="data[ubicacion]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Pendiente :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="pendiente">Pendiente : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="pendiente" name="data[pendiente]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Nivel :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="nivel">Nivel : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="nivel" name="data[nivel]"> 
                                         </div>
                                     </div>
 
                                     <div class="col-md-2">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Forma :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="forma">Forma : <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="forma" name="data[forma]"> 
                                         </div>
                                     </div>
 
@@ -162,22 +182,15 @@
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Servicios Basicos:</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="servicios_basicos">Servicios Basicos: <span class="danger">*</span></label>
+                                            <input type="text" class="form-control required" id="servicios_basicos" name="data[servicios_basicos]"> 
                                         </div>
                                     </div>
 
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="wphoneNumber2">Observaciones :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
-                                        </div>
-                                    </div>
-
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="wphoneNumber2">Superficie Legal :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2"> 
+                                            <label for="observaciones">Observaciones : </label>
+                                            <input type="text" class="form-control" id="observaciones" name="data[observaciones]"> 
                                         </div>
                                     </div>
 

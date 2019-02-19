@@ -24,7 +24,7 @@ class Predios extends CI_Controller {
 	}
 
 	public function guardar(){
-		
+		vdebug($data);
 	}
 
 	public function nuevo(){
@@ -33,6 +33,10 @@ class Predios extends CI_Controller {
 		$data['title'] = "My Real Title";
 		$data['heading'] = "My Real Heading";
 */
+
+		$this->db->select('tipo_predio_id, descripcion');
+		$query = $this->db->get('catastro.tipo_predio');
+		return $query->result();
 
 		$data['dc'] = $this->tipopredio_model->listado_combo();
 
