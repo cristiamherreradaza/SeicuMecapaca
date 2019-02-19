@@ -69,6 +69,9 @@ class Predios extends CI_Controller {
 		$query = $this->db->get('catastro.edificio');
 		$data['dc_edificio'] = $query->result();
 
+		$this->db->select('servicio_id, descripcion');
+		$query = $this->db->get('catastro.servicio');
+		$data['listado_servicios'] = $query->result();
 
 
 		// $data['dc'] = $this->tipopredio_model->listado_combo();

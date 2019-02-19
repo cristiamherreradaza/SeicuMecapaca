@@ -298,9 +298,18 @@
                                 <div class="row">
 
                                     <div class="col">
-                                        <div class="form-group">
-                                            <label for="servicios_basicos">Servicios Basicos: <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control required" id="servicios_basicos" name="data[servicios_basicos]"> 
+                                    <label for="forma_id"> Servicios Basicos : <span class="text-danger">*</span> </label>
+
+                                        <div class="form-group row pt-12">
+                                            <div class="col-sm-12">
+                                                <?php foreach ($listado_servicios as $ls): ?>
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $ls->servicio_id; ?>">
+                                                        <label class="custom-control-label" for="customCheck<?php echo $ls->servicio_id; ?>"><?php echo $ls->descripcion ?></label>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                            
                                         </div>
                                     </div>
 
