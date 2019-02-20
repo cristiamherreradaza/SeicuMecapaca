@@ -24,7 +24,9 @@ class Predios extends CI_Controller {
 	}
 
 	public function guardar(){
-		vdebug($data);
+
+		$datos = $this->input->post();
+		vdebug($datos);
 	}
 
 	public function nuevo(){
