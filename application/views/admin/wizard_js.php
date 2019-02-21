@@ -5,3 +5,10 @@
 <!-- Sweet-Alert  -->
 <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.js"></script>
+<script src="<?php echo base_url(); ?>public/js/validation.js"></script>
+<script>
+	! function(window, document, $) {
+		"use strict";
+		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation()
+	}(window, document, jQuery);
+</script>
