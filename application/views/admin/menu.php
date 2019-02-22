@@ -108,11 +108,7 @@
                         <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
                         <li><a href="<?php echo base_url(); ?>Tipo_planta">Tipo Planta</a></li>
                         <li><a href="<?php echo base_url(); ?>Matvia">Matvia</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
+                        
                     </ul>
                 </li>
             </ul>
