@@ -93,8 +93,8 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar Tipo Predio</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<?php echo base_url();?>tipopredio/update" method="POST">
-
+                        <!--<form action="<?php echo base_url();?>tipopredio/update" method="POST">-->
+                        <?php echo form_open('tipopredio/update', array('method'=>'POST')); ?>
                              <div class="form-group">
                                 <input type="text" hidden="" id="tipo_predio_id" name="tipo_predio_id">
                             </div>
@@ -128,7 +128,8 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Insertar Tipo Predio</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<?php echo base_url();?>tipopredio/insertar" method="POST">
+                        <!--<form action="<?php echo base_url();?>tipopredio/insertar" method="POST">-->
+                        <?php echo form_open('tipopredio/insertar', array('method'=>'POST')); ?>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
                                 <input type="text" class="form-control" id="recipient-name1" name="descripcion">

@@ -92,8 +92,8 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar Ubicaci&oacute;n</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<?php echo base_url();?>matvia/update" method="POST">
-
+                        <!--<form action="<?php echo base_url();?>matvia/update" method="POST">-->
+                        <?php echo form_open('matvia/update', array('method'=>'POST')); ?>
                             <div class="form-group">
                                 <input type="text" hidden="" id="matvia_id" name="matvia_id">
                             </div>
@@ -128,7 +128,8 @@
                         $edirol = $this->uri->segment(3);
                     ?>
                     <div class="modal-body">
-                        <form action="<?php echo base_url();?>matvia/insertar" method="POST">
+                        <!--<form action="<?php echo base_url();?>matvia/insertar" method="POST">-->
+                        <?php echo form_open('matvia/insertar', array('method'=>'POST')); ?>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
                                 <input type="text" class="form-control" id="recipient-name1" name="descripcion">
