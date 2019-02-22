@@ -14,10 +14,10 @@ class Login extends CI_Controller {
 		
 		if($this->session->userdata("login"))
 		{
-			redirect(base_url()."Welcome");
+			redirect(base_url()."Predios");
 		}
 		else{
-			$this->load->view('login');	
+			$this->load->view('login/login');	
 		}
 		
 	}
@@ -52,7 +52,7 @@ class Login extends CI_Controller {
 				'login' => TRUE
 			);
 			$this->session->set_userdata($data);
-			redirect(base_url()."dashboard");
+			redirect(base_url()."Predios");
 		}
 		
 

@@ -45,22 +45,25 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+
+                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
                         <b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="<?php echo base_url(); ?>public/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <!-- <img src="<?php //echo base_url(); ?>public/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> -->
+                            <img src="<?php echo base_url(); ?>public/assets/images/icono.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span>
-                         <!-- dark Logo text -->
-                         <!-- <img src="<?php // echo base_url(); ?>public/assets/images/logo-text.png" alt="homepage" class="dark-logo" /> -->
+                         <!-- dark Logo text 
+                         <img src="<?php echo base_url(); ?>public/assets/images/logo-text.png" alt="homepage" class="dark-logo" />-->
                          <!-- Light Logo text -->    
-                         <img src="<?php echo base_url(); ?>public/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /></span> </a>
+                         <img src="<?php echo base_url(); ?>public/assets/images/logo.png" class="light-logo" alt="homepage" /></span>
+                    </a>
+
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- End Logo -->
@@ -277,25 +280,22 @@
                                 <input type="text" class="form-control" placeholder="Search for..."> <a class="srh-btn"><i class="ti-search"></i></a> </form>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>public/assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url(); ?>public/assets/images/users/perfil1.jpg" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <ul class="dropdown-user">
                                     <li>
                                         <div class="dw-user-box">
-                                            <div class="u-img"><img src="<?php echo base_url(); ?>public/assets/images/users/1.jpg" alt="user"></div>
+                                            <div class="u-img"><img src="<?php echo base_url(); ?>public/assets/images/users/perfil1.jpg" alt="user"></div>
                                             <div class="u-text">
-                                                <h4>Steave Jobs</h4>
-                                                <p class="text-muted">varun@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                <h4><?php echo $this->session->userdata("usuario")?></h4>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#m_modal_1"><i class="ti-user"></i> Ver Perfil</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#m_modal_5"><i class="ti-wallet"></i> Editar Perfil</a></li>
+                                    <li><a href="<?php echo base_url(); ?>login/logout" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                                            Cerrar Sesión
+                                    </a></li>
                                 </ul>
                             </div>
                         </li>
@@ -307,5 +307,54 @@
                 </div>
             </nav>
         </header>
+<!--header-->
+<div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel1">Ver Rol</h4>
+                    </div>
+                   <div class="card">
+                       <img class="card-img-top img-responsive" src="<?php echo base_url(); ?>public/assets/images/users/perfil.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title">Card title</h4>
+                                <p class="card-text">This card has supporting text below as a natural.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+<div class="modal fade" id="m_modal_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel1">Editar Rol</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Rol</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="rol" value="<?php echo $lis->rol;?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Activo</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="activo" value="<?php echo $lis->activo;?>">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar Edici&oacute;n</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
        
 

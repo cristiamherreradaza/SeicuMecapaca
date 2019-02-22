@@ -10,15 +10,15 @@
         <!-- User profile -->
         <div class="user-profile">
             <!-- User profile image -->
-            <div class="profile-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/1.jpg" alt="user" /> </div>
+            <div class="profile-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/perfil1.jpg" alt="user" /> </div>
             <!-- User profile text-->
-            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Markarn Doe <span class="caret"></span></a>
+            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo $this->session->userdata("usuario")?> <span class="caret"></span></a>
                 <div class="dropdown-menu animated flipInY">
                     <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                     <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
                     <a href="#" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
                     <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
-                    <div class="dropdown-divider"></div> <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                    <div class="dropdown-divider"></div> <a href="<?php echo base_url(); ?>login/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Cerrar Sesi&oacute;n</a>
                 </div>
             </div>
         </div>
@@ -88,6 +88,31 @@
                         <li><a href="ui-spinner.html">Spinner</a></li>
                         <li><a href="ui-scrollspy.html">Scrollspy</a></li>
                         <li><a href="ui-toasts.html">Toasts</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">CRUD</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
+                        <li><a href="<?php echo base_url(); ?>Zona_urbana">Zona Urbana</a></li>
+                        <li><a href="<?php echo base_url(); ?>Ubicacion">Ubicaci&oacute;n</a></li>
+                        <li><a href="<?php echo base_url(); ?>Pendiente">Pendiente</a></li>
+                        <li><a href="<?php echo base_url(); ?>Nivel">Nivel</a></li>
+                        <li><a href="<?php echo base_url(); ?>Forma">Forma</a></li>
+                        <li><a href="<?php echo base_url(); ?>Tipopredio">Tipo de Predio</a></li>
+                        <li><a href="<?php echo base_url(); ?>Clase_predio">Clase Predio</a></li>
+                        <li><a href="<?php echo base_url(); ?>Uso_suelo">Uso Suelo</a></li>
+                        <li><a href="<?php echo base_url(); ?>Edificio">Edificio</a></li>
+                        <li><a href="<?php echo base_url(); ?>Servicio">Servicio</a></li>
+                        <li><a href="<?php echo base_url(); ?>Destino_bloque">Destino Bloque</a></li>
+                        <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
+                        <li><a href="<?php echo base_url(); ?>Tipo_planta">Tipo Planta</a></li>
+                        <li><a href="<?php echo base_url(); ?>Matvia">Matvia</a></li>
+                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
+                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
+                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
+                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
+                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
                     </ul>
                 </li>
             </ul>

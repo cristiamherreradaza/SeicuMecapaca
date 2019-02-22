@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tipopredio_model extends CI_Model {
+class Matvia_model extends CI_Model {
 
 	public $variable;
 	
@@ -13,7 +13,7 @@ class Tipopredio_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.tipo_predio ORDER BY tipo_predio_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.matvia ORDER BY matvia_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -21,17 +21,17 @@ class Tipopredio_model extends CI_Model {
 		else{
 			return false;
 		}
+	
 	}
 
-	public function insertar_tipredio($descripcion, $alias, $coeficiente)
+	public function insertar_matvia($descripcion, $coeficiente)
 	{	
 		
 		$array = array(
 			'descripcion' =>$descripcion,
-			'alias' =>$alias,
 			'coeficiente' =>$coeficiente
 			);
-		$this->db->insert('catastro.tipo_predio', $array);
+		$this->db->insert('catastro.matvia', $array);
 	}
 
 
@@ -51,19 +51,18 @@ class Tipopredio_model extends CI_Model {
 
 	}
 
-	 public function eliminar($id)
-	{
-      $this->db->delete('catastro.tipo_predio', array('tipo_predio_id' => $id));
+	 public function eliminar($id){
+      $this->db->delete('catastro.matvia', array('matvia_id' => $id));
     }
 
-    public function actualizar($tipo_predio_id, $descripcion, $alias, $coeficiente)
+    public function actualizar($matvia_id, $descripcion, $coeficiente)
     {
         $data = array(
             'descripcion' => $descripcion,
-            'alias' => $alias,
             'coeficiente' => $coeficiente
         );
-        $this->db->where('tipo_predio_id', $tipo_predio_id);
-        return $this->db->update('catastro.tipo_predio', $data);
+        $this->db->where('matvia_id', $matvia_id);
+        return $this->db->update('catastro.matvia', $data);
     }
+
 }
