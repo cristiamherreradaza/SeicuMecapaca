@@ -25,82 +25,81 @@ class Predios extends CI_Controller {
 
 	public function registra_predio(){
 
-	if ($this->input->post()) {
-		$datos = $this->input->post();
-		// $data = array(
+		if ($this->input->post()) {
+			$datos = $this->input->post();
+			// $data = array(
+			// );
+			vdebug($datos['data']['codigo_catastral']);
+				
+		}else{
 
-		// );
-		vdebug($datos['data']['codigo_catastral']);
+			$this->db->select('tipo_predio_id, descripcion');
+			$query = $this->db->get('catastro.tipo_predio');
+			$data['dc_tipos_predio'] = $query->result();
+
+			$this->db->select('zonaurb_id, descripcion');
+			$query = $this->db->get('catastro.zona_urbana');
+			$data['dc_zona_urbana'] = $query->result();
+
+			$this->db->select('via_id, codcatas');
+			$query = $this->db->get('catastro.predio_via');
+			$data['dc_predio_via'] = $query->result();
+
+			$this->db->select('ubicacion_id, descripcion');
+			$query = $this->db->get('catastro.ubicacion');
+			$data['dc_ubicacion'] = $query->result();
+
+			$this->db->select('pendiente_id, descripcion');
+			$query = $this->db->get('catastro.pendiente');
+			$data['dc_pendiente'] = $query->result();
+
+			$this->db->select('nivel_id, descripcion');
+			$query = $this->db->get('catastro.nivel');
+			$data['dc_nivel'] = $query->result();
+
+			$this->db->select('forma_id, descripcion');
+			$query = $this->db->get('catastro.forma');
+			$data['dc_forma'] = $query->result();
+
+			$this->db->select('clase_predio_id, descripcion');
+			$query = $this->db->get('catastro.clase_predio');
+			$data['dc_clase_predio'] = $query->result();
+
+			$this->db->select('uso_suelo_id, descripcion');
+			$query = $this->db->get('catastro.uso_suelo');
+			$data['dc_uso_suelo'] = $query->result();
+
+			$this->db->select('edificio_id, descripcion');
+			$query = $this->db->get('catastro.edificio');
+			$data['dc_edificio'] = $query->result();
+
+			$this->db->select('servicio_id, descripcion');
+			$query = $this->db->get('catastro.servicio');
+			$data['listado_servicios'] = $query->result();
+
+
+			// $data['dc'] = $this->tipopredio_model->listado_combo();
+			// vdebug($this->tipopredio_model->hola());
+
+			$data['hola'] = "Mi cuate es un Pillin";
+			$con = $this->db->get('catastro.tipo_predio');
+			// log_message('debug', print_r($con,TRUE));
+			// vdebug($con);
+			// $this->load->model('Tipopredio');
+			// $tipos_predios = $this->db->query('SELECT * FROM catastro.tipo_predio');
+			// $tp = $tipos_predios->result();
+			// vdebug($tp);
+			// die();
+			// print_r($tipos_predios);die;
+			// echo $tipos_predios; die;
 			
-	}else{
-
-		$this->db->select('tipo_predio_id, descripcion');
-		$query = $this->db->get('catastro.tipo_predio');
-		$data['dc_tipos_predio'] = $query->result();
-
-		$this->db->select('zonaurb_id, descripcion');
-		$query = $this->db->get('catastro.zona_urbana');
-		$data['dc_zona_urbana'] = $query->result();
-
-		$this->db->select('via_id, codcatas');
-		$query = $this->db->get('catastro.predio_via');
-		$data['dc_predio_via'] = $query->result();
-
-		$this->db->select('ubicacion_id, descripcion');
-		$query = $this->db->get('catastro.ubicacion');
-		$data['dc_ubicacion'] = $query->result();
-
-		$this->db->select('pendiente_id, descripcion');
-		$query = $this->db->get('catastro.pendiente');
-		$data['dc_pendiente'] = $query->result();
-
-		$this->db->select('nivel_id, descripcion');
-		$query = $this->db->get('catastro.nivel');
-		$data['dc_nivel'] = $query->result();
-
-		$this->db->select('forma_id, descripcion');
-		$query = $this->db->get('catastro.forma');
-		$data['dc_forma'] = $query->result();
-
-		$this->db->select('clase_predio_id, descripcion');
-		$query = $this->db->get('catastro.clase_predio');
-		$data['dc_clase_predio'] = $query->result();
-
-		$this->db->select('uso_suelo_id, descripcion');
-		$query = $this->db->get('catastro.uso_suelo');
-		$data['dc_uso_suelo'] = $query->result();
-
-		$this->db->select('edificio_id, descripcion');
-		$query = $this->db->get('catastro.edificio');
-		$data['dc_edificio'] = $query->result();
-
-		$this->db->select('servicio_id, descripcion');
-		$query = $this->db->get('catastro.servicio');
-		$data['listado_servicios'] = $query->result();
-
-
-		// $data['dc'] = $this->tipopredio_model->listado_combo();
-		// vdebug($this->tipopredio_model->hola());
-
-		$data['hola'] = "Mi cuate es un Pillin";
-		$con = $this->db->get('catastro.tipo_predio');
-		// log_message('debug', print_r($con,TRUE));
-		// vdebug($con);
-		// $this->load->model('Tipopredio');
-		// $tipos_predios = $this->db->query('SELECT * FROM catastro.tipo_predio');
-		// $tp = $tipos_predios->result();
-		// vdebug($tp);
-		// die();
-		// print_r($tipos_predios);die;
-		// echo $tipos_predios; die;
-		
-		$this->load->view('admin/header');
-		$this->load->view('admin/menu');
-		// $this->load->view('predios/nuevo', $data);
-		$this->load->view('predios/registra_predio', $data);
-		$this->load->view('admin/footer');
-		$this->load->view('admin/wizard_js');
-	}
+			$this->load->view('admin/header');
+			$this->load->view('admin/menu');
+			// $this->load->view('predios/nuevo', $data);
+			$this->load->view('predios/registra_predio', $data);
+			$this->load->view('admin/footer');
+			$this->load->view('admin/predios_js');
+		}
 		
 	}
 

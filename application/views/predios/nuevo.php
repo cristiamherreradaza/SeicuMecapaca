@@ -33,9 +33,9 @@
 
                                     <div class="col-md-2">
                                        <div class="form-group">
-                                        <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
-                                        <input type="text" class="form-control required" id="codigo_catastral" name="data[predio][codigo_catastral]"> 
-                                    </div>
+                                            <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
+                                            <input type="text" class="form-control required" id="codigo_catastral" name="data[predio][codigo_catastral]"> 
+                                        </div>
                                     </div>
 
                                     <div class="col-md-2">
