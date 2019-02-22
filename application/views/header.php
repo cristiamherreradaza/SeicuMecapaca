@@ -20,6 +20,7 @@
 		<!--begin::Base Styles -->
 		<link href="<?php echo base_url().'publico/assets/vendors/base/vendors.bundle.css' ;?>" rel="stylesheet" type="text/css" />
 		<link href="<?php echo base_url().'publico/assets/demo/default/base/style.bundle.css' ;?>" rel="stylesheet" type="text/css" />
+
 		<!--end::Base Styles -->
 		<link rel="shortcut icon" href="<?php echo base_url().'publico/assets/demo/default/media/img/logo/favicon.ico' ;?>" />
 	</head>
