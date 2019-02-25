@@ -106,7 +106,8 @@ class Predios extends CI_Controller {
 	public function guarda(){
 
 		$datos = array();
-		$datos = $this->input->post('data');
+		$datos = $this->input->post();
+		vdebug($datos);
 		$latitud_longitud = $this->input->post('latitud').' '.$this->input->post('longitud');
 		$data = array(
 			'codcatas'=>$this->input->post('codigo_catastral'),
@@ -115,7 +116,7 @@ class Predios extends CI_Controller {
 			'distrito'=>$this->input->post('distrito'),
 			'manzana'=>$this->input->post('manzana'),
 			'predio'=>$this->input->post('predio'),
-			'latlong'=>$this->input->post('latitud_longitud'),
+			'latlong'=>$latitud_longitud,
 			'zona_econo'=>$this->input->post('zona_econo'),
 			'via_id'=>1,
 			'zonaurb_id'=>$this->input->post('zonaurb_id'),
