@@ -9,9 +9,6 @@
             </div>
             <div class="modal-body">
             
-                aqui el mapa
-            <div id="map" height="100%" width="100%">aqui</div>
-    
             
             </div>
             <div class="modal-footer">
@@ -43,6 +40,9 @@
                         <div class="card-body">
                             <h4 class="card-title">Registro de Predio</h4>
                             <h6 class="card-subtitle">Ingrese los datos del predio </h6>
+
+                            <div id="map" height="400px" width="400px">aqui</div>
+
 
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
                         <?php echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
@@ -401,14 +401,17 @@
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
     <script type="text/javascript">
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 43.5293101, lng: -5.6773233},
-          zoom: 13
-      });
-    }
-</script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                },
+                zoom: 8
+            });
+        }
+    </script>
     <script type="text/javascript">
         $("#codigo_catastral").focusout(function(){
             // alert('Demo');
