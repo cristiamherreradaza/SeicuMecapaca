@@ -287,7 +287,13 @@
                                         <div class="dw-user-box">
                                             <div class="u-img"><img src="<?php echo base_url(); ?>public/assets/images/users/perfil1.jpg" alt="user"></div>
                                             <div class="u-text">
-                                                <h4><?php echo $this->session->userdata("usuario")?></h4>
+                                                 <?php
+                                                        $id = $this->session->userdata("persona_perfil_id");
+                                                        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+                                                        $dato = $resi->persona_id;
+                                                        $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
+                                                 ?>
+                                                <h4> <?php echo strtoupper($res->nombres);?> <?php echo strtoupper($res->paterno);?></h4>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -314,12 +320,21 @@
                     <div class="modal-header">
                         <h4 class="modal-title" id="exampleModalLabel1">Ver Rol</h4>
                     </div>
+
+                    <span class="m-list-search__result-item-text">
+                        <b>
+                           
+                    </span>
+
                    <div class="card">
                        <img class="card-img-top img-responsive" src="<?php echo base_url(); ?>public/assets/images/users/perfil.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <h4 class="card-title">Card title</h4>
-                                <p class="card-text">This card has supporting text below as a natural.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <h4 class="card-title">Datos Personales</h4>
+                                <p class="card-text">Nombre: <?php echo strtoupper($res->nombres);?> <?php echo strtoupper($res->paterno);?> <?php echo strtoupper($res->materno);?>
+                                                        </p>
+                                <p class="card-text">Carnet de Identidad: <?=$res->ci?></p>
+                                <p class="card-text">Fecha de Nacimiento: <?=$res->fec_nacimiento?></p>
+                                
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -337,14 +352,27 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar Rol</h4>
                     </div>
                     <div class="modal-body">
+                         <img class="card-img-top img-responsive" src="<?php echo base_url(); ?>public/assets/images/users/perfil.jpg" alt="Card image cap">
                         <form action="">
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Rol</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="rol" value="<?php echo $lis->rol;?>">
+                                <label for="recipient-name" class="control-label">Nombre</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="rol" value="<?php echo $res->nombres;?>">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Activo</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="activo" value="<?php echo $lis->activo;?>">
+                                <label for="recipient-name" class="control-label">Apellido Paterno</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="rol" value="<?php echo $res->paterno;?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Apellido Materno</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="rol" value="<?php echo $res->materno;?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Carnet de Identidad</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="activo" value="<?php echo $res->ci;?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Fecha de Nacimiento</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="activo" value="<?php echo $res->fec_nacimiento;?>">
                             </div>
                         </form>
                     </div>
