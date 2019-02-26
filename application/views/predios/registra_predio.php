@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/css/dropify.min.css">
+
 <!-- sample modal content -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-xl">
@@ -8,8 +9,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-            
-            
+                <div id="map" style="width: 100%; height: 650px;"></div>
+                <div id="carga_ajax_mapa"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
@@ -40,12 +41,10 @@
                         <div class="card-body">
                             <h4 class="card-title">Registro de Predio</h4>
                             <h6 class="card-subtitle">Ingrese los datos del predio </h6>
-
-                            <div id="map" height="400px" width="400px">aqui</div>
-
-
+                            <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>    
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
-                        <?php echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
+                            <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
+                            <?php echo form_open_multipart('predios/guarda', array('method'=>'POST')); ?>
 
                             <h6>Datos del terreno</h6>
                                 <div class="row">
@@ -56,42 +55,42 @@
                                         <div class="col-md-2">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Cod Catastral : <span class="text-danger" autofocus>*</span> </label>
-                                                <input type="text" class="form-control" id="codigo_catastral" name="codigo_catastral" placeholder="4012457896" required> 
+                                                <input type="text" class="form-control" id="codigo_catastral" name="codigo_catastral" placeholder="4012457896"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="codigo_catastral_anterior"> Cod Cat Ant : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="codigo_catastral_anterior" name="codigo_catastral_anterior" required> 
+                                                <input type="text" class="form-control" id="codigo_catastral_anterior" name="codigo_catastral_anterior"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="nro_inmueble"> Num inmueble : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="nro_inmueble" name="nro_inmueble" required> 
+                                                <input type="text" class="form-control" id="nro_inmueble" name="nro_inmueble"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="distrito"> Distrito : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="distrito" name="distrito" required> 
+                                                <input type="text" class="form-control" id="distrito" name="distrito"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="manzana"> Manzana : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="manzana" name="manzana" required> 
+                                                <input type="text" class="form-control" id="manzana" name="manzana"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="predio"> Predio : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="predio" name="predio" required> 
+                                                <input type="text" class="form-control" id="predio" name="predio"> 
                                             </div>
                                         </div>
 
@@ -103,7 +102,7 @@
                                             <div class="form-group">
                                                 <label for="tipo_predio_id"> Tpo Predio: <span class="text-danger">*</span> </label>
                                                 <?php //echo vdebug($dc_tipos_predio); ?>
-                                                <select class="custom-select form-control" id="tipo_predio" name="tipo_predio_id" required>
+                                                <select class="custom-select form-control" id="tipo_predio" name="tipo_predio_id">
                                                     <option value="">Seleccione tipo</option>
                                                     <?php foreach ($dc_tipos_predio as $d): ?>
                                                         <option value="<?php echo $d->tipo_predio_id; ?>"><?php echo $d->descripcion; ?></option>
@@ -115,7 +114,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="zona_econo"> Zona eco : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="zona_econo" name="zona_econo" required> 
+                                                <input type="text" class="form-control" id="zona_econo" name="zona_econo"> 
                                             </div>
                                         </div>
 
@@ -123,7 +122,7 @@
                                             <div class="form-group">
                                             <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="zonaurb_id"> Zona urbana: <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="zonaurb_id" name="zonaurb_id" required>
+                                                <select class="custom-select form-control" id="zonaurb_id" name="zonaurb_id">
                                                     <option value="">Seleccione zona</option>
                                                     <?php foreach ($dc_zona_urbana as $d): ?>
                                                         <option value="<?php echo $d->zonaurb_id; ?>"><?php echo $d->descripcion; ?></option>
@@ -135,14 +134,14 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="n_puerta"> Numero puerta : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="n_puerta" name="nro_puerta" required> 
+                                                <input type="text" class="form-control" id="n_puerta" name="nro_puerta"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="latitud"> Latitud : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="latitud" name="latitud" required> 
+                                                <input type="text" class="form-control" id="latitud" name="latitud"> 
                                             </div>
                                         </div>
 
@@ -151,9 +150,9 @@
                                                 <label for="longintud"> Longitud : <span class="text-danger">*</span> </label>
                                                 <!-- <input type="text" class="form-control" id="longitud" name="longitud">  -->
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="longitud" required>
+                                                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="longitud" id="longitud">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-warning" type="button" id="google_maps" data-toggle="modal" data-target=".bs-example-modal-lg">Mapa</button>
+                                                        <button class="btn btn-warning" type="button" id="google_maps" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="muestra_mapa();">Mapa</button>
                                                     </div>
                                                 </div>
                                                  <!-- <img src="../assets/images/alert/model2.png" alt="default" data-toggle="modal" data-target=".bs-example-modal-lg" class="model_img img-fluid" /> -->
@@ -167,21 +166,21 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_geo">Superficie Geo : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="superficie_geo" name="superficie_geo" required> 
+                                                <input type="text" class="form-control" id="superficie_geo" name="superficie_geo"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_campo">Superficie Campo : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="superficie_campo" name="superficie_campo" required> 
+                                                <input type="text" class="form-control" id="superficie_campo" name="superficie_campo"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_legal">Superficie Legal : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="superficie_legal" name="superficie_legal" required> 
+                                                <input type="text" class="form-control" id="superficie_legal" name="superficie_legal"> 
                                             </div>
                                         </div>
 
@@ -194,7 +193,7 @@
                                             <div class="form-group">
                                                 <label for="ubicacion_id"> Ubicacion : <span class="text-danger">*</span> </label>
                                                 <?php //echo vdebug($dc_tipos_predio); ?>
-                                                <select class="custom-select form-control" id="ubicacion_id" name="ubicacion_id" required>
+                                                <select class="custom-select form-control" id="ubicacion_id" name="ubicacion_id">
                                                     <option value="">Seleccione ubicacion</option>
                                                     <?php foreach ($dc_ubicacion as $d): ?>
                                                     <option value="<?php echo $d->ubicacion_id; ?>">
@@ -209,7 +208,7 @@
                                             <div class="form-group">
                                                 <label for="pendiente_id"> Pendiente : <span class="text-danger">*</span> </label>
                                                 <?php //echo vdebug($dc_tipos_predio); ?>
-                                                <select class="custom-select form-control" id="pendiente_id" name="pendiente_id" required>
+                                                <select class="custom-select form-control" id="pendiente_id" name="pendiente_id">
                                                     <option value="">Seleccione pendiente</option>
                                                     <?php foreach ($dc_pendiente as $d): ?>
                                                     <option value="<?php echo $d->pendiente_id; ?>">
@@ -224,7 +223,7 @@
                                             <div class="form-group">
                                                 <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="nivel_id"> Nivel : <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="nivel_id" name="nivel_id" required>
+                                                <select class="custom-select form-control" id="nivel_id" name="nivel_id">
                                                     <option value="">Seleccione nivel</option>
                                                     <?php foreach ($dc_nivel as $d): ?>
                                                     <option value="<?php echo $d->nivel_id; ?>">
@@ -239,7 +238,7 @@
                                             <div class="form-group">
                                                 <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Forma : <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="forma_id" name="forma_id" required>
+                                                <select class="custom-select form-control" id="forma_id" name="forma_id">
                                                     <option value="">Seleccione zona</option>
                                                     <?php foreach ($dc_forma as $d): ?>
                                                     <option value="<?php echo $d->forma_id; ?>">
@@ -257,14 +256,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="c_principal" name="principal" required> 
+                                                <input type="text" class="form-control" id="c_principal" name="principal"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="zona">Zona : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="zona" name="zona" required> 
+                                                <input type="text" class="form-control" id="zona" name="zona"> 
                                             </div>
                                         </div>
 
@@ -275,14 +274,14 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="frente">Frente : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="frente" name="frente" required> 
+                                                <input type="text" class="form-control" id="frente" name="frente"> 
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="fondo">Fondo : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="fondo" name="fondo" required> 
+                                                <input type="text" class="form-control" id="fondo" name="fondo"> 
                                             </div>
                                         </div>
 
@@ -290,7 +289,7 @@
                                             <div class="form-group">
                                             <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Clase Predio : <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="forma_id" name="clase_predio_id" required>
+                                                <select class="custom-select form-control" id="forma_id" name="clase_predio_id">
                                                     <option value="">Seleccione clase</option>
                                                     <?php foreach ($dc_clase_predio as $d): ?>
                                                         <option value="<?php echo $d->clase_predio_id; ?>"><?php echo $d->descripcion; ?></option>
@@ -303,7 +302,7 @@
                                             <div class="form-group">
                                             <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Uso Suelo : <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="forma_id" name="uso_suelo_id" required>
+                                                <select class="custom-select form-control" id="forma_id" name="uso_suelo_id">
                                                     <option value="">Seleccione clase</option>
                                                     <?php foreach ($dc_uso_suelo as $d): ?>
                                                         <option value="<?php echo $d->uso_suelo_id; ?>"><?php echo $d->descripcion; ?></option>
@@ -315,7 +314,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="forma">Matriz PH : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="forma" name="matriz_ph" required> 
+                                                <input type="text" class="form-control" id="forma" name="matriz_ph"> 
                                             </div>
                                         </div>
 
@@ -323,7 +322,7 @@
                                             <div class="form-group">
                                             <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Edificio : <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="forma_id" name="edificio_id" required>
+                                                <select class="custom-select form-control" id="forma_id" name="edificio_id">
                                                     <option value="">Seleccione edificio</option>
                                                     <?php foreach ($dc_edificio as $d): ?>
                                                         <option value="<?php echo $d->edificio_id; ?>"><?php echo $d->descripcion; ?></option>
@@ -400,16 +399,46 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap" async defer></script>
+
     <script type="text/javascript">
+
         var map;
+        lat = $("#latitud").val()
+        lon = $("#longitud").val()
+
+        $("#google_maps").hover(function(){
+            // alert('demo');
+            lat = $("#latitud").val()
+            lon = $("#longitud").val()
+
+        });
+
+        function muestra_mapa(){
+
+        }
+
         function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {
-                    lat: -34.397,
-                    lng: 150.644
-                },
-                zoom: 8
+
+    // console.log(lat + lon);
+
+        var myLatlng = new google.maps.LatLng(-18.00418108,-63.39072107);
+        var mapOptions = {
+          zoom: 18,
+          center: myLatlng,
+          mapTypeId: 'hybrid'
+        }
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            title:"Predio"
+                // label: "Aqui el predio"
             });
+
+            // To add the marker to the map, call setMap();
+            marker.setMap(map);
         }
     </script>
     <script type="text/javascript">

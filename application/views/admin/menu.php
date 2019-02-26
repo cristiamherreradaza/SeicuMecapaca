@@ -31,7 +31,7 @@
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Predios </span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="<?php echo base_url(); ?>predios/index">Inicio</a></li>
-                        <li><a href="<?php echo base_url(); ?>predios/nuevo">Nuevo</a></li>
+                        <li><a href="<?php echo base_url(); ?>predios/registra_predio">Nuevo</a></li>
                         <li><a href="index3.html">Classy Dashboard</a></li>
                         <li><a href="index4.html">Analytical Dashboard</a></li>
                         <li><a href="index5.html">Minimal Dashboard</a></li>
