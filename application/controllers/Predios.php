@@ -107,27 +107,17 @@ class Predios extends CI_Controller {
 
 		$datos = array();
 		$datos = $this->input->post();
-		// vdebug($this->input->file('foto_plano'));
-		// print_r($_FILES['foto_plano']);
-		$foto = $_FILES['foto_plano']['tmp_name'];
-		$contenido = file_get_contents($foto);
-		$escaped = pg_escape_bytea($contenido);
-		$data_foto = array(
-			'codcatas'=>'123',
-			'foto_plano_ubi'=>$escaped,
-			// 'foto_plano_ubi'=>'987',
-			'foto_fachada'=>'Demo guarda imagen',
-			'activo'=>'1',
-		);
-		$this->db->insert('catastro.predio_foto', $data_foto);
+
 		$this->db->select('foto_id, codcatas', 'foto_plano_ubi');
 		$query = $this->db->get('catastro.predio_foto');
 		$data['fotos'] = $query->result();
 
 		$this->load->view('predios/guarda', $data);
-
-		// vdebug($contenido);
-
+		// echo "<pre>";
+		// 	print_r($this->input->post('servicios'));
+		// echo "</pre>";
+		//vdebug($this->input->post());
+		// guardamos datos del predio
 		$latitud_longitud = $this->input->post('latitud').' '.$this->input->post('longitud');
 		$data = array(
 			'codcatas'=>$this->input->post('codigo_catastral'),
@@ -157,6 +147,51 @@ class Predios extends CI_Controller {
 			'edificio_id'=>$this->input->post('edificio_id'),
 		);
 		// $this->db->insert('catastro.predio', $data);
+		// fin guardamos datos del predio
+
+		// guardamos las fotografias
+		$foto_plano = $_FILES['foto_plano']['tmp_name'];
+		$contenido_foto_plano = file_get_contents($foto_plano);
+		$contenido_tranformado_plano = pg_escape_bytea($contenido_foto_plano);
+
+		$foto_fachada = $_FILES['foto_fachada']['tmp_name'];
+		$contenido_foto_fachada = file_get_contents($foto_fachada);
+		$contenido_tranformado_fachada = pg_escape_bytea($contenido_foto_fachada);
+
+		$data_foto = array(
+			'codcatas'=>$this->input->post('codigo_catastral'),
+			'foto_fachada'=>$contenido_tranformado_fachada,
+			'foto_plano_ubi'=>$contenido_tranformado_plano,
+			'activo'=>'1',
+		);
+		// $this->db->insert('catastro.predio_foto', $data_foto);
+		// fin guarda las fotografias
+
+		// guardamos los servicios
+		foreach ($this->input->post('servicios') as $key => $s) {
+			$data_servicios = array(
+				'servicio_id'=>$s,
+				'codcatas'=>$this->input->post('codigo_catastral'),
+				'activo'=>1
+			);
+
+		$this->db->insert('catastro.predio_servicios', $data_servicios);
+
+			echo "<pre>";
+				print_r($data_servicios);
+			echo "</pre>";
+
+			// echo $s;
+		}
+		// die;
+		// fin guardamos los servicios
+
+		// guarda las observaciones
+		$data_obs = array(
+			''
+		);
+		// fin guarda las observaciones
+		
 		// vdebug($datos['data']['codigo_catastral']);
 		// $this->db->insert('catastro.predio', $datos);
 	}

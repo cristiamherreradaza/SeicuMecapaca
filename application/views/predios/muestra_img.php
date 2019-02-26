@@ -3,7 +3,8 @@
 <?php foreach ($fotos as $f): ?>
     <?php //echo pg_unescape_bytea($f->foto_plano_ubi); ?>
     <?php //echo $f->codcatas; ?>
-    <?php //echo pg_unescape_bytea($f->foto_fachada); ?>
+    <?php echo pg_unescape_bytea($f->foto_fachada); ?>
+    <?php echo pg_unescape_bytea($f->foto_plano_ubi); ?>
     <?php $foto = pg_unescape_bytea($f->foto_plano_ubi); ?>
 
     <?php $foto_64 = base64_encode($foto); ?>
@@ -11,10 +12,10 @@
 
     <?php 
 
-        // $fichero = 'crt1.jpg';
-        // file_put_contents($fichero, $foto);
-        // print_r($fichero);
-        // echo "<img src='$fichero'>";
+        $fichero = 'pillin.jpg';
+        file_put_contents($fichero, $foto);
+        print_r($fichero);
+        echo "<img src='$fichero'>";
         
         // $img = "<img src= 'data:image/jpeg;base64, $foto' />";
         // print($img);

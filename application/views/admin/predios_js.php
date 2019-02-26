@@ -15,16 +15,16 @@
 	
     $(document).ready(function() {
         // Basic
-        $('.dropify').dropify();
+        // $('.dropify').dropify();
 
-        // Translated
-        $('.dropify-fr').dropify({
+        $('.dropify').dropify({
             messages: {
-                default: 'Glissez-déposez un fichier ici ou cliquez',
-                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
-                remove: 'Supprimer',
-                error: 'Désolé, le fichier trop volumineux'
-            }
+                'default': 'Arrastre un archivo o haga click',
+                'replace': 'Arrastre un archivo para reemplazar',
+                'remove':  'Remove',
+                'error':   'Ooops, algo anda mal.',
+                'imageFormat': 'CRT The image format is not allowed ({{ value }} only).'
+            },
         });
 
         // Used events
