@@ -7,6 +7,8 @@ class Login extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("usuario_model");
+		$this->load->model("logacceso_model");
+		
 	}
 
 	public function index()
@@ -14,7 +16,7 @@ class Login extends CI_Controller {
 		
 		if($this->session->userdata("login"))
 		{
-			redirect(base_url()."Predios");
+	        redirect(base_url()."Predios");
 		}
 		else{
 			$this->load->view('login/login');	
@@ -61,7 +63,12 @@ class Login extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
+		$ultimo = $this->db->query("SELECT MAX(logacceso_id) FROM logacceso")->row();
+		$logacceso_id = $ultimo->max;
+		$acceso_fin = date("Y-m-d H:i:s");
+		$actualizar = $this->logacceso_model->fecha_salida($logacceso_id, $acceso_fin);
 		redirect(base_url());
 	}
+	
 }
 
