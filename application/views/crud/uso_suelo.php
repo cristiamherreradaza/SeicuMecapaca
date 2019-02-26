@@ -91,8 +91,8 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar Ubicaci&oacute;n</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<?php echo base_url();?>uso_suelo/update" method="POST">
-
+                        <!--<form action="<?php echo base_url();?>uso_suelo/update" method="POST">-->
+                        <?php echo form_open('uso_suelo/update', array('method'=>'POST')); ?>
                              <div class="form-group">
                                 <input type="text" hidden="" id="uso_suelo_id" name="uso_suelo_id">
                             </div>
@@ -126,7 +126,8 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Insertar Uso de Suelo</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<?php echo base_url();?>uso_suelo/insertar" method="POST">
+                        <!--<form action="<?php echo base_url();?>uso_suelo/insertar" method="POST">-->
+                        <?php echo form_open('uso_suelo/insertar', array('method'=>'POST')); ?>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
                                 <input type="text" class="form-control" id="recipient-name1" name="descripcion">

@@ -1,3 +1,5 @@
+<!--alerts CSS -->
+<link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 
 <style type="text/css">
     #izquierda{
@@ -96,7 +98,9 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar Zona Urbana</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<?php echo base_url();?>zona_urbana/update" method="POST">
+                        <!--<form action="<?php echo base_url();?>zona_urbana/update" method="POST">-->
+                        <?php echo form_open('zona_urbana/update', array('method'=>'POST')); ?>
+
                             
                             <div class="form-group">
                                 <input type="text" hidden="" id="zonaurb_id" name="zonaurb_id">
@@ -119,6 +123,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
+
                             </div>
                         </form>
                     </div>
@@ -134,7 +139,9 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Zona Urbana</h4>
                     </div>
                     <div class="modal-body">
-                        <form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">
+                        <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
+                        <?php echo form_open('zona_urbana/insertar', array('method'=>'POST')); ?>
+
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
                                 <input type="text" class="form-control" id="recipient-name1" name="descripcion">
@@ -148,6 +155,7 @@
                                         <option value="0">INACTIVO</option>
                                     </select>
                                 </div>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -190,3 +198,12 @@
         }
 
     </script>
+
+     <!-- Sweet-Alert  -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+   

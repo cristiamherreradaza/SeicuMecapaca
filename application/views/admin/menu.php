@@ -12,7 +12,7 @@
             <!-- User profile image -->
             <div class="profile-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/perfil1.jpg" alt="user" /> </div>
             <!-- User profile text-->
-            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo $this->session->userdata("usuario")?> <span class="caret"></span></a>
+            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo strtoupper($this->session->userdata("usuario"))?> <span class="caret"></span></a>
                 <div class="dropdown-menu animated flipInY">
                     <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                     <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
@@ -108,11 +108,7 @@
                         <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
                         <li><a href="<?php echo base_url(); ?>Tipo_planta">Tipo Planta</a></li>
                         <li><a href="<?php echo base_url(); ?>Matvia">Matvia</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
+                        
                     </ul>
                 </li>
             </ul>

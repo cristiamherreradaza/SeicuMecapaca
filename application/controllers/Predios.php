@@ -4,23 +4,25 @@ class Predios extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+        $this->load->library('session');
         $this->load->model('tipopredio_model');
+        $this->load->model("logacceso_model");
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
+
     }
 
 	public function index(){
-		// echo 'holas desde el controladora';
-		// $crt = 'Holas';
+
+		$credencial_id = $this->session->userdata("persona_perfil_id");
+		$acceso_inicio = date("Y-m-d H:i:s");
+		
+		$ip = $this->logacceso_model->ip_publico();
+        $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('admin/contenidos');
 		$this->load->view('admin/footer');
-		// $this->load->view('header');
-		// $this->load->view('menu');
-		// $this->load->view('contenido');
-		// $this->load->view('footer');
-		// $this->load->view('complementos');
 	}
 
 	public function registra_predio(){

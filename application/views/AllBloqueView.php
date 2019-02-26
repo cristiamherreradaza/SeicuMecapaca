@@ -26,7 +26,7 @@
                         
                     <?php foreach($result as $row) {?>
                         <?php echo $row->tipo_predio_id; ?>
-                         <?php echo " --- ".$row->descripcion; ?>
+                         <?php echo " -- ".$row->descripcion; ?>
                            <?php } ?>
 
                         <form action="#" class="validation-wizard wizard-circle">
