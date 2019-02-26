@@ -7,8 +7,7 @@
 <!-- <script src="<?php //echo base_url(); ?>public/assets/plugins/wizard/steps.js"></script> -->
 <script src="<?php echo base_url(); ?>public/js/validation.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/js/dropify.min.js"></script>
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap" -->
-    <!-- async defer></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap" async defer></script>
 <script>
 	! function(window, document, $) {
 		"use strict";

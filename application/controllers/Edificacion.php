@@ -12,8 +12,8 @@ class Edificacion extends CI_Controller {
 	{	
         $this->load->view('admin/header');
         $this->load->view('admin/menu');
-        $this->load->view('EdificacionView');
-        $this->load->view('admin/footer');
+        $this->load->view('EdificacionView');        
+        $this->load->view('bloque/validar');
         $this->load->view('admin/wizard_js');
 	}
 }
