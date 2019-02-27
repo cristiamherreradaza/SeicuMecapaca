@@ -34,6 +34,7 @@ class Edificacion extends CI_Controller {
     public function create() {
         //vdebug($this->input-post());
         //$this->Edificacion_model->createData();
+        //comentario
         vdebug($this->input->post());
 
         $data = array (             
