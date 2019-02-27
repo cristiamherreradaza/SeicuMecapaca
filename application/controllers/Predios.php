@@ -163,7 +163,7 @@ class Predios extends CI_Controller {
 			'matriz_ph'=>$this->input->post('matriz_ph'),
 			'edificio_id'=>$this->input->post('edificio_id'),
 		);
-		// $this->db->insert('catastro.predio', $data);
+		$this->db->insert('catastro.predio', $data);
 		// fin guardamos datos del predio
 
 		// guardamos las fotografias
@@ -181,7 +181,7 @@ class Predios extends CI_Controller {
 			'foto_plano_ubi'=>$contenido_tranformado_plano,
 			'activo'=>'1',
 		);
-		// $this->db->insert('catastro.predio_foto', $data_foto);
+		$this->db->insert('catastro.predio_foto', $data_foto);
 		// fin guarda las fotografias
 
 		// guardamos los servicios
@@ -192,7 +192,7 @@ class Predios extends CI_Controller {
 				'activo'=>1
 			);
 
-			// $this->db->insert('catastro.predio_servicios', $data_servicios);
+			$this->db->insert('catastro.predio_servicios', $data_servicios);
 		}
 		// fin guardamos los servicios
 
@@ -203,6 +203,7 @@ class Predios extends CI_Controller {
 			'activo'=>1
 		);
 		$this->db->insert('catastro.predio_observac', $data_obs);
+		redirect(base_url().'Edificacion/nuevo');
 		// fin guarda las observaciones
 
 		// vdebug($datos['data']['codigo_catastral']);

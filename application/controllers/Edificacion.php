@@ -15,8 +15,14 @@ class Edificacion extends CI_Controller {
 	
 	public function index()	
 	{	
-
-        $this->load->view('login'); 
+        if($this->session->userdata("login"))
+		{
+            $credencial_id = $this->session->userdata("persona_perfil_id");
+            $acceso_inicio = date("Y-m-d H:i:s");
+            $this->load->view('login'); 
+        }else{
+			$this->load->view('login/login');	
+		}
 	}
 
     public function nuevo(){
