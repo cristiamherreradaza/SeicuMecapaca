@@ -32,9 +32,6 @@
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="<?php echo base_url(); ?>predios/index">Inicio</a></li>
                         <li><a href="<?php echo base_url(); ?>predios/registra_predio">Nuevo</a></li>
-                        <li><a href="index3.html">Classy Dashboard</a></li>
-                        <li><a href="index4.html">Analytical Dashboard</a></li>
-                        <li><a href="index5.html">Minimal Dashboard</a></li>
                     </ul>
                 </li>
                 <li>

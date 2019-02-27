@@ -8,7 +8,7 @@
                 <h4 class="modal-title" id="myLargeModalLabel">Mapa de ubicacion</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="font-">
                 <div id="map" style="width: 100%; height: 650px;"></div>
                 <div id="carga_ajax_mapa"></div>
             </div>
@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Registro de Predio</h4>
                             <h6 class="card-subtitle">Ingrese los datos del predio </h6>
-                            <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>    
+                            <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
                             <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
                             <?php echo form_open_multipart('predios/guarda', array('method'=>'POST')); ?>
@@ -55,42 +55,42 @@
                                         <div class="col-md-2">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
-                                                <input autofocus type="number" class="form-control" step='1' id="codigo_catastral" name="codigo_catastral" placeholder="4012457896" /> 
+                                                <input autofocus type="number" class="form-control" step='1' id="codigo_catastral" name="codigo_catastral" placeholder="4012457896" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="codigo_catastral_anterior"> Cod Cat Ant : <span class="text-danger">*</span> </label>
-                                                <input type="number" class="form-control" step='1' id="codigo_catastral_anterior" name="codigo_catastral_anterior" /> 
+                                                <input type="number" class="form-control" step='1' id="codigo_catastral_anterior" name="codigo_catastral_anterior" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="nro_inmueble"> Num inmueble : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="nro_inmueble" name="nro_inmueble" /> 
+                                                <input type="text" class="form-control" id="nro_inmueble" name="nro_inmueble" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="distrito"> Distrito : <span class="text-danger">*</span> </label>
-                                                <input type="number" class="form-control" id="distrito" step='1' name="distrito" /> 
+                                                <input type="number" class="form-control" id="distrito" step='1' name="distrito" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="manzana"> Manzana : <span class="text-danger">*</span> </label>
-                                                <input type="number" class="form-control" id="manzana" step='1' name="manzana" /> 
+                                                <input type="number" class="form-control" id="manzana" step='1' name="manzana" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="predio"> Predio : <span class="text-danger">*</span> </label>
-                                                <input type="number" class="form-control" id="predio" step='1' name="predio" /> 
+                                                <input type="number" class="form-control" id="predio" step='1' name="predio" />
                                             </div>
                                         </div>
 
@@ -114,7 +114,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="zona_econo"> Zona eco : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="zona_econo" name="zona_econo" maxlength="5"/d> 
+                                                <input type="text" class="form-control" id="zona_econo" name="zona_econo" maxlength="5"/d>
                                             </div>
                                         </div>
 
@@ -134,14 +134,14 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="n_puerta"> Numero puerta : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="n_puerta" name="nro_puerta" /> 
+                                                <input type="text" class="form-control" id="n_puerta" name="nro_puerta" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="latitud"> Latitud : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="latitud" name="latitud" /> 
+                                                <input type="text" class="form-control" id="latitud" name="latitud" />
                                             </div>
                                         </div>
 
@@ -166,21 +166,21 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_geo">Superficie Geo : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="superficie_geo" name="superficie_geo" /> 
+                                                <input type="number" class="form-control" step='0.01' value="0.00" id="superficie_geo" name="superficie_geo" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_campo">Superficie Campo : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" step='0.01' value="0.00" id="superficie_campo" name="superficie_campo" /> 
+                                                <input type="text" class="form-control" step='0.01' value="0.00" id="superficie_campo" name="superficie_campo" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_legal">Superficie Legal : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" step='0.01' value="0.00" id="superficie_legal" name="superficie_legal" /> 
+                                                <input type="text" class="form-control" step='0.01' value="0.00" id="superficie_legal" name="superficie_legal" />
                                             </div>
                                         </div>
 
@@ -239,7 +239,7 @@
                                                 <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Forma : <span class="text-danger">*</span> </label>
                                                 <select class="custom-select form-control" id="forma_id" name="forma_id" />
-                                                    <option value="">Seleccione zona</option>
+                                                    <option value="">Seleccione forma</option>
                                                     <?php foreach ($dc_forma as $d): ?>
                                                     <option value="<?php echo $d->forma_id; ?>">
                                                         <?php echo $d->descripcion; ?>
@@ -256,14 +256,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="c_principal" name="principal" /> 
+                                                <input type="text" class="form-control" id="c_principal" name="principal" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="zona">Zona : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="zona" name="zona" /> 
+                                                <input type="text" class="form-control" id="zona" name="zona" />
                                             </div>
                                         </div>
 
@@ -274,14 +274,14 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="frente">Frente : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="frente" name="frente"/d> 
+                                                <input type="number" class="form-control" step='0.01' value="0.00" id="frente" name="frente"/d>
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="fondo">Fondo : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="fondo" name="fondo"/d> 
+                                                <input type="number" class="form-control" step='0.01' value="0.00" id="fondo" name="fondo"/d>
                                             </div>
                                         </div>
 
@@ -296,7 +296,7 @@
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>                                    
+                                        </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
@@ -314,7 +314,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="forma">Matriz PH : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" id="forma" step='1' name="matriz_ph" /> 
+                                                <input type="number" class="form-control" id="forma" step='1' name="matriz_ph" />
                                             </div>
                                         </div>
 
@@ -339,13 +339,13 @@
                                         <label for="forma_id"> Servicios Basicos : <span class="text-danger">*</span> </label>
 
                                             <div class="form-group row pt-12">
-                                                
+
                                                 <div class="col-sm-12">
 
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="customCheck99">
                                                     <label class="custom-control-label" for="customCheck99"><b>Selecciona Todos</b></label>
-                                                </div>                                                
+                                                </div>
                                                     <?php foreach ($listado_servicios as $key => $ls): ?>
                                                     <div class="custom-control custom-checkbox">
                                                             <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>">
@@ -354,14 +354,14 @@
                                                     <?php endforeach; ?>
 
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
 
                                         <div class="col"  style="background-color: #fffef7;">
                                             <div class="form-group">
                                                 <label for="observaciones">Observaciones : </label>
-                                                <input type="text" class="form-control" id="observaciones" name="observaciones"> 
+                                                <input type="text" class="form-control" id="observaciones" name="observaciones">
                                             </div>
                                         </div>
 
@@ -383,7 +383,6 @@
                                                 <input type="file" id="input-file-now" class="dropify" name="foto_plano" data-allowed-file-extensions="jpg" />
                                             </div>
                                         </div>
-
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">Foto Fachada</h4>
@@ -393,15 +392,15 @@
                                                 </button>
                                                     OJO Solo archivos jpg
                                                 </label>
-                                                <input type="file" id="input-file-now" class="dropify" name="foto_fachada" data-allowed-file-extensions="jpg" />
+                                                <input type="file" id="input-file-now" class="dropify" oname="foto_fachada" data-allowed-file-extensions="jpg" />
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
 
                             <input type="submit" value="Guardar">
-                            </form>                            
+                            </form>
 
                         </div>
                     </div>

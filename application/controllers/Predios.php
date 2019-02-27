@@ -2,15 +2,14 @@
 class Predios extends CI_Controller {
 
 	public function __construct()
-    {
-        parent::__construct();
-        $this->load->library('session');
-        $this->load->model('tipopredio_model');
-        $this->load->model("logacceso_model");
-        $this->load->helper('url_helper');
-        $this->load->helper('vayes_helper');
-
-    }
+  {
+      parent::__construct();
+      $this->load->library('session');
+      $this->load->model('tipopredio_model');
+      $this->load->model("logacceso_model");
+      $this->load->helper('url_helper');
+      $this->load->helper('vayes_helper');
+  }
 
 	public function index(){
 
@@ -19,17 +18,25 @@ class Predios extends CI_Controller {
 		{
 	    $credencial_id = $this->session->userdata("persona_perfil_id");
 		$acceso_inicio = date("Y-m-d H:i:s");
-		
+
 		$ip = $this->logacceso_model->ip_publico();
-        $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+		$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+		
+		$query = $this->db->get('catastro.predio');
+		$data['listado_predios'] = $query->result();
+
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
-		$this->load->view('admin/contenidos');
+		$this->load->view('predios/index', $data);
 		$this->load->view('admin/footer');
+		$this->load->view('predios/index_js');
+
+
 		}
 		else{
 			$this->load->view('login/login');	
 		}
+
 
 	}
 
@@ -40,7 +47,7 @@ class Predios extends CI_Controller {
 			// $data = array(
 			// );
 			vdebug($datos['data']['codigo_catastral']);
-				
+
 		}else{
 
 			$this->db->select('tipo_predio_id, descripcion');
@@ -102,15 +109,15 @@ class Predios extends CI_Controller {
 			// die();
 			// print_r($tipos_predios);die;
 			// echo $tipos_predios; die;
-			
+
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
 			// $this->load->view('predios/nuevo', $data);
 			$this->load->view('predios/registra_predio', $data);
 			$this->load->view('admin/footer');
-			$this->load->view('admin/predios_js');
+			$this->load->view('predios/registra_js');
 		}
-		
+
 	}
 
 	public function guarda(){
@@ -185,23 +192,19 @@ class Predios extends CI_Controller {
 				'activo'=>1
 			);
 
-		$this->db->insert('catastro.predio_servicios', $data_servicios);
-
-			echo "<pre>";
-				print_r($data_servicios);
-			echo "</pre>";
-
-			// echo $s;
+			// $this->db->insert('catastro.predio_servicios', $data_servicios);
 		}
-		// die;
 		// fin guardamos los servicios
 
 		// guarda las observaciones
 		$data_obs = array(
-			''
+			'codcatas'=>$this->input->post('codigo_catastral'),
+			'observacion'=>$this->input->post('observaciones'),
+			'activo'=>1
 		);
+		$this->db->insert('catastro.predio_observac', $data_obs);
 		// fin guarda las observaciones
-		
+
 		// vdebug($datos['data']['codigo_catastral']);
 		// $this->db->insert('catastro.predio', $datos);
 	}
@@ -281,7 +284,7 @@ class Predios extends CI_Controller {
 		// die();
 		// print_r($tipos_predios);die;
 		// echo $tipos_predios; die;
-		
+
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('predios/nuevo', $data);
