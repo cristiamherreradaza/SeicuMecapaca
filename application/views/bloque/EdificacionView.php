@@ -56,7 +56,7 @@
                                                         </div>
                                                         
                                                         <div class="modal-body">
-                                                        <?php echo form_open('nivel/update', array('method'=>'POST')); ?>
+                                                        <?php //echo form_open('nivel/update', array('method'=>'POST')); ?>
                                                         <?php echo form_open('Edificacion/create', array('method'=>'POST')); ?>
                                                            <!--<form action="<?php /*echo base_url('Edificacion/create')*/?>" method="post"  >-->
                                                             <div class="row">
