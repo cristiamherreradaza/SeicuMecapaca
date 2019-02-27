@@ -26,7 +26,7 @@ class Zona_urbana extends CI_Controller {
 			redirect(base_url()."Zona_urbana/zona_urbana");
 		}
 		else{
-			$this->load->view('login');	
+			$this->load->view('login/login');	
 		}
 		
 	}
@@ -37,10 +37,13 @@ class Zona_urbana extends CI_Controller {
 		
 		if(isset($datos))
 		{
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
 			$descripcion = $datos['descripcion'];
-			$activo = $datos['activo'];
-			$this->zona_urbana_model->insertar_zona($descripcion, $activo);
+			$this->zona_urbana_model->insertar_zona($descripcion, $usu_creacion);
 			redirect('Zona_urbana');
 
 		}
@@ -48,18 +51,30 @@ class Zona_urbana extends CI_Controller {
 	 }
 
 	 public function update()     
-	{         
+	{   
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
+
 	    $zonaurb_id = $this->input->post('zonaurb_id');
 	    $descripcion = $this->input->post('descripcion');
-	    $activo = $this->input->post('activo');
 
-	    $actualizar = $this->zona_urbana_model->actualizar($zonaurb_id, $descripcion, $activo);
+	    $actualizar = $this->zona_urbana_model->actualizar($zonaurb_id, $descripcion, $usu_modificacion, $fec_modificacion);
 	   redirect('Zona_urbana');
 	}
 
-	 public function eliminar(){
+	 public function eliminar()
+	 {
+	 	//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s"); 
+
 	    $u = $this->uri->segment(3);
-	    $this->zona_urbana_model->eliminar($u);
+	    $this->zona_urbana_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
 	    redirect('Zona_urbana');
 	   }
 

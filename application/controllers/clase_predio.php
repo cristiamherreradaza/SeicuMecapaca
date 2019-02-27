@@ -25,7 +25,7 @@ class Clase_predio extends CI_Controller {
 			redirect(base_url()."Clase_predio/clase_predio");
 		}
 		else{
-			$this->load->view('login');	
+			$this->load->view('login/login');	
 		}
 		
 	}

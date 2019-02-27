@@ -25,7 +25,7 @@ class Uso_suelo extends CI_Controller {
 			redirect(base_url()."uso_suelo/uso_suelo");
 		}
 		else{
-			$this->load->view('login');	
+			$this->load->view('login/login');	
 		}
 		
 	}

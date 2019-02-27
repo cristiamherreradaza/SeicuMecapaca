@@ -108,6 +108,8 @@
                         <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
                         <li><a href="<?php echo base_url(); ?>Tipo_planta">Tipo Planta</a></li>
                         <li><a href="<?php echo base_url(); ?>Matvia">Matvia</a></li>
+                         <li><a href="<?php echo base_url(); ?>Bloque_grupo_mat">Bloque Grupo Material</a></li>
+                        <li><a href="<?php echo base_url(); ?>Bloque_mat_item">Bloque Material item</a></li>
                         
                     </ul>
                 </li>

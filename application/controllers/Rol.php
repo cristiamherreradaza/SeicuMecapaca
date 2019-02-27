@@ -39,7 +39,7 @@ class Rol extends CI_Controller {
 			redirect(base_url()."Rol/rol");
 		}
 		else{
-			$this->load->view('login');	
+			$this->load->view('login/login');	
 		}
 		
 	}

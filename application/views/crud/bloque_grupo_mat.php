@@ -32,10 +32,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        ADMINISTRACI&Oacute;N DE ZONA URBANA <?php $i=1; //echo $data['title']; ?>
+                        ADMINISTRACI&Oacute;N BLOQUE GRUPO MATERIAL <?php $i=1; //echo $data['title']; ?>
                         <div class="card-body wizard-content">
                             <div class="col-lg-2 col-md-4">
-                                <button type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nueva Zona Urbana</button>
+                                <button type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nueva Grupo Material</button>
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -48,8 +48,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($zona_urbana as $lis){
-                                                $datos = $lis->zonaurb_id."||".
+                                            <?php foreach($bloque_grupo_mat as $lis){
+                                                $datos = $lis->grupo_mat_id."||".
                                                          $lis->descripcion;
                                             ?>
                                             <tr>
@@ -58,7 +58,7 @@
                                                 <td>
                                                     <div id="izquierda"><a href="" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')"><i class="fas fa-edit"></i> Editar</a></div>
 
-                                                    <div id="derecha"><a href="<?= base_url('zona_urbana/eliminar/'. $lis->zonaurb_id); ?>"><i class="fas fa-trash-alt"></i>Borrar</a></div>
+                                                    <div id="derecha"><a href="<?= base_url('bloque_grupo_mat/eliminar/'. $lis->grupo_mat_id); ?>"><i class="fas fa-trash-alt"></i>Borrar</a></div>
                                                 </td>
                                             </tr>
                                         <?php 
@@ -84,20 +84,20 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Editar Zona Urbana</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Editar Grupo Material</h4>
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/update" method="POST">-->
-                        <?php echo form_open('zona_urbana/update', array('method'=>'POST')); ?>
+                        <?php echo form_open('bloque_grupo_mat/update', array('method'=>'POST')); ?>
 
                             
                             <div class="form-group">
-                                <input type="text" hidden="" id="zonaurb_id" name="zonaurb_id">
+                                <input type="text" hidden="" id="grupo_mat_id" name="grupo_mat_id">
                             </div>
 
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $lis->zonaurb_id;?>">
+                                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $lis->descripcion;?>">
                             </div>
                             
                             <div class="modal-footer">
@@ -116,11 +116,11 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Zona Urbana</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Grupo Material</h4>
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
-                        <?php echo form_open('zona_urbana/insertar', array('method'=>'POST')); ?>
+                        <?php echo form_open('bloque_grupo_mat/insertar', array('method'=>'POST')); ?>
 
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
@@ -162,7 +162,7 @@
         function agregarform(datos)
         {
              d=datos.split('||');
-              $('#zonaurb_id').val(d[0]);
+              $('#grupo_mat_id').val(d[0]);
               $('#descripcion').val(d[1]);
         }
 

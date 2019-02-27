@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Zona_urbana_model extends CI_Model {
+class Bloque_grupo_mat_model extends CI_Model {
 
 	public $variable;
 	
@@ -13,7 +13,7 @@ class Zona_urbana_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.zona_urbana  WHERE activo = '1' ORDER BY zonaurb_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.bloque_grupo_mat  WHERE activo = '1' ORDER BY grupo_mat_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -30,7 +30,7 @@ class Zona_urbana_model extends CI_Model {
 			'descripcion' =>$descripcion,
 			'usu_creacion' =>$usu_creacion
 			);
-		$this->db->insert('catastro.zona_urbana', $array);
+		$this->db->insert('catastro.bloque_grupo_mat', $array);
 	}
 
 
@@ -58,18 +58,18 @@ class Zona_urbana_model extends CI_Model {
             'usu_eliminacion' => $usu_eliminacion,
             'fec_eliminacion' => $fec_eliminacion
         );
-        $this->db->where('zonaurb_id', $id);
-        return $this->db->update('catastro.zona_urbana', $data);
+        $this->db->where('grupo_mat_id', $id);
+        return $this->db->update('catastro.bloque_grupo_mat', $data);
     }
 
-    public function actualizar($zonaurb_id, $descripcion, $usu_modificacion, $fec_modificacion)
+    public function actualizar($grupo_mat_id, $descripcion, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
             'descripcion' => $descripcion,
             'usu_modificacion' => $usu_modificacion,
             'fec_modificacion' => $fec_modificacion
         );
-        $this->db->where('zonaurb_id', $zonaurb_id);
-        return $this->db->update('catastro.zona_urbana', $data);
+        $this->db->where('grupo_mat_id', $grupo_mat_id);
+        return $this->db->update('catastro.bloque_grupo_mat', $data);
     }
 }

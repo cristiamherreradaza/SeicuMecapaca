@@ -293,7 +293,7 @@
                                                         $dato = $resi->persona_id;
                                                         $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
                                                  ?>
-                                                <h4> <?php echo strtoupper($res->nombres);?> <?php echo strtoupper($res->paterno);?></h4>
+                                                <h4> <?php echo strtoupper($res->nombres);?> <?php echo strtoupper($res->paterno);?> <?php echo strtoupper($res->materno);?></h4>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>

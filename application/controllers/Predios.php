@@ -14,7 +14,10 @@ class Predios extends CI_Controller {
 
 	public function index(){
 
-		$credencial_id = $this->session->userdata("persona_perfil_id");
+
+		if($this->session->userdata("login"))
+		{
+	    $credencial_id = $this->session->userdata("persona_perfil_id");
 		$acceso_inicio = date("Y-m-d H:i:s");
 		
 		$ip = $this->logacceso_model->ip_publico();
@@ -23,6 +26,11 @@ class Predios extends CI_Controller {
 		$this->load->view('admin/menu');
 		$this->load->view('admin/contenidos');
 		$this->load->view('admin/footer');
+		}
+		else{
+			$this->load->view('login/login');	
+		}
+
 	}
 
 	public function registra_predio(){

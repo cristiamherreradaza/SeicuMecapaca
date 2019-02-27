@@ -25,7 +25,7 @@ class Nivel extends CI_Controller {
 			redirect(base_url()."Nivel/nivel");
 		}
 		else{
-			$this->load->view('login');	
+			$this->load->view('login/login');	
 		}
 		
 	}
