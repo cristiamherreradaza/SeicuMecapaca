@@ -81,8 +81,8 @@ class Edificacion extends CI_Controller {
        //$this->db->insert('catastro.bloque', $data);   
 
 
-
-        redirect("Edificacion/nuevo");
+       redirect(base_url().'Predios/nuevo');
+        // redirect("Edificacion/nuevo");
     }
     
 
