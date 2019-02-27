@@ -8,10 +8,6 @@
 <script src="<?php echo base_url(); ?>public/js/validation.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/js/dropify.min.js"></script>
 <script>
-	function(window, document, $) {
-		"use strict";
-		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation()
-	}(window, document, jQuery);
 	
     $(document).ready(function() {
         // Basic

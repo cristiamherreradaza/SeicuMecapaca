@@ -239,7 +239,7 @@
                                                 <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Forma : <span class="text-danger">*</span> </label>
                                                 <select class="custom-select form-control" id="forma_id" name="forma_id" />
-                                                    <option value="">Seleccione zona</option>
+                                                    <option value="">Seleccione forma</option>
                                                     <?php foreach ($dc_forma as $d): ?>
                                                     <option value="<?php echo $d->forma_id; ?>">
                                                         <?php echo $d->descripcion; ?>
