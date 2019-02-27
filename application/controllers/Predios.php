@@ -17,10 +17,14 @@ class Predios extends CI_Controller {
 		$acceso_inicio = date("Y-m-d H:i:s");
 
 		$ip = $this->logacceso_model->ip_publico();
-    $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+		$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+		
+		$query = $this->db->get('catastro.predio');
+		$data['listado_predios'] = $query->result();
+
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
-		$this->load->view('predios/index');
+		$this->load->view('predios/index', $data);
 		$this->load->view('admin/footer');
 		$this->load->view('predios/index_js');
 	}

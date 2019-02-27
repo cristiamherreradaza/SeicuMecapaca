@@ -11,7 +11,11 @@
 <!-- end - This is for export functionality only -->
 <script>
     $(function() {
-        $('#myTable').DataTable();
+        $('#myTable').DataTable({
+            "oLanguage": {
+                "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            },
+        });
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 "columnDefs": [{
