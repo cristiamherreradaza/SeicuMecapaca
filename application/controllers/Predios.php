@@ -293,4 +293,14 @@ class Predios extends CI_Controller {
 		$this->load->view('admin/wizard_js');
 	}
 
+	public function certificado(){
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		// $this->load->view('predios/nuevo', $data);
+		// $this->load->view('predios/registra_predio', $data);
+		$this->load->view('predios/certificado');
+		$this->load->view('admin/footer');
+		$this->load->view('predios/registra_js');
+	}
+
 }
