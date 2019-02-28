@@ -9,6 +9,7 @@ class Predios extends CI_Controller {
       $this->load->model("logacceso_model");
       $this->load->helper('url_helper');
       $this->load->helper('vayes_helper');
+      $this->load->library('cart');
   }
 
 	public function index(){

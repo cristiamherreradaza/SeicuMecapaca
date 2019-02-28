@@ -357,22 +357,22 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                             </section>
                            Step 4 -->
                            <!--inicio codigo jacqueline-->
-                            <h6>Step 4</h6>
+                            <h6>Ingrese los datos del propietario</h6>
                             <section>
                                 <!-- <form action="<?php //echo base_url();?>persona/guardar" method="POST"> -->
                                     <?php echo form_open('persona/guardar', array('method' => 'POST')); ?>
                                     <div class="row">
                                         <div class="col-md-6">
 
-                                            <div  id="registro" >
+                                            <div  id="registro" style="padding-top: 30px;">
                                                 <div class="button-box">
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Persona</button>
+                                                    <button type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger">*</span> 
                                                 </div>
 
                                             </div>
 
                                             <!-- <?php //echo form_open('path/to/controller/update/method'); ?> -->
-                                        <div class="portlet-body">
+                                        <div class="portlet-body" style="padding-top: 30px;">
                                           <!-- <form action="SendMatCivController/actualizar_carrito" method="post"> -->
                                             <!-- <?php //echo form_open('persona/insertar', array('method' => 'POST')); ?> -->
 
@@ -439,78 +439,77 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Numero de matricula folio</label>
-                                                        <input type="text" class="form-control" name="nro_matricula_folio">
+                                                        <label>Numero de matricula folio<span class="text-danger">*</span> </label>
+                                                        <input type="text" class="form-control" name="nro_matricula_folio" required />
                                                     </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Numero de folio</label>
-                                                        <input type="text" class="form-control" name="nro_folio">
+                                                        <label>Numero de folio<span class="text-danger">*</span> </label>
+                                                        <input type="text" class="form-control" name="nro_folio" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Fecha de folio</label>
-                                                        <input type="date" class="form-control" name="fecha_folio">
+                                                        <label>Fecha de folio<span class="text-danger">*</span> </label>
+                                                        <input type="date" class="form-control" name="fecha_folio" required />
                                                     </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
                                             <div class="form-group">
-                                                <label for="participants1">Superficie legal</label>
-                                                <input type="text" class="form-control required" name="superficie_legal">
+                                                <label for="participants1">Superficie legal<span class="text-danger">*</span> </label>
+                                                <input type="text" class="form-control required" name="superficie_legal" required />
                                             </div>
                                             <div class="form-group">
-                                                <label for="participants1">Nombre del notario</label>
-                                                <input type="text" class="form-control required" name="nom_notario">
+                                                <label for="participants1">Nombre del notario<span class="text-danger">*</span> </label>
+                                                <input type="text" class="form-control required" name="nom_notario" required />
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Numero de testimonio</label>
-                                                        <input type="text" class="form-control" name="nro_testimonio">
+                                                        <label>Numero de testimonio<span class="text-danger">*</span> </label>
+                                                        <input type="text" class="form-control" name="nro_testimonio" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Fecha de testimonio</label>
-                                                        <input type="date" class="form-control" name="fecha_testimonio">
+                                                        <label>Fecha de testimonio<span class="text-danger">*</span> </label>
+                                                        <input type="date" class="form-control" name="fecha_testimonio" required />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Partida</label>
-                                                        <input type="text" class="form-control" name="partida">
+                                                        <label>Partida<span class="text-danger">*</span> </label>
+                                                        <input type="text" class="form-control" name="partida" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Partida computarizada</label>
-                                                        <input type="text" class="form-control" name="partida_computarizada">
+                                                        <label>Partida computarizada<span class="text-danger">*</span> </label>
+                                                        <input type="text" class="form-control" name="partida_computarizada" required />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="participants1">Foja</label>
-                                                <input type="text" class="form-control required" name="foja">
+                                                <label for="participants1">Foja<span class="text-danger">*</span> </label>
+                                                <input type="text" class="form-control required" name="foja" required />
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Libro</label>
-                                                        <input type="text" class="form-control" name="libro">
+                                                        <label>Libro<span class="text-danger">*</span> </label>
+                                                        <input type="text" class="form-control" name="libro" required />
                                                     </div>
                                                 </div>
                                                 <!--/span-->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Fecha de registro de libro</label>
-                                                        <strong><abbr title="required">*</abbr></strong>
-                                                        <input type="date" class="form-control" name="fecha_reg_libro">
+                                                        <label>Fecha de registro de libro<span class="text-danger">*</span> </label>
+                                                        <input type="date" class="form-control" name="fecha_reg_libro" required />
 
                                                     </div>
                                                 </div>
@@ -518,8 +517,9 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                             </div>
                                         </div>
                                         <div class="form-actions">
-                                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i>enviar</button>
-                                        <button type="button" class="btn btn-inverse">Cancelar</button>
+
+                                        <button type="submit" > enviar</button>
+                                        <button type="button" >Cancelar</button>
                                     </div>
                                 <?php echo form_close(); ?>
                             </div>
@@ -580,7 +580,7 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                                                         <input type="date" class="form-control" name="fec_nacimiento" id="fec_nacimiento">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="text" class="form-control" name="persona_id" id="persona_id">
+                                                                        <input type="hidden" class="form-control" name="persona_id" id="persona_id">
                                                                     </div>
                                                                 </div>
                                                             </div>
