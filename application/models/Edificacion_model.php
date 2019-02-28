@@ -25,7 +25,12 @@ class Edificacion_model extends CI_Model {
     }
 
     function get_grupos_subgrupos() {//obtiene los datos de la tabla uso_bloque en array result
-        $query = $this->db->query('SELECT * FROM catastro.tipo_planta');
+        $query = $this->db->query('SELECT x.grupo_mat_id,x.descripcion as desc_grupo,y.mat_item_id,y.descripcion as desc_item FROM (SELECT grupo_mat_id,descripcion from catastro.bloque_grupo_mat) as x INNER JOIN (SELECT grupo_mat_id,mat_item_id,descripcion FROM catastro.bloque_mat_item) as y on x.grupo_mat_id=y.grupo_mat_id');
+        return $query->result_array();
+    }
+
+    function get_Bloque() {//obtiene los datos de la tabla destino_bloque en array result
+        $query = $this->db->query('SELECT * FROM catastro.bloque');
         return $query->result();
     }
 

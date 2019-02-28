@@ -56,51 +56,40 @@
                                                         </div>
                                                         
                                                         <div class="modal-body">
-                                                        <?php //echo form_open('nivel/update', array('method'=>'POST')); ?>
+                                                       
                                                         <?php echo form_open('Edificacion/create', array('method'=>'POST')); ?>
-                                                           <!--<form action="<?php /*echo base_url('Edificacion/create')*/?>" method="post"  >-->
+                                                           
                                                             <div class="row">
-                                                                <!-- column -->
-                                                                <div class="col-lg-7">
+                                                                <!-- column -->                                                              
 
+                                                            <div class="col-lg-7"><!--TABLES-->
+                                                                    <div class="container-fluid">
+                                                                    <h3>Tabla de estructuras</h3>                                                                      
+                                                                      <div class="row" style="background-color:White;">
+                                                                        <div class="col-sm-5 col-md-4" style="background-color:LightGray">Estructura</div>
+                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:lightyellow">Ladrillo</div>
+                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;"><input type="text" class="form-control sumcontrol" ></div>
+                                                                    </div>
+                                                                     <div class="row" style="background-color:White;">
+                                                                        <div class="col-sm-5 col-md-4" style="background-color:lightgray;">Estructura</div>
+                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:lightyellow;">Cemento</div>
+                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;"><input type="text" class="form-control sumcontrol" ></div>
+                                                                             </div>
 
-
-
-                                                                    <div class="container-fluid"><!--TABLES-->
-
-                                                                      <h3>Tabla de estructuras</h3>
-
-                                                                      <?php 
-                                                                      $max = sizeof($result_array);                                          
-
-                                                                      for ($i = 0; $i < $max ; $i++) {?>
-                                                                          <div class="row" style="background-color:White;">
-                                                                            <div class="col-sm-5 col-md-5" style="background-color:LightGray">     <?php        echo "<pre>";                                
-                                                                                print_r($result_array[$i]['alias']);
-                                                                                echo "</pre>"; ?></div>
-                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:lightyellow">
-                                                                                <?php        echo "<pre>";                                
-                                                                                print_r($result_array[$i]['alias']);
-                                                                                echo "</pre>"; ?>                                                                                
-                                                                            </div>
-                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0" style="background-color:White;">
-                                                                            <input type="text" class="form-control sumcontrol" name="grupos[<?php echo $result_array[$i]['tipo_predio_id'] ?>][<?php echo $result_array[$i]['alias'] ?>]" ></div>
-                                                                        </div>
-
-                                                                        <?php 
-                                                                        if($result_array[$i]['alias']==$result_array[$i++]['alias']) {?>                                                                          
-                                                                          <div class="row" style="background-color:White;">                                                                              
-                                                                            <div class="col-sm-5 col-md-5" style="background-color:White;"></div>
-                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:White;" align="right">Total</div>
-                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0" style="background-color:White;">
+                                                                              <div class="row" style="background-color:White;">
+                                                                        <div class="col-sm-5 col-md-4" style="background-color:lightgray;">Estructura</div>
+                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:lightyellow;">Metal</div>
+                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;"><input type="text" class="form-control sumcontrol" ></div>
+                                                                             </div>
+                                                                              <div class="row" style="background-color:White;">
+                                                                        <div class="col-sm-5 col-md-4" style="background-color:White;"></div>
+                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:White;">Total</div>
+                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;" align="right">
                                                                                <input type="text" class="form-control total" value="" />
-                                                                               <div id="validsuma" Style="color:red;"></div>
-                                                                           </div>
-                                                                       </div>
-                                                                   <?php } ?>
-                                                               <?php } ?>
-
-                                                           </div><!--FIN TABLES-->
+                                                                                    <div id="validsuma" Style="color:red;"></div>
+                                                                        </div>
+                                                                             </div>
+                                                                </div><!--FIN TABLES-->
 
                                                            
 
@@ -115,7 +104,7 @@
                                                         <h6 class="card-subtitle">Caracteristicas de la construccion</h6>
                                                         <div class="row">
                                                             <!--test-->
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="location1">Nro de Bloque:</label>
                                                                     <select class="custom-select form-control" id="nro_bloque" name="nro_bloque">
@@ -126,39 +115,35 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="wfirstName2">Nombre de Bloque : <span class="danger">*</span> </label>
                                                                     <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque">
                                                                 </div>
                                                             </div>
-                                                            
-                                                            
                                                         </div>
-
-
 
                                                         <div class="row">
                                                             <!--test-->
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="location1">Año de construccion:</label>
                                                                     <select class="custom-select form-control" id="anio_cons" name="anio_cons">
                                                                         <option value="">Seleccionar</option>                                                                           
                                                                         <option value="1950">1950</option>
                                                                         <option value="1920">1920</option>
-                                                                        <option value="1987">1987</option>
+                                                                  
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="location1">Año de remodelacion:</label>
                                                                     <select class="custom-select form-control" id="anio_remo" name="anio_remo">
                                                                         <option value="">Seleccionar</option>                                                                           
                                                                         <option value="1950">1950</option>
                                                                         <option value="1920">1920</option>
-                                                                        <option value="1987">1987</option>
+                                                                  
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -166,7 +151,7 @@
                                                         </div>
                                                         <div class="row">
 
-                                                        <div class="col-md-4">
+                                                        <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="location1">Destino :</label>
                                                                     <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id">
@@ -181,7 +166,7 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label for="location1">Uso :</label>
                                                                     <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id">
@@ -296,43 +281,7 @@
                                 <td>1950</td>
                                 <td>Vivienda</td>
                                 <td>Planta Baja</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Bloque A2</td>
-                                <td>Deplorable</td>
-                                <td>1863</td>
-                                <td>Hotel</td>
-                                <td>Sotano</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Bloque B</td>
-                                <td>Bueno</td>
-                                <td>1966</td>
-                                <td>Oficina</td>
-                                <td>Piso 1</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Bloque C</td>
-                                <td>Deporable</td>
-                                <td>1922</td>
-                                <td>Negocio</td>
-                                <td>Piso 2</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Bloque D</td>
-                                <td>Madera</td>
-                                <td>1933</td>
-                                <td>Vivienda</td>
-                                <td>Terraza</td>
-                            </tr>
-
-
-
-                            
+                            </tr>    
                             
                         </tbody>
                     </table>
