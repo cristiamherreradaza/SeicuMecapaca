@@ -31,14 +31,10 @@ class Predios extends CI_Controller {
 		$this->load->view('predios/index', $data);
 		$this->load->view('admin/footer');
 		$this->load->view('predios/index_js');
-
-
 		}
 		else{
 			$this->load->view('login/login');	
 		}
-
-
 	}
 
 	public function registra_predio(){
