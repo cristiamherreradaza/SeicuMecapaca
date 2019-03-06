@@ -469,12 +469,13 @@
                 url: '<?php echo base_url(); ?>predios/ajax_verifica_cod_catastral/',
                 type: 'POST',
                 dataType: 'json',
-                data: {param1: cod_catastral, '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'},
+                // data: {param1: cod_catastral, '<?php // echo $this->security->get_csrf_token_name(); ?>' : '<?php //echo $this->security->get_csrf_hash(); ?>'},
+                data: {param1: cod_catastral},
                 success:function(data, textStatus, jqXHR) {
-                    alert("Se envio bien");
+                    // alert("Se envio bien");
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
-                    alert("error");
+                    // alert("error");
                 }
             });
             
