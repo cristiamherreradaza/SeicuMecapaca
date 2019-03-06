@@ -15,13 +15,13 @@ class Predios extends CI_Controller {
 	public function index(){
 
 
-		if($this->session->userdata("login"))
+		if(!$this->session->userdata("login"))
 		{
-	    $credencial_id = $this->session->userdata("persona_perfil_id");
-		$acceso_inicio = date("Y-m-d H:i:s");
+	 //    $credencial_id = $this->session->userdata("persona_perfil_id");
+		// $acceso_inicio = date("Y-m-d H:i:s");
 
-		$ip = $this->logacceso_model->ip_publico();
-		$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+		// $ip = $this->logacceso_model->ip_publico();
+		// $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 		
 		$query = $this->db->get('catastro.predio');
 		$data['listado_predios'] = $query->result();

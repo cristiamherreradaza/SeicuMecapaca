@@ -46,7 +46,19 @@
                                         <td><?php echo $lp->distrito; ?></td>
                                         <td><?php echo $lp->manzana; ?></td>
                                         <td><?php echo $lp->predio; ?></td>
-                                        <td><div class="btn-group btn-group-xs" role="group"><button type="button" class="btn btn-secondary footable-edit"><span class="fas fa-pencil-alt" aria-hidden="true"></span></button> <button type="button" class="btn btn-secondary footable-delete"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></div></td>
+                                        <td>
+                                            <div class="btn-group btn-group-xs" role="group">
+                                                <button type="button" class="btn btn-warning footable-edit">
+                                                    <span class="fas fa-pencil-alt" aria-hidden="true"></span>
+                                                </button>
+                                                <a href="<?php echo base_url(); ?>predios/certificado" class="btn btn-success footable-edit">
+                                                    <span class="fas fas fa-print" aria-hidden="true"></span>
+                                                </a> 
+                                                <button type="button" class="btn btn-danger footable-delete">
+                                                    <span class="fas fa-trash-alt" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
+                                        </td>
                                     </tr>    
                                 <?php endforeach; ?>
                             </tbody>
