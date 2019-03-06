@@ -303,13 +303,18 @@ class Predios extends CI_Controller {
 	}
 
 	public function ajax_verifica_cod_catastral(){
-		// $cod_catastral = $this->input->post("param1");
-		$reponse = array(
-		               'csrfName' => $this->security->get_csrf_token_name(),
-		               'csrfHash' => $this->security->get_csrf_hash()
-		               );
-		echo json_encode($reponse);
-
+		$cod_catastral = $this->input->get("param1");
+		$this->db->where('codcatas', $cod_catastral);
+		$verifica_cod = $this->db->get('catastro.predio');
+		// print_r($cod_catastral);
+		// print_r($verifica_cod->result());die;
+		if ($verifica_cod->num_rows() > 0) {
+			$respuesta = array('codigo'=>$cod_catastral, 'estado'=>'si');
+			echo json_encode($respuesta);
+		} else {
+			$respuesta = array('codigo'=>$cod_catastral, 'estado'=>'no');
+			echo json_encode($respuesta);
+		}		
 	}
 
 }
