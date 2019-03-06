@@ -302,13 +302,10 @@ class Predios extends CI_Controller {
 		$this->load->view('predios/registra_js');
 	}
 
-<<<<<<< Updated upstream
-=======
 	public function ajax_verifica_cod_catastral(){
 		// $cod_catastral = $this->input->post("param1");
 		echo json_encode('SI');
 
 	}
 
->>>>>>> Stashed changes
 }
