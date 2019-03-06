@@ -29,6 +29,3 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
-proyecto_pmgm.sublime-workspace
-proyecto_pmgm.sublime-project
-

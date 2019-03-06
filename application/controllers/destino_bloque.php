@@ -25,7 +25,7 @@ class Destino_bloque extends CI_Controller {
 			redirect(base_url()."Destino_bloque/destino_bloque");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}

@@ -13,7 +13,7 @@ class Ubicacion_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.ubicacion WHERE activo = '1' ORDER BY ubicacion_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.ubicacion ORDER BY ubicacion_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -24,13 +24,12 @@ class Ubicacion_model extends CI_Model {
 	
 	}
 
-	public function insertar_ubicacion($descripcion, $alias, $coeficiente, $usu_creacion)
+	public function insertar_ubicacion($descripcion, $alias, $coeficiente)
 	{	
 		$array = array(
 			'descripcion' =>$descripcion,
 			'alias' =>$alias,
-			'coeficiente' =>$coeficiente,
-			'usu_creacion' =>$usu_creacion
+			'coeficiente' =>$coeficiente
 			);
 		$this->db->insert('catastro.ubicacion', $array);
 	}
@@ -52,25 +51,16 @@ class Ubicacion_model extends CI_Model {
 
 	}
 
-	 public function eliminar($ubicacion_id, $usu_eliminacion, $fec_eliminacion){
-        $data = array(
-            'activo' => 0,
-            'usu_eliminacion' => $usu_eliminacion,
-            'fec_eliminacion' => $fec_eliminacion
-        );
-        $this->db->where('ubicacion_id', $ubicacion_id);
-        return $this->db->update('catastro.ubicacion', $data);
+	 public function eliminar($id){
+      $this->db->delete('catastro.ubicacion', array('ubicacion_id' => $id));
     }
 
-    public function actualizar($ubicacion_id, $descripcion, $alias, $coeficiente, $usu_modificacion, $fec_modificacion)
+    public function actualizar($ubicacion_id, $descripcion, $alias, $coeficiente)
     {
         $data = array(
             'descripcion' => $descripcion,
             'alias' => $alias,
-            'coeficiente' => $coeficiente,
-            'usu_modificacion' => $usu_modificacion,
-            'fec_modificacion' => $fec_modificacion
-
+            'coeficiente' => $coeficiente
         );
         $this->db->where('ubicacion_id', $ubicacion_id);
         return $this->db->update('catastro.ubicacion', $data);

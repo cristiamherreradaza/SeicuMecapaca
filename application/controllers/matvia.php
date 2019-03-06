@@ -25,7 +25,7 @@ class Matvia extends CI_Controller {
 			redirect(base_url()."Matvia/matvia");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}

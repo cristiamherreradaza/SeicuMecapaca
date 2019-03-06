@@ -25,7 +25,7 @@ class Tipopredio extends CI_Controller {
 			redirect(base_url()."Tipopredio/tipopredio");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}

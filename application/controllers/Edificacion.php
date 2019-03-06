@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Edificacion extends CI_Controller {
 
-	public function __construct() {
+    public function __construct() {
         parent:: __construct();
         $this->load->model("Edificacion_model");
         //$this->load->library('session');
@@ -12,27 +12,27 @@ class Edificacion extends CI_Controller {
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
     }
-	
-	public function index()	
-	{	
+    
+    public function index() 
+    {   
         /*if($this->session->userdata("login"))
-		{
+        {
             $credencial_id = $this->session->userdata("persona_perfil_id");
             $acceso_inicio = date("Y-m-d H:i:s");
             $this->load->view('login'); 
         }else{
-			$this->load->view('login/login');	
-		}*/
-	}
+            $this->load->view('login/login');   
+        }*/
+    }
 /*
     public function nuevo(){
         if($this->session->userdata("login"))
-		{
-	    $credencial_id = $this->session->userdata("persona_perfil_id");
-		$acceso_inicio = date("Y-m-d H:i:s");
+        {
+        $credencial_id = $this->session->userdata("persona_perfil_id");
+        $acceso_inicio = date("Y-m-d H:i:s");
 
-		$ip = $this->logacceso_model->ip_publico();
-		$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+        $ip = $this->logacceso_model->ip_publico();
+        $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 
         $data['result_array'] = $this->Edificacion_model->getAllData();
         $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque(); 
@@ -46,18 +46,18 @@ class Edificacion extends CI_Controller {
         $this->load->view('admin/wizard_js');        
 
         }else{
-			$this->load->view('login/login');	
-		}
+            $this->load->view('login/login');   
+        }
 
     }*/
 
     public function nuevo(){
         
-	    //$credencial_id = $this->session->userdata("persona_perfil_id");
-	//$acceso_inicio = date("Y-m-d H:i:s");
+        //$credencial_id = $this->session->userdata("persona_perfil_id");
+    //$acceso_inicio = date("Y-m-d H:i:s");
 
-		//$ip = $this->logacceso_model->ip_publico();
-		//$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+        //$ip = $this->logacceso_model->ip_publico();
+        //$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
         $data['result_array'] = $this->Edificacion_model->getAllData();
         $data['bloques'] = $this->Edificacion_model->get_Bloque();
         $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();

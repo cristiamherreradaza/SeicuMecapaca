@@ -25,7 +25,7 @@ class uso_bloque extends CI_Controller {
 			redirect(base_url()."uso_bloque/uso_bloque");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}

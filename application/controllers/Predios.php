@@ -2,26 +2,27 @@
 class Predios extends CI_Controller {
 
 	public function __construct()
-  {
-      parent::__construct();
-      $this->load->library('session');
-      $this->load->model('tipopredio_model');
-      $this->load->model("logacceso_model");
-      $this->load->helper('url_helper');
-      $this->load->helper('vayes_helper');
-      $this->load->library('cart');
-  }
+    {
+        parent::__construct();
+        $this->load->library('session');
+        $this->load->model('tipopredio_model');
+        $this->load->model("logacceso_model");
+        $this->load->model("persona_model");
+        $this->load->helper('url_helper');
+        $this->load->helper('vayes_helper');
+         $this->load->library('cart');
+    }
 
 	public function index(){
 
 
-		if(!$this->session->userdata("login"))
+		if($this->session->userdata("login"))
 		{
-	 //    $credencial_id = $this->session->userdata("persona_perfil_id");
-		// $acceso_inicio = date("Y-m-d H:i:s");
+	  	 $credencial_id = $this->session->userdata("persona_perfil_id");
+		 $acceso_inicio = date("Y-m-d H:i:s");
 
-		// $ip = $this->logacceso_model->ip_publico();
-		// $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+		 $ip = $this->logacceso_model->ip_publico();
+		 $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 		
 		$query = $this->db->get('catastro.predio');
 		$data['listado_predios'] = $query->result();
@@ -207,6 +208,7 @@ class Predios extends CI_Controller {
 		// $this->db->insert('catastro.predio', $datos);
 	}
 
+
 	public function muestra_img(){
 		// $this->db->insert('catastro.predio_foto', $data_foto);
 		// $this->db->select('foto_id', 'codcatas', 'foto_plano_ubi');
@@ -289,6 +291,7 @@ class Predios extends CI_Controller {
 		$this->load->view('admin/footer');
 		$this->load->view('admin/wizard_js');
 	}
+
 
 	public function certificado(){
 		$this->load->view('admin/header');

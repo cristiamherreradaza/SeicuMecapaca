@@ -26,7 +26,7 @@ class Zona_urbana extends CI_Controller {
 			redirect(base_url()."Zona_urbana/zona_urbana");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}
@@ -64,8 +64,9 @@ class Zona_urbana extends CI_Controller {
 	    $actualizar = $this->zona_urbana_model->actualizar($zonaurb_id, $descripcion, $usu_modificacion, $fec_modificacion);
 	   redirect('Zona_urbana');
 	}
+	
 
-	 public function eliminar()
+	public function eliminar()
 	 {
 	 	//OBTENER EL ID DEL USUARIO LOGUEADO
 		$id = $this->session->userdata("persona_perfil_id");

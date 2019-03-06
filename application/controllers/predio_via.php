@@ -39,7 +39,7 @@ class Zona_urbana extends CI_Controller {
 			redirect(base_url()."Zona_urbana/zona_urbana");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}

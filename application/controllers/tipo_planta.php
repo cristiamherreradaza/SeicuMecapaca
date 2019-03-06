@@ -25,7 +25,7 @@ class Tipo_planta extends CI_Controller {
 			redirect(base_url()."tipo_planta/tipo_planta");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}

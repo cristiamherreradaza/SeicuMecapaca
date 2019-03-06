@@ -8,7 +8,6 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->model("usuario_model");
 		$this->load->model("logacceso_model");
-		
 	}
 
 	public function index()
@@ -16,7 +15,7 @@ class Login extends CI_Controller {
 		
 		if($this->session->userdata("login"))
 		{
-	        redirect(base_url()."Predios");
+			redirect(base_url()."Predios");
 		}
 		else{
 			$this->load->view('login/login');	
@@ -69,6 +68,5 @@ class Login extends CI_Controller {
 		$actualizar = $this->logacceso_model->fecha_salida($logacceso_id, $acceso_fin);
 		redirect(base_url());
 	}
-	
 }
 

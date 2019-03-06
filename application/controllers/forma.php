@@ -25,7 +25,7 @@ class Forma extends CI_Controller {
 			redirect(base_url()."Forma/forma");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}

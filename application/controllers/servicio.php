@@ -25,7 +25,7 @@ class Servicio extends CI_Controller {
 			redirect(base_url()."servicio/servicio");
 		}
 		else{
-			$this->load->view('login/login');	
+			$this->load->view('login');	
 		}
 		
 	}
