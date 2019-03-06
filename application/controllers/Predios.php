@@ -299,12 +299,16 @@ class Predios extends CI_Controller {
 		// $this->load->view('predios/registra_predio', $data);
 		$this->load->view('predios/certificado');
 		$this->load->view('admin/footer');
-		$this->load->view('predios/registra_js');
+		$this->load->view('predios/imprime_js');
 	}
 
 	public function ajax_verifica_cod_catastral(){
 		// $cod_catastral = $this->input->post("param1");
-		echo json_encode('SI');
+		$reponse = array(
+		               'csrfName' => $this->security->get_csrf_token_name(),
+		               'csrfHash' => $this->security->get_csrf_hash()
+		               );
+		echo json_encode($reponse);
 
 	}
 
