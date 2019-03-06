@@ -17,6 +17,9 @@
     <link href="<?php echo base_url(); ?>public/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?php echo base_url(); ?>public/css/colors/blue.css" id="theme" rel="stylesheet">
+
+    <!--alerts CSS -->
+    <link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,7 +40,7 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <section id="wrapper">
-        <div class="login-register" style="background-image: url(public/assets/images/background/fondo.jpg);">        
+        <div class="login-register" style="background-image: url(public/assets/images/background/2.jpg);">        
             <div class="login-box card">
                <div class="m-login__logo btn btn-block">
                             <a href="https://www.oopp.gob.bo/">
@@ -93,6 +96,10 @@
     <script src="<?php echo base_url(); ?>public/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="<?php echo base_url(); ?>public/js/custom.min.js"></script>
+    <!-- ============================================================== -->
+  <!-- Sweet-Alert  -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
