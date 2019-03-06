@@ -18,20 +18,20 @@ class Predios extends CI_Controller {
 
 		if($this->session->userdata("login"))
 		{
-	  	 $credencial_id = $this->session->userdata("persona_perfil_id");
-		 $acceso_inicio = date("Y-m-d H:i:s");
+		    $credencial_id = $this->session->userdata("persona_perfil_id");
+			$acceso_inicio = date("Y-m-d H:i:s");
 
-		 $ip = $this->logacceso_model->ip_publico();
-		 $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+			$ip = $this->logacceso_model->ip_publico();
+			$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 		
-		$query = $this->db->get('catastro.predio');
-		$data['listado_predios'] = $query->result();
+			$query = $this->db->get('catastro.predio');
+			$data['listado_predios'] = $query->result();
 
-		$this->load->view('admin/header');
-		$this->load->view('admin/menu');
-		$this->load->view('predios/index', $data);
-		$this->load->view('admin/footer');
-		$this->load->view('predios/index_js');
+			$this->load->view('admin/header');
+			$this->load->view('admin/menu');
+			$this->load->view('predios/index', $data);
+			$this->load->view('admin/footer');
+			$this->load->view('predios/index_js');
 		}
 		else{
 			$this->load->view('login/login');	
@@ -273,7 +273,6 @@ class Predios extends CI_Controller {
 		// $data['dc'] = $this->tipopredio_model->listado_combo();
 		// vdebug($this->tipopredio_model->hola());
 
-		$data['hola'] = "Mi cuate es un Pillin";
 		$con = $this->db->get('catastro.tipo_predio');
 		// log_message('debug', print_r($con,TRUE));
 		// vdebug($con);
@@ -303,4 +302,13 @@ class Predios extends CI_Controller {
 		$this->load->view('predios/registra_js');
 	}
 
+<<<<<<< Updated upstream
+=======
+	public function ajax_verifica_cod_catastral(){
+		// $cod_catastral = $this->input->post("param1");
+		echo json_encode('SI');
+
+	}
+
+>>>>>>> Stashed changes
 }

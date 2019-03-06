@@ -459,14 +459,25 @@
     </script>
     <script type="text/javascript">
         $("#codigo_catastral").focusout(function(){
-            // alert('Demo');
+
             var cod_catastral = $("#codigo_catastral").val();
             var predio = cod_catastral.substr(0, 3);
             var distrito = cod_catastral.substr(3, 3);
             var manzana = cod_catastral.substr(6, 9);
-            // console.log(predio);
-            // console.log(distrito);
-            // console.log(manzana);
+
+            $.ajax({
+                url: '<?php echo base_url(); ?>predios/ajax_verifica_cod_catastral/',
+                type: 'POST',
+                dataType: 'json',
+                data: {param1: cod_catastral, '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'},
+                success:function(data, textStatus, jqXHR) {
+                    alert("Se envio bien");
+                },
+                error:function(jqXHR, textStatus, errorThrown) {
+                    alert("error");
+                }
+            });
+            
             $("#distrito").val(distrito);
             $("#manzana").val(manzana);
             $("#predio").val(predio);
