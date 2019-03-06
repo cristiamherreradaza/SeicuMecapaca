@@ -464,15 +464,21 @@
             var predio = cod_catastral.substr(0, 3);
             var distrito = cod_catastral.substr(3, 3);
             var manzana = cod_catastral.substr(6, 9);
+            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
+            var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 
             $.ajax({
                 url: '<?php echo base_url(); ?>predios/ajax_verifica_cod_catastral/',
                 type: 'POST',
                 dataType: 'json',
-                // data: {param1: cod_catastral, '<?php // echo $this->security->get_csrf_token_name(); ?>' : '<?php //echo $this->security->get_csrf_hash(); ?>'},
-                data: {param1: cod_catastral},
+                data: {csrfName: csrfHash, param1: cod_catastral},
+                // data: {param1: cod_catastral},
                 success:function(data, textStatus, jqXHR) {
                     // alert("Se envio bien");
+                    // csrfName = data.csrfName;
+                    // csrfHash = data.csrfHash;
+                    // alert(data.message);
+                    console.log('Si se pudo');
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
                     // alert("error");

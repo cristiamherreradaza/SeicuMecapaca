@@ -2,7 +2,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2019 Monster Admin by wrappixel.com
+                © Ministerio de Obras publicas - Programa de Mejora de la Gestion Municipal
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -37,6 +37,33 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (settings.type == 'POST' || settings.type == 'PUT' || settings.type == 'DELETE') {
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie != '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = jQuery.trim(cookies[i]);
+                                // Does this cookie string begin with the name we want?
+                                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+                    if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                        // Only send the token to relative URLs i.e. locally.
+                        xhr.setRequestHeader("X-Csrf-Token", getCookie('csrf_cookie_name'));
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
