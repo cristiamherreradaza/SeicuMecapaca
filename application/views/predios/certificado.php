@@ -64,35 +64,26 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-3">
-                            Distrito No: <b>08</b>
-                        </div>
-                        <div class="col-md-3">
-                            Sub Distrito No: <b>34</b>
-                        </div>
-                        <div class="col-md-3">
-                            Zona: <b>CENTRAL</b>
-                        </div>
-                        <div class="col-md-3">
-                            Mazana Act: <b>125</b>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            Predio: <b>08</b>
-                        </div>
-                        <div class="col-md-3">
-                            Lote No: <b>34</b>
-                        </div>
-                        <div class="col-md-3">
-                            Calle: <b>Innominada</b>
-                        </div>
-                        <div class="col-md-3">
-                            Organizacion <b>LOMA PAMPA</b>
-                        </div>
-                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Distrito No: <b>08</b>
+                                <br />Predio: <b>08</b>
+                            </td>
+                            <td>
+                                Sub Distrito No: <b>34</b>
+                                <br />Lote No: <b>34</b>
+                            </td>
+                            <td>
+                                Zona: <b>CENTRAL</b>
+                                <br>Calle: <b>Innominada</b>
+                            </td>
+                            <td>
+                                Mazana Act: <b>125</b>
+                                <br />Organizacion <b>LOMA PAMPA</b>
+                            </td>
+                        </tr>
+                    </table>
 
                     <div class="row" style="text-align: center;">
                         <div class="col-md-12">
@@ -100,45 +91,40 @@
                         </div>
                     </div>
 
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
+                  
                             Segun pla de URBANIZACION aprobado en fecha 16/05/2018 mediante R.M. No. 338/2014 de 21/10/2014 se tiene la siguiente informacion:
-                        </div>
-                    </div>                    
 
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="<?php echo base_url() ?>public/img/1.png" width="100px">
-                            CROQUIS DEL PREDIO
-                            <img src="<?php echo base_url() ?>public/img/2.jpg" width="100px">
-                            FOTO DE FACHADA
-                        </div>
-                        <div class="col-md-6">
-                            <div class="text-black" style="font-size: 18pt; text-decoration: underline;">DATOS TECNICOS</div>
-                            <br />RELACION SUPERFICIES
-                            <div class="row">
-                                <div class="col-md-6">
-                                    Sup Lote No 24
+                    <table class="d-print-table">
+                        <tr>
+                            <td style="width: 610px;">
+                                <img src="<?php echo base_url() ?>public/img/1.png" width="450px">
+                                <br />CROQUIS DEL PREDIO
+                                <br />
+                                <img src="<?php echo base_url() ?>public/img/2.jpg" width="450px">
+                                <br />FOTO DE FACHADA
+                            </td>
+                            <td>
+                                <div class="text-black" style="font-size: 18pt; text-decoration: underline;">DATOS TECNICOS</div>
+                                <br />RELACION SUPERFICIES
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        Sup Lote No 24
+                                    </div>
+                                    <div class="col-md-6">
+                                        200.00 m
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    200.00 m
+
+                                <P>&nbsp;</P>
+
+                                <div class="text-black" style="font-size: 18pt; text-decoration: underline;">LIMITES COLINDANTES</div>
+                                <div class="row">
+                                    <div class="col-md-6">Norte</div>
+                                    <div class="col-md-6">200.00 m</div>
                                 </div>
-                            </div>
-
-                            <P>&nbsp;</P>
-
-                            <div class="text-black" style="font-size: 18pt; text-decoration: underline;">LIMITES COLINDANTES</div>
-                            <div class="row">
-                                <div class="col-md-6">Norte</div>
-                                <div class="col-md-6">200.00 m</div>
-                            </div>
-
-                        </div>
-                    </div>
+                            </td>
+                        </tr>
+                    </table>
 
                     <hr>
 
