@@ -36,68 +36,37 @@
                          ?>
 
                          
-                            <!-- Step 1 -->
-                            <h6>Step 1</h6>
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-lg">
-                                Nuevo Bloque
-                            </button>
-                            <section>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
+                         <!-- Step 1 -->
+                         <h6>Step 1</h6>
+                         <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-lg">
+                            Nuevo Bloque
+                        </button>
 
-                                            <!-- sample modal content -->
-                                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="myLargeModalLabel">Datos Bloque</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                        </div>
-                                                        
-                                                        <div class="modal-body">
-                                                       
-                                                        <?php echo form_open('Edificacion/create', array('method'=>'POST')); ?>
-                                                           
-                                                            <div class="row">
-                                                                <!-- column -->                                                              
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
 
-                                                            <div class="col-lg-7"><!--TABLES-->
-                                                                    <div class="container-fluid">
-                                                                    <h3>Tabla de estructuras</h3>                                                                      
-                                                                      <div class="row" style="background-color:White;">
-                                                                        <div class="col-sm-5 col-md-4" style="background-color:LightGray">Estructura</div>
-                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:lightyellow">Ladrillo</div>
-                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;"><input type="text" class="form-control sumcontrol" ></div>
-                                                                    </div>
-                                                                     <div class="row" style="background-color:White;">
-                                                                        <div class="col-sm-5 col-md-4" style="background-color:lightgray;">Estructura</div>
-                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:lightyellow;">Cemento</div>
-                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;"><input type="text" class="form-control sumcontrol" ></div>
-                                                                             </div>
+                                    <!-- sample modal content -->
+                                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myLargeModalLabel">Datos Bloque</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                </div>
 
-                                                                              <div class="row" style="background-color:White;">
-                                                                        <div class="col-sm-5 col-md-4" style="background-color:lightgray;">Estructura</div>
-                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:lightyellow;">Metal</div>
-                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;"><input type="text" class="form-control sumcontrol" ></div>
-                                                                             </div>
-                                                                              <div class="row" style="background-color:White;">
-                                                                        <div class="col-sm-5 col-md-4" style="background-color:White;"></div>
-                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:White;">Total</div>
-                                                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;" align="right">
-                                                                               <input type="text" class="form-control total" value="" />
-                                                                                    <div id="validsuma" Style="color:red;"></div>
-                                                                        </div>
-                                                                             </div>
-                                                                </div><!--FIN TABLES-->
+                                                <div class="modal-body">
 
-                                                           
+                                                    <?php echo form_open('edificacion/create', array('method'=>'POST')); ?>
+
+                                                    <div class="row">
+                                                        <!-- column -->                                                              
+
+                                                        <div class="col-lg-7">
+                                                    
 
 
-
-
-
-                                                       </div>
+                                                       </div><!--col-lg-7-->
 
 
                                                        <div class="col-lg-5">
@@ -109,9 +78,9 @@
                                                                     <label for="location1">Nro de Bloque:</label>
                                                                     <select class="custom-select form-control" id="nro_bloque" name="nro_bloque">
                                                                         <option value="">Seleccionar</option>                                                                           
-                                                                        <option value="B1">1</option>
-                                                                        <option value="B2">2</option>
-                                                                        <option value="B3">3</option>
+                                                                        <option value="11">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -121,127 +90,26 @@
                                                                     <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque">
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div>                                                  
+                                                
+                                               
+                                               
+                                             
 
-                                                        <div class="row">
-                                                            <!--test-->
-                                                            <div class="col-md-5">
-                                                                <div class="form-group">
-                                                                    <label for="location1">Año de construccion:</label>
-                                                                    <select class="custom-select form-control" id="anio_cons" name="anio_cons">
-                                                                        <option value="">Seleccionar</option>                                                                           
-                                                                        <option value="1950">1950</option>
-                                                                        <option value="1920">1920</option>
-                                                                  
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <div class="form-group">
-                                                                    <label for="location1">Año de remodelacion:</label>
-                                                                    <select class="custom-select form-control" id="anio_remo" name="anio_remo">
-                                                                        <option value="">Seleccionar</option>                                                                           
-                                                                        <option value="1950">1950</option>
-                                                                        <option value="1920">1920</option>
-                                                                  
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        <div class="row">
-
-                                                        <div class="col-md-5">
-                                                                <div class="form-group">
-                                                                    <label for="location1">Destino :</label>
-                                                                    <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id">
-                                                                        
-
-                                                                        <?php foreach ($destino_bloque as $d): ?>
-                                                                            <option value="<?php echo $d->destino_bloque_id; ?>"><?php echo $d->descripcion; ?></option>
-                                                                        <?php endforeach; ?>
+                                        </div><!--fin col-lg-5-->
+                                    </div><!--fin column-->                                        
 
 
-
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <div class="form-group">
-                                                                    <label for="location1">Uso :</label>
-                                                                    <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id">
-                                                                       <?php foreach ($destino_uso as $du): ?>
-                                                                        <option value="<?php echo $du->uso_bloque_id; ?>"><?php echo $du->descripcion; ?></option>
-                                                                    <?php endforeach; ?>
-
-
-
-                                                                    
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="form-group">
-                                                                <label for="location1">Estado Fisico :</label>
-                                                                <select class="custom-select form-control" id="estado_fisico" name="estado_fisico">
-                                                                    <option value="">Seleccionar</option>
-                                                                    <option value="Bueno">Bueno</option>
-                                                                    <option value="Preacrio">Precario</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <h6 class="card-subtitle">Superficie de la Planta</h6>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="location1">Nivel :</label>
-                                                                <select class="custom-select form-control" id="nivel" name="nivel">
-                                                                    <option value="">Seleccionar</option>
-                                                                    <option value="-1">-1</option>
-                                                                    <option value="0">0</option>
-                                                                    <option value="1">1</option>
-                                                                    <option value="2">2</option>
-                                                                    <option value="3">3</option>
-                                                                    <option value="4">4</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                    
-
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label for="location1">Tipo de planta :</label>
-                                                                <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id">
-                                                                   <?php foreach ($tipo_planta as $tp): ?>
-                                                                    <option value="<?php echo $tp->tipo_planta_id; ?>"><?php echo $tp->descripcion; ?></option>
-                                                                <?php endforeach; ?>                                                                          
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                    <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="wfirstName2"> Superficie : <span class="danger">*</span> </label>
-                                                            <input type="text" class="form-control required" id="superficie" name="superficie">
-                                                        </div>
-                                                    </div>
-                                                </div>                                             
-                                            </div>
-                                        </div>                                        
-                                        <button type="submit" class="btn btn-success" value="save">Guardar</button>
+                                       <button type="submit" class="btn btn-success" value="save">Guardar</button>
                                                 <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Cancelar</button>
-                                    </form>
+                                               <?php echo form_close(); ?>
 
 
-                                </div>
-                              
+                               </div><!--fin modal body-->    
+
                                 <div class="modal-footer">
-                                    
-                                    
+
+
                                 </div>
                             </div>
                             <!-- /.modal-content -->
@@ -270,32 +138,43 @@
                                 <th>Estado fisico</th>
                                 <th>Año construccion</th>
                                 <th>Destino</th>
-                                <th>Nivel</th>
+                                <th>Uso</th>
                             </tr>
                         </thead>
                         <tbody>
+
+
+                         <?php foreach($bloques as $row) {?>
                             <tr>
-                                <td>1</td>
-                                <td>Bloque A</td>
-                                <td>Bueno</td>
-                                <td>1950</td>
-                                <td>Vivienda</td>
-                                <td>Planta Baja</td>
-                            </tr>    
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                              <th scope="row"><?php echo $row->nro_bloque; ?></th>
+                              <td><?php echo $row->nom_bloque; ?></td>
+                              <td><?php echo $row->estado_fisico; ?></td>
+                              <td><?php echo $row->anio_cons; ?></td>
+                              <td><?php echo $row->destino_bloque_id; ?></td>
+                              <td><?php echo $row->uso_bloque_id; ?> </td>
+                              <td>
+                               <a href="<?php echo site_url('edificacion/edit');?>/<?php echo $row->bloque_id;?>"><button type="button" class="btn btn-warning">Editar</button></a> 
+                               <a href="<?php echo site_url('edificacion/delete');?>/<?php echo $row->bloque_id;?>"><button type="button" class="btn btn-danger">Eliminar</button></a>
+
+                           </td>
+
+
+                       </tr>
+                   <?php } ?> 
+
+               </tbody>
+           </table>
+       </div>
+   </div>
+</div>
 
 
 
 
-    </section>
 
 
-    <!--</form>-->
+
+<!--</form>-->
 </div>
 </div>
 </div>
