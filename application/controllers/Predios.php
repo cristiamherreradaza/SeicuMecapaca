@@ -292,7 +292,9 @@ class Predios extends CI_Controller {
 	}
 
 
-	public function certificado(){
+	public function certificado($cod_catastral = null){
+		
+		// print_r($cod_catastral);
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		// $this->load->view('predios/nuevo', $data);
@@ -304,6 +306,7 @@ class Predios extends CI_Controller {
 
 	public function ajax_verifica_cod_catastral(){
 		$cod_catastral = $this->input->get("param1");
+		// $this->db->where()
 		$this->db->where('codcatas', $cod_catastral);
 		$verifica_cod = $this->db->get('catastro.predio');
 		// print_r($cod_catastral);

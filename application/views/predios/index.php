@@ -51,7 +51,7 @@
                                                 <button type="button" class="btn btn-warning footable-edit">
                                                     <span class="fas fa-pencil-alt" aria-hidden="true"></span>
                                                 </button>
-                                                <a href="<?php echo base_url(); ?>predios/certificado" class="btn btn-success footable-edit">
+                                                <a href="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
                                                     <span class="fas fas fa-print" aria-hidden="true"></span>
                                                 </a> 
                                                 <button type="button" class="btn btn-danger footable-delete">
