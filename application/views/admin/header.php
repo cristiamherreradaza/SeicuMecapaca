@@ -352,34 +352,43 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar Rol</h4>
                     </div>
                     <div class="modal-body">
+                     <?php echo form_open('persona/update', array('method'=>'POST')); ?>
                          <img class="card-img-top img-responsive" src="<?php echo base_url(); ?>public/assets/images/users/perfil.jpg" alt="Card image cap">
-                        <form action="">
+                        <!--<form action="">-->
+                       
+
+                            <div class="form-group">
+                                <input type="text"  hidden="" class="form-control" id="persona_id" name="persona_id" value="<?php echo $res->persona_id;?>">
+                            </div>
+
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Nombre</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="rol" value="<?php echo $res->nombres;?>">
+                                <input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo $res->nombres;?>">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="rol" value="<?php echo $res->paterno;?>">
+                                <input type="text" class="form-control" id="paterno" name="paterno" value="<?php echo $res->paterno;?>">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Apellido Materno</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="rol" value="<?php echo $res->materno;?>">
+                                <input type="text" class="form-control" id="materno" name="materno" value="<?php echo $res->materno;?>">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Carnet de Identidad</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="activo" value="<?php echo $res->ci;?>">
+                                <input type="text" class="form-control" id="ci" name="ci" value="<?php echo $res->ci;?>">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Fecha de Nacimiento</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="activo" value="<?php echo $res->fec_nacimiento;?>">
+                                <input type="text" class="form-control" id="fec_nacimiento" name="fec_nacimiento" value="<?php echo $res->fec_nacimiento;?>">
+                            </div>
+
+                             <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar Edici&oacute;n</button>
                             </div>
                         </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar Edici&oacute;n</button>
-                    </div>
+                   
                 </div>
             </div>
         </div>

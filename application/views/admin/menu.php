@@ -12,7 +12,15 @@
             <!-- User profile image -->
             <div class="profile-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/perfil1.jpg" alt="user" /> </div>
             <!-- User profile text-->
-            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo strtoupper($this->session->userdata("usuario"))?> <span class="caret"></span></a>
+
+             <?php
+                    $id = $this->session->userdata("persona_perfil_id");
+                    $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+                    $dato = $resi->persona_id;
+                    $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
+             ?>
+            
+            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo strtoupper($res->nombres);?> <span class="caret"></span></a>
                 <div class="dropdown-menu animated flipInY">
                     <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
                     <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>

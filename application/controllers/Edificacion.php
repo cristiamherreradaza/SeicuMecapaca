@@ -79,7 +79,7 @@ class Edificacion extends CI_Controller {
         //comentario
         //vdebug($this->input->post());
 
-        /*$data = array ( 
+        $data = array ( 
             
             'codcatas' =>'123456789',//input
             'nro_bloque' =>$this->input->post('nro_bloque'),//crear
@@ -98,8 +98,8 @@ class Edificacion extends CI_Controller {
             //'nivel' => $this->input->post('nivel'),//tabla bloque_piso
 
             //'codcatas' =>$this->input->post('codcatas'),  
-        );*/
-        $data = array ( 
+        );
+        /*$data = array ( 
             'codcatas' =>'123456789',//input
             'nro_bloque' =>$this->input->post('nro_bloque'),//crear
             'nom_bloque' =>$this->input->post('nom_bloque'),
@@ -127,8 +127,26 @@ class Edificacion extends CI_Controller {
             
               
             
-        );
-       $this->db->insert('catastro.bloque', $data);   
+        );*/
+       $this->db->insert('catastro.bloque', $data); 
+       
+       $nro_bloq=$this->input->post('nro_bloque');
+
+       $query = $this->db->query("SELECT bloque_id FROM catastro.bloque WHERE codcatas='123456789' and nro_bloque='$nro_bloq'");
+       foreach ($query->result() as $row)
+           {
+               $bloque_id_form = $row->bloque_id;                    
+           }
+       //tabla bloque_piso   
+       $bloque_piso = array (
+           'nro_bloque' =>$this->input->post('nro_bloque'),
+           'nivel' => $this->input->post('nivel'),
+           'tipo_planta_id' =>$this->input->post('tipo_planta_id'),  
+           'superficie' => $this->input->post('superficie'),
+           'bloque_id' =>$bloque_id_form,//cargar de la BD                         
+           'usu_creacion' =>1 //aun no captura el usuario 
+       );
+       $this->db->insert('catastro.bloque_piso', $bloque_piso); 
        //redirect(base_url().'Predios/nuevo');
        redirect(base_url().'Edificacion/nuevo');
     }
