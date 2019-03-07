@@ -79,6 +79,7 @@ class Edificacion extends CI_Controller {
         //comentario
         //vdebug($this->input->post());
 
+        //captura de datos para la tabla bloque
         $data = array ( 
             
             'codcatas' =>'123456789',//input
@@ -94,50 +95,18 @@ class Edificacion extends CI_Controller {
             'activo'=>'1',
             'tipolo_id' =>'12',//no existe en la db 
             'usu_creacion' =>1 //aun no captura el usuario 
-            
-            //'nivel' => $this->input->post('nivel'),//tabla bloque_piso
-
-            //'codcatas' =>$this->input->post('codcatas'),  
-        );
-        /*$data = array ( 
-            'codcatas' =>'123456789',//input
-            'nro_bloque' =>$this->input->post('nro_bloque'),//crear
-            'nom_bloque' =>$this->input->post('nom_bloque'),
-            //'nro_bloque' =>2,//crear
-            //'nom_bloque' =>'bloque B',
-            'estado_fisico' =>'bueno',
-            'altura'=> 100,
-            'anio_cons' =>1920,
-            'anio_remo' =>1950,
-            'porcentaje_remo' =>'100',//validar
-            'destino_bloque_id' =>1,
-            'uso_bloque_id' =>1,
-            'activo'=>1,
-            'tipolo_id' =>'12',//no existe en la db            
-            'usu_creacion' =>1 //aun no captura el usuario 
-            
-            //'nivel' => $this->input->post('nivel'),//tabla bloque_piso
-           
-            
-           
-           
-
-            //'codcatas' =>$this->input->post('codcatas'),
-            
-            
-              
-            
-        );*/
+        );        
        $this->db->insert('catastro.bloque', $data); 
-       
-       $nro_bloq=$this->input->post('nro_bloque');
+       //fin de insercion de datos en la tabla bloque
 
+       //captura el bloque_id del nro de bloque guardado
+       $nro_bloq=$this->input->post('nro_bloque');
        $query = $this->db->query("SELECT bloque_id FROM catastro.bloque WHERE codcatas='123456789' and nro_bloque='$nro_bloq'");
        foreach ($query->result() as $row)
            {
                $bloque_id_form = $row->bloque_id;                    
            }
-       //tabla bloque_piso   
+       //captura de datos para la tabla bloque_piso   
        $bloque_piso = array (
            'nro_bloque' =>$this->input->post('nro_bloque'),
            'nivel' => $this->input->post('nivel'),
@@ -146,12 +115,38 @@ class Edificacion extends CI_Controller {
            'bloque_id' =>$bloque_id_form,//cargar de la BD                         
            'usu_creacion' =>1 //aun no captura el usuario 
        );
-       $this->db->insert('catastro.bloque_piso', $bloque_piso); 
-       //redirect(base_url().'Predios/nuevo');
-       redirect(base_url().'Edificacion/nuevo');
-    }
+       $this->db->insert('catastro.bloque_piso', $bloque_piso);
+       //fin de insertar datos en tabla bloque_piso
 
-    public function edit(){
+
+       
+       
+
+       foreach ($this->input->post('grupos') as $key) {
+        $data_grupos = array(
+            'servicio_id'=>$s,
+            'codcatas'=>$this->input->post('codigo_catastral'),
+            'activo'=>1
+        );
+
+        $this->db->insert('catastro.bloque_elemento_cons', $data_grupos);
+        }
+        // fin guardamos los servicios
+
+        $bloque_cons = array (    
+            'bloque_id' =>$this->input->post('bloque_id'),//cargar de la BD
+            'nro_bloque' =>$this->input->post('nro_bloque'),           
+            'grupo_mat_id' => $this->input->post('grupo_mat_id'),  
+            'mat_item_id'=> $this->input->post('mat_item_id'),      
+            'cantidad' =>$this->input->post('cantidad'),                  
+            'usu_creacion' =>1 //aun no captura el usuario      
+        ); 
+        //redirect(base_url().'Predios/nuevo');
+        redirect(base_url().'Edificacion/nuevo');
+        }
+
+    public function propietario(){
+         redirect(base_url().'Predios/nuevo');
 
     }
     public function update(){
