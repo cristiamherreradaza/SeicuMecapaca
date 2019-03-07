@@ -111,6 +111,7 @@ class Persona extends CI_Controller {
 
             $default = array('ci' => '');
             $reg = $this->persona_model->buscaci($this->input->post('ci'));
+            vdebug($reg);
             echo count($reg) > 0 ? json_encode($reg) : json_encode($default);
 
        } else {

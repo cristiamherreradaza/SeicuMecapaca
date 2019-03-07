@@ -1,3 +1,4 @@
+<script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 /*RewriteEngine on
 RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.xml)
@@ -20,13 +21,15 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
             url:"<?php echo base_url();?>persona/verificar/",
             data:{ci:ci,'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'},
             dataType:'json',
-            success: function (resultado){
-              if(resultado.nombre != ''){
-                $('#nombres').val(resultado.nombres);
-                $('#paterno').val(resultado.paterno);
-                $('#materno').val(resultado.materno);
-                $('#fec_nacimiento').val(resultado.fec_nacimiento);
-                $('#persona_id').val(resultado.persona_id);
+            success: function (res1){
+                console.log(res1);
+              if(res1.nombre != ''){
+                console.log('despu '+res1);
+                $('#nombres').val(res1.nombres);
+                $('#paterno').val(res1.paterno);
+                $('#materno').val(res1.materno);
+                $('#fec_nacimiento').val(res1.fec_nacimiento);
+                $('#persona_id').val(res1.persona_id);
               } else {
 
               }
