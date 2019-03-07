@@ -39,26 +39,40 @@
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="bg-primary text-white">
+                                   <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                                        <thead>
                                             <tr>
                                                 <th>#</th>
+                                                 <th>Grupo Material</th>
                                                 <th>Descripci&oacute;n</th>
+                                                 <th>Factor</th>
                                                 <th>Acci&oacute;n</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($bloque_grupo_mat as $lis){
-                                                $datos = $lis->grupo_mat_id."||".
-                                                         $lis->descripcion;
+                                            <?php foreach($bloque_mat_item as $lis){
+                                                $datos = $lis->mat_item_id."||".
+                                                         $lis->grupo_mat_id."||".
+                                                         $lis->descripcion."||".
+                                                         $lis->factor;
                                             ?>
                                             <tr>
+                                            <?php $lista = $this->db->get_where('catastro.bloque_grupo_mat', array('grupo_mat_id' => $lis->grupo_mat_id))->row();
+                                             ?>
                                                 <td><?php echo $i++;?></td>
+                                                <td><?php echo $lista->descripcion;?></td>
                                                 <td><?php echo $lis->descripcion;?></td>
+                                                <td><?php echo $lis->factor;?></td>
                                                 <td>
-                                                    <div id="izquierda"><a href="" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')"><i class="fas fa-edit"></i> Editar</a></div>
 
-                                                    <div id="derecha"><a href="<?= base_url('bloque_grupo_mat/eliminar/'. $lis->grupo_mat_id); ?>"><i class="fas fa-trash-alt"></i>Borrar</a></div>
+                                                    <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
+                                                            <span class="fas fa-pencil-alt" aria-hidden="true">
+                                                            </span>
+                                                    </button> 
+                                                    <a href="<?= base_url('bloque_mat_item/eliminar/'. $lis->mat_item_id); ?>" type="button" class="btn btn-danger footable-delete">
+                                                        <span class="fas fa-trash-alt" aria-hidden="true">
+                                                        </span>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php 
@@ -88,11 +102,24 @@
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/update" method="POST">-->
-                        <?php echo form_open('bloque_grupo_mat/update', array('method'=>'POST')); ?>
+                        <?php echo form_open('bloque_mat_item/update', array('method'=>'POST')); ?>
 
                             
                             <div class="form-group">
-                                <input type="text" hidden="" id="grupo_mat_id" name="grupo_mat_id">
+                                <input type="text" hidden="" id="mat_item_id" name="mat_item_id">
+                            </div>
+
+                            <div class="form-group">
+                                <?php $lista1 = $this->db->query("SELECT * FROM catastro.bloque_grupo_mat  WHERE activo = '1' ORDER BY grupo_mat_id ASC")->result();
+                                ?>
+
+                                <label for="recipient-name" class="control-label">Grupo Material</label>
+                                 <select class="form-control custom-select"  id="grupo_mat_id" name="grupo_mat_id"  />
+                                    <?php foreach ($lista1 as $liss) { ?>
+                                        <option value="<?php echo $liss->grupo_mat_id; ?>"><?php echo $liss->descripcion; ?>
+                                        </option>
+                                   <?php } ?>
+                                </select>                                    
                             </div>
 
                             <div class="form-group">
@@ -100,6 +127,11 @@
                                 <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $lis->descripcion;?>">
                             </div>
                             
+                             <div class="form-group">
+                                <label for="recipient-name" class="control-label">Factor</label>
+                                <input type="text" class="form-control" id="factor" name="factor" value="<?php echo $lis->factor;?>">
+                            </div> 
+
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -120,11 +152,27 @@
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
-                        <?php echo form_open('bloque_grupo_mat/insertar', array('method'=>'POST')); ?>
+                        <?php echo form_open('bloque_mat_item/insertar', array('method'=>'POST')); ?>
 
                             <div class="form-group">
+                                <?php $lista1 = $this->db->query("SELECT * FROM catastro.bloque_grupo_mat  WHERE activo = '1' ORDER BY grupo_mat_id ASC")->result();
+                                ?>
+
+                                <label for="recipient-name" class="control-label">Grupo Material</label>
+                                 <select class="form-control custom-select"  id="grupo_mat_id" name="grupo_mat_id" />
+                                    <?php foreach ($lista1 as $liss) { ?>
+                                        <option value="<?php echo $liss->grupo_mat_id; ?>"><?php echo $liss->descripcion; ?>
+                                        </option>
+                                   <?php } ?>
+                                </select>                                    
+                            </div>
+                            <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="descripcion">
+                                <input type="text" class="form-control" id="descripcion" name="descripcion">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Factor</label>
+                                <input type="text" class="form-control" id="factor" name="factor">
                             </div>
                           
                             <div class="modal-footer">
@@ -162,8 +210,10 @@
         function agregarform(datos)
         {
              d=datos.split('||');
-              $('#grupo_mat_id').val(d[0]);
-              $('#descripcion').val(d[1]);
+             $('#mat_item_id').val(d[0]);
+              $('#grupo_mat_id').val(d[1]);
+              $('#descripcion').val(d[2]);
+              $('#factor').val(d[3]);
         }
 
     </script>

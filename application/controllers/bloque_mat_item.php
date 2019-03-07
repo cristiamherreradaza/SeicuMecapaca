@@ -7,12 +7,14 @@ class Bloque_mat_item extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('session');
-		$this->load->model("bloque_grupo_mat_model");
+		$this->load->model("Bloque_mat_item_model");
+		$this->load->model("zona_urbana_model");
 	}
 
 	public function bloque_mat_item(){
-
-		$lista['bloque_mat_item'] = $this->bloque_mat_item_model->index();
+		
+		$lista['bloque_mat_item'] = $this->Bloque_mat_item_model->index();
+		
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('crud/bloque_mat_item', $lista);
@@ -42,8 +44,10 @@ class Bloque_mat_item extends CI_Controller {
             $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
             $usu_creacion = $resi->persona_id;
 
-			$descripcion = $datos['descripcion'];
-			$this->bloque_mat_item_model->insertar_zona($descripcion, $usu_creacion);
+            $grupo_mat_id = $datos['grupo_mat_id'];
+            $descripcion = $datos['descripcion'];
+			$factor = $datos['factor'];
+			$this->Bloque_mat_item_model->insertar_bloque($grupo_mat_id, $descripcion, $factor, $usu_creacion);
 			redirect('bloque_mat_item');
 
 		}
@@ -58,10 +62,12 @@ class Bloque_mat_item extends CI_Controller {
         $usu_modificacion = $resi->persona_id;
         $fec_modificacion = date("Y-m-d H:i:s");
 
+	    $mat_item_id = $this->input->post('mat_item_id');
 	    $grupo_mat_id = $this->input->post('grupo_mat_id');
 	    $descripcion = $this->input->post('descripcion');
+	    $factor = $this->input->post('factor');
 
-	    $actualizar = $this->bloque_mat_item_model->actualizar($grupo_mat_id, $descripcion, $usu_modificacion, $fec_modificacion);
+	    $actualizar = $this->Bloque_mat_item_model->actualizar($mat_item_id, $grupo_mat_id, $descripcion, $factor, $usu_modificacion, $fec_modificacion);
 	   redirect('bloque_mat_item');
 	}
 
@@ -74,7 +80,7 @@ class Bloque_mat_item extends CI_Controller {
         $fec_eliminacion = date("Y-m-d H:i:s"); 
 
 	    $u = $this->uri->segment(3);
-	    $this->bloque_mat_item_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
+	    $this->Bloque_mat_item_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
 	    redirect('bloque_mat_item');
 	   }
 

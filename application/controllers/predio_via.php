@@ -1,61 +1,36 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Zona_urbana extends CI_Controller {
+class Predio_via extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("zona_urbana_model");
+		$this->load->library('session');
+		$this->load->model("Predio_via_model");
 	}
 
-	public function zona_urbana(){
-		// echo 'holas desde el controladora';
-		// $crt = 'Holas';
-		$lista['zona_urbana'] = $this->zona_urbana_model->index();
+	public function predio_via(){
 		
-		//var_dump($lista);
-		//foreach ($lista as $lis) {
-            //print_r($lis->rol_id."<br>");
-            //print_r($lis->rol."<br>");
-            //print_r($lis->activo."<br>");
-            //}
+		$lista['predio_via'] = $this->Predio_via_model->index();
 		
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
-		$this->load->view('crud/zona_urbana', $lista);
+		$this->load->view('crud/predio_via', $lista);
 		$this->load->view('admin/footer');
-		// $this->load->view('header');
-		// $this->load->view('menu');
-		// $this->load->view('contenido');
-		// $this->load->view('footer');
-		// $this->load->view('complementos');
 	}
 
 	
 	public function index()
 	{
 		if($this->session->userdata("login")){
-			redirect(base_url()."Zona_urbana/zona_urbana");
+			redirect(base_url()."predio_via/predio_via");
 		}
 		else{
-			$this->load->view('login');	
+			$this->load->view('login/login');	
 		}
 		
 	}
-
-	/*
-	public function prueba()
-	{
-		//var_dump('hola');
-		$ejemplo = $this->db->query("select * from credencial")->result();
-		foreach ($ejemplo as $eje) {
-			print_r($eje->rol_id."<br>");
-			print_r($eje->usuario."<br>");
-			print_r($eje->contrasenia."<br>");
-			print_r($eje->token."<br>");
-		}
-	}*/
 
 	public function insertar()
 	{
@@ -63,80 +38,50 @@ class Zona_urbana extends CI_Controller {
 		
 		if(isset($datos))
 		{
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
-			$descripcion = $datos['descripcion'];
-			$activo = $datos['activo'];
-			$this->zona_urbana_model->insertar_zona($descripcion, $activo);
-			redirect('Zona_urbana');
+            $codcatas = $datos['codcatas'];
+            $objectid_via = $datos['objectid_via'];
+			$matvia_id = $datos['matvia_id'];
+			$this->Predio_via_model->insertar_via($codcatas, $objectid_via, $matvia_id, $usu_creacion);
+			redirect('predio_via');
 
 		}
 
 	 }
 
-	 public function eliminar(){
-	    $u = $this->uri->segment(3);
-	    $this->zona_urbana_model->eliminar($u);
-	    redirect('Zona_urbana');
-	   }
+	 public function update()     
+	{   
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s");
 
-	 public function editar()
-	{
-		$edirol = $this->uri->segment(3);
-		var_dump($edirol);
+	    $via_id = $this->input->post('via_id');
+	    $codcatas = $this->input->post('codcatas');
+	    $objectid_via = $this->input->post('objectid_via');
+	    $matvia_id = $this->input->post('matvia_id');
 
-		//$consulta = $this->rol_model->editar($edirol);
-		//var_dump($consulta);
-//		return $consulta;
-
+	    $actualizar = $this->Predio_via_model->actualizar($via_id, $codcatas, $objectid_via, $matvia_id, $usu_modificacion, $fec_modificacion);
+	   redirect('predio_via');
 	}
 
-			
-  	/*    
+	 public function eliminar()
+	 {
+	 	//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s"); 
 
+	    $u = $this->uri->segment(3);
+	    $this->Predio_via_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
+	    redirect('predio_via');
+	   }
 
-      $dc = $this->ShowEmployeeModel->EditarC($c);
-      $data['idempleado']= $c;
-      $data['nombre'] = $dc->nombre;
-      $data['ci'] = $dc->ci;
-      $data['telefono'] = $dc->telefono;
-      $data['direccion'] = $dc->direccion;
-      $data['cargo'] = $dc->cargo;
-      $data['num_referencia'] = $dc->num_referencia;
-      $data['idsupervisor'] = $dc->idsupervisor;
-
-      $data['supervisores']= $this -> ShowEmployeeModel->Listsupervisor();
-      $this->load->view('HeaderView');
-      $this->load->view('EditEmployeeView', $data);
-      $this->load->view('FooterView');
-
-     
-
-	 }
-
-	  public function eliminar() {
-      $c = $this->uri->segment(3);
-      if ($c == NULL) {
-        redirect('ShowEmployeeController');
-      }
-      $dc = $this->ShowEmployeeModel->EditarC($c);
-      $data['idempleado']= $c;
-      $data['nombre'] = $dc->nombre;
-      $data['ci'] = $dc->ci;
-      $data['telefono'] = $dc->telefono;
-      $data['direccion'] = $dc->direccion;
-      $data['cargo'] = $dc->cargo;
-      $data['num_referencia'] = $dc->num_referencia;
-      $data['idsupervisor'] = $dc->idsupervisor;
-
-      $data['supervisores']= $this -> ShowEmployeeModel->Listsupervisor();
-      $this->load->view('HeaderView');
-      $this->load->view('EditEmployeeView', $data);
-      $this->load->view('FooterView');
-
-   }
-    */
-
-   	  
-   	  
 }
 

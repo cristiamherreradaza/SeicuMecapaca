@@ -61,60 +61,29 @@
                         <li><a href="app-compose.html">Compose Mail</a></li>
                     </ul>
                 </li>
+               
                 <li>
-                    <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Ui Elements</span></a>
+                    <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">PARAM&Eacute;TRICAS CATASTRO</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="ui-cards.html">Cards</a></li>
-                        <li><a href="ui-user-card.html">User Cards</a></li>
-                        <li><a href="ui-buttons.html">Buttons</a></li>
-                        <li><a href="ui-modals.html">Modals</a></li>
-                        <li><a href="ui-tab.html">Tab</a></li>
-                        <li><a href="ui-tooltip-popover.html">Tooltip &amp; Popover</a></li>
-                        <li><a href="ui-tooltip-stylish.html">Tooltip stylish</a></li>
-                        <li><a href="ui-sweetalert.html">Sweet Alert</a></li>
-                        <li><a href="ui-notification.html">Notification</a></li>
-                        <li><a href="ui-progressbar.html">Progressbar</a></li>
-                        <li><a href="ui-nestable.html">Nestable</a></li>
-                        <li><a href="ui-range-slider.html">Range slider</a></li>
-                        <li><a href="ui-timeline.html">Timeline</a></li>
-                        <li><a href="ui-typography.html">Typography</a></li>
-                        <li><a href="ui-horizontal-timeline.html">Horizontal Timeline</a></li>
-                        <li><a href="ui-session-timeout.html">Session Timeout</a></li>
-                        <li><a href="ui-session-ideal-timeout.html">Session Ideal Timeout</a></li>
-                        <li><a href="ui-bootstrap.html">Bootstrap Ui</a></li>
-                        <li><a href="ui-breadcrumb.html">Breadcrumb</a></li>
-                        <li><a href="ui-bootstrap-switch.html">Bootstrap Switch</a></li>
-                        <li><a href="ui-list-media.html">List Media</a></li>
-                        <li><a href="ui-ribbons.html">Ribbons</a></li>
-                        <li><a href="ui-grid.html">Grid</a></li>
-                        <li><a href="ui-carousel.html">Carousel</a></li>
-                        <li><a href="ui-date-paginator.html">Date-paginator</a></li>
-                        <li><a href="ui-dragable-portlet.html">Dragable Portlet</a></li>
-                        <li><a href="ui-spinner.html">Spinner</a></li>
-                        <li><a href="ui-scrollspy.html">Scrollspy</a></li>
-                        <li><a href="ui-toasts.html">Toasts</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow " href="#" aria-expanded="false"><i class="mdi mdi-email"></i><span class="hide-menu">CRUD</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                        <li><a href="<?php echo base_url(); ?>Zona_urbana">Zona Urbana</a></li>
-                        <li><a href="<?php echo base_url(); ?>Ubicacion">Ubicaci&oacute;n</a></li>
-                        <li><a href="<?php echo base_url(); ?>Pendiente">Pendiente</a></li>
-                        <li><a href="<?php echo base_url(); ?>Nivel">Nivel</a></li>
-                        <li><a href="<?php echo base_url(); ?>Forma">Forma</a></li>
-                        <li><a href="<?php echo base_url(); ?>Tipopredio">Tipo de Predio</a></li>
-                        <li><a href="<?php echo base_url(); ?>Clase_predio">Clase Predio</a></li>
-                        <li><a href="<?php echo base_url(); ?>Uso_suelo">Uso Suelo</a></li>
-                        <li><a href="<?php echo base_url(); ?>Edificio">Edificio</a></li>
-                        <li><a href="<?php echo base_url(); ?>Servicio">Servicio</a></li>
-                        <li><a href="<?php echo base_url(); ?>Destino_bloque">Destino Bloque</a></li>
-                        <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
-                        <li><a href="<?php echo base_url(); ?>Tipo_planta">Tipo Planta</a></li>
-                        <li><a href="<?php echo base_url(); ?>Matvia">Matvia</a></li>
-                         <li><a href="<?php echo base_url(); ?>Bloque_grupo_mat">Bloque Grupo Material</a></li>
+
+                        <li><a href="<?php echo base_url(); ?>Bloque_grupo_mat">Bloque Grupo Material</a></li>
                         <li><a href="<?php echo base_url(); ?>Bloque_mat_item">Bloque Material item</a></li>
+                        <li><a href="<?php echo base_url(); ?>Clase_predio">Clase Predio</a></li>
+                        <li><a href="<?php echo base_url(); ?>Destino_bloque">Destino Bloque</a></li>
+                        <li><a href="<?php echo base_url(); ?>Edificio">Edificio</a></li>
+                        <li><a href="<?php echo base_url(); ?>Forma">Forma</a></li>
+                        <li><a href="<?php echo base_url(); ?>Matvia">Matvia</a></li>
+                        <li><a href="<?php echo base_url(); ?>Nivel">Nivel</a></li>
+                        <li><a href="<?php echo base_url(); ?>Pendiente">Pendiente</a></li>
+                        <li><a href="<?php echo base_url(); ?>Predio_via">Predio Via</a></li>
+                        <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
+                        <li><a href="<?php echo base_url(); ?>Servicio">Servicio</a></li>
+                        <li><a href="<?php echo base_url(); ?>Tipopredio">Tipo de Predio</a></li>
+                        <li><a href="<?php echo base_url(); ?>Tipo_planta">Tipo Planta</a></li>
+                        <li><a href="<?php echo base_url(); ?>Ubicacion">Ubicaci&oacute;n</a></li>
+                        <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
+                        <li><a href="<?php echo base_url(); ?>Uso_suelo">Uso Suelo</a></li>
+                        <li><a href="<?php echo base_url(); ?>Zona_urbana">Zona Urbana</a></li>
                         
                     </ul>
                 </li>

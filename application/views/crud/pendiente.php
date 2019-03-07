@@ -37,8 +37,8 @@
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="bg-primary text-white">
+                                    <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                                        <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Descripci&oacute;n</th>
@@ -61,9 +61,16 @@
                                                 <td><?php echo $lis->coeficiente;?></td>
                                                 
                                                 <td>
-                                                    <div id="izquierda"><a href="" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')"></i> Editar</a></div>
 
-                                                    <div id="derecha"><a href="<?= base_url('pendiente/eliminar/'. $lis->pendiente_id); ?>"><i class="fas fa-trash-alt"></i>Borrar</a></div>
+                                                    <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
+                                                            <span class="fas fa-pencil-alt" aria-hidden="true">
+                                                            </span>
+                                                    </button> 
+                                                    <a href="<?= base_url('pendiente/eliminar/'. $lis->pendiente_id); ?>" type="button" class="btn btn-danger footable-delete">
+                                                        <span class="fas fa-trash-alt" aria-hidden="true">
+                                                        </span>
+                                                    </a>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php 

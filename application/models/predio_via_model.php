@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Zona_urbana_model extends CI_Model {
+class Predio_via_model extends CI_Model {
 
 	public $variable;
 	
@@ -13,7 +13,7 @@ class Zona_urbana_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.zona_urbana ORDER BY zonaurb_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.predio_via  WHERE activo = '1' ORDER BY via_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -21,36 +21,18 @@ class Zona_urbana_model extends CI_Model {
 		else{
 			return false;
 		}
-		/*
-		foreach ($lista as $lis) {
-			print_r($lis->rol_id."<br>");
-			print_r($lis->rol."<br>");
-			print_r($lis->activo."<br>");
-		}
-
-		$this->db->where('usuario', $usuario);
-		$this->db->where('contrasenia', $contrasenia);
-		
-		$resultado = $this->db->get("credencial");
-
-		if ($resultado->num_rows() > 0) {
-			return $resultado->row();
-		}
-		else{
-			return false;
-		}
-		*/
-
 	}
 
-	public function insertar_zona($descripcion, $activo)
+	public function insertar_via($codcatas, $objectid_via, $matvia_id, $usu_creacion)
 	{	
 		
 		$array = array(
-			'descripcion' =>$descripcion,
-			'activo' =>$activo
+			'codcatas' =>$codcatas,
+			'objectid_via' =>$objectid_via,
+			'matvia_id' =>$matvia_id,
+			'usu_creacion' =>$usu_creacion
 			);
-		$this->db->insert('catastro.zona_urbana', $array);
+		$this->db->insert('catastro.predio_via', $array);
 	}
 
 
@@ -70,18 +52,28 @@ class Zona_urbana_model extends CI_Model {
 
 	}
 
-	public function Editar($rol_id) {
-      $consulta = $this->db->get_where('rol', array('rol_id' => $rol_id))->row();
-	  return $consulta;
+
+	public function eliminar($id, $usu_eliminacion, $fec_eliminacion)
+	{
+		$data = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        );
+        $this->db->where('via_id', $id);
+        return $this->db->update('catastro.predio_via', $data);
     }
 
-	public function getRol($rol_id) {
-		$res = $this->db->get_where('rol', array('rol_id' => $rol_id))->row();
-		var_dump($res);
-		//return $res;
-	}
-
-	 public function eliminar($id){
-      $this->db->delete('catastro.zona_urbana', array('zonaurb_id' => $id));
+    public function actualizar($via_id, $codcatas, $objectid_via, $matvia_id, $usu_modificacion, $fec_modificacion)
+    {
+        $data = array(
+            'codcatas' => $codcatas,
+            'objectid_via' => $objectid_via,
+            'matvia_id' => $matvia_id,
+            'usu_modificacion' => $usu_modificacion,
+            'fec_modificacion' => $fec_modificacion
+        );
+        $this->db->where('via_id', $via_id);
+        return $this->db->update('catastro.predio_via', $data);
     }
 }

@@ -3,8 +3,7 @@
 
 <style type="text/css">
     #izquierda{
-        padding-left: 10px;
-        float:left;
+        text-align: center;
     }
     
     #derecha{
@@ -39,8 +38,8 @@
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="bg-primary text-white">
+                                     <table id="izquierda" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                                        <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Descripci&oacute;n</th>
@@ -56,9 +55,14 @@
                                                 <td><?php echo $i++;?></td>
                                                 <td><?php echo $lis->descripcion;?></td>
                                                 <td>
-                                                    <div id="izquierda"><a href="" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')"><i class="fas fa-edit"></i> Editar</a></div>
-
-                                                    <div id="derecha"><a href="<?= base_url('zona_urbana/eliminar/'. $lis->zonaurb_id); ?>"><i class="fas fa-trash-alt"></i>Borrar</a></div>
+                                                    <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
+                                                            <span class="fas fa-pencil-alt" aria-hidden="true">
+                                                            </span>
+                                                    </button> 
+                                                    <a href="<?= base_url('zona_urbana/eliminar/'. $lis->zonaurb_id); ?>" type="button" class="btn btn-danger footable-delete">
+                                                        <span class="fas fa-trash-alt" aria-hidden="true">
+                                                        </span>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php 
@@ -88,7 +92,7 @@
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/update" method="POST">-->
-                        <?php echo form_open('zona_urbana/update', array('method'=>'POST')); ?>
+                        <?php echo form_open('zona_urbana/update', array('method'=>'POST', 'id'=>'editar')); ?>
 
                             
                             <div class="form-group">
@@ -120,7 +124,7 @@
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
-                        <?php echo form_open('zona_urbana/insertar', array('method'=>'POST')); ?>
+                        <?php echo form_open('zona_urbana/insertar', array('method'=>'POST', 'id'=>'insertar')); ?>
 
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
@@ -175,4 +179,110 @@
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-   
+
+<!--
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#insertar').submit(function (e) {
+                e.preventDefault();
+                //captura todos los valores que tiene el formulario es decir todos los input que esten en ese formulario...
+                var datos=$(this).serialize();
+                 
+                 setTimeout('document.location.reload()',2000);
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url();?>zona_urbana/insertar",
+                    data:datos,
+
+                    success:function(data){
+                        swal(
+                            'Buen Trabajo',
+                            'Insertaste Correctamente el Registro.',
+                            'success'
+                        );
+                        
+                        //imprimo el resultado en el div mensaje que procesa ajax
+                       // $("#mensaje").html(data);                    
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#footable-delete').submit(function (e) {
+                e.preventDefault();
+                //captura todos los valores que tiene el formulario es decir todos los input que esten en ese formulario...
+                var datos=$(this).serialize();
+                 /*swal(
+                 'Titulo del Mensaje',
+                 'Mensaje',
+                 'Tipo de mesaje'
+                 );*/
+                 setTimeout('document.location.reload()',2000);
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url();?>zona_urbana/insertar",
+                    data:datos,
+
+                    success:function(data){
+                        Swal.fire({
+                              title: 'Are you sure?',
+                              text: "You won't be able to revert this!",
+                              type: 'warning',
+                              showCancelButton: true,
+                              confirmButtonColor: '#3085d6',
+                              cancelButtonColor: '#d33',
+                              confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                              if (result.value) {
+                                Swal.fire(
+                                  'Deleted!',
+                                  'Your file has been deleted.',
+                                  'success'
+                                )
+                              }
+                            });
+                        
+                        //imprimo el resultado en el div mensaje que procesa ajax
+                       // $("#mensaje").html(data);                    
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#editar').submit(function (e) {
+                e.preventDefault();
+                //captura todos los valores que tiene el formulario es decir todos los input que esten en ese formulario...
+                var datos=$(this).serialize();
+                 /*swal(
+                 'Titulo del Mensaje',
+                 'Mensaje',
+                 'Tipo de mesaje'
+                 );*/
+                 setTimeout('document.location.reload()',2000);
+                $.ajax({
+                    type:"POST",
+                    url:"<?php echo base_url();?>zona_urbana/insertar",
+                    data:datos,
+
+                    success:function(data){
+                        swal(
+                            'Buen Trabajo',
+                            'Insertaste Correctamente el Registro.',
+                            'success'
+                        );
+                        
+                        //imprimo el resultado en el div mensaje que procesa ajax
+                       // $("#mensaje").html(data);                    
+                    }
+                });
+            });
+        });
+    </script>
+-->
+    

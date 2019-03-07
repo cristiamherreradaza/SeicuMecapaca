@@ -10,26 +10,12 @@ class Rol extends CI_Controller {
 	}
 
 	public function rol(){
-		// echo 'holas desde el controladora';
-		// $crt = 'Holas';
-		$lista['roles'] = $this->rol_model->index();
-		
-		//var_dump($lista);
-		//foreach ($lista as $lis) {
-            //print_r($lis->rol_id."<br>");
-            //print_r($lis->rol."<br>");
-            //print_r($lis->activo."<br>");
-            //}
-		
+
+		$lista['rol'] = $this->rol_model->index();
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('crud/rol', $lista);
 		$this->load->view('admin/footer');
-		// $this->load->view('header');
-		// $this->load->view('menu');
-		// $this->load->view('contenido');
-		// $this->load->view('footer');
-		// $this->load->view('complementos');
 	}
 
 	
@@ -44,89 +30,54 @@ class Rol extends CI_Controller {
 		
 	}
 
-	/*
-	public function prueba()
-	{
-		//var_dump('hola');
-		$ejemplo = $this->db->query("select * from credencial")->result();
-		foreach ($ejemplo as $eje) {
-			print_r($eje->rol_id."<br>");
-			print_r($eje->usuario."<br>");
-			print_r($eje->contrasenia."<br>");
-			print_r($eje->token."<br>");
-		}
-	}*/
-
 	public function insertar()
 	{
 		$datos = $this->input->post();
 		
 		if(isset($datos))
 		{
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
-			$nombres = $datos['nombres'];
-			$paterno = $datos['paterno'];
-			$materno = $datos['materno'];
-			$ci = $datos['ci'];
-			$fec_nacimiento = $datos['fec_nacimiento'];
-			$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
-			redirect('login');
+			$rol = $datos['rol'];
+			$this->rol_model->insertar_rol($rol, $usu_creacion);
+			redirect('Rol');
 
 		}
 
 	 }
 
-	 public function editar()
-	{
-		$edirol = $this->uri->segment(3);
+	 public function update()     
+	{   
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
 
-		$consulta = $this->rol_model->editar($edirol);
-		//var_dump($consulta);
-//		return $consulta;
+	    $rol_id = $this->input->post('rol_id');
+	    $rol = $this->input->post('rol');
+	   // var_dump($zonaurb_id);
 
-			
-  	/*    
+	    $actualizar = $this->rol_model->actualizar($rol_id, $rol, $usu_modificacion, $fec_modificacion);
+	  	redirect('Rol');
+	}
+	
 
+	public function eliminar()
+	 {
+	 	//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s"); 
 
-      $dc = $this->ShowEmployeeModel->EditarC($c);
-      $data['idempleado']= $c;
-      $data['nombre'] = $dc->nombre;
-      $data['ci'] = $dc->ci;
-      $data['telefono'] = $dc->telefono;
-      $data['direccion'] = $dc->direccion;
-      $data['cargo'] = $dc->cargo;
-      $data['num_referencia'] = $dc->num_referencia;
-      $data['idsupervisor'] = $dc->idsupervisor;
+	    $u = $this->uri->segment(3);
+	    $this->rol_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
+	    redirect('Rol');
+	   }
 
-      $data['supervisores']= $this -> ShowEmployeeModel->Listsupervisor();
-      $this->load->view('HeaderView');
-      $this->load->view('EditEmployeeView', $data);
-      $this->load->view('FooterView');
-
-      */
-
-	 }
-
-	  public function eliminar() {
-      $c = $this->uri->segment(3);
-      if ($c == NULL) {
-        redirect('ShowEmployeeController');
-      }
-      $dc = $this->ShowEmployeeModel->EditarC($c);
-      $data['idempleado']= $c;
-      $data['nombre'] = $dc->nombre;
-      $data['ci'] = $dc->ci;
-      $data['telefono'] = $dc->telefono;
-      $data['direccion'] = $dc->direccion;
-      $data['cargo'] = $dc->cargo;
-      $data['num_referencia'] = $dc->num_referencia;
-      $data['idsupervisor'] = $dc->idsupervisor;
-
-      $data['supervisores']= $this -> ShowEmployeeModel->Listsupervisor();
-      $this->load->view('HeaderView');
-      $this->load->view('EditEmployeeView', $data);
-      $this->load->view('FooterView');
-
-   }
 }
 

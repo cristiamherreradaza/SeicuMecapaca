@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Bloque_grupo_mat_model extends CI_Model {
+class Bloque_mat_item_model extends CI_Model {
 
 	public $variable;
 	
@@ -13,7 +13,7 @@ class Bloque_grupo_mat_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.bloque_grupo_mat  WHERE activo = '1' ORDER BY grupo_mat_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.bloque_mat_item  WHERE activo = '1' ORDER BY mat_Item_Id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -23,14 +23,16 @@ class Bloque_grupo_mat_model extends CI_Model {
 		}
 	}
 
-	public function insertar_zona($descripcion, $usu_creacion)
+	public function insertar_bloque($grupo_mat_id, $descripcion, $factor, $usu_creacion)
 	{	
 		
 		$array = array(
+			'grupo_mat_id' =>$grupo_mat_id,
 			'descripcion' =>$descripcion,
+			'factor' =>$factor,
 			'usu_creacion' =>$usu_creacion
 			);
-		$this->db->insert('catastro.bloque_grupo_mat', $array);
+		$this->db->insert('catastro.bloque_mat_item', $array);
 	}
 
 
@@ -58,18 +60,20 @@ class Bloque_grupo_mat_model extends CI_Model {
             'usu_eliminacion' => $usu_eliminacion,
             'fec_eliminacion' => $fec_eliminacion
         );
-        $this->db->where('grupo_mat_id', $id);
-        return $this->db->update('catastro.bloque_grupo_mat', $data);
+        $this->db->where('mat_item_id', $id);
+        return $this->db->update('catastro.bloque_mat_item', $data);
     }
 
-    public function actualizar($grupo_mat_id, $descripcion, $usu_modificacion, $fec_modificacion)
+    public function actualizar($mat_item_id, $grupo_mat_id, $descripcion, $factor, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
+            'grupo_mat_id' => $grupo_mat_id,
             'descripcion' => $descripcion,
+            'factor' => $factor,
             'usu_modificacion' => $usu_modificacion,
             'fec_modificacion' => $fec_modificacion
         );
-        $this->db->where('grupo_mat_id', $grupo_mat_id);
-        return $this->db->update('catastro.bloque_grupo_mat', $data);
+        $this->db->where('mat_item_id', $mat_item_id);
+        return $this->db->update('catastro.bloque_mat_item', $data);
     }
 }

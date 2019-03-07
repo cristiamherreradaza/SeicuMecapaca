@@ -39,8 +39,8 @@
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="bg-primary text-white">
+                                    <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                                        <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>Descripci&oacute;n</th>
@@ -56,9 +56,15 @@
                                                 <td><?php echo $i++;?></td>
                                                 <td><?php echo $lis->descripcion;?></td>
                                                 <td>
-                                                    <div id="izquierda"><a href="" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')"><i class="fas fa-edit"></i> Editar</a></div>
-
-                                                    <div id="derecha"><a href="<?= base_url('bloque_grupo_mat/eliminar/'. $lis->grupo_mat_id); ?>"><i class="fas fa-trash-alt"></i>Borrar</a></div>
+                                                    <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
+                                                            <span class="fas fa-pencil-alt" aria-hidden="true">
+                                                            </span>
+                                                    </button> 
+                                                    <a href="<?= base_url('bloque_grupo_mat/eliminar/'. $lis->grupo_mat_id); ?>" type="button" class="btn btn-danger footable-delete">
+                                                        <span class="fas fa-trash-alt" aria-hidden="true">
+                                                        </span>
+                                                    </a>
+                                                    
                                                 </td>
                                             </tr>
                                         <?php 
