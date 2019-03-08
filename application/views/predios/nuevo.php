@@ -1,3 +1,4 @@
+<script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
 <script type="text/javascript">
 /*RewriteEngine on
 RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.xml)
@@ -20,13 +21,15 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
             url:"<?php echo base_url();?>persona/verificar/",
             data:{ci:ci,'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'},
             dataType:'json',
-            success: function (resultado){
-              if(resultado.nombre != ''){
-                $('#nombres').val(resultado.nombres);
-                $('#paterno').val(resultado.paterno);
-                $('#materno').val(resultado.materno);
-                $('#fec_nacimiento').val(resultado.fec_nacimiento);
-                $('#persona_id').val(resultado.persona_id);
+            success: function (res1){
+                console.log(res1);
+              if(res1.nombre != ''){
+                console.log('despu '+res1);
+                $('#nombres').val(res1.nombres);
+                $('#paterno').val(res1.paterno);
+                $('#materno').val(res1.materno);
+                $('#fec_nacimiento').val(res1.fec_nacimiento);
+                $('#persona_id').val(res1.persona_id);
               } else {
 
               }
@@ -34,7 +37,7 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
             }
         });
     }
-     function confirma(){
+    function confirma(){
         
         var ci = $('#ci').val();
         var nombres = $('#nombres').val();
@@ -62,13 +65,40 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
         }
         });
     }
-
-
-
     </script>
+    <script type="text/javascript">
+        $('.btn-danger').on("click", function(e) {
+      e.preventDefault();
+      var url = $(this).attr('href');
+      swal({
+          title: "Está seguro?",
+          text: "No podrá recuperar el cliente una vez sea eliminado!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'Si, Eliminarlo!',
+          cancelButtonText: "No, Cancelar!",
+          confirmButtonClass: "btn-danger",
+          closeOnConfirm: false,
+          closeOnCancel: false
+        },
+        function(isConfirm) {
+          if (isConfirm) {
+            swal("Eliminado!", "Su cliente ha sido eliminado!", "success");
+            window.location.replace(url);
+          } else {
+            swal("Cancelado", "Su cliente está a salvo! :)", "error");
+          }
+        });
+    });
+</script>
+    <link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
 
 
 <link href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css" rel="stylesheet">
+
 
 <div class="page-wrapper">
     <!-- ============================================================== -->
@@ -93,7 +123,7 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                     <div class="card-body">
                         <h4 class="card-title">Formulario de registro de predio</h4>
                         <h6 class="card-subtitle">ingrese los datos llenados correctamente</h6>
-                        <!-- <form action="#" class="validation-wizard wizard-circle">
+                        <!-- <form action="#" class="validation-wizard wizard-circle">-->
 
                             <!-- Step 1
                             <h6>Datos del terreno</h6>
@@ -309,68 +339,20 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                 </div>
                             </section>
 
-                            <h6>Step 3</h6>
-                            <section>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wint1">Interview For :</label>
-                                            <input type="text" class="form-control required" id="wint1"> </div>
-                                        <div class="form-group">
-                                            <label for="wintType1">Interview Type :</label>
-                                            <select class="custom-select form-control required" id="wintType1" data-placeholder="Type to search cities" name="wintType1">
-                                                <option value="Banquet">Normal</option>
-                                                <option value="Fund Raiser">Difficult</option>
-                                                <option value="Dinner Party">Hard</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="wLocation1">Location :</label>
-                                            <select class="custom-select form-control required" id="wLocation1" name="wlocation">
-                                                <option value="">Select City</option>
-                                                <option value="India">India</option>
-                                                <option value="USA">USA</option>
-                                                <option value="Dubai">Dubai</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wjobTitle2">Interview Date :</label>
-                                            <input type="date" class="form-control required" id="wjobTitle2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Requirements :</label>
-                                            <div class="mb-2">
-                                                <label class="custom-control custom-radio">
-                                                    <input id="radio3" name="radio" type="radio" class="custom-control-input">
-                                                    <span class="custom-control-label">Employee</span>
-                                                </label>
-                                                <label class="custom-control custom-radio">
-                                                    <input id="radio4" name="radio" type="radio" class="custom-control-input">
-                                                    <span class="custom-control-label">Contract</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
+                           
                            Step 4 -->
                            <!--inicio codigo jacqueline-->
                             <h6>Ingrese los datos del propietario</h6>
                             <section>
                                 <!-- <form action="<?php //echo base_url();?>persona/guardar" method="POST"> -->
-                                    <?php echo form_open('persona/guardar', array('method' => 'POST')); ?>
+                                <?php echo form_open('ddrr/guardar', array('method' => 'POST')); ?>
                                     <div class="row">
                                         <div class="col-md-6">
-
                                             <div  id="registro" style="padding-top: 30px;">
                                                 <div class="button-box">
                                                     <button type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger">*</span> 
                                                 </div>
-
                                             </div>
-
                                             <!-- <?php //echo form_open('path/to/controller/update/method'); ?> -->
                                         <div class="portlet-body" style="padding-top: 30px;">
                                           <!-- <form action="SendMatCivController/actualizar_carrito" method="post"> -->
@@ -393,27 +375,45 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                             ?>
 
                                             <?php foreach ($this->cart->contents() as $items): ?>
+                                                <?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+                                                <tr>
+                                                    <td><?php echo $count;?></td>
+                                                    <td style="display: none"><?php echo $items['id']; ?></td>
+                                                    <td><?php echo $items['name']; ?></td>
+                                                    <td><?php echo $items['price']; ?></td>
+                                                    <td><?php echo $items['qty']; ?></td>
+                                                    <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']); ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a></td>
+                                                    
+                                                </tr>
+                                                <?php
+                                                    $i++;
+                                                    $count++;
+                                                ?>
+                                            <?php endforeach; ?>
+                                            <?php if ($count == 1): ?> 
+                                                <tr><td colspan="5" style="text-align: center;">No existe propietarios</td></tr>
+                                            <?php endif; ?>
+                                            <tr>
+                                                <td colspan="2"> </td>
+                                                <td class="right"><strong>Total</strong></td>
+                                                <td class="right"><?php echo $this->cart->total_items(); ?> %</td>
+                                                <td></td>
+                                            </tr>
 
-                                                    <?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
+
+                                                   <!--  <?php //echo form_hidden($i.'[rowid]', $items['rowid']); ?>
 
                                                     <tr>
-                                                            <td style="display:none;"><?php echo $items['rowid']; ?></td>
-                                                            <td><?php echo $count;?></td>
-                                                            <td style="display: none"><input type="hidden" id="persona_id" name="persona_id"><?php echo $items['id']; ?></td>
-                                                            <td><?php echo $items['name']; ?></td>
-                                                            <td><input type="hidden" name="ci" id="ci"><?php echo $items['qty']; ?></td>
-                                                            <td><input type="hidden" name="porcen_parti" id="porcen_parti"><?php echo /*form_input(array('name' => $i.'[price]', 'value' => */$items['price']/*, 'maxlength' => '3', 'size' => '7'))*/; ?></td>
+                                                            <td style="display: none"><?php //echo $items['rowid']; ?></td>
+                                                            <td><?php //echo $count;?></td>
+                                                            <td style="display: none"><?php //echo $items['id']; ?></td>
+                                                            <td><?php //echo $items['name']; ?></td>
+                                                            <td><?php //echo $items['qty']; ?></td>
+                                                            <td><?php //echo /*form_input(array('name' => $i.'[price]', 'value' => */$items['price']/*, 'maxlength' => '3', 'size' => '7'))*/; ?></td>
                                                             <td>
-                                                              <a href="" class="btn btn-icon-only red" data-toggle="modal"><i class="icon-trash"></i></a>
+                                                              <a href= "<?php //echo site_url('persona/eliminarC/'.$items['id']); ?>" class="btn btn-icon-only red" data-toggle="modal"><i class="icon-trash"></i></a>
                                                             </td>
-                                                    </tr>
-
-                                            <?php
-                                                $i++;
-                                                $count++;
-                                            ?>
-
-                                            <?php endforeach; ?>
+                                                    </tr> -->
 
                                             <!-- <tr>
                                                     <td colspan="1">
@@ -422,9 +422,12 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                                     <td class="right"><strong>Total</strong></td>
                                                     <td><?php //echo $items['subtotal']; ?></td>
                                                     <td class="right"><?php //echo $this->cart->format_number($this->cart->total()); ?></td>
+
                                             </tr> -->
 
                                         </table>
+                                        
+
                                   
                                         </div>
                                         <!-- <p><?php //echo form_submit('', 'Listo',array('data-toggle'=>"modal",'href'=>"#long")); ?>
@@ -541,31 +544,31 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                                         <div class="row">
                                                             <div class="col-md-12 ">
                                                                 <div class="form-group">
-                                                                    <label>Carnet</label>
-                                                                    <input type="text" class="form-control" id="ci" name="ci" onblur="manda()">
+                                                                    <label>Carnet <span class="text-danger">*</span></label>
+                                                                    <input type="text" class="form-control" id="ci" name="ci" onblur="manda()" required />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-12 ">
                                                                 <div class="form-group">
-                                                                    <label>Nombres</label>
-                                                                    <input type="text" class="form-control" id="nombres" name="nombres">
+                                                                    <label>Nombres <span class="text-danger">*</span></label>
+                                                                    <input type="text" class="form-control" id="nombres" name="nombres" required />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label>Paterno</label>
-                                                                    <input type="text" name="paterno" id="paterno" class="form-control">
+                                                                    <label>Paterno <span class="text-danger">*</span></label>
+                                                                    <input type="text" name="paterno" id="paterno" class="form-control" required />
                                                                 </div>
                                                             </div>
                                                             <!--/span-->
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label>Materno</label>
-                                                                    <input type="text" class="form-control" name="materno" id="materno">
+                                                                    <label>Materno <span class="text-danger">*</span></label>
+                                                                    <input type="text" class="form-control" name="materno" id="materno" required />
                                                                 </div>
                                                             </div>
                                                             <!--/span-->
@@ -576,11 +579,11 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
                                                                     <div class="form-group">
-                                                                        <label>Fecha de nacimiento</label>
-                                                                        <input type="date" class="form-control" name="fec_nacimiento" id="fec_nacimiento">
+                                                                        <label>Fecha de nacimiento <span class="text-danger">*</span></label>
+                                                                        <input type="date" class="form-control" name="fec_nacimiento" id="fec_nacimiento" required />
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <input type="hidden" class="form-control" name="persona_id" id="persona_id">
+                                                                        <input type="hidden" class="form-control" name="persona_id" id="persona_id" required />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -589,16 +592,16 @@ RewriteRule ^([a-zA-Z0-9-/]+)$ detalle.php?id=$1*/
                                                         <div class="row">
                                                             <div class="col-md-12 ">
                                                                 <div class="form-group">
-                                                                    <label>Porcentaje</label>
-                                                                    <input type="text" class="form-control" id="porcen_parti" name="porcen_parti">
+                                                                    <label>Porcentaje <span class="text-danger">*</span></label>
+                                                                    <input type="text" class="form-control" id="porcen_parti" name="porcen_parti" required />
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                     </div>
                                                     <div class="form-actions">
-                                                        <button type="button" class="btn btn-success" onclick="confirma()"> <i class="fa fa-check"></i>Guardar</button>
-                                                        <button type="button" class="btn btn-inverse" data-dismiss="modal">Cerrar</button>
+                                                        <button type="button" onclick="confirma()"> <i class="fa fa-check"></i>Guardar</button>
+                                                        <button type="button"  data-dismiss="modal">Cerrar</button>
                                                     </div>
                                                 <?php echo form_close(); ?>
                                             </div>

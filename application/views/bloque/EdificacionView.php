@@ -22,7 +22,7 @@
                         <h4 class="card-title">Datos Edificaciones</h4>
                         <h6 class="card-subtitle">Material de Construccion</h6>
                         <?php 
-                        $max = sizeof($grupos_subgrupos);
+                        /*$max = sizeof($grupos_subgrupos);
                         echo $max;
 
                         for ($i = 0; $i < $max ; $i++) {
@@ -31,14 +31,14 @@
                            
                          echo "<pre>";                                                                         
                          print_r($grupos_subgrupos[$i]['desc_grupo']);
-                         echo "</pre>"; }
+                         echo "</pre>"; }*/
                     
 
                          ?>
 
                          
                          <!-- Step 1 -->
-                         <h6>Step 1</h6>
+                         <h2></h2>
                          <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-lg">
                             Nuevo Bloque
                         </button>
@@ -69,7 +69,8 @@
 
                                                                 <?php 
                                                                       $max = sizeof($grupos_subgrupos);
-                                                                      $long=$max-1; 
+                                                                      $long=$max-1;
+                                                                      $count=0;//contador de las sumas 
                                                                                                               
 
                                                                       for ($i = 0; $i < $max ; $i++) {?>
@@ -83,7 +84,9 @@
                                                                                 echo "</pre>"; ?>                                                                                
                                                                             </div>
                                                                             <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0" style="background-color:White;">
-                                                                            <input type="text" class="form-control sumcontrol" name="grupos[<?php echo $grupos_subgrupos[$i]['grupo_mat_id'] ?>][<?php echo $grupos_subgrupos[$i]['mat_item_id'] ?>]" ></div>
+                                                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="grupos[<?php echo $grupos_subgrupos[$i]['grupo_mat_id'] ?>][<?php echo $grupos_subgrupos[$i]['mat_item_id'] ?>]" ></div>
+                                                                            
+                                                                           
                                                                         </div>
 
                                                                         <?php $j=$i+1;
@@ -95,25 +98,26 @@
                                                                             <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:White;" align="right">Total
                                                                             </div>
                                                                             <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0" style="background-color:White;">
-                                                                               <input type="text" class="form-control total" value="" />
-                                                                               <div id="validsuma" Style="color:red;"></div>
+                                                                               <input type="text" class="form-control total<?php echo $count ?>" value="" />
+                                                                               <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
                                                                             </div>
                                                                             </div>                                                                    
                                                                             <?php  } ?>
                                                                         <?php                                                                       
                                                                         
-                                                                        if($grupos_subgrupos[$i]['grupo_mat_id']!=$grupos_subgrupos[$j]['grupo_mat_id']) {?>                                                                          
+                                                                        if($grupos_subgrupos[$i]['grupo_mat_id']!=$grupos_subgrupos[$j]['grupo_mat_id']) {  ?>
+
                                                                           <div class="row" style="background-color:White;">                                                                              
                                                                             <div class="col-sm-5 col-md-5" style="background-color:White;">
                                                                             </div>
                                                                             <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:White;" align="right">Total
                                                                             </div>
                                                                             <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0" style="background-color:White;">
-                                                                               <input type="text" class="form-control total" value="" />
-                                                                               <div id="validsuma" Style="color:red;"></div>
+                                                                               <input type="text" class="form-control total<?php echo $count ?>" value="" />
+                                                                               <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
                                                                            </div>
                                                                        </div>
-                                                                   <?php } ?>
+                                                                   <?php $count++;} ?>
                                                                <?php } ?>
                                                                 
                                                            </div><!--FIN container-->
@@ -308,8 +312,8 @@
                               <td><?php echo $row->destino_bloque_id; ?></td>
                               <td><?php echo $row->uso_bloque_id; ?> </td>
                               <td>
-                               <a href="<?php echo site_url('edificacion/edit');?>/<?php echo $row->bloque_id;?>"><button type="button" class="btn btn-warning">Editar</button></a> 
-                               <a href="<?php echo site_url('edificacion/delete');?>/<?php echo $row->bloque_id;?>"><button type="button" class="btn btn-danger">Eliminar</button></a>
+                               
+                               
 
                            </td>
 
@@ -319,7 +323,12 @@
 
                </tbody>
            </table>
+           
        </div>
+       <div align="right">
+       <a href="<?php echo site_url('edificacion/propietario');?>/"<button type="button" class="btn btn-success" align="right">Siguiente</button></a>
+       </div>
+   
    </div>
 </div>
 

@@ -53,8 +53,8 @@ class Persona extends CI_Controller {
 		$data = array(
 			'id'      => $consulta->persona_id,
 			'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
-			'qty'     => $consulta->ci,
-			'price'   => $datos['porcen_parti']
+			'qty'     => $datos['porcen_parti'],
+			'price'   => $consulta->ci
 	//                'options' => array('Size' => 'L',
 	//                                   'Color' => 'Red')
 		);
@@ -98,6 +98,7 @@ class Persona extends CI_Controller {
 			$ci = $datos['ci'];
 			$datos= $this->cart->contents();
 			$this->persona_model->insertarDDRR($codcatas, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos);
+			$this->cart->destroy();
 			redirect('predios/index');
 		}
 	}
@@ -110,34 +111,27 @@ class Persona extends CI_Controller {
 
             $default = array('ci' => '');
             $reg = $this->persona_model->buscaci($this->input->post('ci'));
+            vdebug($reg);
             echo count($reg) > 0 ? json_encode($reg) : json_encode($default);
 
        } else {
            echo validation_errors();
        }
-
-
    }
 
-
-   public function update()     
-	{   
-		//OBTENER EL ID DEL USUARIO LOGUEADO
-		$id = $this->session->userdata("persona_perfil_id");
-        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-        $usu_modificacion = $resi->persona_id;
-        $fec_modificacion = date("Y-m-d H:i:s"); 
-
-	    $persona_id = $this->input->post('persona_id');
-	    $nombres = $this->input->post('nombres');
-	    $paterno = $this->input->post('paterno');
-	    $materno = $this->input->post('materno');
-	    $ci = $this->input->post('ci');
-	    $fec_nacimiento = $this->input->post('fec_nacimiento');
-
-
-	    $actualizar = $this->persona_model->actualizar($persona_id, $nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_modificacion, $fec_modificacion);
-	   redirect('Predios');
+   	public function remove($rowid)
+   	{
+		if ($rowid==="all")
+		{
+			$this->cart->destroy();
+		}else{
+			$data = array(
+			'rowid' => $rowid,
+			'qty' => 0
+			);
+			$this->cart->update($data);
+		}
+			redirect('predios/nuevo');
 	}
 
 }

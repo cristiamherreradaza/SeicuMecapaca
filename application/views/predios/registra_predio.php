@@ -55,7 +55,8 @@
                                         <div class="col-md-2">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
-                                                <input autofocus type="number" class="form-control" step='1' id="codigo_catastral" name="codigo_catastral" placeholder="4012457896" required />
+                                                <input autofocus type="text" class="form-control" id="codigo_catastral" name="codigo_catastral" required />
+                                                <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                             </div>
                                         </div>
 
@@ -76,21 +77,21 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="distrito"> Distrito : <span class="text-danger">*</span> </label>
-                                                <input type="number" class="form-control" id="distrito" step='1' name="distrito" required />
+                                                <input type="text" class="form-control" id="distrito" step='1' name="distrito" required />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="manzana"> Manzana : <span class="text-danger">*</span> </label>
-                                                <input type="number" class="form-control" id="manzana" step='1' name="manzana" required />
+                                                <input type="text" class="form-control" id="manzana" step='1' name="manzana" required />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="predio"> Predio : <span class="text-danger">*</span> </label>
-                                                <input type="number" class="form-control" id="predio" step='1' name="predio" required />
+                                                <input type="text" class="form-control" id="predio" step='1' name="predio" required />
                                             </div>
                                         </div>
 
@@ -420,13 +421,31 @@
     <script type="text/javascript">
 
         var map;
-        lat = $("#latitud").val()
-        lon = $("#longitud").val()
+        var lat = $("#latitud").val()
+        var lon = $("#longitud").val()
 
         $("#google_maps").hover(function(){
-            // alert('demo');
+
             lat = $("#latitud").val()
             lon = $("#longitud").val()
+            // console.log(lat + lon);
+            var myLatlng = new google.maps.LatLng(lat,lon);
+            var mapOptions = {
+                zoom: 18,
+                center: myLatlng,
+                mapTypeId: 'hybrid'
+            }
+
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title:"Predio"
+                    // label: "Aqui el predio"
+                });
+
+                // To add the marker to the map, call setMap();
+                marker.setMap(map);
 
         });
 
@@ -436,40 +455,41 @@
 
         function initMap() {
 
-    // console.log(lat + lon);
+            // console.log('inicia ');
+            // console.log(lat + lon);
 
-        var myLatlng = new google.maps.LatLng(-18.00418108,-63.39072107);
-        var mapOptions = {
-            zoom: 18,
-            center: myLatlng,
-            mapTypeId: 'hybrid'
-        }
+            var myLatlng = new google.maps.LatLng(-18.00418108,-63.39072107);
+            var mapOptions = {
+                zoom: 18,
+                center: myLatlng,
+                mapTypeId: 'hybrid'
+            }
 
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            title:"Predio"
-                // label: "Aqui el predio"
-            });
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                title:"Predio"
+                    // label: "Aqui el predio"
+                });
 
-            // To add the marker to the map, call setMap();
-            marker.setMap(map);
-        }
+                // To add the marker to the map, call setMap();
+                marker.setMap(map);
+            }
     </script>
     <script type="text/javascript">
         $("#codigo_catastral").focusout(function(){
 
             var cod_catastral = $("#codigo_catastral").val();
-            var predio = cod_catastral.substr(0, 3);
-            var distrito = cod_catastral.substr(3, 3);
-            var manzana = cod_catastral.substr(6, 9);
+            var predio = cod_catastral.substr(7, 10);
+            var distrito = cod_catastral.substr(0, 3);
+            var manzana = cod_catastral.substr(3, 4);
             var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
             var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 
             $.ajax({
                 url: '<?php echo base_url(); ?>predios/ajax_verifica_cod_catastral/',
-                type: 'POST',
+                type: 'GET',
                 dataType: 'json',
                 data: {csrfName: csrfHash, param1: cod_catastral},
                 // data: {param1: cod_catastral},
@@ -478,7 +498,16 @@
                     // csrfName = data.csrfName;
                     // csrfHash = data.csrfHash;
                     // alert(data.message);
-                    console.log('Si se pudo');
+                    if (data.estado == 'si') {
+                        // console.log('Si se esta');
+                        $("#msg_error_catastral").show();    
+                        $("#codigo_catastral").val("");    
+                        $("#msg_error_catastral").html('YA existe el codigo: '+data.codigo);    
+                    } else {
+                        $("#msg_error_catastral").hide();    
+                        // console.log('no');
+                    }
+
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
                     // alert("error");

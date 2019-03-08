@@ -91,8 +91,7 @@
                         </div>
                     </div>
 
-                  
-                            Segun pla de URBANIZACION aprobado en fecha 16/05/2018 mediante R.M. No. 338/2014 de 21/10/2014 se tiene la siguiente informacion:
+                        Segun pla de URBANIZACION aprobado en fecha 16/05/2018 mediante R.M. No. 338/2014 de 21/10/2014 se tiene la siguiente informacion:
 
                     <table class="d-print-table">
                         <tr>
