@@ -73,29 +73,40 @@
                                                                       $count=0;//contador de las sumas 
                                                                                                               
 
-                                                                      for ($i = 0; $i < $max ; $i++) {?>
-                                                                          <div class="row" style="background-color:White;">
-                                                                            <div class="col-sm-5 col-md-5" style="background-color:LightGray">     <?php        echo "<pre>";                                
+                                                                      for ($i = 0; $i < $max ; $i++) {?> 
+
+                                                                      <?php                                                                       
+                                                                        
+                                                                        if($i==0) {  ?>
+                                                                          <div class="row" style="background-color:White;"> 
+                                                                          <div class="col-sm-5 col-md-7" style="background-color:LightGray">     <?php        echo "<pre>";                                
                                                                                 print_r($grupos_subgrupos[$i]['desc_grupo']);
-                                                                                echo "</pre>"; ?></div>
-                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:lightyellow">
+                                                                                echo "</pre>"; ?>
+                                                                            </div>                                                                           
+                                                                       </div>
+                                                                   <?php } ?>                                                                 
+
+
+                                                                            
+
+                                                                          <div class="row" style="background-color:White;">
+                                                                            
+
+                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-7 col-md-offset-0" style="background-color:lightyellow">
                                                                                 <?php        echo "<pre>";                                
                                                                                 print_r($grupos_subgrupos[$i]['desc_item']);
                                                                                 echo "</pre>"; ?>                                                                                
                                                                             </div>
                                                                             <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0" style="background-color:White;">
-                                                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="grupos[<?php echo $grupos_subgrupos[$i]['grupo_mat_id'] ?>][<?php echo $grupos_subgrupos[$i]['mat_item_id'] ?>]" ></div>
-                                                                            
-                                                                           
+                                                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="grupos[<?php echo $grupos_subgrupos[$i]['grupo_mat_id'] ?>][<?php echo $grupos_subgrupos[$i]['mat_item_id'] ?>]" ></div>                                                                                                                                                       
                                                                         </div>
 
                                                                         <?php $j=$i+1;
                                                                         if($i==$long){?>                                                                            
                                                                             <?php $j=$i; ?>
                                                                             <div class="row" style="background-color:White;">                                                                              
-                                                                            <div class="col-sm-5 col-md-5" style="background-color:White;">
-                                                                            </div>
-                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:White;" align="right">Total
+                                                                            
+                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-7 col-md-offset-0" style="background-color:White;" align="right">Total
                                                                             </div>
                                                                             <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0" style="background-color:White;">
                                                                                <input type="text" class="form-control total<?php echo $count ?>" value="" />
@@ -108,15 +119,23 @@
                                                                         if($grupos_subgrupos[$i]['grupo_mat_id']!=$grupos_subgrupos[$j]['grupo_mat_id']) {  ?>
 
                                                                           <div class="row" style="background-color:White;">                                                                              
-                                                                            <div class="col-sm-5 col-md-5" style="background-color:White;">
-                                                                            </div>
-                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-5 col-md-offset-0" style="background-color:White;" align="right">Total
+                                                                            
+                                                                            <div class="col-sm-5 col-sm-offset-2 col-md-7 col-md-offset-0" style="background-color:White;" align="right">Total
                                                                             </div>
                                                                             <div class="col-sm-5 col-sm-offset-2 col-md-2 col-md-offset-0" style="background-color:White;">
                                                                                <input type="text" class="form-control total<?php echo $count ?>" value="" />
-                                                                               <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
+                                                                               <div id="validsuma<?php echo $count ?>" Style="color:red;">
+                                                                               </div>
                                                                            </div>
                                                                        </div>
+
+                                                                       <div class="row" style="background-color:White;"> 
+                                                                          <div class="col-sm-5 col-md-7" style="background-color:LightGray">     <?php        echo "<pre>";                                
+                                                                                print_r($grupos_subgrupos[$j]['desc_grupo']);
+                                                                                echo "</pre>"; ?>
+                                                                            </div>                                                                           
+                                                                       </div>
+
                                                                    <?php $count++;} ?>
                                                                <?php } ?>
                                                                 
