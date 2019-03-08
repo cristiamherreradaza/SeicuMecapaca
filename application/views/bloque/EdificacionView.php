@@ -326,7 +326,7 @@
            
        </div>
        <div align="right">
-       <a href="<?php echo site_url('edificacion/propietario');?><button type="button" class="btn btn-success" align="right">Siguiente</button></a>
+       <a href="<?php echo site_url('edificacion/propietario');?>/"<button type="button" class="btn btn-success" align="right">Siguiente</button></a>
        </div>
    
    </div>
