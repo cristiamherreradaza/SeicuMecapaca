@@ -13,7 +13,7 @@ class Zona_urbana_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.zona_urbana  WHERE activo = '1' ORDER BY zonaurb_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.zona_urbana WHERE activo = '1' ORDER BY zonaurb_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;

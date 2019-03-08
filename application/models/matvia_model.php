@@ -13,7 +13,7 @@ class Matvia_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.matvia ORDER BY matvia_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.matvia WHERE activo = '1' ORDER BY matvia_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -24,12 +24,13 @@ class Matvia_model extends CI_Model {
 	
 	}
 
-	public function insertar_matvia($descripcion, $coeficiente)
+	public function insertar_matvia($descripcion, $coeficiente, $usu_creacion)
 	{	
 		
 		$array = array(
 			'descripcion' =>$descripcion,
-			'coeficiente' =>$coeficiente
+			'coeficiente' =>$coeficiente,
+			'usu_creacion' =>$usu_creacion
 			);
 		$this->db->insert('catastro.matvia', $array);
 	}
@@ -51,15 +52,24 @@ class Matvia_model extends CI_Model {
 
 	}
 
-	 public function eliminar($id){
-      $this->db->delete('catastro.matvia', array('matvia_id' => $id));
+	 public function eliminar($id, $usu_eliminacion, $fec_eliminacion)
+	 {
+     	$data = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        );
+        $this->db->where('matvia_id', $id);
+        return $this->db->update('catastro.matvia', $data);
     }
 
-    public function actualizar($matvia_id, $descripcion, $coeficiente)
+    public function actualizar($matvia_id, $descripcion, $coeficiente, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
             'descripcion' => $descripcion,
-            'coeficiente' => $coeficiente
+            'coeficiente' => $coeficiente,
+            'usu_modificacion' => $usu_modificacion,
+            'fec_modificacion' => $fec_modificacion
         );
         $this->db->where('matvia_id', $matvia_id);
         return $this->db->update('catastro.matvia', $data);

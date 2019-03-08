@@ -13,7 +13,7 @@ class Edificio_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.edificio ORDER BY edificio_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.edificio WHERE activo = '1' ORDER BY edificio_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -24,12 +24,13 @@ class Edificio_model extends CI_Model {
 		
 	}
 
-	public function insertar_edificio($descripcion, $alias)
+	public function insertar_edificio($descripcion, $alias, $usu_creacion)
 	{	
 		
 		$array = array(
 			'descripcion' =>$descripcion,
-			'alias' =>$alias
+			'alias' =>$alias,
+			'usu_creacion' =>$usu_creacion
 			);
 		$this->db->insert('catastro.edificio', $array);
 	}
@@ -51,15 +52,24 @@ class Edificio_model extends CI_Model {
 
 	}
 
-	 public function eliminar($id){
-      $this->db->delete('catastro.edificio', array('edificio_id' => $id));
+	 public function eliminar($id, $usu_eliminacion, $fec_eliminacion)
+	 {
+	 	$data = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        );
+        $this->db->where('edificio_id', $id);
+        return $this->db->update('catastro.edificio', $data);
     }
 
-    public function actualizar($edificio_id, $descripcion, $alias)
+    public function actualizar($edificio_id, $descripcion, $alias, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
             'descripcion' => $descripcion,
-            'alias' => $alias
+            'alias' => $alias,
+            'usu_modificacion' => $usu_modificacion,
+            'fec_modificacion' => $fec_modificacion
         );
         $this->db->where('edificio_id', $edificio_id);
         return $this->db->update('catastro.edificio', $data);

@@ -13,7 +13,7 @@ class destino_bloque_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.destino_bloque ORDER BY destino_bloque_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.destino_bloque WHERE activo = '1' ORDER BY destino_bloque_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -24,13 +24,14 @@ class destino_bloque_model extends CI_Model {
 		
 	}
 
-	public function insertar_destino_bloque($descripcion, $alias, $coeficiente)
+	public function insertar_destino_bloque($descripcion, $alias, $coeficiente, $usu_creacion)
 	{	
 		
 		$array = array(
 			'descripcion' =>$descripcion,
 			'alias' =>$alias,
-			'coeficiente' =>$coeficiente
+			'coeficiente' =>$coeficiente,
+			'usu_creacion' =>$usu_creacion
 			);
 		$this->db->insert('catastro.destino_bloque', $array);
 	}
@@ -52,16 +53,26 @@ class destino_bloque_model extends CI_Model {
 
 	}
 
-	 public function eliminar($id){
-      $this->db->delete('catastro.destino_bloque', array('destino_bloque_id' => $id));
+	 public function eliminar($id, $usu_eliminacion, $fec_eliminacion)
+	 {
+     
+       $data = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        );
+        $this->db->where('destino_bloque_id', $id);
+        return $this->db->update('catastro.destino_bloque', $data);
     }
 
-    public function actualizar($destino_bloque_id, $descripcion, $alias, $coeficiente)
+    public function actualizar($destino_bloque_id, $descripcion, $alias, $coeficiente, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
             'descripcion' => $descripcion,
             'alias' => $alias,
-            'coeficiente' => $coeficiente
+            'coeficiente' => $coeficiente,
+            'usu_modificacion' => $usu_modificacion,
+            'fec_modificacion' => $fec_modificacion
         );
         $this->db->where('destino_bloque_id', $destino_bloque_id);
         return $this->db->update('catastro.destino_bloque', $data);

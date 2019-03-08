@@ -13,7 +13,7 @@ class Uso_bloque_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.uso_bloque ORDER BY uso_bloque_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.uso_bloque WHERE activo = '1' ORDER BY uso_bloque_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -23,13 +23,14 @@ class Uso_bloque_model extends CI_Model {
 		}
 	}
 
-	public function insertar_uso_bloque($descripcion, $alias, $coeficiente)
+	public function insertar_uso_bloque($descripcion, $alias, $coeficiente, $usu_creacion)
 	{	
 		
 		$array = array(
 			'descripcion' =>$descripcion,
 			'alias' =>$alias,
-			'coeficiente' =>$coeficiente
+			'coeficiente' =>$coeficiente,
+			'usu_creacion' =>$usu_creacion
 			);
 		$this->db->insert('catastro.uso_bloque', $array);
 	}
@@ -51,16 +52,25 @@ class Uso_bloque_model extends CI_Model {
 
 	}
 
-	 public function eliminar($id){
-      $this->db->delete('catastro.uso_bloque', array('uso_bloque_id' => $id));
+	 public function eliminar($id, $usu_eliminacion, $fec_eliminacion)
+	 {
+      $data = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        );
+        $this->db->where('uso_bloque_id', $id);
+        return $this->db->update('catastro.uso_bloque', $data);
     }
 
-    public function actualizar($uso_bloque_id, $descripcion, $alias, $coeficiente)
+    public function actualizar($uso_bloque_id, $descripcion, $alias, $coeficiente, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
             'descripcion' => $descripcion,
             'alias' => $alias,
-            'coeficiente' => $coeficiente
+            'coeficiente' => $coeficiente,
+            'usu_modificacion' => $usu_modificacion,
+            'fec_modificacion' => $fec_modificacion
         );
         $this->db->where('uso_bloque_id', $uso_bloque_id);
         return $this->db->update('catastro.uso_bloque', $data);

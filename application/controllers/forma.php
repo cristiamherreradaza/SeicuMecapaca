@@ -36,32 +36,52 @@ class Forma extends CI_Controller {
 		
 		if(isset($datos))
 		{
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
 			$descripcion = $datos['descripcion'];
 			$alias = $datos['alias'];
 			$coeficiente = $datos['coeficiente'];
-			$this->forma_model->insertar_forma($descripcion, $alias, $coeficiente);
+			$this->forma_model->insertar_forma($descripcion, $alias, $coeficiente, $usu_creacion);
 			redirect('forma');
 
 		}
 
 	 }
 
-	public function eliminar(){
-	    $u = $this->uri->segment(3);
-	    $this->forma_model->eliminar($u);
-	    redirect('Forma');
-	   }
 
-	public function update()     
+	 public function update()     
 	{         
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
+
 	    $forma_id = $this->input->post('forma_id');
 	    $descripcion = $this->input->post('descripcion');
 	    $alias = $this->input->post('alias');
 	    $coeficiente = $this->input->post('coeficiente');
 
-	    $actualizar = $this->forma_model->actualizar($forma_id,$descripcion,$alias,$coeficiente);
+	    $actualizar = $this->forma_model->actualizar($forma_id,$descripcion,$alias,$coeficiente, $usu_modificacion, $fec_modificacion);
 	   redirect('Forma');
-	}   	  
+	} 
+
+	public function eliminar()
+	{
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s");
+        
+	    $u = $this->uri->segment(3);
+	    $this->forma_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
+	    redirect('Forma');
+	   }
+
+	  	  
 }
 

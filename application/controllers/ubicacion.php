@@ -37,11 +37,15 @@ class Ubicacion extends CI_Controller {
 		
 		if(isset($datos))
 		{
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
 			$descripcion = $datos['descripcion'];
 			$alias = $datos['alias'];
 			$coeficiente = $datos['coeficiente'];
-			$this->ubicacion_model->insertar_ubicacion($descripcion, $alias, $coeficiente);
+			$this->ubicacion_model->insertar_ubicacion($descripcion, $alias, $coeficiente, $usu_creacion);
 			redirect('ubicacion');
 
 		}
@@ -49,20 +53,33 @@ class Ubicacion extends CI_Controller {
 	 }
 
 	public function update()     
-	{         
+	{      
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
+
 	    $ubicacion_id = $this->input->post('ubicacion_id');
 	    $descripcion = $this->input->post('descripcion');
 	    $alias = $this->input->post('alias');
 	    $coeficiente = $this->input->post('coeficiente');
 
-	    $actualizar = $this->ubicacion_model->actualizar($ubicacion_id,$descripcion,$alias,$coeficiente);
+	    $actualizar = $this->ubicacion_model->actualizar($ubicacion_id,$descripcion,$alias,$coeficiente, $usu_modificacion, $fec_modificacion);
 	   redirect('Ubicacion');
 	}
 		
 
-	 public function eliminar(){
+	 public function eliminar()
+	 {
+	 	//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s"); 
+        
 	    $u = $this->uri->segment(3);
-	    $this->ubicacion_model->eliminar($u);
+	    $this->ubicacion_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
 	    redirect('Ubicacion');
 	   }
    	  

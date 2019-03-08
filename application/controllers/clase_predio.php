@@ -36,33 +36,53 @@ class Clase_predio extends CI_Controller {
 		
 		if(isset($datos))
 		{
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
 			$descripcion = $datos['descripcion'];
 			$alias = $datos['alias'];
 			$coeficiente = $datos['coeficiente'];
-			$this->clase_predio_model->insertar_clase_predio($descripcion, $alias, $coeficiente);
+			$this->clase_predio_model->insertar_clase_predio($descripcion, $alias, $coeficiente, $usu_creacion);
 			redirect('clase_predio');
 
 		}
 
 	 }
 
-	 public function eliminar(){
-	    $u = $this->uri->segment(3);
-	    $this->clase_predio_model->eliminar($u);
-	    redirect('Clase_predio');
-	   }
 
 	   public function update()     
 	{         
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
+
 	    $clase_predio_id = $this->input->post('clase_predio_id');
 	    $descripcion = $this->input->post('descripcion');
 	    $alias = $this->input->post('alias');
 	    $coeficiente = $this->input->post('coeficiente');
 
-	    $actualizar = $this->clase_predio_model->actualizar($clase_predio_id,$descripcion,$alias,$coeficiente);
+	    $actualizar = $this->clase_predio_model->actualizar($clase_predio_id,$descripcion,$alias,$coeficiente, $usu_modificacion, $fec_modificacion);
 	   redirect('Clase_predio');
 	}
+
+	 public function eliminar(){
+
+	 	//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s"); 
+
+	    $u = $this->uri->segment(3);
+	    $this->clase_predio_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
+	    redirect('Clase_predio');
+	   }
+
+
 	   	  
 }
 

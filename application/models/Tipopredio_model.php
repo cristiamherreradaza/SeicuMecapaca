@@ -13,7 +13,7 @@ class Tipopredio_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.tipo_predio ORDER BY tipo_predio_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.tipo_predio  WHERE activo = '1' ORDER BY tipo_predio_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -23,13 +23,14 @@ class Tipopredio_model extends CI_Model {
 		}
 	}
 
-	public function insertar_tipredio($descripcion, $alias, $coeficiente)
+	public function insertar_tipredio($descripcion, $alias, $coeficiente, $usu_creacion)
 	{	
 		
 		$array = array(
 			'descripcion' =>$descripcion,
 			'alias' =>$alias,
-			'coeficiente' =>$coeficiente
+			'coeficiente' =>$coeficiente,
+			'usu_creacion' =>$usu_creacion
 			);
 		$this->db->insert('catastro.tipo_predio', $array);
 	}
@@ -51,17 +52,25 @@ class Tipopredio_model extends CI_Model {
 
 	}
 
-	 public function eliminar($id)
+	 public function eliminar($id, $usu_eliminacion, $fec_eliminacion)
 	{
-      $this->db->delete('catastro.tipo_predio', array('tipo_predio_id' => $id));
+      $data = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        );
+        $this->db->where('tipo_predio_id', $id);
+        return $this->db->update('catastro.tipo_predio', $data);
     }
 
-    public function actualizar($tipo_predio_id, $descripcion, $alias, $coeficiente)
+    public function actualizar($tipo_predio_id, $descripcion, $alias, $coeficiente, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
             'descripcion' => $descripcion,
             'alias' => $alias,
-            'coeficiente' => $coeficiente
+            'coeficiente' => $coeficiente,
+            'usu_modificacion' => $usu_modificacion,
+            'fec_modificacion' => $fec_modificacion
         );
         $this->db->where('tipo_predio_id', $tipo_predio_id);
         return $this->db->update('catastro.tipo_predio', $data);

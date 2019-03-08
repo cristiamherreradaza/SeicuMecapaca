@@ -37,10 +37,14 @@ class Matvia extends CI_Controller {
 		
 		if(isset($datos))
 		{
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
 			$descripcion = $datos['descripcion'];
 			$coeficiente = $datos['coeficiente'];
-			$this->matvia_model->insertar_matvia($descripcion, $coeficiente);
+			$this->matvia_model->insertar_matvia($descripcion, $coeficiente, $usu_creacion);
 			redirect('matvia');
 
 		}
@@ -48,19 +52,32 @@ class Matvia extends CI_Controller {
 	 }
 
 	public function update()     
-	{         
+	{   
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
+      
 	    $matvia_id = $this->input->post('matvia_id');
 	    $descripcion = $this->input->post('descripcion');
 	    $coeficiente = $this->input->post('coeficiente');
 
-	    $actualizar = $this->matvia_model->actualizar($matvia_id,$descripcion,$coeficiente);
+	    $actualizar = $this->matvia_model->actualizar($matvia_id,$descripcion,$coeficiente, $usu_modificacion, $fec_modificacion);
 	   redirect('Matvia');
 	}
 		
 
-	 public function eliminar(){
+	 public function eliminar()
+	 {
+	 	//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s"); 
+        
 	    $u = $this->uri->segment(3);
-	    $this->matvia_model->eliminar($u);
+	    $this->matvia_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
 	    redirect('Matvia');
 	   }
    	  

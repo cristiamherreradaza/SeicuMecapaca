@@ -36,32 +36,51 @@ class Destino_bloque extends CI_Controller {
 		
 		if(isset($datos))
 		{
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
 			$descripcion = $datos['descripcion'];
 			$alias = $datos['alias'];
 			$coeficiente = $datos['coeficiente'];
-			$this->destino_bloque_model->insertar_destino_bloque($descripcion, $alias, $coeficiente);
+			$this->destino_bloque_model->insertar_destino_bloque($descripcion, $alias, $coeficiente, $usu_creacion);
 			redirect('destino_bloque');
 
 		}
 
 	 }
 
-	 public function eliminar(){
-	    $u = $this->uri->segment(3);
-	    $this->destino_bloque_model->eliminar($u);
-	    redirect('destino_bloque');
-	   }
-
-	public function update()     
+	 public function update()     
 	{         
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
+        
 	    $destino_bloque_id = $this->input->post('destino_bloque_id');
 	    $descripcion = $this->input->post('descripcion');
 	    $alias = $this->input->post('alias');
 	    $coeficiente = $this->input->post('coeficiente');
 
-	    $actualizar = $this->destino_bloque_model->actualizar($destino_bloque_id,$descripcion,$alias,$coeficiente);
+	    $actualizar = $this->destino_bloque_model->actualizar($destino_bloque_id,$descripcion,$alias,$coeficiente, $usu_modificacion, $fec_modificacion);
 	   redirect('Destino_bloque');
 	}
+
+	 public function eliminar()
+	 {
+	 	//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s"); 
+        
+	    $u = $this->uri->segment(3);
+	    $this->destino_bloque_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
+	    redirect('destino_bloque');
+	   }
+
+
 }
 

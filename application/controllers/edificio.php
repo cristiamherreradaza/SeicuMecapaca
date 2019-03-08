@@ -34,32 +34,49 @@ class Edificio extends CI_Controller {
 		$datos = $this->input->post();
 		
 		if(isset($datos))
-		{
+		{	
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
 			$descripcion = $datos['descripcion'];
 			$alias = $datos['alias'];
-			$this->edificio_model->insertar_edificio($descripcion, $alias);
+			$this->edificio_model->insertar_edificio($descripcion, $alias, $usu_creacion);
 			redirect('edificio');
 
 		}
 
 	 }
 
-	 public function eliminar(){
-	    $u = $this->uri->segment(3);
-	    $this->edificio_model->eliminar($u);
-	    redirect('edificio');
-	   }
-
 	 public function update()     
 	{         
+
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
+
 	    $edificio_id = $this->input->post('edificio_id');
 	    $descripcion = $this->input->post('descripcion');
 	    $alias = $this->input->post('alias');
 
-	    $actualizar = $this->edificio_model->actualizar($edificio_id,$descripcion,$alias);
+	    $actualizar = $this->edificio_model->actualizar($edificio_id, $descripcion,$alias, $usu_modificacion, $fec_modificacion);
 	   redirect('Edificio');
 	}
+
+	 public function eliminar(){
+	 	//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s"); 
+
+	    $u = $this->uri->segment(3);
+	    $this->edificio_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
+	    redirect('edificio');
+	   }
 
 }
 

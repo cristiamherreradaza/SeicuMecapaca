@@ -13,7 +13,7 @@ class Pendiente_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.pendiente ORDER BY pendiente_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.pendiente WHERE activo = '1' ORDER BY pendiente_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -24,13 +24,14 @@ class Pendiente_model extends CI_Model {
 
 	}
 
-	public function insertar_pendiente($descripcion, $alias, $coeficiente)
+	public function insertar_pendiente($descripcion, $alias, $coeficiente, $usu_creacion)
 	{	
 		
 		$array = array(
 			'descripcion' =>$descripcion,
 			'alias' =>$alias,
-			'coeficiente' =>$coeficiente
+			'coeficiente' =>$coeficiente,
+			'usu_creacion' =>$usu_creacion
 			);
 		$this->db->insert('catastro.pendiente', $array);
 	}
@@ -52,16 +53,24 @@ class Pendiente_model extends CI_Model {
 
 	}
 
-	 public function eliminar($id){
-      $this->db->delete('catastro.pendiente', array('pendiente_id' => $id));
+	 public function eliminar($id, $usu_eliminacion, $fec_eliminacion){
+      $data = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        );
+        $this->db->where('pendiente_id', $id);
+        return $this->db->update('catastro.pendiente', $data);
     }
 
-    public function actualizar($pendiente_id, $descripcion, $alias, $coeficiente)
+    public function actualizar($pendiente_id, $descripcion, $alias, $coeficiente, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
             'descripcion' => $descripcion,
             'alias' => $alias,
-            'coeficiente' => $coeficiente
+            'coeficiente' => $coeficiente,
+            'usu_modificacion' => $usu_modificacion,
+            'fec_modificacion' => $fec_modificacion
         );
         $this->db->where('pendiente_id', $pendiente_id);
         return $this->db->update('catastro.pendiente', $data);

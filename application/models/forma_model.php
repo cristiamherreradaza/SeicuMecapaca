@@ -13,7 +13,7 @@ class Forma_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.forma ORDER BY forma_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.forma WHERE activo = '1' ORDER BY forma_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;
@@ -23,13 +23,14 @@ class Forma_model extends CI_Model {
 		}
 	}
 
-	public function insertar_forma($descripcion, $alias, $coeficiente)
+	public function insertar_forma($descripcion, $alias, $coeficiente, $usu_creacion)
 	{	
 		
 		$array = array(
 			'descripcion' =>$descripcion,
 			'alias' =>$alias,
-			'coeficiente' =>$coeficiente
+			'coeficiente' =>$coeficiente,
+			'usu_creacion' =>$usu_creacion
 			);
 		$this->db->insert('catastro.forma', $array);
 	}
@@ -51,17 +52,25 @@ class Forma_model extends CI_Model {
 
 	}
 
-	 public function eliminar($id)
+	 public function eliminar($id, $usu_eliminacion, $fec_eliminacion)
 	{
-      $this->db->delete('catastro.forma', array('forma_id' => $id));
+      $data = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        );
+        $this->db->where('forma_id', $id);
+        return $this->db->update('catastro.forma', $data);
     }
 
-    public function actualizar($forma_id, $descripcion, $alias, $coeficiente)
+    public function actualizar($forma_id, $descripcion, $alias, $coeficiente, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
             'descripcion' => $descripcion,
             'alias' => $alias,
-            'coeficiente' => $coeficiente
+            'coeficiente' => $coeficiente,
+            'usu_modificacion' => $usu_modificacion,
+            'fec_modificacion' => $fec_modificacion
         );
         $this->db->where('forma_id', $forma_id);
         return $this->db->update('catastro.forma', $data);

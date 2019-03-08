@@ -80,5 +80,14 @@ class Zona_urbana extends CI_Controller {
 	    redirect('Zona_urbana');
 	   }
 
+	   public function adaptar()
+	{
+
+		$id = $this->db->get_where('persona', array('ci' => '9112739'))->row();
+		var_dump($id->paterno, $id->materno);
+
+	}
+
 }
 
+	
