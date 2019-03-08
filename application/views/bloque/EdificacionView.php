@@ -168,7 +168,7 @@
                                                                     <select class="custom-select form-control" id="anio_remo" name="anio_remo">
                                                                         <option value="">Seleccionar</option>                                                                           
                                                                         <option value="1950">1950</option>
-                                                                        <option value="1920">1920</option>
+                                                                        <option value="1920">1923</option>
 
                                                                     </select>
                                                                 </div>
