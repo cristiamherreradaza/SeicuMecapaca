@@ -68,7 +68,6 @@ class Usuario extends CI_Controller {
 
 	 public function update()     
 	{   
-		//OBTENER EL ID DEL USUARIO LOGUEADO
 		$id = $this->session->userdata("persona_perfil_id");
         $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
         $usu_modificacion = $resi->persona_id;
