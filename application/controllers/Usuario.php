@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Zona_urbana extends CI_Controller {
+class Usuario extends CI_Controller {
 
 	public function __construct()
 	{
@@ -17,6 +17,22 @@ class Zona_urbana extends CI_Controller {
 		$this->load->view('admin/menu');
 		$this->load->view('crud/zona_urbana', $lista);
 		$this->load->view('admin/footer');
+	}
+
+	public function prueba(){
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('usuarios/usuarios');
+		$this->load->view('admin/footer');
+		
+	}
+
+	public function prueba2(){
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('usuarios/usuarioss');
+		$this->load->view('admin/footer');
+		
 	}
 
 	
