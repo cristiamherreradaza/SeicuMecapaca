@@ -16,7 +16,10 @@
                             <div class="card-body">
                                 <h3 class="card-title">Registro de Usuario</h3>
                                 <h5 class="card-title">Datos de Usuario</h5>
-                                <form class="needs-validation" novalidate action="Usuario/usuario" method="POST">
+                                <!--<form class="needs-validation" action="Usuario/registra" method="POST">-->
+
+
+                                    <?php echo form_open('Usuario/registra', array('method'=>'POST')); ?>
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustom01">Nombres</label>

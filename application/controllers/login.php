@@ -52,6 +52,7 @@ class Login extends CI_Controller {
 				'usuario' => $res->usuario,
 				'login' => TRUE
 			);
+			
 			$this->session->set_userdata($data);
 			redirect(base_url()."Predios");
 		}

@@ -7,7 +7,7 @@ class Usuario extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('session');
-		$this->load->model("zona_urbana_model");
+		$this->load->model("Usuario_model");
 	}
 
 	public function zona_urbana(){
@@ -99,8 +99,54 @@ class Usuario extends CI_Controller {
 	{
 		//$id = $this->db->get_where('persona', array('ci' => '9112739'))->row();
 		//var_dump($id->nombres);
-		$id = $this->db->query("SELECT * FROM persona WHERE ci = '9112739'")->result();
+		$id = $this->db->query("SELECT * FROM persona WHERE ci = '9112739'")->row();
+		$id_persona = $id->persona_id;
+		$nombres = $id->nombres;
+		var_dump($id_persona, $nombres);
 	}
+
+	public function registra()
+	{
+		$datos = $this->input->post();
+		
+		if(isset($datos))
+		{
+			$nombres = $datos['nombres'];
+			$paterno = $datos['paterno'];
+			$materno = $datos['materno'];
+			$ci = $datos['ci'];
+			$fec_nacimiento = $datos['fec_nacimiento'];
+			$this->Usuario_model->insertar_usuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
+
+			$id = $this->db->query("SELECT * FROM persona WHERE ci = '$ci'")->row();
+
+			$persona_id = $id->persona_id;
+			$perfil_id = $datos['perfil_id'];
+			$this->Usuario_model->insertar_persona_perfil($persona_id, $perfil_id);
+
+			$perfil_id = $this->db->query("SELECT MAX(persona_perfil_id) as max FROM persona_perfil")->row();
+
+			$persona_perfil_id = $perfil_id->max;
+			$rol_id = $datos['rol_id'];
+			$usuario = $datos['usuario'];
+			$contrasenia = $datos['contrasenia'];
+			$this->Usuario_model->insertar_credencial($persona_perfil_id, $rol_id, $usuario, $contrasenia);
+			
+			redirect('Predios');
+			
+
+		}
+
+	 }
+
+	 public function abc()
+	 {
+
+	 	$persona_perfil_id = $this->db->query("SELECT MAX(persona_perfil_id) as max FROM persona_perfil")->row();
+	 	var_dump($persona_perfil_id->max);
+
+
+	 }
 
 }
 
