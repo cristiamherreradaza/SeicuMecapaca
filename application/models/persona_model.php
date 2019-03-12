@@ -27,7 +27,6 @@ class Persona_model extends CI_Model {
 		$this->db->where('ci',$ci);
 		$reg = $this->db->get('persona');
       if($reg->num_rows()>0) {
-
           return false;
       }else{
 				return true;

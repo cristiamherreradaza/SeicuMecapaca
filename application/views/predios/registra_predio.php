@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/css/dropify.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/css/pasos.css">
 
 <!-- sample modal content -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
@@ -35,13 +37,36 @@
         <!-- Start Page Content -->
         <!-- ============================================================== -->
         <div class="row">
-            <div class="col-12">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
                             <h4 class="card-title">Registro de Predio</h4>
                             <h6 class="card-subtitle">Ingrese los datos del predio </h6>
                             <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
+
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <button class="btn btn-block btn-info" type="button"><span class="btn-label">1</span> REGISTRO DEL PREDIO</button>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <button class="btn btn-block btn-outline-info waves-effect waves-light" type="button"><span class="btn-label">2</span> REGISTRO DE BLOQUES</button>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <button class="btn btn-block btn-outline-info waves-effect waves-light" type="button"><span class="btn-label">3</span> REGISTRO DE PROPIETARIO</button>
+                                </div>
+                                
+                                
+                            </div>
+                            <p></p>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 30%;height:15px;" role="progressbar""> 30% </div>
+                            </div>
+                            <p></p>
+
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
                             <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
                             <?php echo form_open_multipart('predios/guarda', array('method'=>'POST')); ?>
@@ -174,14 +199,14 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_campo">Superficie Campo : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" step='0.01' value="0.00" id="superficie_campo" name="superficie_campo" required />
+                                                <input type="number" class="form-control" step='0.01' value="0.00" id="superficie_campo" name="superficie_campo" required />
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_legal">Superficie Legal : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" step='0.01' value="0.00" id="superficie_legal" name="superficie_legal" required />
+                                                <input type="number" class="form-control" step='0.01' value="0.00" id="superficie_legal" name="superficie_legal" required />
                                             </div>
                                         </div>
 
@@ -399,8 +424,10 @@
 
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <button type="submit" class="btn waves-effect waves-light btn-info">Siguiente</button>
+                                </div>
 
-                            <input type="submit" value="Guardar">
                             </form>
 
                         </div>
@@ -426,14 +453,14 @@
 
         $("#google_maps").hover(function(){
 
-            lat = $("#latitud").val()
-            lon = $("#longitud").val()
+            lat = $("#latitud").val();
+            lon = $("#longitud").val();
             // console.log(lat + lon);
-            var myLatlng = new google.maps.LatLng(lat,lon);
+            var myLatlng = new google.maps.LatLng(lat, lon);
             var mapOptions = {
                 zoom: 18,
                 center: myLatlng,
-                mapTypeId: 'hybrid'
+                mapTypeId: 'hybrid',
             }
 
             var map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -446,7 +473,6 @@
 
                 // To add the marker to the map, call setMap();
                 marker.setMap(map);
-
         });
 
         function muestra_mapa(){
@@ -454,9 +480,6 @@
         }
 
         function initMap() {
-
-            // console.log('inicia ');
-            // console.log(lat + lon);
 
             var myLatlng = new google.maps.LatLng(-18.00418108,-63.39072107);
             var mapOptions = {
@@ -475,7 +498,7 @@
 
                 // To add the marker to the map, call setMap();
                 marker.setMap(map);
-            }
+        }
     </script>
     <script type="text/javascript">
         $("#codigo_catastral").focusout(function(){
