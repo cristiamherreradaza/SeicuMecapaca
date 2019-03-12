@@ -25,9 +25,9 @@
         // fclose($img);
 
         // print_r($im);
-        	// header('Content-Type: image/jpeg');
-        	// imagejpeg($im);
-        	//imagedestroy($im);
+        // header('Content-Type: image/jpeg');
+        // imagejpeg($im);
+        //imagedestroy($im);
     ?>
     <!-- <img src="1.jpg" alt="Smiley face" height="42" width="42"> -->
     <?php echo "<img src='data:image/jpeg;base64, $foto_64' />"; ?>

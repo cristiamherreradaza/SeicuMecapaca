@@ -123,17 +123,13 @@ class Predios extends CI_Controller {
 		$datos = array();
 		$datos = $this->input->post();
 
-		$this->db->select('foto_id, codcatas', 'foto_plano_ubi');
+		$this->db->select('foto_id', 'codcatas', 'foto_plano_ubi');
 		$query = $this->db->get('catastro.predio_foto');
 		$data['fotos'] = $query->result();
 
 		$this->load->view('predios/guarda', $data);
-		// echo "<pre>";
-		// 	print_r($this->input->post('servicios'));
-		// echo "</pre>";
-		//vdebug($this->input->post());
-		// guardamos datos del predio
-		$latitud_longitud = $this->input->post('latitud').' '.$this->input->post('longitud');
+
+		$latitud_longitud = $this->input->post('latitud').', '.$this->input->post('longitud');
 		$data = array(
 			'codcatas'=>$this->input->post('codigo_catastral'),
 			'codcatas_anterior'=>$this->input->post('codigo_catastral_anterior'),
@@ -179,6 +175,7 @@ class Predios extends CI_Controller {
 			'foto_plano_ubi'=>$contenido_tranformado_plano,
 			'activo'=>'1',
 		);
+
 		$this->db->insert('catastro.predio_foto', $data_foto);
 		// fin guarda las fotografias
 
@@ -294,17 +291,24 @@ class Predios extends CI_Controller {
 
 	public function certificado($cod_catastral = null){
 		
-		// print_r($cod_catastral);
+		// $data['predio']=$this->db->get_where('catastro.predio', array('codcatas'=>$cod_catastral))->result();
+		$this->db->select('*');
+		$this->db->from('catastro.predio');
+		$this->db->where('catastro.predio.codcatas', $cod_catastral);
+		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
+		$data['predio'] = $this->db->get()->result();
+		// print_r($this->db->last_query());
+		// vdebug($data);
+
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
-		// $this->load->view('predios/nuevo', $data);
-		// $this->load->view('predios/registra_predio', $data);
-		$this->load->view('predios/certificado');
+		$this->load->view('predios/certificado', $data);
 		$this->load->view('admin/footer');
 		$this->load->view('predios/imprime_js');
 	}
 
 	public function ajax_verifica_cod_catastral(){
+
 		$cod_catastral = $this->input->get("param1");
 		// $this->db->where()
 		$this->db->where('codcatas', $cod_catastral);

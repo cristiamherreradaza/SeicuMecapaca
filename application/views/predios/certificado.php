@@ -1,7 +1,7 @@
 <style type="text/css">
     @media print {
-         .left-sidebar {display: none;}
-      }
+        .left-sidebar {display: none;}
+    }
 </style>
 <!-- ============================================================== -->
 <!-- Start Page Content -->
@@ -18,6 +18,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-body printableArea">
+                <?php //vdebug($predio); ?>
                     <!-- <h3><b>INVOICE</b> <span class="float-right">#5669626</span></h3> -->
                     <!-- <hr> -->
                     <div class="row">
@@ -87,18 +88,27 @@
 
                     <div class="row" style="text-align: center;">
                         <div class="col-md-12">
-                            <div class="text-black" style="font-size: 28pt;">CODIGO CATASTRAL:  123456789</div>
+                            <div class="text-black" style="font-size: 28pt;">CODIGO CATASTRAL:  <?php print_r($predio[0]->codcatas); ?></div>
                         </div>
                     </div>
-
-                        Segun pla de URBANIZACION aprobado en fecha 16/05/2018 mediante R.M. No. 338/2014 de 21/10/2014 se tiene la siguiente informacion:
-
+                    Segun pla de URBANIZACION aprobado en fecha 16/05/2018 mediante R.M. No. 338/2014 de 21/10/2014 se tiene la siguiente informacion:
                     <table class="d-print-table">
                         <tr>
                             <td style="width: 610px;">
-                                <img src="<?php echo base_url() ?>public/img/1.png" width="450px">
+                                <?php
+                                    $foto_bytea_ubi = pg_unescape_bytea($predio[0]->foto_plano_ubi); 
+                                    $foto_64_ubi = base64_encode($foto_bytea_ubi);
+                                ?>
+                                <?php echo "<img src='data:image/jpeg;base64, $foto_64_ubi' width='450px' />"; ?>
+
                                 <br />CROQUIS DEL PREDIO
                                 <br />
+                                <?php 
+                                    $foto_bytea_fachada = pg_unescape_bytea($predio[0]->foto_fachada); 
+                                    $foto_64_fachada = base64_encode($foto_bytea_fachada);
+                                ?>
+                                <?php echo "<img src='data:image/jpeg;base64, $foto_64_fachada' width='450px' />"; ?>
+
                                 <img src="<?php echo base_url() ?>public/img/2.jpg" width="450px">
                                 <br />FOTO DE FACHADA
                             </td>
