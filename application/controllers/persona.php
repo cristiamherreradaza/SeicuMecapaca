@@ -103,21 +103,21 @@ class Persona extends CI_Controller {
 		}
 	}
 
-	public function verificar(){
+	// public function verificar(){
 
-       $this->form_validation->set_rules('ci','Cedula de Identidad','required|trim',array('required' => 'Ingrese una %','numeric' => 'El campo % solo puede contener numeros'));
+ //       $this->form_validation->set_rules('ci','Cedula de Identidad','required|trim',array('required' => 'Ingrese una %','numeric' => 'El campo % solo puede contener numeros'));
 
-       if($this->form_validation->run() != FALSE){
+ //       if($this->form_validation->run() != FALSE){
 
-            $default = array('ci' => '');
-            $reg = $this->persona_model->buscaci($this->input->post('ci'));
-            vdebug($reg);
-            echo count($reg) > 0 ? json_encode($reg) : json_encode($default);
+ //            $default = array('ci' => '');
+ //            $reg = $this->persona_model->buscaci($this->input->post('ci'));
+ //            vdebug($reg);
+ //            echo count($reg) > 0 ? json_encode($reg) : json_encode($default);
 
-       } else {
-           echo validation_errors();
-       }
-   }
+ //       } else {
+ //           echo validation_errors();
+ //       }
+ //   }
 
    	public function remove($rowid)
    	{
@@ -132,6 +132,22 @@ class Persona extends CI_Controller {
 			$this->cart->update($data);
 		}
 			redirect('predios/nuevo');
+	}
+
+	public function ajax_verifica(){
+		$ci = $this->input->get("param1");
+		// $this->db->where()
+		$this->db->where('ci', $ci);
+		$verifica_cod = $this->persona_model->buscaci($ci);
+		// print_r($ci);
+		//  print_r($verifica_cod->result());die;
+		if (count($verifica_cod) > 0) {
+			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fec_nacimiento, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
+			echo json_encode($respuesta);
+		} else {
+			$respuesta = array('ci'=>$ci,'nombres' => ' ' , 'estado'=>'no');
+			echo json_encode($respuesta);
+		}		
 	}
 
 }

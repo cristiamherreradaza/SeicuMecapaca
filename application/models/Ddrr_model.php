@@ -32,7 +32,7 @@ class Ddrr_model extends CI_Model {
 		{
 			$array = array(
 				'ddrr_id' => (int)$ddrr_id->ddrr_id,
-				'porcen_parti' => $items['price'],
+				'porcen_parti' => $items['qty'],
 				'persona_id' => $items['id']
 			);
 			$this->db->insert('catastro.predio_titular', $array);
