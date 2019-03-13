@@ -23,7 +23,7 @@ class Logacceso_model extends CI_Model {
 		}
 	}
 
-	public function insertar_logacceso($credencial_id, $acceso_inicio,$ip)
+	public function insertar_logacceso($credencial_id, $acceso_inicio, $ip)
 	{	
 		
 		$array = array(

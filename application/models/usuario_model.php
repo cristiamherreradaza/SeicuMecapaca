@@ -26,15 +26,40 @@ class Usuario_model extends CI_Model {
 
 	}
 
-	public function prueba()
-	{
-		var_dump('hola');
+	public function insertar_usuario($nombres, $paterno, $materno, $ci, $fec_nacimiento)
+	{	
+		
+		$array = array(
+			'nombres' =>$nombres,
+			'paterno' =>$paterno,
+			'materno' =>$materno,
+			'ci' =>$ci,
+			'fec_nacimiento' =>$fec_nacimiento
+			);
+		$this->db->insert('public.persona', $array);
 	}
 
-	public function getUsuario($id) {
-		$resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-		$dato = $resi->persona_id;
-		$res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
-		return $res;
+	public function insertar_persona_perfil($persona_id, $perfil_id)
+	{	
+		
+		$array = array(
+			'persona_id' =>$persona_id,
+			'perfil_id' =>$perfil_id
+			);
+		$this->db->insert('public.persona_perfil', $array);
 	}
+
+	public function insertar_credencial($persona_perfil_id, $rol_id, $usuario, $contrasenia)
+	{	
+		
+		$array = array(
+			'persona_perfil_id' =>$persona_perfil_id,
+			'rol_id' =>$rol_id,
+			'usuario' =>$usuario,
+			'contrasenia' =>$contrasenia,
+			'token' => 0
+			);
+		$this->db->insert('public.credencial', $array);
+	}
+
 }
