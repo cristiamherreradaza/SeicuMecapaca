@@ -49,46 +49,57 @@ class Predios extends CI_Controller {
 		}else{
 
 			$this->db->select('tipo_predio_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.tipo_predio');
 			$data['dc_tipos_predio'] = $query->result();
 
 			$this->db->select('zonaurb_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.zona_urbana');
 			$data['dc_zona_urbana'] = $query->result();
 
 			$this->db->select('via_id, codcatas');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.predio_via');
 			$data['dc_predio_via'] = $query->result();
 
 			$this->db->select('ubicacion_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.ubicacion');
 			$data['dc_ubicacion'] = $query->result();
 
 			$this->db->select('pendiente_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.pendiente');
 			$data['dc_pendiente'] = $query->result();
 
 			$this->db->select('nivel_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.nivel');
 			$data['dc_nivel'] = $query->result();
 
 			$this->db->select('forma_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.forma');
 			$data['dc_forma'] = $query->result();
 
 			$this->db->select('clase_predio_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.clase_predio');
 			$data['dc_clase_predio'] = $query->result();
 
 			$this->db->select('uso_suelo_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.uso_suelo');
 			$data['dc_uso_suelo'] = $query->result();
 
 			$this->db->select('edificio_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.edificio');
 			$data['dc_edificio'] = $query->result();
 
 			$this->db->select('servicio_id, descripcion');
+			$this->db->where('activo', 1);
 			$query = $this->db->get('catastro.servicio');
 			$data['listado_servicios'] = $query->result();
 
@@ -216,8 +227,69 @@ class Predios extends CI_Controller {
 		$this->load->view('predios/muestra_img', $data);
 	}
 
-
 	public function nuevo(){
+
+		$data = $this->datos_combo();
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('predios/nuevo', $data);
+		$this->load->view('admin/footer');
+		$this->load->view('admin/wizard_js');
+	}
+
+
+	public function certificado($cod_catastral = null){
+		
+		// $data['predio']=$this->db->get_where('catastro.predio', array('codcatas'=>$cod_catastral))->result();
+		$this->db->select('*');
+		$this->db->from('catastro.predio');
+		$this->db->where('catastro.predio.codcatas', $cod_catastral);
+		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
+		$data['predio'] = $this->db->get()->result();
+		// print_r($this->db->last_query());
+		// vdebug($data);
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('predios/certificado', $data);
+		$this->load->view('admin/footer');
+		$this->load->view('predios/imprime_js');
+	}
+
+	public function ajax_verifica_cod_catastral(){
+
+		$cod_catastral = $this->input->get("param1");
+		// $this->db->where()
+		$this->db->where('codcatas', $cod_catastral);
+		$verifica_cod = $this->db->get('catastro.predio');
+		// print_r($cod_catastral);
+		// print_r($verifica_cod->result());die;
+		if ($verifica_cod->num_rows() > 0) {
+			$respuesta = array('codigo'=>$cod_catastral, 'estado'=>'si');
+			echo json_encode($respuesta);
+		} else {
+			$respuesta = array('codigo'=>$cod_catastral, 'estado'=>'no');
+			echo json_encode($respuesta);
+		}		
+	}
+
+	public function editar($cod_catastral = null){
+		// vdebug($cod_catastral);
+		$data = $this->datos_combo();
+		$this->db->where('codcatas', $cod_catastral);
+		$data['predio'] = $this->db->get('catastro.predio')->result();
+		// vdebug($data);
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		// $this->load->view('predios/nuevo', $data);
+		$this->load->view('predios/editar', $data);
+		$this->load->view('admin/footer');
+		$this->load->view('predios/registra_js');
+
+	}
+
+
+	private function datos_combo(){
 
 		$this->db->select('tipo_predio_id, descripcion');
 		$query = $this->db->get('catastro.tipo_predio');
@@ -263,65 +335,8 @@ class Predios extends CI_Controller {
 		$query = $this->db->get('catastro.servicio');
 		$data['listado_servicios'] = $query->result();
 
-		// $this->db->select('via_id, descripcion');
-		// $query = $this->db->get('catastro.servicio');
-		// $data['listado_servicios'] = $query->result();
+		return $data;
 
-		// $data['dc'] = $this->tipopredio_model->listado_combo();
-		// vdebug($this->tipopredio_model->hola());
-
-		$con = $this->db->get('catastro.tipo_predio');
-		// log_message('debug', print_r($con,TRUE));
-		// vdebug($con);
-		// $this->load->model('Tipopredio');
-		// $tipos_predios = $this->db->query('SELECT * FROM catastro.tipo_predio');
-		// $tp = $tipos_predios->result();
-		// vdebug($tp);
-		// die();
-		// print_r($tipos_predios);die;
-		// echo $tipos_predios; die;
-
-		$this->load->view('admin/header');
-		$this->load->view('admin/menu');
-		$this->load->view('predios/nuevo', $data);
-		$this->load->view('admin/footer');
-		$this->load->view('admin/wizard_js');
-	}
-
-
-	public function certificado($cod_catastral = null){
-		
-		// $data['predio']=$this->db->get_where('catastro.predio', array('codcatas'=>$cod_catastral))->result();
-		$this->db->select('*');
-		$this->db->from('catastro.predio');
-		$this->db->where('catastro.predio.codcatas', $cod_catastral);
-		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
-		$data['predio'] = $this->db->get()->result();
-		// print_r($this->db->last_query());
-		// vdebug($data);
-
-		$this->load->view('admin/header');
-		$this->load->view('admin/menu');
-		$this->load->view('predios/certificado', $data);
-		$this->load->view('admin/footer');
-		$this->load->view('predios/imprime_js');
-	}
-
-	public function ajax_verifica_cod_catastral(){
-
-		$cod_catastral = $this->input->get("param1");
-		// $this->db->where()
-		$this->db->where('codcatas', $cod_catastral);
-		$verifica_cod = $this->db->get('catastro.predio');
-		// print_r($cod_catastral);
-		// print_r($verifica_cod->result());die;
-		if ($verifica_cod->num_rows() > 0) {
-			$respuesta = array('codigo'=>$cod_catastral, 'estado'=>'si');
-			echo json_encode($respuesta);
-		} else {
-			$respuesta = array('codigo'=>$cod_catastral, 'estado'=>'no');
-			echo json_encode($respuesta);
-		}		
 	}
 
 }

@@ -30,8 +30,6 @@
                                         La Paz, 28 de febrero de 2019
                                         <br/> Tramite No 321456,
                                         <br/> <b>Certificacion de Datos Tecnicos No. 1245/2019</b>
-                                        <br/> Solicitado por: Hernan Yucra Masias C.I.: 56879
-                                        <br/> Mediante memorial de fecha 05/02/2019
                                         <br/> Matricula: 3.1.2.0001245
                                         <br/> Propietario: RUDDY HERNAN MASIAS
                                 </address>
@@ -53,7 +51,7 @@
 
                     <div class="row" style="text-align: center;">
                         <div class="col-md-12">
-                            <b class="text-black" style="font-size: 45pt;">CERTICACION TECNICA</b>
+                            <b class="text-black" style="font-size: 45pt;">CERTIFICACION TECNICA</b>
                             <br /> DE CONFORMIDAD A LA LEY NO 247/2012 Y LEY DE MODIFICACIONES 803/2016
                         </div>
                     </div>
@@ -68,8 +66,8 @@
                     <table class="table">
                         <tr>
                             <td>
-                                Distrito No: <b>08</b>
-                                <br />Predio: <b>08</b>
+                                Distrito No: <b><?php echo $predio[0]->distrito; ?></b>
+                                <br />Predio: <b><?php echo $predio[0]->predio; ?></b>
                             </td>
                             <td>
                                 Sub Distrito No: <b>34</b>
@@ -99,7 +97,7 @@
                                     $foto_bytea_ubi = pg_unescape_bytea($predio[0]->foto_plano_ubi); 
                                     $foto_64_ubi = base64_encode($foto_bytea_ubi);
                                 ?>
-                                <?php echo "<img src='data:image/jpeg;base64, $foto_64_ubi' width='450px' />"; ?>
+                                <?php echo "<img src='data:image/jpeg;base64, $foto_64_ubi' width='350px' />"; ?>
 
                                 <br />CROQUIS DEL PREDIO
                                 <br />
@@ -107,9 +105,7 @@
                                     $foto_bytea_fachada = pg_unescape_bytea($predio[0]->foto_fachada); 
                                     $foto_64_fachada = base64_encode($foto_bytea_fachada);
                                 ?>
-                                <?php echo "<img src='data:image/jpeg;base64, $foto_64_fachada' width='450px' />"; ?>
-
-                                <img src="<?php echo base_url() ?>public/img/2.jpg" width="450px">
+                                <?php echo "<img src='data:image/jpeg;base64, $foto_64_fachada' width='350px' />"; ?>
                                 <br />FOTO DE FACHADA
                             </td>
                             <td>
@@ -154,7 +150,7 @@
                         <div class="col-md-12">
                             <div class="clearfix"></div>
                             <hr>
-                            <div class="text-right">
+                            <div class="text-right d-print-none">
                                 <button id="print" class="btn btn-default btn-outline" type="button"> <span><i class="fa fa-print"></i> Impresion</span> </button>
                             </div>
                         </div>

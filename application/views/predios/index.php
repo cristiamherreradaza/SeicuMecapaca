@@ -48,9 +48,16 @@
                                         <td><?php echo $lp->predio; ?></td>
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
-                                                <button type="button" class="btn btn-warning footable-edit">
-                                                    <span class="fas fa-pencil-alt" aria-hidden="true"></span>
-                                                </button>
+                                                <a href="<?php echo base_url(); ?>predios/editar/<?php echo $lp->codcatas; ?>" class="btn btn-primary footable-edit">
+                                                    <span class="fas fas fa-map" aria-hidden="true"></span>
+                                                </a> 
+                                                <a href="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-warning footable-edit">
+                                                    <span class="fas fas fa-edit" aria-hidden="true"></span>
+                                                </a> 
+                                                <a href="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-info footable-edit">
+                                                    <span class="fas fas fa-edit" aria-hidden="true"></span>
+                                                </a> 
+
                                                 <a href="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
                                                     <span class="fas fas fa-print" aria-hidden="true"></span>
                                                 </a> 

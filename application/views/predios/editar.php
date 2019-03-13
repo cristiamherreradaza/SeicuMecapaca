@@ -41,7 +41,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                            <h4 class="card-title">Registro de Predio</h4>
+                            <h4 class="card-title">Edita Registro de Predio</h4>
                             <h6 class="card-subtitle">Ingrese los datos del predio </h6>
                             <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
 
@@ -80,7 +80,7 @@
                                         <div class="col-md-2">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
-                                                <input autofocus type="text" class="form-control" id="codigo_catastral" name="codigo_catastral" maxlength="11" required />
+                                                <input autofocus type="text" class="form-control" id="codigo_catastral" name="codigo_catastral" maxlength="11" value="<?php echo $predio[0]->codcatas; ?>" required />
                                                 <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="codigo_catastral_anterior"> Cod Cat Ant : <span class="text-danger">*</span> </label>
-                                                <input type="number" class="form-control" step='1' id="codigo_catastral_anterior" name="codigo_catastral_anterior" required />
+                                                <input type="number" class="form-control" step='1' id="codigo_catastral_anterior" name="codigo_catastral_anterior" value="<?php echo $predio[0]->codcatas_anterior; ?>" required />
                                             </div>
                                         </div>
 
@@ -127,11 +127,13 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="tipo_predio_id"> Tpo Predio: <span class="text-danger">*</span> </label>
-                                                <?php //echo vdebug($dc_tipos_predio); ?>
+                                                <?php //echo vdebug($predio[0]); ?>
+
                                                 <select class="custom-select form-control" id="tipo_predio" name="tipo_predio_id" required />
                                                     <option value="">Seleccione tipo</option>
+                                                    <?php //echo form_dropdown('tipo_predio_id', $dc_tipos_predio); ?>
                                                     <?php foreach ($dc_tipos_predio as $d): ?>
-                                                        <option value="<?php echo $d->tipo_predio_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                        <option value="<?php echo $d->tipo_predio_id; ?>" <?php echo $predio[0]->tipo_predio_id == $d->tipo_predio_id ?' selected ':''?>><?php echo $d->descripcion; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -374,8 +376,8 @@
                                                 </div>
                                                     <?php foreach ($listado_servicios as $key => $ls): ?>
                                                     <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>">
-                                                            <label class="custom-control-label" for="customCheck<?php echo $key; ?>"><?php echo $ls->descripcion ?></label>
+                                                        <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>" checked />
+                                                        <label class="custom-control-label" for="customCheck<?php echo $key; ?>"><?php echo $ls->descripcion ?></label>
                                                     </div>
                                                     <?php endforeach; ?>
 
@@ -511,33 +513,6 @@
             var manzana = cod_catastral.substr(3, 4);
             var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
             var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
-
-            $.ajax({
-                url: '<?php echo base_url(); ?>predios/ajax_verifica_cod_catastral/',
-                type: 'GET',
-                dataType: 'json',
-                data: {csrfName: csrfHash, param1: cod_catastral},
-                // data: {param1: cod_catastral},
-                success:function(data, textStatus, jqXHR) {
-                    // alert("Se envio bien");
-                    // csrfName = data.csrfName;
-                    // csrfHash = data.csrfHash;
-                    // alert(data.message);
-                    if (data.estado == 'si') {
-                        // console.log('Si se esta');
-                        $("#msg_error_catastral").show();    
-                        $("#codigo_catastral").val("");    
-                        $("#msg_error_catastral").html('YA existe el codigo: '+data.codigo);    
-                    } else {
-                        $("#msg_error_catastral").hide();    
-                        // console.log('no');
-                    }
-
-                },
-                error:function(jqXHR, textStatus, errorThrown) {
-                    // alert("error");
-                }
-            });
             
             $("#distrito").val(distrito);
             $("#manzana").val(manzana);
