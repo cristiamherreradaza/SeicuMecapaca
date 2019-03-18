@@ -34,28 +34,15 @@ class Edificacion_model extends CI_Model {
         return $query->result_array();
     }
 
-    function get_Bloque() {//obtiene los datos de la tabla bloque en array result
-        $query = $this->db->query('SELECT * FROM catastro.bloque WHERE activo=1');
+    function get_Bloque($cod_catastral) {//obtiene los datos de la tabla bloque en array result
+        $query = $this->db->query("SELECT * FROM catastro.bloque WHERE activo=1 and codcatas='$cod_catastral'");
         return $query->result();
     }
 
-    function createData() {
-        //error_reporting([4]);
-        // I don't know if you need to wrap the 1 inside of double quotes.
-        //ini_set("display_startup_errors",1);
-        //ini_set("display_errors",1);
-        //vdebug($this->input-post());
-        //vdebug($datos['data']['codigo_catastral']);
-        
-        
-        
-        
-            
-        
-        
-
-        
-       
+    function get_nro_bloque() {//obtiene los datos de la tabla bloque en array result
+        $query = $this->db->query('SELECT nro_bloque FROM catastro.bloque where activo=1 ORDER BY nro_bloque DESC LIMIT 1');
+        return $query->result();
     }
+
 
 }
