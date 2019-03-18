@@ -61,7 +61,7 @@
                          
                          <!-- Step 1 -->
                          <h2></h2>
-                         <a class=" btn btn-success" href="<?php echo site_url('edificacion/adicionar'); ?>/" align="right"><i class="mdi mdi-plus"></i> Nuevo Bloque</a>
+                         <a class=" btn btn-success" href="<?php echo site_url('edificacion/adicionar'); ?>/<?php echo $cod_catastral; ?>" align="right"><i class="mdi mdi-plus"></i> Nuevo Bloque</a>
 
 
 
@@ -109,7 +109,7 @@
 
                                         </div>
                                         <div align="right">
-                                            <a class="btn btn-success" href="<?php echo site_url('edificacion/propietario/'); ?>/" align="right">Siguiente</a>
+                                            <a class="btn btn-success" href="<?php echo site_url('predios/nuevo'); ?>/<?php echo $cod_catastral?>" align="right">Siguiente</a>
                                         </div>
 
                                     </div>

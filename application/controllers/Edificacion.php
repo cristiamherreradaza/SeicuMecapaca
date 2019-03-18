@@ -50,22 +50,22 @@ class Edificacion extends CI_Controller {
 		}
 
     }*/
-    public function nuevo(){     
-        //$cod_catastral = null   
+    public function nuevo($cod_catastral = null ){     
+        //  
 	    //$credencial_id = $this->session->userdata("persona_perfil_id");
 	    //$acceso_inicio = date("Y-m-d H:i:s");
 
 		//$ip = $this->logacceso_model->ip_publico();
         //$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
-        $cod='123456789';
+        //$cod='123456789';
         $data['result_array'] = $this->Edificacion_model->getAllData();
-        $data['bloques'] = $this->Edificacion_model->get_Bloque($cod);
+        $data['bloques'] = $this->Edificacion_model->get_Bloque($cod_catastral);
         $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
         $data['grupos'] = $this->Edificacion_model->get_grupos();
         $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque(); 
         $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
         $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
-        $data['cod_catastral'] = "123456789";  
+        $data['cod_catastral'] = $cod_catastral;  
         $this->load->view('admin/header');
         $this->load->view('admin/menu');
         $this->load->view('bloque/edificacionView',$data); 
@@ -75,7 +75,7 @@ class Edificacion extends CI_Controller {
         //$this->load->view('admin/footer'); 
     }
 
-    public function adicionar(){
+    public function adicionar($cod_catastral = null){
         
 	    //$credencial_id = $this->session->userdata("persona_perfil_id");
 	//$acceso_inicio = date("Y-m-d H:i:s");
@@ -90,7 +90,7 @@ class Edificacion extends CI_Controller {
         $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque(); 
         $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
         $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
-        $data['cod_catastral'] = "123456789";  
+        $data['cod_catastral'] = $cod_catastral;  
         $data['nro_bloque'] = "2";  
         $this->load->view('admin/header');
         $this->load->view('admin/menu');
@@ -161,13 +161,10 @@ class Edificacion extends CI_Controller {
             $this->db->insert('catastro.bloque_elemento_cons', $bloque_elem_cons);
        }        
         // fin guardamos los servicios        
-        redirect(base_url().'Edificacion/nuevo');
+        redirect(base_url().'Edificacion/nuevo/'.$this->input->post('cod_catastral'));
         }
 
-    public function propietario(){
-         redirect(base_url().'Predios/nuevo');
-
-    }
+    
 
     public function update(){
     }
