@@ -61,12 +61,37 @@ class Edificacion extends CI_Controller {
         $data['result_array'] = $this->Edificacion_model->getAllData();
         $data['bloques'] = $this->Edificacion_model->get_Bloque();
         $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
+        $data['grupos'] = $this->Edificacion_model->get_grupos();
         $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque(); 
         $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
         $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
         $this->load->view('admin/header');
         $this->load->view('admin/menu');
         $this->load->view('bloque/edificacionView',$data); 
+        //$this->load->view('bloque/jtables');       
+        $this->load->view('bloque/validar');
+        $this->load->view('admin/wizard_js');
+        //$this->load->view('admin/footer'); 
+    }
+
+    
+    public function adicionar(){
+        
+	    //$credencial_id = $this->session->userdata("persona_perfil_id");
+	//$acceso_inicio = date("Y-m-d H:i:s");
+
+		//$ip = $this->logacceso_model->ip_publico();
+		//$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+        $data['result_array'] = $this->Edificacion_model->getAllData();
+        $data['bloques'] = $this->Edificacion_model->get_Bloque();
+        $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
+        $data['grupos'] = $this->Edificacion_model->get_grupos();
+        $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque(); 
+        $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
+        $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('bloque/bloque_nuevo',$data); 
         //$this->load->view('bloque/jtables');       
         $this->load->view('bloque/validar');
         $this->load->view('admin/wizard_js');

@@ -29,6 +29,11 @@ class Edificacion_model extends CI_Model {
         return $query->result_array();
     }
 
+    function get_grupos() {//obtiene los datos de la tabla grupo_mat en array result
+        $query = $this->db->query('SELECT grupo_mat_id,descripcion from catastro.bloque_grupo_mat WHERE activo=1 ORDER BY grupo_mat_id ASC');
+        return $query->result_array();
+    }
+
     function get_Bloque() {//obtiene los datos de la tabla bloque en array result
         $query = $this->db->query('SELECT * FROM catastro.bloque WHERE activo=1');
         return $query->result();
