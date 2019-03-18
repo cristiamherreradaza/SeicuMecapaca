@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/css/dropify.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/css/pasos.css">
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script> -->
 
 <!-- sample modal content -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
@@ -10,9 +11,9 @@
                 <h4 class="modal-title" id="myLargeModalLabel">Mapa de ubicacion</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
-            <div class="modal-body" style="font-">
-                <div id="map" style="width: 100%; height: 650px;"></div>
-                <div id="carga_ajax_mapa"></div>
+            <div class="modal-body">
+                <!-- <div id="map" style="width: 100%; height: 650px;"></div> -->
+                <!-- <div id="carga_ajax_mapa"></div> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
@@ -41,8 +42,19 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                            <h4 class="card-title">Registro de Predio</h4>
-                            <h6 class="card-subtitle">Ingrese los datos del predio </h6>
+                            <h4 class="card-title">
+                                Registro de Predio
+                                <!-- <button type="button" class="btn waves-effect waves-light btn-success" id="btn_sel_predio">Seleccionar predio</button> -->
+                            </h4>
+                            <div id="muestra_mapa" style="display: none;">
+                                <div id="map" style="width: 100%; height: 650px;"></div>
+                                <div style="width: 100%;">
+                                    <button class="btn btn-block btn-warning" type="button" id="btn_finalizado">FINALIZADO</button>
+                                </div>
+                            </div>
+
+                            <!-- <h6 class="card-subtitle">Ingrese los datos del predio </h6> -->
+                            <br />
                             <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
 
                             <div class="row">
@@ -58,12 +70,10 @@
                                 <div class="col-md-4">
                                     <button class="btn btn-block btn-outline-info waves-effect waves-light" type="button"><span class="btn-label">3</span> REGISTRO DE PROPIETARIO</button>
                                 </div>
-                                
-                                
                             </div>
                             <p></p>
                             <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 30%;height:15px;" role="progressbar""> 30% </div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 30%; height:15px;" role="progressbar"> 30% </div>
                             </div>
                             <p></p>
 
@@ -177,9 +187,9 @@
                                                 <!-- <input type="text" class="form-control" id="longitud" name="longitud">  -->
                                                 <div class="input-group mb-3">
                                                     <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="longitud" id="longitud" maxlength="13" required />
-                                                    <div class="input-group-append">
+                                                    <!-- <div class="input-group-append">
                                                         <button class="btn btn-warning" type="button" id="google_maps" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="muestra_mapa();">Mapa</button>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                  <!-- <img src="../assets/images/alert/model2.png" alt="default" data-toggle="modal" data-target=".bs-example-modal-lg" class="model_img img-fluid" required /> -->
                                             </div>
@@ -445,15 +455,131 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap&libraries=drawing" async defer></script>
 
     <script type="text/javascript">
 
-        var map;
-        var lat = $("#latitud").val()
-        var lon = $("#longitud").val()
+        // var map;
+        // var lat = $("#latitud").val();
+        // var lon = $("#longitud").val();
 
-        $("#google_maps").hover(function(){
+        // modificacion
+
+        // Note: This example requires that you consent to location sharing when
+      // prompted by your browser. If you see the error "The Geolocation service
+      // failed.", it means you probably did not give permission for the browser to
+      // locate you.
+
+          var map, infoWindow;
+
+          function initMap() {
+              map = new google.maps.Map(document.getElementById('map'), {
+                  center: {
+                      lat: -34.397,
+                      lng: 150.644
+                  },
+                  zoom: 18
+              });
+              infoWindow = new google.maps.InfoWindow;
+
+              // Try HTML5 geolocation.
+              if (navigator.geolocation) {
+
+                  navigator.geolocation.getCurrentPosition(function(position) {
+                      var pos = {
+                          lat: position.coords.latitude,
+                          lng: position.coords.longitude
+                      };
+
+                    // console.log(position.coords.latitude);
+                      // infoWindow.setPosition(pos);
+                      // infoWindow.setContent('Estoy aqui.');
+                      infoWindow.open(map);
+                      map.setCenter(pos);
+
+                      var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                        var marker = new google.maps.Marker({
+                            position: latlng,
+                            map: map,
+                            title: 'Set lat/lon values for this property',
+                            draggable: true
+                        });
+
+                        google.maps.event.addListener(marker, 'dragend', function (event) {
+                            // document.getElementById("latbox").value = this.getPosition().lat();
+                            // document.getElementById("lngbox").value = this.getPosition().lng();
+                            console.log(marker.getPosition().lat());
+                            console.log(this.getPosition().lng());
+                        });
+
+                        var drawingManager = new google.maps.drawing.DrawingManager({
+                            drawingMode: google.maps.drawing.OverlayType.MARKER,
+                            drawingControl: true,
+                            drawingControlOptions: {
+                                position: google.maps.ControlPosition.TOP_CENTER,
+                                drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
+                            },
+                            markerOptions: {
+                                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                            },
+                            circleOptions: {
+                                fillColor: '#ffff00',
+                                fillOpacity: 1,
+                                strokeWeight: 5,
+                                clickable: false,
+                                editable: true,
+                                zIndex: 1
+                            }
+                        });
+                        drawingManager.setMap(map);
+
+
+                  }, function() {
+                      handleLocationError(true, infoWindow, map.getCenter());
+                  });
+              } else {
+                  // Browser doesn't support Geolocation
+                  handleLocationError(false, infoWindow, map.getCenter());
+              }
+
+          }
+
+          function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+              infoWindow.setPosition(pos);
+              infoWindow.setContent(browserHasGeolocation ?
+                  'Error: El servicio tiene un problema.' :
+                  'Error: Tu navegador no soporta geolocalizacion.');
+              infoWindow.open(map);
+          }
+
+/*        function initMap(){
+
+            var latlng = new google.maps.LatLng(51.4975941, -0.0803232);
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: latlng,
+                zoom: 18,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title: 'Set lat/lon values for this property',
+                draggable: true
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                // document.getElementById("latbox").value = this.getPosition().lat();
+                // document.getElementById("lngbox").value = this.getPosition().lng();
+                console.log(marker.getPosition().lat());
+                console.log(this.getPosition().lng());
+            });
+
+        }
+*/
+        // fin modificacion
+
+        /*$("#google_maps").hover(function(){
 
             lat = $("#latitud").val();
             lon = $("#longitud").val();
@@ -477,11 +603,7 @@
                 marker.setMap(map);
         });
 
-        function muestra_mapa(){
-
-        }
-
-        function initMap() {
+        /*function initMap() {
 
             var myLatlng = new google.maps.LatLng(-18.00418108,-63.39072107);
             var mapOptions = {
@@ -500,17 +622,16 @@
 
                 // To add the marker to the map, call setMap();
                 marker.setMap(map);
-        }
+        }*/
+
     </script>
     <script type="text/javascript">
+
         $("#codigo_catastral").focusout(function(){
 
-            var cod_catastral = $("#codigo_catastral").val();
-            var predio = cod_catastral.substr(7, 10);
-            var distrito = cod_catastral.substr(0, 3);
-            var manzana = cod_catastral.substr(3, 4);
             var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
             var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+            var cod_catastral = $("#codigo_catastral").val();
 
             $.ajax({
                 url: '<?php echo base_url(); ?>predios/ajax_verifica_cod_catastral/',
@@ -539,6 +660,27 @@
                 }
             });
             
+        });
+
+        $("#btn_sel_predio").click(function(event) {
+            $("#muestra_mapa").toggle('slow');
+        });
+
+        $('#customCheck99').change(function () {
+            var checkboxes = $(this).closest('form').find(':checkbox');
+            checkboxes.prop('checked', $(this).is(':checked'));
+        });
+
+        $("#btn_finalizado").click(function(){
+            $("#muestra_mapa").toggle('slow');
+            var codigo_cat = getGeneraRandom(1, 99999999999);
+            var s_codigo_cat = codigo_cat.toString();
+            $("#codigo_catastral").val(codigo_cat);
+            // var cod_catastral = $("#codigo_catastral").val();
+            var predio = s_codigo_cat.substr(7, 10);
+            var distrito = s_codigo_cat.substr(0, 3);
+            var manzana = s_codigo_cat.substr(3, 4);
+
             $("#distrito").val(distrito);
             $("#manzana").val(manzana);
             $("#predio").val(predio);
@@ -547,11 +689,55 @@
             $("#manzana").prop('readonly', true);
             $("#predio").prop('readonly', true);
 
+            $("#latitud").val(-18.00418108);
+            $("#longitud").val(-63.39072107);
+            $("#superficie_geo").val(125);
+            $("#superficie_campo").val(60);
+            $("#superficie_legal").val(90);
+
+            console.log('Aqui mi cod'+lat);
+
         });
 
-        $('#customCheck99').change(function () {
-            var checkboxes = $(this).closest('form').find(':checkbox');
-            checkboxes.prop('checked', $(this).is(':checked'));
-        });
 
-    </script>
+
+/*        var aplicacion = new Vue({
+          el: '#aplicacion',
+          data: {
+            name: 'Cristiam Herrera'
+          },
+          // define methods under the `methods` object
+          methods: {
+            oculta: function (event){
+                $("#muestra_mapa").toggle('slow');    
+            },
+            llena: function (event) {
+                alert("holas");                      
+            }
+        });
+*/
+
+/*var aplicacion = new Vue({
+    el: '#aplicacion',
+    data: {
+        codcatas: 'Vue.js'
+    },
+    // define methods under the `methods` object
+    methods: {
+        oculta: function(event) {
+            $("#muestra_mapa").toggle('slow');    
+        },
+        llena: function(event) {
+            // $("#muestra_mapa").toggle('slow');    
+            var cod_catastral = getRndInteger(1, 9999999999);
+
+
+        },
+    }
+}) */
+
+function getGeneraRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+</script>

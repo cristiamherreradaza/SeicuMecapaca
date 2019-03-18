@@ -51,7 +51,7 @@ class Edificacion extends CI_Controller {
 
     }*/
 
-    public function nuevo(){
+    public function nuevo($cod_catastral = null){
         
 	    //$credencial_id = $this->session->userdata("persona_perfil_id");
 	//$acceso_inicio = date("Y-m-d H:i:s");

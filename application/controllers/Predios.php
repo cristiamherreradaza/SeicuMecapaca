@@ -216,7 +216,7 @@ class Predios extends CI_Controller {
 			'activo'=>1
 		);
 		$this->db->insert('catastro.predio_observac', $data_obs);
-		redirect(base_url().'Edificacion/nuevo');
+		redirect(base_url().'Edificacion/nuevo/'.$this->input->post('codigo_catastral'));
 		// fin guarda las observaciones
 
 		// vdebug($datos['data']['codigo_catastral']);

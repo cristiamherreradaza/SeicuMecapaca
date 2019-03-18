@@ -59,7 +59,6 @@
                                     <button class="btn btn-block btn-outline-info waves-effect waves-light" type="button"><span class="btn-label">3</span> REGISTRO DE PROPIETARIO</button>
                                 </div>
                                 
-                                
                             </div>
                             <p></p>
                             <div class="progress">
