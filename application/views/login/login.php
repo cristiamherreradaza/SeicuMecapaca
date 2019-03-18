@@ -44,7 +44,7 @@
             <div class="login-box card">
                <div class="m-login__logo btn btn-block">
                             <a href="https://www.oopp.gob.bo/">
-                                <img src="<?php echo base_url().'publico/assets/app/media/img//logos/logo1.png' ;?>">
+                                <img src="<?php echo base_url().'publico/assets/app/media/img/logos/logo2.png' ;?>">
                             </a>
                 </div> 
 
