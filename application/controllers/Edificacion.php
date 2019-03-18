@@ -83,6 +83,13 @@ class Edificacion extends CI_Controller {
 		//$ip = $this->logacceso_model->ip_publico();
         //$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
         //$cod='123456789';
+
+        $cant_bloque = $this->db->query("SELECT count(nro_bloque) as total FROM catastro.bloque where activo=1 and codcatas='$cod_catastral'");
+        foreach ($cant_bloque->result() as $nro)
+            {
+                $total_bloq = $nro->total;                    
+            }
+            $total_bloq=$total_bloq+1;
         $data['result_array'] = $this->Edificacion_model->getAllData();
         //$data['bloques'] = $this->Edificacion_model->get_Bloque($cod);
         $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
@@ -91,7 +98,7 @@ class Edificacion extends CI_Controller {
         $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
         $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
         $data['cod_catastral'] = $cod_catastral;  
-        $data['nro_bloque'] = "2";  
+        $data['nro_bloque'] = $total_bloq;
         $this->load->view('admin/header');
         $this->load->view('admin/menu');
         $this->load->view('bloque/bloque_nuevo',$data); 

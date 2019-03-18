@@ -88,6 +88,9 @@
                                                                                                             print_r($grupos_subgrupos[$i]['desc_grupo']);
                                                                                                             echo "</pre>"; ?>
                                         </div>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
+                                            %                                           
+                                        </div>
                                     </div>
                                     <?php 
                                 } else { ?>
@@ -110,7 +113,8 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required></div>
+                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required>
+                                        </div>
                                     </div>
 
                                     <?php $j = $i + 1;
@@ -364,10 +368,10 @@
                                     //echo $count2;
                                     if ($count2 < $longgrupo) { ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:LightGray"> 
-                                        <?php echo "<pre>";
-                                                                                                            print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                                                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-md-9" style="background-color:LightGray">
+                                            <?php echo "<pre>";
+                                            print_r($grupos_subgrupos[$j]['desc_grupo']);
+                                            echo "</pre>"; ?>
                                         </div>
                                     </div>
                                     <?php 
@@ -381,7 +385,7 @@
                             </div>
                             <!--col-lg-10-->
                             <div class="col-lg-2">
-                                <h6 class="card-subtitle">Caracteristicas de la construccion</h6>                                
+                                <h6 class="card-subtitle">Caracteristicas de la construccion</h6>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -494,7 +498,7 @@
                         </div>
                         <!--fin column-->
                         <button type="submit" class="btn btn-success" value="save">Guardar</button>
-                        <a class="btn btn-warning" href="<?php echo site_url('edificacion/nuevo'); ?>/" align="right">Cancelar</a>
+                        <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/" align="right">Cancelar</a>
                         </form>
                     </div>
                     <!--</form>-->

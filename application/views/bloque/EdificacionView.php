@@ -25,17 +25,13 @@
                             <div class="col-md-6 col-8 align-self-center">
                                 <h4 class="card-title">Datos Edificaciones</h4>
                                 <h6 class="card-subtitle">Material de Construccion</h6>
-
-
                             </div>
                             <div class="col-md-6 col-4 align-self-center">
                                 <button class="btn float-right hidden-sm-down btn-success">Cod. Catastral: <?php echo $cod_catastral; ?>
                                 </button>
                             </div>
                         </div>
-
                         <div class="row">
-
                             <div class="col-md-4">
                                 <button class="btn btn-block btn-info" type="button"><span class="btn-label">1</span> REGISTRO DEL PREDIO</button>
                             </div>
@@ -47,8 +43,6 @@
                             <div class="col-md-4">
                                 <button class="btn btn-block btn-outline-info waves-effect waves-light" type="button"><span class="btn-label">3</span> REGISTRO DE PROPIETARIO</button>
                             </div>
-
-
                         </div>
                         <p></p>
                         <div class="progress">
@@ -56,15 +50,9 @@
                                 </div>
                             </div>
                             <p></p>
-                     
-
-                         
                          <!-- Step 1 -->
                          <h2></h2>
-                         <a class=" btn btn-success" href="<?php echo site_url('edificacion/adicionar'); ?>/<?php echo $cod_catastral; ?>" align="right"><i class="mdi mdi-plus"></i> Nuevo Bloque</a>
-
-
-
+                         <a class=" btn btn-info" href="<?php echo site_url('edificacion/adicionar'); ?>/<?php echo $cod_catastral; ?>" align="right"><i class="mdi mdi-plus"></i> Agregar Bloque</a>
 
                                 <div class="card">
                                     <div class="card-body">
@@ -94,9 +82,6 @@
                                                         <td><?php echo $row->destino_bloque_id; ?></td>
                                                         <td><?php echo $row->uso_bloque_id; ?> </td>
                                                         <td>
-
-
-
                                                         </td>
 
 

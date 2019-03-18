@@ -39,8 +39,8 @@ class Edificacion_model extends CI_Model {
         return $query->result();
     }
 
-    function get_nro_bloque() {//obtiene los datos de la tabla bloque en array result
-        $query = $this->db->query('SELECT nro_bloque FROM catastro.bloque where activo=1 ORDER BY nro_bloque DESC LIMIT 1');
+    function get_cant_bloque($cod_catastral) {//obtiene la cantidad de bloques
+        $query = $this->db->query("SELECT count(nro_bloque) as total FROM catastro.bloque where activo=1 and codcatas='$cod_catastral'");
         return $query->result();
     }
 
