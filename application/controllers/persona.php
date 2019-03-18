@@ -137,12 +137,12 @@ class Persona extends CI_Controller {
 	public function ajax_verifica(){
 		$ci = $this->input->get("param1");
 		// $this->db->where()
-		$this->db->where('ci', $ci);
+		//$this->db->where('ci', $ci);
 		$verifica_cod = $this->persona_model->buscaci($ci);
 		// print_r($ci);
 		//  print_r($verifica_cod->result());die;
 		if (count($verifica_cod) > 0) {
-			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fec_nacimiento, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
+			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fecha, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
 			echo json_encode($respuesta);
 		} else {
 			$respuesta = array('ci'=>$ci,'nombres' => ' ' , 'estado'=>'no');
