@@ -43,6 +43,13 @@
                             <h6 class="card-subtitle">Ingrese los datos del propietario </h6>
                             <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
 
+
+
+                           
+
+
+
+
                              <div class="row">
 
                                 <div class="col-md-4">
@@ -124,6 +131,12 @@
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="row" style="background-color: #f6f6f6;">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Cod<span class="text-danger">*</span> </label>
+                                                    <input type="text" class="form-control" name="cod_catastral" value="<?php echo $cod_catastral ?>" required />
+                                                </div>
+                                            </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Numero de matricula folio<span class="text-danger">*</span> </label>

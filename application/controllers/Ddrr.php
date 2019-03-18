@@ -11,12 +11,14 @@ class Ddrr extends CI_Controller {
 		$this->load->library('cart');
 	}
 
-	public function guardar()
+	
+
+	public function guardar($cod_catastral = null)
 	{
 		$datos = $this->input->post();
 		if(isset($datos))
 		{
-			$codcatas = 123456789;
+			$codcatas = $cod_catastral;
 			$nro_matricula_folio = $datos['nro_matricula_folio'];
 			$nro_folio = $datos['nro_folio'];
 			$fecha_folio = $datos['fecha_folio'];
@@ -29,7 +31,7 @@ class Ddrr extends CI_Controller {
 			$foja = $datos['foja'];
 			$libro = $datos['libro'];
 			$fecha_reg_libro = $datos['fecha_reg_libro'];
-			$porcen_parti = $datos['porcen_parti'];
+			
 			$ci = $datos['ci'];
 			$datos= $this->cart->contents();
 			$this->ddrr_model->insertarDDRR($codcatas, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos);

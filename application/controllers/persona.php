@@ -38,14 +38,19 @@ class Persona extends CI_Controller {
 	public function insertar()
 	{
 		$datos = $this->input->post();
+
 		if($this->persona_model->existeci($datos['ci']))
 		{
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_creacion = $resi->persona_id; 
+
 			$nombres = $datos['nombres'];
 			$paterno = $datos['paterno'];
 			$materno = $datos['materno'];
 			$ci = $datos['ci'];
 			$fec_nacimiento = $datos['fec_nacimiento'];
-			$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
+			$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
 		}
 
 		$consulta = $this->persona_model->consulta($datos['ci']);

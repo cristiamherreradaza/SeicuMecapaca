@@ -234,9 +234,10 @@ class Predios extends CI_Controller {
 		$this->load->view('predios/muestra_img', $data);
 	}
 
-	public function nuevo(){
+	public function nuevo($cod_catastral = null){
 
 		$data = $this->datos_combo();
+		$data['cod_catastral']= $cod_catastral;
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('predios/nuevo', $data);
