@@ -44,7 +44,7 @@
                         <div class="card-body">
                             <h4 class="card-title">
                                 Registro de Predio
-                                <!-- <button type="button" class="btn waves-effect waves-light btn-success" id="btn_sel_predio">Seleccionar predio</button> -->
+                                <button type="button" class="btn waves-effect waves-light btn-success" id="btn_sel_predio">Seleccionar predio</button>
                             </h4>
                             <div id="muestra_mapa" style="display: none;">
                                 <div id="map" style="width: 100%; height: 650px;"></div>
