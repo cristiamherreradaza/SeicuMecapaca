@@ -480,16 +480,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="wfirstName2">Superficie : <span class="danger">*</span> </label>
-                                            <input type="number" class="form-control required" id="superficie" name="superficie" required>
+                                            <label for="wfirstName2">Superficie : <span class="text-danger">*</span> </label>
+                                            <input type="number" class="form-control required" id="superficie" name="superficie" value="0.00"required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="wfirstName2">Altura : <span class="danger">*</span> </label>
-                                            <input type="number" class="form-control required" id="altura" name="altura" required>
+                                            <label for="wfirstName2">Altura : <span class="text-danger">*</span> </label>
+                                            <input type="number" class="form-control required" id="altura" name="altura" value="0.00" required>
                                         </div>
                                     </div>
                                 </div>
@@ -498,7 +498,7 @@
                             <!--fin col-lg-5-->
                         </div>
                         <!--fin column-->
-                        <button type="submit" class="btn btn-success" value="save">Guardar</button>
+                        <button type="submit" class="btn btn-info" value="save">Guardar</button>
                         <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral?>" align="right">Cancelar</a>
                         </form>
                     </div>

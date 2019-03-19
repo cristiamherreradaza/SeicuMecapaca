@@ -52,7 +52,7 @@
                             <p></p>
                          <!-- Step 1 -->
                          <h2></h2>
-                         <a class=" btn btn-info" href="<?php echo site_url('edificacion/adicionar'); ?>/<?php echo $cod_catastral; ?>" align="right"><i class="mdi mdi-plus"></i> Agregar Bloque</a>
+                         <a class=" btn btn-success" href="<?php echo site_url('edificacion/adicionar'); ?>/<?php echo $cod_catastral; ?>" align="right"><i class="mdi mdi-plus"></i> Agregar Bloque</a>
 
                                 <div class="card">
                                     <div class="card-body">
