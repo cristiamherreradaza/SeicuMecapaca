@@ -111,7 +111,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0">
                                         </div>
                                     </div>
 
@@ -224,7 +224,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0">
 
                                         </div>
                                     </div>
@@ -332,7 +332,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0">
                                         </div>
                                     </div>
 
@@ -388,7 +388,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Nombre de Bloque : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque">
+                                            <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque" required>
                                         </div>
                                     </div>
                                 </div>
@@ -396,7 +396,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de construccion: <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="anio_cons" name="anio_cons">
+                                            <input type="text" class="form-control required" id="anio_cons" name="anio_cons" required>
                                         </div>
                                     </div>
                                 </div>
@@ -404,7 +404,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de remodelacion: <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="anio_remo" name="anio_remo">
+                                            <input type="text" class="form-control required" id="anio_remo" name="anio_remo" required>
                                         </div>
                                     </div>
                                 </div>
@@ -412,7 +412,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Destino :</label>
-                                            <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id">
+                                            <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" required>
+                                            <option value="">Seleccione destino</option>
                                                 <?php foreach ($destino_bloque as $d) : ?>
                                                 <option value="<?php echo $d->destino_bloque_id; ?>"><?php echo $d->descripcion; ?></option>
                                                 <?php endforeach; ?>
@@ -424,7 +425,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Uso :</label>
-                                            <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id">
+                                            <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id" required>
+                                                <option value="">Seleccione Uso</option>
                                                 <?php foreach ($destino_uso as $du) : ?>
                                                 <option value="<?php echo $du->uso_bloque_id; ?>"><?php echo $du->descripcion; ?></option>
                                                 <?php endforeach; ?>
@@ -436,8 +438,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Estado Fisico :</label>
-                                            <select class="custom-select form-control" id="estado_fisico" name="estado_fisico">
-                                                <option value="">Seleccionar</option>
+                                            <select class="custom-select form-control" id="estado_fisico" name="estado_fisico" required>
+                                                <option value="">Seleccione estado fisico</option>
                                                 <option value="Bueno">Bueno</option>
                                                 <option value="Precario">Precario</option>
                                             </select>
@@ -450,7 +452,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Tipo de planta :</label>
-                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id">
+                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" required> 
+                                                <option value="">Seleccione Tipo de planta</option>
                                                 <?php foreach ($tipo_planta as $tp) : ?>
                                                 <option value="<?php echo $tp->tipo_planta_id; ?>"><?php echo $tp->descripcion; ?></option>
                                                 <?php endforeach; ?>
@@ -462,8 +465,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Nivel :</label>
-                                            <select class="custom-select form-control" id="nivel" name="nivel">
-                                                <option value="">Seleccionar</option>
+                                            <select class="custom-select form-control" id="nivel" name="nivel" required>
+                                                <option value="">Seleccione tipo de planta</option>
                                                 <option value="-1">-1</option>
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
@@ -478,7 +481,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Superficie : <span class="danger">*</span> </label>
-                                            <input type="number" class="form-control required" id="superficie" name="superficie">
+                                            <input type="number" class="form-control required" id="superficie" name="superficie" required>
                                         </div>
                                     </div>
                                 </div>
@@ -486,7 +489,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Altura : <span class="danger">*</span> </label>
-                                            <input type="number" class="form-control required" id="altura" name="altura">
+                                            <input type="number" class="form-control required" id="altura" name="altura" required>
                                         </div>
                                     </div>
                                 </div>
