@@ -173,7 +173,7 @@ class Persona extends CI_Controller {
 	   // var_dump($zonaurb_id);
 
 	    $actualizar = $this->persona_model->actualizar($persona_id, $nombres, $paterno, $materno, $ci, $fec_nacimiento);
-	  	redirect('Predios');
+	  	redirect();
 	}
 
 }
