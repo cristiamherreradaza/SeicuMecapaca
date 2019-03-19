@@ -107,7 +107,7 @@
                                         </div>
                                         <div class="col-md-4 mb-3">
                                                 <label for="validationCustom02">Contrase&ntilde;a</label>
-                                                <input type="password" class="form-control" id="validationCustom02" name="contrasenia" placeholder="Contrase&ntilde;a" required>
+                                                <input type="text" class="form-control" id="validationCustom02" name="contrasenia" placeholder="Contrase&ntilde;a" required>
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>

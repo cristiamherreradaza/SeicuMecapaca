@@ -60,7 +60,7 @@
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu"> Mantenimiento</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a class="has-arrow" href="app-email.htm"><i class="fas fa-user"></i> Personas</a></li>
-                        <li><a href="app-email-detail.html"><i class="fas fa-address-card"></i> Perfil</a></li>
+                        <li><a href="<?php echo base_url(); ?>Usuario/prueba2"><i class="fas fa-address-card"></i> Perfil</a></li>
                         <li><a href="app-email.html"><i class="fas fa-users"></i> Roles</a></li>
                         <li><a href="app-email-detail.html"><i class="fas fa-th-list"></i> Men&uacute;</a></li>
 
