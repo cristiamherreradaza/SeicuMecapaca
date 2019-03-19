@@ -27,7 +27,7 @@ class Usuario extends CI_Controller {
 		
 	}
 
-	public function prueba2(){
+	public function usuario(){
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('usuarios/usuarioss');
@@ -39,7 +39,7 @@ class Usuario extends CI_Controller {
 	public function index()
 	{
 		if($this->session->userdata("login")){
-			redirect(base_url()."Zona_urbana/zona_urbana");
+			redirect(base_url()."Usuario/usuario");
 		}
 		else{
 			$this->load->view('login');	
