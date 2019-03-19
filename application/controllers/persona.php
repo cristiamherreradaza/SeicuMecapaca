@@ -146,7 +146,8 @@ class Persona extends CI_Controller {
 		$verifica_cod = $this->persona_model->buscaci($ci);
 		// print_r($ci);
 		//  print_r($verifica_cod->result());die;
-		if (count($verifica_cod) > 0) {
+		// if (count($verifica_cod) > 0) {
+		if ($verifica_cod) {
 			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fecha, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
 			echo json_encode($respuesta);
 		} else {
