@@ -42,16 +42,46 @@
                             <h4 class="card-title">Registro de los datos del propietario</h4>
                             <h6 class="card-subtitle">Ingrese los datos del propietario </h6>
                             <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
+
+
+
+                           
+
+
+
+
+                             <div class="row">
+
+                                <div class="col-md-4">
+                                    <button class="btn btn-block btn-info" type="button"><span class="btn-label">1</span> REGISTRO DEL PREDIO</button>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <button class="btn btn-block btn-info" type="button"><span class="btn-label">2</span> REGISTRO DE BLOQUES</button>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <button class="btn btn-block btn-info" type="button"><span class="btn-label">3</span> REGISTRO DE PROPIETARIO</button>
+                                </div>
+                                
+                                
+                            </div>
+                            <p></p>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%;height:15px;" role="progressbar"> 100% </div>
+                            </div>
+                            <p></p>
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
                             <!-- <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?> -->
                             <?php echo form_open_multipart('ddrr/guardar', array('method'=>'POST')); ?>
                             <!-- <?php //echo form_open('ddrr/guardar', array('method' => 'POST')); ?> -->
-                                <h6>Datos propietario</h6>
+                            
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" style="background-color: #f7f9ff;">
+                                        <h6>Datos propietario</h6>
                                         <div  id="registro" style="padding-top: 30px;">
                                             <div class="button-box">
-                                                <button type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger">*</span> 
+                                                <button class="btn waves-effect waves-light btn-info" type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span> 
                                             </div>
                                         </div>
                                         <!-- <?php //echo form_open('path/to/controller/update/method'); ?> -->
@@ -92,15 +122,21 @@
                                                 <tr>
                                                     <td colspan="2"> </td>
                                                     <td class="right"><strong>Total</strong></td>
-                                                    <td class="right"><?php echo $this->cart->total_items(); ?> %</td>
+                                                    <td id="total" class="right"><?php echo $this->cart->total_items(); ?> %</td>
                                                     <td></td>
                                                 </tr>
                                             </table>
-                                        </div>
+                                        </div>  
                                     </div>
                                     <!--/span-->
                                     <div class="col-md-6">
-                                        <div class="row">
+                                        <div class="row" style="background-color: #f6f6f6;">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Cod<span class="text-danger">*</span> </label>
+                                                    <input type="text" class="form-control" name="cod_catastral" value="<?php echo $cod_catastral ?>" required />
+                                                </div>
+                                            </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Numero de matricula folio<span class="text-danger">*</span> </label>
@@ -122,15 +158,23 @@
                                             </div>
                                             <!--/span-->
                                         </div>
-                                        <div class="form-group">
-                                            <label for="participants1">Superficie legal<span class="text-danger">*</span> </label>
-                                            <input type="text" class="form-control required" name="superficie_legal" required />
+                                        <div class="row "  style="background-color: #fffef7;">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="participants1">Superficie legal<span class="text-danger">*</span> </label>
+                                                    <input type="text" class="form-control required" name="superficie_legal" required />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="participants1">Nombre del notario<span class="text-danger">*</span> </label>
-                                            <input type="text" class="form-control required" name="nom_notario" required />
+                                        <div class="row "  style="background-color: #fffef7;">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="participants1">Nombre del notario<span class="text-danger">*</span> </label>
+                                                    <input type="text" class="form-control required" name="nom_notario" required />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" style="background-color: #f6f6f6;">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Numero de testimonio<span class="text-danger">*</span> </label>
@@ -144,7 +188,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" style="background-color: #fffef7;">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Partida<span class="text-danger">*</span> </label>
@@ -158,11 +202,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="participants1">Foja<span class="text-danger">*</span> </label>
-                                            <input type="text" class="form-control required" name="foja" required />
+                                        <div class="row "  style="background-color: #f6f6f6;">
+                                            <div class="col-md-12">
+                                                <div class="form-group" >
+                                                    <label for="participants1">Foja<span class="text-danger">*</span> </label>
+                                                    <input type="text" class="form-control required" name="foja" required />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" style="background-color: #fffef7;">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Libro<span class="text-danger">*</span> </label>
@@ -180,11 +228,11 @@
                                             <!--/span-->
                                         </div>
                                     </div>
-                                    <div class="form-actions">
-                                        <button type="submit" > enviar</button>
-                                        <button type="button" >Cancelar</button>
+                                    <div class="form-actions col-md-12 offset-md-11">
+                                        <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
                                     </div>
                                 </div>
+                            
                             <?php echo form_close(); ?>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
@@ -205,6 +253,7 @@
                                                                 <label for="ci"> Carnet <span class="text-danger">*</span> </label>
                                                                 <input type="text" class="form-control" id="ci1" name="ci1" required />
                                                                 <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
+                                                                <small id="msg_sucess_catastral" class="form-control-feedback" style="display: none; color: #31B404"></small>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -251,6 +300,7 @@
                                                             <div class="form-group">
                                                                 <label>Porcentaje <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" id="porcen_parti1" name="porcen_parti1" required />
+                                                                <small id="msg_alerta_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -299,18 +349,27 @@
                     // alert(data.message);
                     if (data.estado == 'si') {
                         // console.log('Si se esta');
-                        $("#msg_error_catastral").show();    
+                        $("#msg_error_catastral").hide();    
+                        $("#msg_sucess_catastral").show();
+                        $("#msg_alerta_catastral").show();
                         $("#ci").val("");    
-                        $("#msg_error_catastral").html('La persona existe: '+data.ci);
+                        $("#msg_sucess_catastral").html('La persona existe: '+data.ci);
                         $('#nombres1').val(data.nombres);
                         $('#paterno1').val(data.paterno);
                         $('#materno1').val(data.materno);
                         $('#fec_nacimiento1').val(data.fec_nacimiento);
+                        $("#msg_alerta_catastral").html('Ingrese el porcentaje de participacion del propietario');
                         
                            
                     } else {
+                        $("#msg_sucess_catastral").hide();
                          $("#msg_error_catastral").show();
+                         $("#msg_alerta_catastral").hide();
                         $("#msg_error_catastral").html('La persona no existe: '+data.ci);
+                        $('#nombres1').val('');
+                        $('#paterno1').val('');
+                        $('#materno1').val('');
+                        $('#fec_nacimiento1').val('');
                     }
 
                 },

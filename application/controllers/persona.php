@@ -38,14 +38,19 @@ class Persona extends CI_Controller {
 	public function insertar()
 	{
 		$datos = $this->input->post();
+
 		if($this->persona_model->existeci($datos['ci']))
 		{
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_creacion = $resi->persona_id; 
+
 			$nombres = $datos['nombres'];
 			$paterno = $datos['paterno'];
 			$materno = $datos['materno'];
 			$ci = $datos['ci'];
 			$fec_nacimiento = $datos['fec_nacimiento'];
-			$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
+			$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
 		}
 
 		$consulta = $this->persona_model->consulta($datos['ci']);
@@ -137,12 +142,12 @@ class Persona extends CI_Controller {
 	public function ajax_verifica(){
 		$ci = $this->input->get("param1");
 		// $this->db->where()
-		$this->db->where('ci', $ci);
+		//$this->db->where('ci', $ci);
 		$verifica_cod = $this->persona_model->buscaci($ci);
 		// print_r($ci);
 		//  print_r($verifica_cod->result());die;
 		if (count($verifica_cod) > 0) {
-			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fec_nacimiento, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
+			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fecha, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
 			echo json_encode($respuesta);
 		} else {
 			$respuesta = array('ci'=>$ci,'nombres' => ' ' , 'estado'=>'no');

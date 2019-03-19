@@ -9,7 +9,7 @@ class Persona_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento)
+	public function insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion)
 	{	
 		
 		$array = array(
@@ -17,7 +17,8 @@ class Persona_model extends CI_Model {
 			'paterno' =>$paterno,
 			'materno' =>$materno,
 			'ci' =>$ci,
-			'fec_nacimiento' =>$fec_nacimiento
+			'fec_nacimiento' =>$fec_nacimiento,
+			'usu_creacion' =>$usu_creacion
 			);
 		$this->db->insert('persona', $array);
 	}
@@ -41,8 +42,9 @@ class Persona_model extends CI_Model {
 	}
 
 	public function buscaci( $ci ){
-	    $con = $this->db->get_where('persona',
-	    array('ci'=>$ci));
+		$con = $this->db->query("SELECT to_char(fec_nacimiento, 'YYYY-MM-DD') as fecha, * FROM persona WHERE ci = '".$ci."'");
+
+	    
 	    if ($con->num_rows() > 0)
 	        return $con->row();
 	    else
