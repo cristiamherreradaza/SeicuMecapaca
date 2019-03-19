@@ -33,6 +33,16 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
 
+	public function prueba()
+	{
+		
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('login/prueba');
+		$this->load->view('admin/footer');
+	}
+
 
 	
 }
