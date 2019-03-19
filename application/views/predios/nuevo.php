@@ -39,16 +39,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                            <h4 class="card-title">Registro de los datos del propietario</h4>
-                            <h6 class="card-subtitle">Ingrese los datos del propietario </h6>
-                            <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
-
-
-
                            
 
-
-
+                            <div class="row page-titles">
+                            <div class="col-md-6 col-8 align-self-center">
+                                 <h4 class="card-title">Registro de los datos del propietario</h4>
+                            <h6 class="card-subtitle">Ingrese los datos del propietario </h6>
+                            </div>
+                            <div class="col-md-6 col-4 align-self-center">
+                                <button class="btn float-right hidden-sm-down btn-success">Cod. Catastral: <?php echo $cod_catastral; ?>
+                                </button>
+                            </div>
+                        </div>
 
                              <div class="row">
 
@@ -81,7 +83,7 @@
                                         <h6>Datos propietario</h6>
                                         <div  id="registro" style="padding-top: 30px;">
                                             <div class="button-box">
-                                                <button class="btn waves-effect waves-light btn-info" type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span> 
+                                                <button class="btn btn-success waves-effect waves-light " type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span> 
                                             </div>
                                         </div>
                                         <!-- <?php //echo form_open('path/to/controller/update/method'); ?> -->
@@ -131,10 +133,10 @@
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="row" style="background-color: #f6f6f6;">
-                                            <div class="col-md-4">
+                                            <div class="col-md-0">
                                                 <div class="form-group">
-                                                    <label>Cod<span class="text-danger">*</span> </label>
-                                                    <input type="text" class="form-control" name="cod_catastral" value="<?php echo $cod_catastral ?>" required />
+                                                    
+                                                    <input type="hidden" class="form-control" name="cod_catastral" value="<?php echo $cod_catastral ?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -307,8 +309,8 @@
 
                                                 </div>
                                                 <div class="form-actions">
-                                                    <button type="button" onclick="confirma()"> <i class="fa fa-check"></i>Guardar</button>
-                                                    <button type="button"  data-dismiss="modal">Cerrar</button>
+                                                    <button class="btn waves-effect waves-light btn-info" type="button" onclick="confirma()"> <i class="fa fa-check"></i>Guardar</button>
+                                                    <button class="btn btn-danger" type="button"  data-dismiss="modal">Cerrar</button>
                                                 </div>
                                             <?php echo form_close(); ?>
                                         </div>
