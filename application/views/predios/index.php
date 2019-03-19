@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">LISTADO PREDIOS</h4>
-                        <table id="myTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                        <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>COD CATASTRAL</th>
@@ -48,7 +48,12 @@
                                         <td><?php echo $lp->distrito; ?></td>
                                         <td><?php echo $lp->manzana; ?></td>
                                         <td><?php echo $lp->predio; ?></td>
-                                        <td><?php echo $lp->fec_creacion; ?></td>
+                                        <td>
+                                            <?php 
+                                                $fecha_mod = explode(".", $lp->fec_creacion); 
+                                                echo $fecha_mod[0]; 
+                                            ?>
+                                        </td>
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
                                                 <a href="<?php echo base_url(); ?>predios/editar/<?php echo $lp->codcatas; ?>" class="btn btn-primary footable-edit">
