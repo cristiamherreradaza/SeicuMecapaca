@@ -28,7 +28,7 @@ class Predios extends CI_Controller {
 
 			$acceso_inicio = date("Y-m-d H:i:s");
 
-			$ip = $this->logacceso_model->ip_publico();
+			$ip = $this->logacceso_model->ip_local();
 			$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 		
 			$query = $this->db->get('catastro.predio');

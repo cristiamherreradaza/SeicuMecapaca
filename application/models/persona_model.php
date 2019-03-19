@@ -50,4 +50,18 @@ class Persona_model extends CI_Model {
 	    else
 	    	return null;
 	  }
+
+
+    public function actualizar($persona_id, $nombres, $paterno, $materno, $ci, $fec_nacimiento)
+    {
+        $data = array(
+            'nombres' => $nombres,
+            'paterno' => $paterno,
+            'materno' => $materno,
+            'ci' => $ci,
+            'fec_nacimiento' => $fec_nacimiento
+        );
+        $this->db->where('persona_id', $persona_id);
+        return $this->db->update('public.persona', $data);
+    }
 }

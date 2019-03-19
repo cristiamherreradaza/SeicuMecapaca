@@ -6,11 +6,8 @@
 
         <div class="row">
                             <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                                 <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Zona Urbana</h4>
-                                        </div>
-                                        <div class="modal-body">
+                                <div class="modal-content">
+                                    <div class="modal-body">
                             <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
                                         <form>
                                             <div class="form-group">

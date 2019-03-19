@@ -156,5 +156,25 @@ class Persona extends CI_Controller {
 		}		
 	}
 
+	 public function update()     
+	{   
+		//OBTENER EL ID DEL USUARIO LOGUEADO
+		$id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_modificacion = $resi->persona_id;
+        $fec_modificacion = date("Y-m-d H:i:s"); 
+
+	    $persona_id = $this->input->post('persona_id');
+	    $nombres = $this->input->post('nombres');
+	    $paterno = $this->input->post('paterno');
+	    $materno = $this->input->post('materno');
+	    $ci = $this->input->post('ci');
+	    $fec_nacimiento = $this->input->post('fec_nacimiento');
+	   // var_dump($zonaurb_id);
+
+	    $actualizar = $this->persona_model->actualizar($persona_id, $nombres, $paterno, $materno, $ci, $fec_nacimiento);
+	  	redirect('Predios');
+	}
+
 }
 

@@ -34,7 +34,7 @@ class Logacceso_model extends CI_Model {
 		$this->db->insert('logacceso', $array);
 	}
 
-	function ip_local() 
+	public function ip_local() 
 		{
 		  $ipaddress = '';
 		  if (getenv('HTTP_CLIENT_IP'))
@@ -62,7 +62,7 @@ class Logacceso_model extends CI_Model {
 			 return $ipaddress;
 		}
 
-		function ip_publico()
+	public function ip_publico()
 		{
 		  $externalContent = file_get_contents('http://checkip.dyndns.com/');
 		  preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $externalContent, $m);
@@ -70,7 +70,7 @@ class Logacceso_model extends CI_Model {
 		  return $externalIp;
 		}
 
-		public function fecha_salida($logacceso_id, $acceso_fin)
+	public function fecha_salida($logacceso_id, $acceso_fin)
    		 {
         $data = array(
             'acceso_fin' => $acceso_fin
