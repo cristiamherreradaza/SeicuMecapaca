@@ -84,13 +84,11 @@
 
                                     if ($i == 0) {  ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:LightGray"> <?php echo "<pre>";
+                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
                                                                                                             print_r($grupos_subgrupos[$i]['desc_grupo']);
                                                                                                             echo "</pre>"; ?>
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            %                                           
-                                        </div>
+                                        
                                     </div>
                                     <?php 
                                 } else { ?>
@@ -100,7 +98,7 @@
                                     <div class="row" style="background-color:White;">
                                         <input type="hidden" class="form-control required" id="tam_grup_sub" name="tam_grup_sub" readonly="" value="<?php echo $max; ?>">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:lightyellow">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White">
                                             <?php echo "<pre>";
                                             print_r($grupos_subgrupos[$i]['desc_item']);
                                             echo "</pre>"; ?>
@@ -113,7 +111,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required>
+                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0">
                                         </div>
                                     </div>
 
@@ -125,7 +123,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
                                             <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
                                         </div>
                                     </div>
@@ -140,7 +138,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
                                             <div id="validsuma<?php echo $count ?>" Style="color:red;">
                                             </div>
                                         </div>
@@ -151,7 +149,7 @@
                                     //echo $count2;
                                     if ($count2 < $cantgrupos) { ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:LightGray"> <?php echo "<pre>";
+                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
                                                                                                             print_r($grupos_subgrupos[$j]['desc_grupo']);
                                                                                                             echo "</pre>"; ?>
                                         </div>
@@ -202,7 +200,7 @@
 
                                     if ($i == $pos + 1) {  ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:LightGray"> <?php echo "<pre>";
+                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
                                                                                                             print_r($grupos_subgrupos[$i]['desc_grupo']);
                                                                                                             echo "</pre>"; ?>
                                         </div>
@@ -214,7 +212,7 @@
                                 } ?>
                                     <div class="row" style="background-color:White;">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:lightyellow">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White">
                                             <?php echo "<pre>";
                                             print_r($grupos_subgrupos[$i]['desc_item']);
                                             echo "</pre>"; ?>
@@ -226,7 +224,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required>
+                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0">
 
                                         </div>
                                     </div>
@@ -239,7 +237,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" />
+                                            <input type="text" class="form-control total<?php echo $count ?>" readonly />
                                             <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
                                         </div>
                                     </div>
@@ -254,7 +252,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
                                             <div id="validsuma<?php echo $count ?>" Style="color:red;">
                                             </div>
                                         </div>
@@ -264,7 +262,7 @@
                                     $count2++; //echo $count2;
                                     if ($count2 < $count3) { ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:LightGray"> <?php echo "<pre>";
+                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
                                                                                                             print_r($grupos_subgrupos[$j]['desc_grupo']);
                                                                                                             echo "</pre>"; ?>
                                         </div>
@@ -310,7 +308,7 @@
 
                                     if ($i == $pos + 1) {  ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:LightGray"> <?php echo "<pre>";
+                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
                                                                                                             print_r($grupos_subgrupos[$i]['desc_grupo']);
                                                                                                             echo "</pre>"; ?>
                                         </div>
@@ -322,7 +320,7 @@
                                 } ?>
                                     <div class="row" style="background-color:White;">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:lightyellow">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White">
                                             <?php echo "<pre>";
                                             print_r($grupos_subgrupos[$i]['desc_item']);
                                             echo "</pre>"; ?>
@@ -334,7 +332,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c">
+                                            <input type="text" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0">
                                         </div>
                                     </div>
 
@@ -345,7 +343,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
                                             <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
                                         </div>
                                     </div>
@@ -358,7 +356,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
                                             <div id="validsuma<?php echo $count ?>" Style="color:red;">
                                             </div>
                                         </div>
@@ -368,7 +366,7 @@
                                     //echo $count2;
                                     if ($count2 < $longgrupo) { ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:LightGray">
+                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow">
                                             <?php echo "<pre>";
                                             print_r($grupos_subgrupos[$j]['desc_grupo']);
                                             echo "</pre>"; ?>
@@ -498,7 +496,7 @@
                         </div>
                         <!--fin column-->
                         <button type="submit" class="btn btn-success" value="save">Guardar</button>
-                        <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/" align="right">Cancelar</a>
+                        <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral?>" align="right">Cancelar</a>
                         </form>
                     </div>
                     <!--</form>-->

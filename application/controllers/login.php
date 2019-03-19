@@ -52,8 +52,8 @@ class Login extends CI_Controller {
 				'usuario' => $res->usuario,
 				'login' => TRUE
 			);
-			
 			$this->session->set_userdata($data);
+			$this->session->sess_expiration = 7200;
 			redirect(base_url()."Predios");
 		}
 		

@@ -62,12 +62,16 @@
                                             <table id="myTable" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
+                                                        <th>Codcatastro</th>
                                                         <th>Nro de bloque</th>
                                                         <th>Nombre</th>
                                                         <th>Estado fisico</th>
                                                         <th>Año construccion</th>
+                                                        <th>Altura</th>
+                                                        <th>Superficie</th>
                                                         <th>Destino</th>
                                                         <th>Uso</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -75,12 +79,15 @@
 
                                                     <?php foreach ($bloques as $row) { ?>
                                                     <tr>
-                                                        <th scope="row"><?php echo $row->nro_bloque; ?></th>
+                                                        <th scope="row"><?php echo $row->codcatas; ?></th>                                                    
+                                                        <td><?php echo $row->nro_bloque; ?></td>
                                                         <td><?php echo $row->nom_bloque; ?></td>
                                                         <td><?php echo $row->estado_fisico; ?></td>
+                                                        <td><?php echo $row->altura; ?></td>
+                                                        <td><?php echo $row->superficie; ?></td>
                                                         <td><?php echo $row->anio_cons; ?></td>
-                                                        <td><?php echo $row->destino_bloque_id; ?></td>
-                                                        <td><?php echo $row->uso_bloque_id; ?> </td>
+                                                        <td><?php echo $row->desc_bloque_dest; ?></td>
+                                                        <td><?php echo $row->desc_bloque_uso; ?> </td>
                                                         <td>
                                                         </td>
 

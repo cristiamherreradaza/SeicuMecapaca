@@ -23,6 +23,7 @@
                                     <th>DISTRITO</th>
                                     <th>MANZANA</th>
                                     <th>PREDIO</th>
+                                    <th>REGISTRO</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>
@@ -34,6 +35,7 @@
                                     <th>DISTRITO</th>
                                     <th>MANZANA</th>
                                     <th>PREDIO</th>
+                                    <th>REGISTRO</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </tfoot>
@@ -46,6 +48,7 @@
                                         <td><?php echo $lp->distrito; ?></td>
                                         <td><?php echo $lp->manzana; ?></td>
                                         <td><?php echo $lp->predio; ?></td>
+                                        <td><?php echo $lp->fec_creacion; ?></td>
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
                                                 <a href="<?php echo base_url(); ?>predios/editar/<?php echo $lp->codcatas; ?>" class="btn btn-primary footable-edit">
