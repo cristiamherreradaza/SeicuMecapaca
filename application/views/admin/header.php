@@ -60,7 +60,7 @@
                          <!-- dark Logo text 
                          <img src="<?php echo base_url(); ?>public/assets/images/logo-text.png" alt="homepage" class="dark-logo" />-->
                          <!-- Light Logo text -->    
-                         <img src="<?php echo base_url(); ?>public/assets/images/logos.png" class="light-logo" alt="homepage" /></span>
+                         <img src="<?php echo base_url(); ?>public/assets/images/seicu-libre.png" class="light-logo" alt="homepage" /></span>
                     </a>
 
 
