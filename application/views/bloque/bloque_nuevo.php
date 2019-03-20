@@ -86,7 +86,7 @@
                                       <hr>
                                     <div class="row" style="background-color:Ivory;">
                                         <div class="col-sm-5 col-md-8 " style="background-color:Ivory">                                         
-                                                    <h6 ><?php print_r($grupos_subgrupos[$i]['desc_grupo']); ?> </h6>                                                                                    
+                                                    <h6> <b> <?php print_r($grupos_subgrupos[$i]['desc_grupo']); ?> </b></h6>                                                                                    
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -155,9 +155,9 @@
                                     <p></p>
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
-                                            <h6><?php 
+                                            <h6> <b><?php 
                                                 print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                ?></h6>
+                                                ?></h6></b> 
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -209,9 +209,9 @@
                                       <hr>
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
-                                            <h6><?php 
+                                            <h6> <b>  <?php 
                                                 print_r($grupos_subgrupos[$i]['desc_grupo']);
-                                                ?></h6>
+                                                ?> </b> </h6>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -279,9 +279,9 @@
                                     <p></p>
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
-                                            <h6><?php 
+                                            <h6> <b> <?php 
                                                 print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                ?></h6>
+                                                ?></h6> </b>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -329,9 +329,9 @@
                                       <hr>
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
-                                            <h6><?php 
+                                            <h6>  <b> <?php 
                                                 print_r($grupos_subgrupos[$i]['desc_grupo']);
-                                                ?></h6>
+                                                ?></h6> </b>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -395,10 +395,10 @@
                                     <p></p>
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
-                                            <h6>
+                                            <h6> <b>
                                                 <?php 
                                                 print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                ?></h6>
+                                                ?></h6></b>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -418,7 +418,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="wfirstName2">Nombre de Bloque : <span class="danger">*</span> </label>
+                                            <label for="wfirstName2">Nombre de Bloque :<span class="text-danger"> *</span></label>
                                             <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque" required>
                                         </div>
                                     </div>
@@ -426,23 +426,23 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="wfirstName2">Año de construccion: <span class="danger">*</span> </label>
-                                            <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" required>
+                                            <label for="wfirstName2">Año de construccion: <span class="text-danger"> *</span></label>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" max="999" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="wfirstName2">Año de remodelacion: <span class="danger">*</span> </label>
-                                            <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" required>
+                                            <label for="wfirstName2">Año de remodelacion: <span class="text-danger"> *</span></label>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" max="999" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="location1">Destino :</label>
+                                            <label for="location1">Destino :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" required>
                                                 <option value="">Seleccione destino</option>
                                                 <?php foreach ($destino_bloque as $d) : ?>
@@ -455,7 +455,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="location1">Uso :</label>
+                                            <label for="location1">Uso :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id" required>
                                                 <option value="">Seleccione Uso</option>
                                                 <?php foreach ($destino_uso as $du) : ?>
@@ -468,7 +468,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="location1">Estado Fisico :</label>
+                                            <label for="location1">Estado Fisico :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="estado_fisico" name="estado_fisico" required>
                                                 <option value="">Seleccione estado fisico</option>
                                                 <option value="Bueno">Bueno</option>
@@ -482,7 +482,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="location1">Tipo de planta :</label>
+                                            <label for="location1">Tipo de planta :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" required>
                                                 <option value="">Seleccione Tipo de planta</option>
                                                 <?php foreach ($tipo_planta as $tp) : ?>
@@ -495,9 +495,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="location1">Nivel :</label>
+                                            <label for="location1">Nivel : <span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="nivel" name="nivel" required>
-                                                <option value="">Seleccione tipo de planta</option>
+                                                <option value="">Seleccione nivel</option>
                                                 <option value="-1">-1</option>
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
@@ -511,16 +511,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="wfirstName2">Superficie : <span class="text-danger">*</span> </label>
-                                            <input type="number" class="form-control" min="0" id="superficie" name="superficie" value="0.00" required>
+                                            <label for="wfirstName2">Superficie : <span class="text-danger"> * <small>metros</small></span> </label>
+                                            <input type="number" class="form-control" step='0.10' id="superficie" name="superficie" value="0.00" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="wfirstName2">Altura : <span class="text-danger">*</span> </label>
-                                            <input type="number" class="form-control" min="0" id="altura" name="altura" value="0.00" required>
+                                            <label for="wfirstName2">Altura : <span class="text-danger"> * <small>metros</small> </span> </label>
+                                            <input type="number" class="form-control" step='0.10' id="altura" name="altura" value="0.00" required>
                                         </div>
                                     </div>
                                 </div>

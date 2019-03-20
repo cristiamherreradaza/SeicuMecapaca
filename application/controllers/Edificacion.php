@@ -17,17 +17,7 @@ class Edificacion extends CI_Controller {
 	{   
         if($this->session->userdata("login"))
 		{
-		    $persona_perfil_id = $this->session->userdata("persona_perfil_id");
-		    $usuario = $this->session->userdata("usuario");
-
-		    $id = $this->db->query("SELECT * FROM credencial WHERE persona_perfil_id = '$persona_perfil_id' AND usuario = '$usuario'")->row();
-
-			$credencial_id = $id->credencial_id;
-
-			$acceso_inicio = date("Y-m-d H:i:s");
-
-			$ip = $this->logacceso_model->ip_publico();
-            $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+            
             
             redirect(base_url()."Edificacion/nuevo");
 		}
@@ -184,6 +174,11 @@ class Edificacion extends CI_Controller {
        }        
         // fin guardamos los servicios        
         redirect(base_url().'Edificacion/nuevo/'.$this->input->post('cod_catastral'));
+        }
+
+        public function next($cod_catastral = null ){
+            $query = $this->db->query("UPDATE catastro.predio SET activo = 2 WHERE codcatas='$cod_catastral'");            
+            redirect(base_url().'predios/nuevo/'.$this->input->post('cod_catastral'));
         }
 
     

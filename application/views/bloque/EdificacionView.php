@@ -101,7 +101,7 @@
 
                                         </div>
                                         <div align="right">
-                                            <a class="btn btn-success" href="<?php echo site_url('predios/nuevo'); ?>/<?php echo $cod_catastral?>" align="right">Siguiente</a>
+                                            <a class="btn btn-success" href="<?php echo site_url('edificacion/next'); ?>/<?php echo $cod_catastral?>" align="right">Siguiente</a>
                                         </div>
 
                                     </div>
