@@ -21,7 +21,7 @@
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustom01">Nombres</label>
-                                            <input type="text" class="form-control" name="nombres" id="validationCustom01" placeholder="First name" value="Jose Jose" required>
+                                            <input type="text" class="form-control" name="nombres" id="validationCustom01" placeholder="Nombres" required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -29,7 +29,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustom01">Apellido Paterno</label>
-                                            <input type="text" class="form-control" name="paterno" id="validationCustom01" placeholder="First name" value="Perez" required>
+                                            <input type="text" class="form-control" name="paterno" id="validationCustom01" placeholder="Paterno" required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -37,7 +37,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustom01">Apellido Materno</label>
-                                            <input type="text" class="form-control" name="materno" id="validationCustom01" placeholder="First name" value="Perez" required>
+                                            <input type="text" class="form-control" name="materno" id="validationCustom01" placeholder="Materno" required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -45,7 +45,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustom01">Carnet de Identidad</label>
-                                            <input type="text" class="form-control" name="ci" id="validationCustom01" placeholder="First name" value="9876543" required>
+                                            <input type="text" class="form-control" name="ci" id="validationCustom01" placeholder="CI:" required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -53,7 +53,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustom01">Fecha de Nacimiento</label>
-                                            <input type="date" class="form-control" name="fec_nacimiento" id="validationCustom01" placeholder="First name"  required>
+                                            <input type="date" class="form-control" name="fec_nacimiento" id="validationCustom01" placeholder="Fecha de Nacimiento"  required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -98,7 +98,7 @@
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
                                                 <label for="validationCustom02">Nombre de Usuario</label>
-                                                <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" name="usuario" value="Otto" required>
+                                                <input type="text" class="form-control" id="validationCustom02" placeholder="Usuario" name="usuario" required>
                                                 <div class="valid-feedback">
                                                     Looks good!
                                                 </div>
