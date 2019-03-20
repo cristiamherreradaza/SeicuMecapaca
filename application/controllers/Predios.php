@@ -97,9 +97,12 @@ class Predios extends CI_Controller {
 			$perfil = $persona_perfil->perfil_id; 
 			
 				if ($perfil == '1') {
-
-					$this->db->order_by('fec_creacion', 'DESC');					
+					// $this->db->select(array('catastro.predio.fec_creacion', 'catastro.predio.codcatas', 'catastro.predio.nro_inmueble', 'catastro.zona_urbana.descripcion'));
+					// $this->db->join('catastro.zona_urbana', 'catastro.predio.zonaurb_id = catastro.zona_urbana.zonaurb_id');
+					// $this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
+					$this->db->order_by('catastro.predio.fec_creacion', 'DESC');					
 					$query = $this->db->get('catastro.predio');
+					// vdebug($this->db->last_query());
 					$data['listado_predios'] = $query->result();
 
 					$this->load->view('admin/header');
@@ -150,11 +153,13 @@ class Predios extends CI_Controller {
 			}else{
 
 				$this->db->select('tipo_predio_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.tipo_predio');
 				$data['dc_tipos_predio'] = $query->result();
 
 				$this->db->select('zonaurb_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.zona_urbana');
 				$data['dc_zona_urbana'] = $query->result();
@@ -165,41 +170,49 @@ class Predios extends CI_Controller {
 				$data['dc_predio_via'] = $query->result();
 
 				$this->db->select('ubicacion_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.ubicacion');
 				$data['dc_ubicacion'] = $query->result();
 
 				$this->db->select('pendiente_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.pendiente');
 				$data['dc_pendiente'] = $query->result();
 
 				$this->db->select('nivel_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.nivel');
 				$data['dc_nivel'] = $query->result();
 
 				$this->db->select('forma_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.forma');
 				$data['dc_forma'] = $query->result();
 
 				$this->db->select('clase_predio_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.clase_predio');
 				$data['dc_clase_predio'] = $query->result();
 
 				$this->db->select('uso_suelo_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.uso_suelo');
 				$data['dc_uso_suelo'] = $query->result();
 
 				$this->db->select('edificio_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.edificio');
 				$data['dc_edificio'] = $query->result();
 
 				$this->db->select('servicio_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
 				$this->db->where('activo', 1);
 				$query = $this->db->get('catastro.servicio');
 				$data['listado_servicios'] = $query->result();
@@ -427,7 +440,9 @@ class Predios extends CI_Controller {
 	private function datos_combo(){
 		if($this->session->userdata("login")){
 			$this->db->select('tipo_predio_id, descripcion');
+			$this->db->order_by('descripcion', 'ASC');
 			$query = $this->db->get('catastro.tipo_predio');
+			vdebug($this->db->last_query());
 			$data['dc_tipos_predio'] = $query->result();
 
 			$this->db->select('zonaurb_id, descripcion');

@@ -19,7 +19,7 @@
                                 <tr>
                                     <th>FECHA REGISTRO</th>
                                     <th>COD CATASTRAL</th>
-                                    <th>COD ANT CATASTRAL</th>
+                                    <!-- <th>COD ANT CATASTRAL</th> -->
                                     <th>N. INMUEBLE</th>
                                     <th>ACCIONES</th>
                                 </tr>
@@ -28,7 +28,7 @@
                                 <tr>
                                     <th>FECHA REGISTRO</th>
                                     <th>COD CATASTRAL</th>
-                                    <th>COD ANT CATASTRAL</th>
+                                    <!-- <th>COD ANT CATASTRAL</th> -->
                                     <th>N. INMUEBLE</th>
                                     <th>ACCIONES</th>
                                 </tr>
@@ -43,8 +43,15 @@
                                             ?>
                                         </td>
                                         <td><?php echo $lp->codcatas; ?></td>
-                                        <td><?php echo $lp->codcatas_anterior; ?></td>
-                                        <td><?php echo $lp->nro_inmueble; ?></td>
+                                        <!-- <td><?php //echo $lp->codcatas_anterior; ?></td> -->
+                                        <td>
+                                            <?php 
+                                                $this->db->where('zonaurb_id', $lp->zonaurb_id);
+                                                $query = $this->db->get('catastro.zona_urbana')->result();
+                                                // print_r($query);
+                                                echo $query[0]->descripcion;
+                                            ?>
+                                            <?php //echo $lp->codcatas; ?></td>
                                         <!-- <td><?php // echo $lp->nro_inmueble; ?></td>
                                         <td><?php // echo $lp->distrito; ?></td>
                                         <td><?php // echo $lp->manzana; ?></td>
@@ -85,4 +92,4 @@
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
-<!-- ============================================================== -->
+<!-- ==============================================================
