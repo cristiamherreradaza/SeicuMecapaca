@@ -344,6 +344,7 @@ class Predios extends CI_Controller {
 	}
 
 	public function editar($cod_catastral = null){
+		
 		if($this->session->userdata("login")){
 			// vdebug($cod_catastral);
 			$data = $this->datos_combo();

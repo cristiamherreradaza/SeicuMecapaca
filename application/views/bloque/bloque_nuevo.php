@@ -84,11 +84,11 @@
 
                                     if ($i == 0) {  ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
-                                                                                                            print_r($grupos_subgrupos[$i]['desc_grupo']);
-                                                                                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-md-8 " style="background-color:White">                                         
+                                                    <h6 ><?php print_r($grupos_subgrupos[$i]['desc_grupo']); ?> </h6>                                                                                    
                                         </div>
-                                        
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;"><small><i>Porcentaje %</i></small>
+                                        </div>
                                     </div>
                                     <?php 
                                 } else { ?>
@@ -98,12 +98,13 @@
                                     <div class="row" style="background-color:White;">
                                         <input type="hidden" class="form-control required" id="tam_grup_sub" name="tam_grup_sub" readonly="" value="<?php echo $max; ?>">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White">
-                                            <?php echo "<pre>";
-                                            print_r($grupos_subgrupos[$i]['desc_item']);
-                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White">
+                                            <small><i>
+                                                    <?php 
+                                                    print_r($grupos_subgrupos[$i]['desc_item']);
+                                                    ?></i></small>
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
 
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['grupo_mat_id'];
@@ -111,7 +112,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0">
                                         </div>
                                     </div>
 
@@ -120,11 +121,12 @@
                                     <?php $j = $i; ?>
                                     <div class="row" style="background-color:White;">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
-                                            <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
+                                            </div>
                                         </div>
                                     </div>
                                     <?php 
@@ -135,11 +137,11 @@
 
                                     <div class="row" style="background-color:White;">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
-                                            <div id="validsuma<?php echo $count ?>" Style="color:red;">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0 " style="background-color:White;">
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
                                             </div>
                                         </div>
                                     </div>
@@ -148,12 +150,17 @@
                                     $count2++;
                                     //echo $count2;
                                     if ($count2 < $cantgrupos) { ?>
+                                    <p></p>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
-                                                                                                            print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                                                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-md-8" style="background-color:White">
+                                            <h6><?php 
+                                                print_r($grupos_subgrupos[$j]['desc_grupo']);
+                                                ?></h6>
+                                        </div>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;"><small><i>Porcentaje %</i></small>
                                         </div>
                                     </div>
+                                    
                                     <?php 
                                 } ?>
 
@@ -180,8 +187,6 @@
                             <div class="col-lg-3">
                                 <!--grid 2-->
                                 <div class="container-fluid">
-
-
                                     <?php 
                                     $max = sizeof($grupos_subgrupos);
                                     $long = $max - 1;
@@ -200,9 +205,12 @@
 
                                     if ($i == $pos + 1) {  ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
-                                                                                                            print_r($grupos_subgrupos[$i]['desc_grupo']);
-                                                                                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-md-8" style="background-color:White">
+                                            <h6><?php 
+                                                print_r($grupos_subgrupos[$i]['desc_grupo']);
+                                                ?></h6>
+                                        </div>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;"><small><i>Porcentaje %</i></small>
                                         </div>
                                     </div>
                                     <?php 
@@ -211,20 +219,21 @@
                                     <?php 
                                 } ?>
                                     <div class="row" style="background-color:White;">
-
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White">
-                                            <?php echo "<pre>";
-                                            print_r($grupos_subgrupos[$i]['desc_item']);
-                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White">
+                                            <small><i>
+                                                    <?php 
+                                                    print_r($grupos_subgrupos[$i]['desc_item']);
+                                                    ?>
+                                                </i></small>
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['grupo_mat_id'];
                                                                                                                                                                     ?>">
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0">
 
                                         </div>
                                     </div>
@@ -234,11 +243,12 @@
                                     <?php $j = $i; ?>
                                     <div class="row" style="background-color:White;">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
                                             <input type="text" class="form-control total<?php echo $count ?>" readonly />
-                                            <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
+                                            <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
+                                            </div>
                                         </div>
                                     </div>
                                     <?php 
@@ -249,11 +259,11 @@
 
                                     <div class="row" style="background-color:White;">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
-                                            <div id="validsuma<?php echo $count ?>" Style="color:red;">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
                                             </div>
                                         </div>
                                     </div>
@@ -261,10 +271,14 @@
                                     <?php 
                                     $count2++; //echo $count2;
                                     if ($count2 < $count3) { ?>
+                                    <p></p>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
-                                                                                                            print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                                                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-md-8" style="background-color:White">
+                                            <h6><?php 
+                                                print_r($grupos_subgrupos[$j]['desc_grupo']);
+                                                ?></h6>
+                                        </div>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;"><small><i>Porcentaje %</i></small>
                                         </div>
                                     </div>
                                     <?php 
@@ -308,9 +322,12 @@
 
                                     if ($i == $pos + 1) {  ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow"> <?php echo "<pre>";
-                                                                                                            print_r($grupos_subgrupos[$i]['desc_grupo']);
-                                                                                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-md-8" style="background-color:White">
+                                            <h6><?php 
+                                                print_r($grupos_subgrupos[$i]['desc_grupo']);
+                                                ?></h6>
+                                        </div>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;"><small><i>Porcentaje %</i></small>
                                         </div>
                                     </div>
                                     <?php 
@@ -320,19 +337,19 @@
                                 } ?>
                                     <div class="row" style="background-color:White;">
 
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White">
-                                            <?php echo "<pre>";
-                                            print_r($grupos_subgrupos[$i]['desc_item']);
-                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White">
+                                            <small><i> <?php 
+                                                        print_r($grupos_subgrupos[$i]['desc_item']);
+                                                        ?></i></small>
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['grupo_mat_id'];
                                                                                                                                                                     ?>">
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0" size="3" min="0">
                                         </div>
                                     </div>
 
@@ -340,11 +357,12 @@
                                     if ($i == $long) { ?>
                                     <?php $j = $i; ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
-                                            <div id="validsuma<?php echo $count ?>" Style="color:red;"></div>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
+                                            </div>
                                         </div>
                                     </div>
                                     <?php 
@@ -353,11 +371,11 @@
 
                                     if ($grupos_subgrupos[$i]['grupo_mat_id'] != $grupos_subgrupos[$j]['grupo_mat_id']) {  ?>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-9 col-md-offset-0" style="background-color:White;" align="right">Total
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-2 col-md-3 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly/>
-                                            <div id="validsuma<?php echo $count ?>" Style="color:red;">
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
                                             </div>
                                         </div>
                                     </div>
@@ -365,11 +383,15 @@
                                     $count2++;
                                     //echo $count2;
                                     if ($count2 < $longgrupo) { ?>
+                                    <p></p>
                                     <div class="row" style="background-color:White;">
-                                        <div class="col-sm-5 col-md-9" style="background-color:lightyellow">
-                                            <?php echo "<pre>";
-                                            print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                            echo "</pre>"; ?>
+                                        <div class="col-sm-5 col-md-8" style="background-color:White">
+                                            <h6>
+                                                <?php 
+                                                print_r($grupos_subgrupos[$j]['desc_grupo']);
+                                                ?></h6>
+                                        </div>
+                                        <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;"><small><i>Porcentaje %</i></small>
                                         </div>
                                     </div>
                                     <?php 
@@ -396,7 +418,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de construccion: <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="anio_cons" name="anio_cons" required>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" required>
                                         </div>
                                     </div>
                                 </div>
@@ -404,7 +426,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de remodelacion: <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="anio_remo" name="anio_remo" required>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" required>
                                         </div>
                                     </div>
                                 </div>
@@ -413,7 +435,7 @@
                                         <div class="form-group">
                                             <label for="location1">Destino :</label>
                                             <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" required>
-                                            <option value="">Seleccione destino</option>
+                                                <option value="">Seleccione destino</option>
                                                 <?php foreach ($destino_bloque as $d) : ?>
                                                 <option value="<?php echo $d->destino_bloque_id; ?>"><?php echo $d->descripcion; ?></option>
                                                 <?php endforeach; ?>
@@ -452,7 +474,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Tipo de planta :</label>
-                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" required> 
+                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" required>
                                                 <option value="">Seleccione Tipo de planta</option>
                                                 <?php foreach ($tipo_planta as $tp) : ?>
                                                 <option value="<?php echo $tp->tipo_planta_id; ?>"><?php echo $tp->descripcion; ?></option>
@@ -481,7 +503,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Superficie : <span class="text-danger">*</span> </label>
-                                            <input type="number" class="form-control required" id="superficie" name="superficie" value="0.00"required>
+                                            <input type="number" class="form-control" min="0" id="superficie" name="superficie" value="0.00" required>
                                         </div>
                                     </div>
                                 </div>
@@ -489,7 +511,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Altura : <span class="text-danger">*</span> </label>
-                                            <input type="number" class="form-control required" id="altura" name="altura" value="0.00" required>
+                                            <input type="number" class="form-control" min="0" id="altura" name="altura" value="0.00" required>
                                         </div>
                                     </div>
                                 </div>
@@ -499,7 +521,7 @@
                         </div>
                         <!--fin column-->
                         <button type="submit" class="btn btn-info" value="save">Guardar</button>
-                        <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral?>" align="right">Cancelar</a>
+                        <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral ?>" align="right">Cancelar</a>
                         </form>
                     </div>
                     <!--</form>-->

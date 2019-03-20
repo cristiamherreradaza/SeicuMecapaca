@@ -56,15 +56,19 @@
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
-                                                <a href="<?php echo base_url(); ?>predios/editar/<?php echo $lp->codcatas; ?>" class="btn btn-primary footable-edit">
-                                                    <span class="fas fas fa-map" aria-hidden="true"></span>
-                                                </a> 
-                                                <a href="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-warning footable-edit">
-                                                    <span class="fas fas fa-edit" aria-hidden="true"></span>
-                                                </a> 
-                                                <a href="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-info footable-edit">
-                                                    <span class="fas fas fa-edit" aria-hidden="true"></span>
-                                                </a> 
+                                                <?php if ($lp->activo == 1): ?>
+                                                    <a href="<?php echo base_url(); ?>predios/editar/<?php echo $lp->codcatas; ?>" class="btn btn-warning footable-edit">
+                                                        <span class="fas fas fa-edit" aria-hidden="true"></span>
+                                                    </a>
+                                                <?php elseif($lp->activo == 2): ?>
+                                                    <a href="<?php echo base_url(); ?>edificacion/nuevo/<?php echo $lp->codcatas; ?>" class="btn btn-primary footable-edit">
+                                                        <span class="fas fas fa-edit" aria-hidden="true"></span>
+                                                    </a>
+                                                <?php else: ?>
+                                                    <a href="<?php echo base_url(); ?>predios/nuevo/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
+                                                        <span class="fas fas fa-edit" aria-hidden="true"></span>
+                                                    </a>
+                                                <?php endif ?>
 
                                                 <a href="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
                                                     <span class="fas fas fa-print" aria-hidden="true"></span>

@@ -13,17 +13,32 @@ class Edificacion extends CI_Controller {
         $this->load->helper('vayes_helper');
     }
 	
-	public function index()	
-	{	
-        /*if($this->session->userdata("login"))
+	public function index()
+	{   
+        if($this->session->userdata("login"))
 		{
-            $credencial_id = $this->session->userdata("persona_perfil_id");
-            $acceso_inicio = date("Y-m-d H:i:s");
-            $this->load->view('login'); 
-        }else{
-			$this->load->view('login/login');	
-		}*/
-	}
+		    $persona_perfil_id = $this->session->userdata("persona_perfil_id");
+		    $usuario = $this->session->userdata("usuario");
+
+		    $id = $this->db->query("SELECT * FROM credencial WHERE persona_perfil_id = '$persona_perfil_id' AND usuario = '$usuario'")->row();
+
+			$credencial_id = $id->credencial_id;
+
+			$acceso_inicio = date("Y-m-d H:i:s");
+
+			$ip = $this->logacceso_model->ip_publico();
+            $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+            
+            redirect(base_url()."Edificacion/nuevo");
+		}
+		else{
+            redirect(base_url());
+		}
+		
+    }
+    
+    
+
 /*
     public function nuevo(){
         if($this->session->userdata("login"))
