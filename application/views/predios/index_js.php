@@ -62,7 +62,7 @@
     $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 
     $('#tabla_din').DataTable( {
-        "order": [[ 6, "desc" ]],
+        "order": [[ 0, "desc" ]],
         "oLanguage": {
             "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
         },
