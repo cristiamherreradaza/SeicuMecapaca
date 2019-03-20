@@ -17,17 +17,7 @@ class Edificacion extends CI_Controller {
 	{   
         if($this->session->userdata("login"))
 		{
-		    $persona_perfil_id = $this->session->userdata("persona_perfil_id");
-		    $usuario = $this->session->userdata("usuario");
-
-		    $id = $this->db->query("SELECT * FROM credencial WHERE persona_perfil_id = '$persona_perfil_id' AND usuario = '$usuario'")->row();
-
-			$credencial_id = $id->credencial_id;
-
-			$acceso_inicio = date("Y-m-d H:i:s");
-
-			$ip = $this->logacceso_model->ip_publico();
-            $this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+            
             
             redirect(base_url()."Edificacion/nuevo");
 		}

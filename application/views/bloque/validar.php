@@ -64,14 +64,20 @@
         $(".sumcontrol0").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";  
+        var valor="el total es mayor a 100%"; 
+        
         $(".total0").val(sum);     
-        if(sum <= 100){           
-            var valortrue=""; 
-            $("#validsuma0").html(valortrue);
+        if(sum <= 100){
+            var menor="el total es menor a 100%";
+            $("#validsuma0").html(menor);
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma0").html(valortrue);
+            } 
         }else{
             $("#validsuma0").html(valor);
         }
+        
     });
 
     $(document).on("change", ".sumcontrol1", function() {
@@ -79,11 +85,17 @@
         $(".sumcontrol1").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";   
+        
+        $(".total1").val(sum);    
         if(sum <= 100){
-            $(".total1").val(sum);
-            var valortrue=""; 
-            $("#validsuma1").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma1").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma1").html(valortrue);
+            }              
         }else{
             $("#validsuma1").html(valor);
         }
@@ -93,11 +105,16 @@
         $(".sumcontrol2").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%"; 
+        $(".total2").val(sum);      
         if(sum <= 100){
-            $(".total2").val(sum);
-            var valortrue=""; 
-            $("#validsuma2").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma2").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma2").html(valortrue);
+            }  
         }else{
             $("#validsuma2").html(valor);
         }
@@ -108,11 +125,16 @@
         $(".sumcontrol3").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%"; 
+        $(".total3").val(sum);      
         if(sum <= 100){
-            $(".total3").val(sum);
-            var valortrue=""; 
-            $("#validsuma3").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma3").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma3").html(valortrue);
+            }  
         }else{
             $("#validsuma3").html(valor);
         }
@@ -122,11 +144,16 @@
         $(".sumcontrol4").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";  
+        $(".total4").val(sum);     
         if(sum <= 100){
-            $(".total4").val(sum);
-            var valortrue=""; 
-            $("#validsuma4").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma4").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma4").html(valortrue);
+            }  
         }else{
             $("#validsuma4").html(valor);
         }
@@ -137,10 +164,15 @@
             sum += +$(this).val();
         });
         var valor="el total es mayor a 100%";       
+        $(".total5").val(sum);
         if(sum <= 100){
-            $(".total5").val(sum);
-            var valortrue=""; 
-            $("#validsuma5").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma5").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma5").html(valortrue);
+            }  
         }else{
             $("#validsuma5").html(valor);
         }
@@ -150,11 +182,16 @@
         $(".sumcontrol6").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%"; 
+        $(".total6").val(sum);      
         if(sum <= 100){
-            $(".total6").val(sum);
-            var valortrue=""; 
-            $("#validsuma6").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma6").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma6").html(valortrue);
+            }  
         }else{
             $("#validsuma6").html(valor);
         }
@@ -165,11 +202,16 @@
         $(".sumcontrol7").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";  
+        $(".total7").val(sum);     
         if(sum <= 100){
-            $(".total7").val(sum);
-            var valortrue=""; 
-            $("#validsuma7").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma7").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma7").html(valortrue);
+            }  
         }else{
             $("#validsuma7").html(valor);
         }
@@ -180,11 +222,16 @@
         $(".sumcontrol8").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";
+        $(".total8").val(sum);       
         if(sum <= 100){
-            $(".total8").val(sum);
-            var valortrue=""; 
-            $("#validsuma8").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma8").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma8").html(valortrue);
+            }  
         }else{
             $("#validsuma8").html(valor);
         }
@@ -194,11 +241,16 @@
         $(".sumcontrol9").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";  
+        $(".total9").val(sum);     
         if(sum <= 100){
-            $(".total9").val(sum);
-            var valortrue=""; 
-            $("#validsuma9").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma9").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma9").html(valortrue);
+            }  
         }else{
             $("#validsuma9").html(valor);
         }
@@ -208,11 +260,16 @@
         $(".sumcontrol10").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";    
+        $(".total10").val(sum);   
         if(sum <= 100){
-            $(".total10").val(sum);
-            var valortrue=""; 
-            $("#validsuma10").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma10").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma10").html(valortrue);
+            }  
         }else{
             $("#validsuma10").html(valor);
         }
@@ -222,11 +279,16 @@
         $(".sumcontrol11").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";  
+        $(".total11").val(sum);     
         if(sum <= 100){
-            $(".total11").val(sum);
-            var valortrue=""; 
-            $("#validsuma11").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma11").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma11").html(valortrue);
+            }  
         }else{
             $("#validsuma11").html(valor);
         }
@@ -238,10 +300,15 @@
             sum += +$(this).val();
         });
         var valor="el total es mayor a 100%";       
+        $(".total12").val(sum);
         if(sum <= 100){
-            $(".total12").val(sum);
-            var valortrue=""; 
-            $("#validsuma12").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma12").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma12").html(valortrue);
+            }  
         }else{
             $("#validsuma12").html(valor);
         }
@@ -251,11 +318,16 @@
         $(".sumcontrol13").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";  
+        $(".total13").val(sum);     
         if(sum <= 100){
-            $(".total13").val(sum);
-            var valortrue=""; 
-            $("#validsuma13").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma13").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma13").html(valortrue);
+            }  
         }else{
             $("#validsuma13").html(valor);
         }
@@ -266,11 +338,16 @@
         $(".sumcontrol14").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";   
+        $(".total14").val(sum);    
         if(sum <= 100){
-            $(".total14").val(sum);
-            var valortrue=""; 
-            $("#validsuma14").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma14").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma14").html(valortrue);
+            }  
         }else{
             $("#validsuma14").html(valor);
         }
@@ -281,11 +358,16 @@
         $(".sumcontrol15").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";   
+        $(".total15").val(sum);    
         if(sum <= 100){
-            $(".total15").val(sum);
-            var valortrue=""; 
-            $("#validsuma15").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma15").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma15").html(valortrue);
+            }  
         }else{
             $("#validsuma15").html(valor);
         }
@@ -296,11 +378,16 @@
         $(".sumcontrol16").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";     
+        $(".total16").val(sum);  
         if(sum <= 100){
-            $(".total16").val(sum);
-            var valortrue=""; 
-            $("#validsuma16").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma16").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma16").html(valortrue);
+            }  
         }else{
             $("#validsuma16").html(valor);
         }
@@ -312,10 +399,15 @@
             sum += +$(this).val();
         });
         var valor="el total es mayor a 100%";       
+        $(".total17").val(sum);
         if(sum <= 100){
-            $(".total17").val(sum);
-            var valortrue=""; 
-            $("#validsuma17").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma17").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma17").html(valortrue);
+            }  
         }else{
             $("#validsuma17").html(valor);
         }
@@ -326,11 +418,16 @@
         $(".sumcontrol18").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";  
+        $(".total18").val(sum);     
         if(sum <= 100){
-            $(".total18").val(sum);
-            var valortrue=""; 
-            $("#validsuma18").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma18").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma18").html(valortrue);
+            }  
         }else{
             $("#validsuma18").html(valor);
         }
@@ -342,10 +439,15 @@
             sum += +$(this).val();
         });
         var valor="el total es mayor a 100%";       
+        $(".total19").val(sum);
         if(sum <= 100){
-            $(".total19").val(sum);
-            var valortrue=""; 
-            $("#validsuma19").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma19").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma19").html(valortrue);
+            }  
         }else{
             $("#validsuma19").html(valor);
         }
@@ -357,10 +459,15 @@
             sum += +$(this).val();
         });
         var valor="el total es mayor a 100%";       
+        $(".total20").val(sum);
         if(sum <= 100){
-            $(".total20").val(sum);
-            var valortrue=""; 
-            $("#validsuma20").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma20").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma20").html(valortrue);
+            }  
         }else{
             $("#validsuma20").html(valor);
         }
@@ -371,11 +478,16 @@
         $(".sumcontrol21").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
+        var valor="el total es mayor a 100%";      
+        $(".total21").val(sum); 
         if(sum <= 100){
-            $(".total21").val(sum);
-            var valortrue=""; 
-            $("#validsuma21").html(valortrue);
+            var menor="el total es menor a 100%";
+            $("#validsuma21").html(menor);
+            var valortrue="";
+            if(sum == 100){
+                var valortrue="";                 
+                $("#validsuma21").html(valortrue);
+            }  
         }else{
             $("#validsuma21").html(valor);
         }
