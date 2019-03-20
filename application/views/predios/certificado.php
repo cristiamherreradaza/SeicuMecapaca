@@ -32,6 +32,7 @@
                                         <br/> <b>Certificacion de Datos Tecnicos No. 1245/2019</b>
                                         <br/> Matricula: 3.1.2.0001245
                                         <br/> Propietario: RUDDY HERNAN MASIAS
+                                                            
                                 </address>
                             </div>
                             <!-- <div class="float-right text-right">
