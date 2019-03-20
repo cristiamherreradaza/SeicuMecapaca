@@ -40,7 +40,6 @@ class Predios extends CI_Controller {
 			
 				if ($perfil == '1') {
 					
-
 					$this->load->view('admin/header');
 					$this->load->view('admin/menu');
 					$this->load->view('admin/index');
@@ -98,6 +97,8 @@ class Predios extends CI_Controller {
 			$perfil = $persona_perfil->perfil_id; 
 			
 				if ($perfil == '1') {
+
+					$this->db->order_by('fec_creacion', 'DESC');					
 					$query = $this->db->get('catastro.predio');
 					$data['listado_predios'] = $query->result();
 

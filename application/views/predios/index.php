@@ -17,43 +17,38 @@
                         <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th>FECHA REGISTRO</th>
                                     <th>COD CATASTRAL</th>
                                     <th>COD ANT CATASTRAL</th>
                                     <th>N. INMUEBLE</th>
-                                    <th>DISTRITO</th>
-                                    <th>MANZANA</th>
-                                    <th>PREDIO</th>
-                                    <th>REGISTRO</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <th>FECHA REGISTRO</th>
                                     <th>COD CATASTRAL</th>
                                     <th>COD ANT CATASTRAL</th>
                                     <th>N. INMUEBLE</th>
-                                    <th>DISTRITO</th>
-                                    <th>MANZANA</th>
-                                    <th>PREDIO</th>
-                                    <th>REGISTRO</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 <?php foreach ($listado_predios as $lp): ?>
                                     <tr>
-                                        <td><?php echo $lp->codcatas; ?></td>
-                                        <td><?php echo $lp->codcatas_anterior; ?></td>
-                                        <td><?php echo $lp->nro_inmueble; ?></td>
-                                        <td><?php echo $lp->distrito; ?></td>
-                                        <td><?php echo $lp->manzana; ?></td>
-                                        <td><?php echo $lp->predio; ?></td>
                                         <td>
                                             <?php 
                                                 $fecha_mod = explode(".", $lp->fec_creacion); 
                                                 echo $fecha_mod[0]; 
                                             ?>
                                         </td>
+                                        <td><?php echo $lp->codcatas; ?></td>
+                                        <td><?php echo $lp->codcatas_anterior; ?></td>
+                                        <td><?php echo $lp->nro_inmueble; ?></td>
+                                        <!-- <td><?php // echo $lp->nro_inmueble; ?></td>
+                                        <td><?php // echo $lp->distrito; ?></td>
+                                        <td><?php // echo $lp->manzana; ?></td>
+                                        <td><?php // echo $lp->predio; ?></td> -->
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
                                                 <?php if ($lp->activo == 1): ?>
