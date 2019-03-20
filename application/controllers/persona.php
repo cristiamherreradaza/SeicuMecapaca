@@ -27,34 +27,44 @@ class Persona extends CI_Controller {
 	public function insertar()
 	{
 
+		$carrito = $this->cart->total_items();
+		$porcentajeR = 100 - $carrito;
+
 		$datos = $this->input->post();
-		//$cod_catastral= $datos['cod_catastral'];
-		//$cod_catastral = $this->input->post("cod_catastral");
-		if($this->persona_model->existeci($datos['ci']))
-		{
-			$id = $this->session->userdata("persona_perfil_id");
-	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-	        $usu_creacion = $resi->persona_id; 
+		$cod_catastral = $datos['cod_catastral'];
 
-			$nombres = $datos['nombres'];
-			$paterno = $datos['paterno'];
-			$materno = $datos['materno'];
-			$ci = $datos['ci'];
-			$fec_nacimiento = $datos['fec_nacimiento'];
-			$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
+		if($datos['porcen_parti'] <= $porcentajeR){
+			if($this->persona_model->existeci($datos['ci']))
+			{
+				$id = $this->session->userdata("persona_perfil_id");
+		        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+		        $usu_creacion = $resi->persona_id; 
+
+				$nombres = $datos['nombres'];
+				$paterno = $datos['paterno'];
+				$materno = $datos['materno'];
+				$ci = $datos['ci'];
+				$fec_nacimiento = $datos['fec_nacimiento'];
+				$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
+			}
+
+			$consulta = $this->persona_model->consulta($datos['ci']);
+
+			$dato = array(
+				'id'      => $consulta->persona_id,
+				'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
+				'qty'     => $datos['porcen_parti'],
+				'price'   => $consulta->ci
+		//                'options' => array('Size' => 'L',
+		//                                   'Color' => 'Red')
+			);
+			$this->cart->insert($dato);
+			$respuesta = array('estado'=>'no');
+			echo json_encode($respuesta);
+		}else{
+			$respuesta = array('estado'=>'si');
+			echo json_encode($respuesta);
 		}
-
-		$consulta = $this->persona_model->consulta($datos['ci']);
-
-		$dato = array(
-			'id'      => $consulta->persona_id,
-			'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
-			'qty'     => $datos['porcen_parti'],
-			'price'   => $consulta->ci
-	//                'options' => array('Size' => 'L',
-	//                                   'Color' => 'Red')
-		);
-		$this->cart->insert($dato);
 		
 		
 		/*$datos = $this->input->post();

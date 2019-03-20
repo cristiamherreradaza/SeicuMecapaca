@@ -265,7 +265,7 @@
                                                             <div class="form-group">
                                                                 <label>Nombres <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" id="nombres1" name="nombres1" required />
-                                                                <input type="text" class="form-control" name="cod_catastral" id="cod_catastral" value="<?php echo $cod_catastral ?>" required />
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -299,12 +299,16 @@
                                                         </div>
                                                         <!--/span-->
                                                     </div>
+                                                    <?php $i= 100 - $this->cart->total_items(); 
+                                                    ?>
+
                                                     <div class="row">
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
                                                                 <label>Porcentaje <span class="text-danger">*</span></label>
-                                                                <input type="text" class="form-control" id="porcen_parti1" name="porcen_parti1" required />
+                                                                <input type="number" class="form-control" id="porcen_parti1" name="porcen_parti1" value="<?php echo $i; ?>" max="<?php $i; ?>" required />
                                                                 <small id="msg_alerta_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
+                                                                <small id="alerta-porcentaje" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -403,13 +407,22 @@
             type:'POST',
             url:"<?php echo base_url();?>persona/insertar",
             data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, cod_catastral:cod_catastral},
-            success: function (data){
-                
-                window.location.reload();
+            success: function (data, textStatus, jqXHR){
+                if (data.estado == 'no') {
+                    alert('Porcentaje sobrepaso el 100%');
+                    $("#alerta-porcentaje").show();
+                    $("#alerta-porcentaje").html('El porcentaje es demasiado alto');
+                }else{
+                    alert('no');
+                    window.location.reload();
+                }
                 
             }
         });
     }
+
+
+
       
     </script>
     
