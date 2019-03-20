@@ -13,6 +13,65 @@ class Predios extends CI_Controller {
          $this->load->library('cart');
     }
 
+    public function principal(){
+
+
+		if($this->session->userdata("login"))
+		{
+			//insertar datos de la persona logueada en la tabla logacceso
+		    $persona_perfil_id = $this->session->userdata("persona_perfil_id");
+		    $usuario = $this->session->userdata("usuario");
+
+		    $id = $this->db->query("SELECT * FROM credencial WHERE persona_perfil_id = '$persona_perfil_id' AND usuario = '$usuario'")->row();
+
+			$credencial_id = $id->credencial_id;
+
+			$acceso_inicio = date("Y-m-d H:i:s");
+
+			$ip = $this->logacceso_model->ip_local();
+			$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+
+			//sacar el perfil de la persona logueada
+			// 1 = ADMINISTRADOR  ///// 2 = OPERADOR  ///// 3 = USUARIO   ////// 4 = BENEFICIARIO
+			$persona_perfil_id = $id->persona_perfil_id;
+			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE 
+						persona_perfil_id = '$persona_perfil_id'")->row();
+			$perfil = $persona_perfil->perfil_id; 
+			
+				if ($perfil == '1') {
+					
+
+					$this->load->view('admin/header');
+					$this->load->view('admin/menu');
+					$this->load->view('admin/index');
+					$this->load->view('admin/footer');
+				}
+				elseif ($perfil == '2') {
+					
+
+					$this->load->view('admin/header');
+					$this->load->view('admin/menu_operador');
+					$this->load->view('admin/index');
+					$this->load->view('admin/footer');
+				}
+				elseif ($perfil == '3') {
+					$this->load->view('admin/header');
+					$this->load->view('admin/menu_usuario');
+					$this->load->view('admin/index');
+					$this->load->view('admin/footer');
+				}
+				elseif ($perfil == '4') {
+					$this->load->view('admin/header');
+					$this->load->view('admin/menu_beneficiario');
+					$this->load->view('admin/index');
+					$this->load->view('admin/footer');
+				}	
+		}
+		else{
+			redirect(base_url());
+		}
+	}
+
 	public function index(){
 
 
