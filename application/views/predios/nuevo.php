@@ -111,7 +111,8 @@
                                                         <td><?php echo $items['name']; ?></td>
                                                         <td><?php echo $items['price']; ?></td>
                                                         <td><?php echo $items['qty']; ?></td>
-                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']); ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a></td>
+
+                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     <?php
                                                         $i++;
@@ -246,7 +247,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <!--<form action="<?php //echo base_url();?>persona/insertar" method="POST">-->
-                                            <?php echo form_open('persona/insertar', array('method' => 'POST')); ?>
+                                            <?php echo form_open('persona/insertar', array('method' => 'GET')); ?>
                                             <!--<input type="hidden" id="<?php// echo $this->security->get_csrf_token_name(); ?>" name="<?php// echo $this->security->get_csrf_token_name(); ?>" value="<?php //echo $this->security->get_csrf_hash(); ?>" />-->
                                                 <div class="form-body">
                                                     <div class="row">
@@ -264,6 +265,7 @@
                                                             <div class="form-group">
                                                                 <label>Nombres <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" id="nombres1" name="nombres1" required />
+                                                                <input type="text" class="form-control" name="cod_catastral" id="cod_catastral" value="<?php echo $cod_catastral ?>" required />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -395,24 +397,21 @@
         var csrf_test_name = $('#csrf_test_name').val();
         var lqs=document.cookie.split('=');
         var tok = lqs[1];
+        var cod_catastral = $('#cod_catastral').val();
 
         $.ajax({
             type:'POST',
-            url:"<?php echo base_url();?>persona/insertar/",
-            data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok},
-            success: function (resultado){
-                if (resultado == ''){
-                  
-                    //toastr.success("El ingreso se creo correctamente.");
-                    window.location.href = "<?=site_url('predios/nuevo')?>";
-            } else {
-                //toastr.error(resultado);
-                alert(resultado);
+            url:"<?php echo base_url();?>persona/insertar",
+            data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, cod_catastral:cod_catastral},
+            success: function (data){
+                
+                window.location.reload();
+                
             }
-        }
         });
     }
       
     </script>
+    
    
     
