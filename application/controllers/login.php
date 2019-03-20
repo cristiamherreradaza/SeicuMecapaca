@@ -53,12 +53,13 @@ class Login extends CI_Controller {
 				'login' => TRUE
 			);
 			$this->session->set_userdata($data);
-			$this->session->sess_expiration = 7200;
 			redirect(base_url()."Predios");
+		
 		}
 		
 
 	}
+
 
 	public function logout()
 	{
@@ -69,5 +70,12 @@ class Login extends CI_Controller {
 		$actualizar = $this->logacceso_model->fecha_salida($logacceso_id, $acceso_fin);
 		redirect(base_url());
 	}
+
+	public function algo()
+	{
+		$this->logacceso_model->inactividad();
+		
+	}
+
 }
 

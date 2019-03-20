@@ -79,4 +79,18 @@ class Logacceso_model extends CI_Model {
         return $this->db->update('logacceso', $data);
    		 }
 
+   	public function inactividad()
+	{
+		$logacceso_id = $this->db->query("SELECT MAX(logacceso_id) as max FROM logacceso")->row();
+		$acceso_inicio = $this->db->query("SELECT acceso_inicio FROM logacceso WHERE logacceso_id = '$logacceso_id'")->row();
+		
+		$ahora = date("Y-n-j H:i:s"); 
+    	$tiempo_transcurrido = (strtotime($ahora)-strtotime($acceso_inicio));
+    	
+    	if ($tiempo_transcurrido >= 30) {
+			$this->session->sess_destroy();
+			redirect(base_url());
+		}		
+	}
+
 }

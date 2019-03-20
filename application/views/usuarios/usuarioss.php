@@ -87,10 +87,10 @@
                                         <div class="col-md-3 mb-3">
                                             <label for="validationCustom04">Rol</label>
                                                 <select class="form-control custom-select"  id="rol_id" name="rol_id"  />
-                                                    <?php foreach ($lista1 as $liss) { ?>
-                                                        <option value="<?php echo $liss->rol_id; ?>"><?php echo $liss->rol; ?>
+                                                    
+                                                        <option value="7">Todo
                                                         </option>
-                                                   <?php } ?>
+                                                   
                                                 </select>   
                                         </div>
                                     </div>
