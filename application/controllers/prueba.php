@@ -16,4 +16,67 @@ class Prueba extends CI_Controller {
         $this->load->view('admin/footer');
        
 	}
+
+    public function index()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/proceso');
+        $this->load->view('admin/footer');
+       
+    }
+
+    public function index1()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/proceso');
+        $this->load->view('admin/footer');
+       
+    }
+
+    public function index2()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/proceso');
+        $this->load->view('admin/footer');
+       
+    }
+
+    public function index3()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/proceso');
+        $this->load->view('admin/footer');
+       
+    }
+
+    public function index4()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/proceso');
+        $this->load->view('admin/footer');
+       
+    }
+
+    public function index5()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/proceso');
+        $this->load->view('admin/footer');
+       
+    }
+
+    public function index6()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/proceso');
+        $this->load->view('admin/footer');
+       
+    }
 }

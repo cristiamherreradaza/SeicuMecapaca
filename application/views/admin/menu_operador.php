@@ -34,6 +34,9 @@
                 
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-home fa-lg"></i><span class="hide-menu"> Inicio </span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="<?php echo base_url(); ?>predios/principal"><i class=" hide-menu"></i> Principal</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Catastro </span></a>
@@ -45,8 +48,8 @@
                 <li>
                     <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Tramites</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-calendar.html"><i class=" fas fa-book"></i> Registro</a></li>
-                        <li><a href="app-chat.html"><i class="fas fa-clipboard-list"></i> Listado</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba"><i class=" fas fa-book"></i> Registro</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index1"><i class="fas fa-clipboard-list"></i> Listado</a></li>
                     </ul>
                 </li>
                 

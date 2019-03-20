@@ -34,6 +34,9 @@
                 
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-home fa-lg"></i><span class="hide-menu"> Inicio </span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="<?php echo base_url(); ?>predios/principal"><i class=" hide-menu"></i> Principal</a></li>
+                    </ul>
                 </li>
                 
             </ul>

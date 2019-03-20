@@ -17,7 +17,11 @@ class Edificacion extends CI_Controller {
 	{   
         if($this->session->userdata("login"))
 		{
+<<<<<<< Updated upstream
             
+=======
+		   
+>>>>>>> Stashed changes
             
             redirect(base_url()."Edificacion/nuevo");
 		}
