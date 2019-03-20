@@ -64,9 +64,9 @@
         $(".sumcontrol0").each(function(){
             sum += +$(this).val();
         });
-        var valor="el total es mayor a 100%";       
-        if(sum <= 100){
-            $(".total0").val(sum);
+        var valor="el total es mayor a 100%";  
+        $(".total0").val(sum);     
+        if(sum <= 100){           
             var valortrue=""; 
             $("#validsuma0").html(valortrue);
         }else{

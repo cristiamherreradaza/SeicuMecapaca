@@ -48,8 +48,8 @@
                         </div>
                         <?php echo form_open('Edificacion/create', array('method' => 'POST')); ?>
 
-                        <input type="hidden" class="form-control requiIvory" id="cod_catastral" name="cod_catastral" readonly="" value="<?php echo $cod_catastral; ?>">
-                        <input type="hidden" class="form-control requiIvory" id="nro_bloque" name="nro_bloque" readonly="" value="<?php echo $nro_bloque; ?>">
+                        <input type="hidden" class="form-control required" id="cod_catastral" name="cod_catastral" readonly="" value="<?php echo $cod_catastral; ?>">
+                        <input type="hidden" class="form-control required" id="nro_bloque" name="nro_bloque" readonly="" value="<?php echo $nro_bloque; ?>">
                         <h4>Caracteristicas de la construccion</h4>
 
 
@@ -97,7 +97,7 @@
                                     <?php 
                                 } ?>
                                     <div class="row" style="background-color:Ivory;">
-                                        <input type="hidden" class="form-control requiIvory" id="tam_grup_sub" name="tam_grup_sub" readonly="" value="<?php echo $max; ?>">
+                                        <input type="hidden" class="form-control required" id="tam_grup_sub" name="tam_grup_sub" readonly="" value="<?php echo $max; ?>">
 
                                         <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:Ivory">
                                             <small><i>
@@ -107,13 +107,13 @@
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;">
 
-                                            <input type="hidden" class="form-control requiIvory" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
+                                            <input type="hidden" class="form-control required" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['grupo_mat_id'];
                                                                                                                                                                     ?>">
-                                            <input type="hidden" class="form-control requiIvory" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
+                                            <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" requiIvory value="0" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0">
                                         </div>
                                     </div>
 
@@ -230,13 +230,13 @@
                                                 </i></small>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;">
-                                            <input type="hidden" class="form-control requiIvory" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
+                                            <input type="hidden" class="form-control required" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['grupo_mat_id'];
                                                                                                                                                                     ?>">
-                                            <input type="hidden" class="form-control requiIvory" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
+                                            <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" requiIvory value="0" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0">
 
                                         </div>
                                     </div>
@@ -349,10 +349,10 @@
                                                         ?></i></small>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;">
-                                            <input type="hidden" class="form-control requiIvory" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
+                                            <input type="hidden" class="form-control required" id="<?php echo $i; ?>a" name="<?php echo $i; ?>a" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['grupo_mat_id'];
                                                                                                                                                                     ?>">
-                                            <input type="hidden" class="form-control requiIvory" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
+                                            <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
                                             <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0" size="3" min="0">
@@ -419,7 +419,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Nombre de Bloque : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control requiIvory" id="nom_bloque" name="nom_bloque" requiIvory>
+                                            <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque" required>
                                         </div>
                                     </div>
                                 </div>
@@ -427,7 +427,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de construccion: <span class="danger">*</span> </label>
-                                            <input type="number" size="4" min="0" class="form-control requiIvory" id="anio_cons" name="anio_cons" requiIvory>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" required>
                                         </div>
                                     </div>
                                 </div>
@@ -435,7 +435,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de remodelacion: <span class="danger">*</span> </label>
-                                            <input type="number" size="4" min="0" class="form-control requiIvory" id="anio_remo" name="anio_remo" requiIvory>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" required>
                                         </div>
                                     </div>
                                 </div>
@@ -443,7 +443,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Destino :</label>
-                                            <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" requiIvory>
+                                            <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" required>
                                                 <option value="">Seleccione destino</option>
                                                 <?php foreach ($destino_bloque as $d) : ?>
                                                 <option value="<?php echo $d->destino_bloque_id; ?>"><?php echo $d->descripcion; ?></option>
@@ -456,7 +456,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Uso :</label>
-                                            <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id" requiIvory>
+                                            <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id" required>
                                                 <option value="">Seleccione Uso</option>
                                                 <?php foreach ($destino_uso as $du) : ?>
                                                 <option value="<?php echo $du->uso_bloque_id; ?>"><?php echo $du->descripcion; ?></option>
@@ -469,7 +469,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Estado Fisico :</label>
-                                            <select class="custom-select form-control" id="estado_fisico" name="estado_fisico" requiIvory>
+                                            <select class="custom-select form-control" id="estado_fisico" name="estado_fisico" required>
                                                 <option value="">Seleccione estado fisico</option>
                                                 <option value="Bueno">Bueno</option>
                                                 <option value="Precario">Precario</option>
@@ -483,7 +483,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Tipo de planta :</label>
-                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" requiIvory>
+                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" required>
                                                 <option value="">Seleccione Tipo de planta</option>
                                                 <?php foreach ($tipo_planta as $tp) : ?>
                                                 <option value="<?php echo $tp->tipo_planta_id; ?>"><?php echo $tp->descripcion; ?></option>
@@ -496,7 +496,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="location1">Nivel :</label>
-                                            <select class="custom-select form-control" id="nivel" name="nivel" requiIvory>
+                                            <select class="custom-select form-control" id="nivel" name="nivel" required>
                                                 <option value="">Seleccione tipo de planta</option>
                                                 <option value="-1">-1</option>
                                                 <option value="0">0</option>
@@ -512,7 +512,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Superficie : <span class="text-danger">*</span> </label>
-                                            <input type="number" class="form-control" min="0" id="superficie" name="superficie" value="0.00" requiIvory>
+                                            <input type="number" class="form-control" min="0" id="superficie" name="superficie" value="0.00" required>
                                         </div>
                                     </div>
                                 </div>
@@ -520,7 +520,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Altura : <span class="text-danger">*</span> </label>
-                                            <input type="number" class="form-control" min="0" id="altura" name="altura" value="0.00" requiIvory>
+                                            <input type="number" class="form-control" min="0" id="altura" name="altura" value="0.00" required>
                                         </div>
                                     </div>
                                 </div>
