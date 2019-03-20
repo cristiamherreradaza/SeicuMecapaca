@@ -427,7 +427,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de construccion: <span class="text-danger"> *</span></label>
-                                            <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" required>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" max="999" required>
                                         </div>
                                     </div>
                                 </div>
@@ -435,7 +435,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de remodelacion: <span class="text-danger"> *</span></label>
-                                            <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" required>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" max="999" required>
                                         </div>
                                     </div>
                                 </div>
