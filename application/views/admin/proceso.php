@@ -18,8 +18,9 @@
     }
     
     #derecha{
-        padding-left: 10px;
-        float:left;
+        font-family: Segoe Script;
+        font-size: 60px;
+
     }
 </style>
    
@@ -36,14 +37,9 @@
                         <div class="card-group">
                             
                             <div class="card">
-                                <img class="card-img-top img-responsive" id="izquierda" src="<?php echo base_url(); ?>public/assets/images/seicu-libre1.png" alt="Card image cap">
+                                <img class="card-img-top img-responsive" src="<?php echo base_url(); ?>public/assets/images/error.jpg" alt="Card image cap">
                                 <div class="card-body">
-                                    <h3 class="card-title" align="center">Versi&oacute;n 1.1</h3>
-                                    <h1 class="card-title" align="center"><b>Sistema Espacial de Informaci&oacute;n Catastral</b></h1>
-                                    <h1 class="card-title" align="center"><b>Urbana</b></h1>
-                                    <p class="card-text" align="center">Aplicaci&oacute;n desarrollada bajo est&aacute;ndares abiertos y software libre</p>
-                                    <p class="card-text" align="center">para la gesti&oacute;n del catastro en los gobiernos aut&oacute;nomos municipales</p>
-                                    <p class="card-text" align="center">del Estado Plurinacional de Bolivia.</p>
+                                    <h3 class="card-title" align="center" id="derecha">P&aacute;gina en Mantenimiento</h3>
                                     
                                 </div>
                             </div>

@@ -48,24 +48,24 @@
                 <li>
                     <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Tramites</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-calendar.html"><i class=" fas fa-book"></i> Registro</a></li>
-                        <li><a href="app-chat.html"><i class="fas fa-clipboard-list"></i> Listado</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba"><i class=" fas fa-book"></i> Registro</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index1"><i class="fas fa-clipboard-list"></i> Listado</a></li>
                     </ul>
                 </li>
                 <li>
                     <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Inspecciones</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-email.html"><i class=" fas fa-book"></i> Registro</a></li>
-                        <li><a href="app-email-detail.html"><i class="fas fa-clipboard-list"></i> Listado</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index2"><i class=" fas fa-book"></i> Registro</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index3"><i class="fas fa-clipboard-list"></i> Listado</a></li>
                     </ul> 
                 </li>
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu"> Mantenimiento</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a class="has-arrow" href="app-email.htm"><i class="fas fa-user"></i> Personas</a></li>
+                        <li><a class="has-arrow" href="<?php echo base_url(); ?>prueba/index4"><i class="fas fa-user"></i> Personas</a></li>
                         <li><a href="<?php echo base_url(); ?>Usuario"><i class="fas fa-address-card"></i> Perfil</a></li>
-                        <li><a href="app-email.html"><i class="fas fa-users"></i> Roles</a></li>
-                        <li><a href="app-email-detail.html"><i class="fas fa-th-list"></i> Men&uacute;</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index5"><i class="fas fa-users"></i> Roles</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index6"><i class="fas fa-th-list"></i> Men&uacute;</a></li>
 
                         <li>
                             <a class="has-arrow " href="#" aria-expanded="false"><i class=" fas fa-thumbtack"></i><span class="hide-menu"> PARAM&Eacute;TRICAS CATASTRO</span></a>
