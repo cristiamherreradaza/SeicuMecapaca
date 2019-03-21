@@ -15,7 +15,7 @@ class Edificacion extends CI_Controller {
 	
 	public function index()
 	{   
-        if($this->session->userdata("login"))
+        if($this->session->userdata("login")){
 
             redirect(base_url()."Edificacion/nuevo");
 		}
@@ -53,7 +53,10 @@ class Edificacion extends CI_Controller {
 		}
 
     }*/
-    public function nuevo($cod_catastral = null ){     
+    public function nuevo($cod_catastral = null ){   
+
+    if($this->session->userdata("login"))
+        {  
         //  
 	    //$credencial_id = $this->session->userdata("persona_perfil_id");
 	    //$acceso_inicio = date("Y-m-d H:i:s");
@@ -76,9 +79,16 @@ class Edificacion extends CI_Controller {
         $this->load->view('bloque/validar');
         $this->load->view('admin/wizard_js');
         //$this->load->view('admin/footer'); 
+        }
+        else{
+            redirect(base_url());
+        }
     }
 
     public function adicionar($cod_catastral = null){
+
+        if($this->session->userdata("login"))
+        {  
         
 	    //$credencial_id = $this->session->userdata("persona_perfil_id");
 	//$acceso_inicio = date("Y-m-d H:i:s");
@@ -109,6 +119,11 @@ class Edificacion extends CI_Controller {
         $this->load->view('bloque/validar');
         $this->load->view('admin/wizard_js');
         //$this->load->view('admin/footer'); 
+
+        }
+        else{
+            redirect(base_url());
+        }
     }
 
     public function create() {

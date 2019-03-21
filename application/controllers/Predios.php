@@ -97,6 +97,8 @@ class Predios extends CI_Controller {
 			$perfil = $persona_perfil->perfil_id; 
 			
 				if ($perfil == '1') {
+
+					
 					// $this->db->select(array('catastro.predio.fec_creacion', 'catastro.predio.codcatas', 'catastro.predio.nro_inmueble', 'catastro.zona_urbana.descripcion'));
 					// $this->db->join('catastro.zona_urbana', 'catastro.predio.zonaurb_id = catastro.zona_urbana.zonaurb_id');
 					// $this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
@@ -104,6 +106,7 @@ class Predios extends CI_Controller {
 					$query = $this->db->get('catastro.predio');
 					// vdebug($this->db->last_query());
 					$data['listado_predios'] = $query->result();
+					//var_dump($usu_creacion);
 
 					$this->load->view('admin/header');
 					$this->load->view('admin/menu');
@@ -112,8 +115,15 @@ class Predios extends CI_Controller {
 					$this->load->view('predios/index_js');
 				}
 				elseif ($perfil == '2') {
-					$query = $this->db->get('catastro.predio');
-					$data['listado_predios'] = $query->result();
+
+					$data['listado_predios'] = $this->db->query("SELECT p.*
+												FROM catastro.predio p, persona_perfil pp
+												WHERE pp.persona_perfil_id = '$persona_perfil_id'
+												AND p.usu_creacion = pp.persona_id
+												AND pp.perfil_id = '2'")->result();
+
+					//$query = $this->db->get('catastro.predio');
+					//$data['listado_predios'] = $query->result();
 
 					$this->load->view('admin/header');
 					$this->load->view('admin/menu_operador');
@@ -250,6 +260,12 @@ class Predios extends CI_Controller {
 	public function guarda(){
 		if($this->session->userdata("login")){
 
+			//usuario que esta registrando
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_creacion = $resi->persona_id;
+
+
 			$datos = array();
 			$datos = $this->input->post();
 
@@ -286,6 +302,7 @@ class Predios extends CI_Controller {
 				'uso_suelo_id'=>$this->input->post('uso_suelo_id'),
 				'matriz_ph'=>$this->input->post('matriz_ph'),
 				'edificio_id'=>$this->input->post('edificio_id'),
+				'usu_creacion' =>$usu_creacion
 			);
 			$this->db->insert('catastro.predio', $data);
 			// fin guardamos datos del predio
