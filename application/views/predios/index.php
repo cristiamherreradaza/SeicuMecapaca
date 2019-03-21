@@ -20,7 +20,7 @@
                                     <th>FECHA REGISTRO</th>
                                     <th>COD CATASTRAL</th>
                                     <!-- <th>COD ANT CATASTRAL</th> -->
-                                    <th>N. INMUEBLE</th>
+                                    <th>ZONA URBANA</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>
@@ -29,7 +29,7 @@
                                     <th>FECHA REGISTRO</th>
                                     <th>COD CATASTRAL</th>
                                     <!-- <th>COD ANT CATASTRAL</th> -->
-                                    <th>N. INMUEBLE</th>
+                                    <th>ZONA URBANA</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </tfoot>
