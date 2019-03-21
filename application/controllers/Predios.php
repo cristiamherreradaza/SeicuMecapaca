@@ -442,7 +442,7 @@ class Predios extends CI_Controller {
 			$this->db->select('tipo_predio_id, descripcion');
 			$this->db->order_by('descripcion', 'ASC');
 			$query = $this->db->get('catastro.tipo_predio');
-			vdebug($this->db->last_query());
+			// vdebug($this->db->last_query());
 			$data['dc_tipos_predio'] = $query->result();
 
 			$this->db->select('zonaurb_id, descripcion');
