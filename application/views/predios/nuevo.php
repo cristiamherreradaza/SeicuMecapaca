@@ -413,7 +413,7 @@
                     $("#alerta-porcentaje").show();
                     $("#alerta-porcentaje").html('El porcentaje es demasiado alto');
                 }else{
-                    alert('no');
+                    
                     window.location.reload();
                 }
                 
