@@ -16,13 +16,7 @@ class Edificacion extends CI_Controller {
 	public function index()
 	{   
         if($this->session->userdata("login"))
-		{
-<<<<<<< Updated upstream
-            
-=======
-		   
->>>>>>> Stashed changes
-            
+		{            
             redirect(base_url()."Edificacion/nuevo");
 		}
 		else{
