@@ -15,8 +15,7 @@ class Edificacion extends CI_Controller {
 	
 	public function index()
 	{   
-        if($this->session->userdata("login"))
-
+        if($this->session->userdata("login")){
             redirect(base_url()."Edificacion/nuevo");
 		}
 		else{
