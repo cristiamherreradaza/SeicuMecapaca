@@ -16,11 +16,14 @@
              <?php
                     $id = $this->session->userdata("persona_perfil_id");
                     $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-                    $dato = $resi->persona_id;
-                    $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
-             ?>
+                    $persona = $resi->persona_id;
+                    $perfil = $resi->perfil_id; 
+
+                    $res = $this->db->get_where('persona', array('persona_id' => $persona))->row();
+                    $res1 = $this->db->get_where('perfil', array('perfil_id' => $perfil))->row();
+                                 ?>
             
-            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo strtoupper($res->nombres);?> <span class="caret"></span></a>
+            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">USUARIO <?php echo strtoupper($res1->perfil);?> <span class="caret"></span></a>
                 <div class="dropdown-menu animated flipInY">
                    
                     <div class="dropdown-divider"></div> <a href="<?php echo base_url(); ?>login/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Cerrar Sesi&oacute;n</a>
