@@ -16,11 +16,16 @@
              <?php
                     $id = $this->session->userdata("persona_perfil_id");
                     $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-                    $dato = $resi->persona_id;
-                    $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
+                    $persona = $resi->persona_id;
+                    $perfil = $resi->perfil_id; 
+
+                    $res = $this->db->get_where('persona', array('persona_id' => $persona))->row();
+                    $res1 = $this->db->get_where('perfil', array('perfil_id' => $perfil))->row();
+
+
              ?>
             
-            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><?php echo strtoupper($res->nombres);?> <span class="caret"></span></a>
+            <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">USUARIO <?php echo strtoupper($res1->perfil);?> <span class="caret"></span></a>
                 <div class="dropdown-menu animated flipInY">
                    
                     <div class="dropdown-divider"></div> <a href="<?php echo base_url(); ?>login/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Cerrar Sesi&oacute;n</a>
@@ -34,6 +39,9 @@
                 
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-home fa-lg"></i><span class="hide-menu"> Inicio </span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="<?php echo base_url(); ?>predios/principal"><i class=" hide-menu"></i> Principal</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Catastro </span></a>
@@ -45,24 +53,24 @@
                 <li>
                     <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Tramites</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-calendar.html"><i class=" fas fa-book"></i> Registro</a></li>
-                        <li><a href="app-chat.html"><i class="fas fa-clipboard-list"></i> Listado</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba"><i class=" fas fa-book"></i> Registro</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index1"><i class="fas fa-clipboard-list"></i> Listado</a></li>
                     </ul>
                 </li>
                 <li>
                     <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Inspecciones</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="app-email.html"><i class=" fas fa-book"></i> Registro</a></li>
-                        <li><a href="app-email-detail.html"><i class="fas fa-clipboard-list"></i> Listado</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index2"><i class=" fas fa-book"></i> Registro</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index3"><i class="fas fa-clipboard-list"></i> Listado</a></li>
                     </ul> 
                 </li>
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu"> Mantenimiento</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a class="has-arrow" href="app-email.htm"><i class="fas fa-user"></i> Personas</a></li>
-                        <li><a href="app-email-detail.html"><i class="fas fa-address-card"></i> Perfil</a></li>
-                        <li><a href="app-email.html"><i class="fas fa-users"></i> Roles</a></li>
-                        <li><a href="app-email-detail.html"><i class="fas fa-th-list"></i> Men&uacute;</a></li>
+                        <li><a class="has-arrow" href="<?php echo base_url(); ?>prueba/index4"><i class="fas fa-user"></i> Personas</a></li>
+                        <li><a href="<?php echo base_url(); ?>Usuario"><i class="fas fa-address-card"></i> Perfil</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index5"><i class="fas fa-users"></i> Roles</a></li>
+                        <li><a href="<?php echo base_url(); ?>prueba/index6"><i class="fas fa-th-list"></i> Men&uacute;</a></li>
 
                         <li>
                             <a class="has-arrow " href="#" aria-expanded="false"><i class=" fas fa-thumbtack"></i><span class="hide-menu"> PARAM&Eacute;TRICAS CATASTRO</span></a>

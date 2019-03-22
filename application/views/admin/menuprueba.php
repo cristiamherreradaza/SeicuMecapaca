@@ -62,8 +62,6 @@
                                              <?php if ($menu1->menu_id = $menu2->padre) { ?>
                                                  
                                                 <li><a href="<?php echo base_url(); ?><?php echo $menu2->url?>"><i class=" <?php echo $menu2->icono ?>"></i> <?php echo $menu2->descripcion ?></a>
-                                                            
-                                                            
                                                             <ul aria-expanded="false" class="collapse">
 
                                                                 <?php   
