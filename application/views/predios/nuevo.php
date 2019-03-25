@@ -142,21 +142,25 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Numero de matricula folio<span class="text-danger">*</span> </label>
+                                                    <label>Numero de matricula folio : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control" name="nro_matricula_folio" required />
                                                 </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-4">
+                                               
                                                 <div class="form-group">
-                                                    <label>Numero de folio<span class="text-danger">*</span> </label>
-                                                    <input type="text" class="form-control" name="nro_folio" required />
+                                                     <label>Numero de folio : <span class="text-danger">*</span> </label>
+                                                    
+                                                    <input type="text" id="nro_folio" class="form-control" name="nro_folio" placeholder="_.__._.__._______" title="Introducir numero de folio" input-mask="_.__._.__._______">
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Fecha de folio<span class="text-danger">*</span> </label>
-                                                    <input type="date" class="form-control" name="fecha_folio" required />
+                                                    <label>Fecha de folio : <span class="text-danger">*</span> </label>
+                                                    <input type="date" class="form-control date-inputmask" name="fecha_folio" required />
+                                                    <!-- <input placeholder="dd/mm/yyyy hh:mm" data-slots="dmyh"> -->
                                                 </div>
                                             </div>
                                             <!--/span-->
@@ -164,7 +168,7 @@
                                         <div class="row "  style="background-color: #fffef7;">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="participants1">Superficie legal<span class="text-danger">*</span> </label>
+                                                    <label for="participants1">Superficie legal : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control required" name="superficie_legal" required />
                                                 </div>
                                             </div>
@@ -172,7 +176,7 @@
                                         <div class="row "  style="background-color: #fffef7;">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="participants1">Nombre del notario<span class="text-danger">*</span> </label>
+                                                    <label for="participants1">Nombre del notario : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control required" name="nom_notario" required />
                                                 </div>
                                             </div>
@@ -180,27 +184,27 @@
                                         <div class="row" style="background-color: #f6f6f6;">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Numero de testimonio<span class="text-danger">*</span> </label>
+                                                    <label>Numero de testimonio : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control" name="nro_testimonio" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Fecha de testimonio<span class="text-danger">*</span> </label>
-                                                    <input type="date" class="form-control" name="fecha_testimonio" required />
+                                                    <label>Fecha de testimonio : <span class="text-danger">*</span> </label>
+                                                    <input type="date" class="form-control date-inputmask" name="fecha_testimonio" required />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row" style="background-color: #fffef7;">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Partida<span class="text-danger">*</span> </label>
+                                                    <label>Partida : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control" name="partida" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Partida computarizada<span class="text-danger">*</span> </label>
+                                                    <label>Partida computarizada : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control" name="partida_computarizada" required />
                                                 </div>
                                             </div>
@@ -208,7 +212,7 @@
                                         <div class="row "  style="background-color: #f6f6f6;">
                                             <div class="col-md-12">
                                                 <div class="form-group" >
-                                                    <label for="participants1">Foja<span class="text-danger">*</span> </label>
+                                                    <label for="participants1">Foja : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control required" name="foja" required />
                                                 </div>
                                             </div>
@@ -216,21 +220,24 @@
                                         <div class="row" style="background-color: #fffef7;">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Libro<span class="text-danger">*</span> </label>
+                                                    <label>Libro : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control" name="libro" required />
                                                 </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Fecha de registro de libro<span class="text-danger">*</span> </label>
-                                                    <input type="date" class="form-control" name="fecha_reg_libro" required />
+                                                    <label>Fecha de registro de libro : <span class="text-danger">*</span> </label>
+                                                    <input type="date" class="form-control date-inputmask" name="fecha_reg_libro" required />
 
                                                 </div>
                                             </div>
                                             <!--/span-->
                                         </div>
                                     </div>
+
+                                  
+
                                     <div class="form-actions col-md-12 offset-md-11">
                                         <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
                                     </div>
@@ -253,7 +260,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
-                                                                <label for="ci"> Carnet <span class="text-danger">*</span> </label>
+                                                                <label for="ci"> Carnet : <span class="text-danger">*</span> </label>
                                                                 <input type="text" class="form-control" id="ci1" name="ci1" required />
                                                                 <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                                 <small id="msg_sucess_catastral" class="form-control-feedback" style="display: none; color: #31B404"></small>
@@ -263,7 +270,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
-                                                                <label>Nombres <span class="text-danger">*</span></label>
+                                                                <label>Nombres : <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" id="nombres1" name="nombres1" required />
                                                                 
                                                             </div>
@@ -272,14 +279,14 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label>Paterno <span class="text-danger">*</span></label>
+                                                                <label>Paterno : <span class="text-danger">*</span></label>
                                                                 <input type="text" name="paterno1" id="paterno1" class="form-control" required />
                                                             </div>
                                                         </div>
                                                         <!--/span-->
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <label>Materno <span class="text-danger">*</span></label>
+                                                                <label>Materno : <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" name="materno1" id="materno1" required />
                                                             </div>
                                                         </div>
@@ -291,7 +298,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <div class="form-group">
-                                                                    <label>Fecha de nacimiento <span class="text-danger">*</span></label>
+                                                                    <label>Fecha de nacimiento : <span class="text-danger">*</span></label>
                                                                     <input type="date" class="form-control" name="fec_nacimiento1" id="fec_nacimiento1" required />
                                                                 </div>
                                                                
@@ -305,7 +312,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
-                                                                <label>Porcentaje <span class="text-danger">*</span></label>
+                                                                <label>Porcentaje : <span class="text-danger">*</span></label>
                                                                 <input type="number" class="form-control" id="porcen_parti1" name="porcen_parti1" value="<?php echo $i; ?>" max="<?php $i; ?>" required />
                                                                 <small id="msg_alerta_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                                 <small id="alerta-porcentaje" class="form-control-feedback" style="display: none; color: #ff0000"></small>
@@ -336,6 +343,7 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+   
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap" async defer></script> -->
 
     <script type="text/javascript">
@@ -424,6 +432,48 @@
 
       
     </script>
-    
-   
+    <script type="text/javascript">
+        function validate_int(myEvento) {
+  if ((myEvento.charCode >= 48 && myEvento.charCode <= 57) || myEvento.keyCode == 9 || myEvento.keyCode == 10 || myEvento.keyCode == 13 || myEvento.keyCode == 8 || myEvento.keyCode == 116 || myEvento.keyCode == 46 || (myEvento.keyCode <= 40 && myEvento.keyCode >= 37)) {
+    dato = true;
+  } else {
+    dato = false;
+  }
+  return dato;
+}
+
+function phone_number_mask() {
+  var myMask = "_.__._.__._______";
+  var myCaja = document.getElementById("nro_folio");
+  var myText = "";
+  var myNumbers = [];
+  var myOutPut = ""
+  var theLastPos = 1;
+  myText = myCaja.value;
+  //get numbers
+  for (var i = 0; i < myText.length; i++) {
+    if (!isNaN(myText.charAt(i)) && myText.charAt(i) != " ") {
+      myNumbers.push(myText.charAt(i));
+    }
+  }
+  //write over mask
+  for (var j = 0; j < myMask.length; j++) {
+    if (myMask.charAt(j) == "_") { //replace "_" by a number 
+      if (myNumbers.length == 0)
+        myOutPut = myOutPut + myMask.charAt(j);
+      else {
+        myOutPut = myOutPut + myNumbers.shift();
+        theLastPos = j + 1; //set caret position
+      }
+    } else {
+      myOutPut = myOutPut + myMask.charAt(j);
+    }
+  }
+  document.getElementById("nro_folio").value = myOutPut;
+  document.getElementById("nro_folio").setSelectionRange(theLastPos, theLastPos);
+}
+
+document.getElementById("nro_folio").onkeypress = validate_int;
+document.getElementById("nro_folio").onkeyup = phone_number_mask;
+    </script>
     
