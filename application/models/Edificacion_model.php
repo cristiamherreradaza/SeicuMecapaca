@@ -35,7 +35,7 @@ class Edificacion_model extends CI_Model {
     }
 
     function get_Bloque($cod_catastral) {//obtiene los datos de la tabla bloque en array result
-        $query = $this->db->query("SELECT y.bloque_id,y.codcatas,y.nro_bloque,y.nom_bloque,y.estado_fisico,y.altura,d.superficie,y.anio_cons,y.anio_remo,y.porcentaje_remo,y.destino_bloque_id,z.descripcion as desc_bloque_dest,y.uso_bloque_id,x.descripcion as desc_bloque_uso FROM catastro.bloque as y LEFT JOIN catastro.uso_bloque as x on x.uso_bloque_id=y.uso_bloque_id LEFT JOIN catastro.destino_bloque as z on z.destino_bloque_id=y.destino_bloque_id LEFT JOIN catastro.bloque_piso as d on d.bloque_id=y.bloque_id WHERE y.activo=1 and x.activo=1 and z.activo=1 and y.codcatas='$cod_catastral'");
+        $query = $this->db->query("SELECT y.bloque_id,y.codcatas,y.nro_bloque,y.nom_bloque,y.estado_fisico,y.altura,y.anio_cons,y.anio_remo,y.porcentaje_remo,y.destino_bloque_id,z.descripcion as desc_bloque_dest,y.uso_bloque_id,x.descripcion as desc_bloque_uso FROM catastro.bloque as y LEFT JOIN catastro.uso_bloque as x on x.uso_bloque_id=y.uso_bloque_id LEFT JOIN catastro.destino_bloque as z on z.destino_bloque_id=y.destino_bloque_id WHERE y.activo=1 and x.activo=1 and z.activo=1 and y.codcatas='$cod_catastral'");
         return $query->result();
     }
 

@@ -160,8 +160,9 @@ class Edificacion extends CI_Controller {
            {
                $bloque_id_form = $row->bloque_id;                    
            }
-       //captura de datos para la tabla bloque_piso   
-       $bloque_piso = array (
+       //captura de datos para la tabla bloque_piso
+
+       /*$bloque_piso = array (
            'nro_bloque' =>$this->input->post('nro_bloque'),
            'nivel' => $this->input->post('nivel'),
            'tipo_planta_id' =>$this->input->post('tipo_planta_id'),  
@@ -169,7 +170,37 @@ class Edificacion extends CI_Controller {
            'bloque_id' =>$bloque_id_form,//id del bloque nro x                       
            'usu_creacion' =>1 //aun no captura el usuario 
        );
-       $this->db->insert('catastro.bloque_piso', $bloque_piso);
+       $this->db->insert('catastro.bloque_piso', $bloque_piso);*/
+            $cont = 0;
+            $id_tipo_planta = $this->input->post('id_tipo_planta');
+            $nivel_a = $this->input->post('niveles');
+            $superficie_a = $this->input->post('superficies');
+            for ($j = 0; $j < count($id_tipo_planta) ; $j++) {
+                $bloque_piso = array(
+                    'nro_bloque' => $this->input->post('nro_bloque'),
+                    'nivel' => $nivel_a[$j],
+                    'tipo_planta_id' => $id_tipo_planta[$j],
+                    'superficie' => $superficie_a[$j],
+                    'bloque_id' => $bloque_id_form, //id del bloque nro x                       
+                    'usu_creacion' => 1 //aun no captura el usuario 
+                );
+                $this->db->insert('catastro.bloque_piso', $bloque_piso);               
+            }
+
+
+			/*while($cont < count($id_tipo_planta)){
+                $bloque_piso = array(
+                    'nro_bloque' => $this->input->post('nro_bloque'),
+                    'nivel' => $nivel_a[$cont],
+                    'tipo_planta_id' => $id_tipo_planta[$cont],
+                    'superficie' => $superficie_a[$cont],
+                    'bloque_id' => $bloque_id_form, //id del bloque nro x                       
+                    'usu_creacion' => 1 //aun no captura el usuario 
+                );
+                $this->db->insert('catastro.bloque_piso', $bloque_piso);
+                $cont=$cont++;
+            }*/
+
        //fin de insertar datos en tabla bloque_piso
 
        //insercion en la tabla elementos_cons

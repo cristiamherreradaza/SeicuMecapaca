@@ -67,8 +67,7 @@
                                                         <th>Nombre</th>
                                                         <th>Estado fisico</th>
                                                         <th>Año construccion</th>
-                                                        <th>Altura</th>
-                                                        <th>Superficie</th>
+                                                        <th>Altura</th>                                                   
                                                         <th>Destino</th>
                                                         <th>Uso</th>
                                                         
@@ -83,9 +82,8 @@
                                                         <td><?php echo $row->nro_bloque; ?></td>
                                                         <td><?php echo $row->nom_bloque; ?></td>
                                                         <td><?php echo $row->estado_fisico; ?></td>
-                                                        <td><?php echo $row->altura; ?></td>
-                                                        <td><?php echo $row->superficie; ?></td>
                                                         <td><?php echo $row->anio_cons; ?></td>
+                                                        <td><?php echo $row->altura; ?></td>
                                                         <td><?php echo $row->desc_bloque_dest; ?></td>
                                                         <td><?php echo $row->desc_bloque_uso; ?> </td>
                                                         <td>

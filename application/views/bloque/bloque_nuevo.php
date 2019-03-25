@@ -413,10 +413,10 @@
                                 <!--FIN container-->
                             </div>
                             <!--col-lg-10-->
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <h6 class="card-subtitle">Caracteristicas de la construccion</h6>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Nombre de Bloque :<span class="text-danger"> *</span></label>
                                             <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque" required>
@@ -424,7 +424,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de construccion: <span class="text-danger"> *</span></label>
                                             <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" max="2019" required>
@@ -432,7 +432,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de remodelacion: <span class="text-danger"> *</span></label>
                                             <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" max="2019" required>
@@ -440,7 +440,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="location1">Destino :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" required>
@@ -453,7 +453,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="location1">Uso :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id" required>
@@ -466,7 +466,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="location1">Estado Fisico :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="estado_fisico" name="estado_fisico" required>
@@ -476,14 +476,21 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="wfirstName2">Altura : <span class="text-danger"> * <small>metros</small> </span> </label>
+                                            <input type="number" class="form-control" step='0.100' id="altura" name="altura" value="0.00" required>
+                                        </div>
+                                    </div>
                                 </div>
                                 <h6 class="card-subtitle">Superficie de la Planta</h6>
-                                <div class="row">
-                                    <div class="col-md-12">
+                                <div class="row" style="background-color:#f6f6f6">
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="location1">Tipo de planta :<span class="text-danger"> *</span></label>
-                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" required>
+                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" >
                                                 <option value="">Seleccione Tipo de planta</option>
                                                 <?php foreach ($tipo_planta as $tp) : ?>
                                                 <option value="<?php echo $tp->tipo_planta_id; ?>"><?php echo $tp->descripcion; ?></option>
@@ -491,39 +498,49 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
+                                </div>                                
+                                <div class="row" style="background-color:#f6f6f6" >
+                                    <div class="col-md-8">
                                         <div class="form-group">
-                                            <label for="location1">Nivel : <span class="text-danger"> *</span></label>
-                                            <select class="custom-select form-control" id="nivel" name="nivel" required>
-                                                <option value="">Seleccione nivel</option>
-                                                <option value="-1">-1</option>
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
+                                            <label for="wfirstName2">Nivel : <span class="text-danger"> * <small>metros</small></span> </label>
+                                            <input type="number" class="form-control" step='1' id="nivel" name="nivel" value="0" >
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
+                                <div class="row" style="background-color:#f6f6f6" >
+                                    <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Superficie : <span class="text-danger"> * <small>metros</small></span> </label>
-                                            <input type="number" class="form-control" step='0.10' id="superficie" name="superficie" value="0.00" required>
+                                            <input type="number" class="form-control" step='0.100' id="superficie" name="superficie" value="0.00" >
                                         </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row" style="background-color:#f6f6f6" >
+                                    <div class="col-md-12">
+                                        <button type="button" id="bt_add" class="class btn btn-success">agregar</button>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="wfirstName2">Altura : <span class="text-danger"> * <small>metros</small> </span> </label>
-                                            <input type="number" class="form-control" step='0.10' id="altura" name="altura" value="0.00" required>
+                                        <div class="table-responsive">
+                                            <table id="detalles" class="table table-hover no-wrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Planta</th>
+                                                        <th>Nivel</th>
+                                                        <th>Sup. mts</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>                                                
+                                                <tbody>                                                    
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
+
+
 
                             </div>
                             <!--fin col-lg-5-->
@@ -539,6 +556,56 @@
         </div>
     </div>
 </div>
+<script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+                $('#bt_add').click(function() {
+                    agregar();
+                });
+            });
+            var cont_n = 0; 
+            estado = 0; 
+            total=0;
+            subtotal = []; 
+            $("#guardar").hide();
+
+            function agregar() {
+                tipo_planta_id = $("#tipo_planta_id").val();
+                tipo_planta = $("#tipo_planta_id option:selected").text();
+                idnivel = $("#nivel").val();
+                nivel = $("#nivel option:selected").text();
+                superficie = $("#superficie").val();
+
+                if (tipo_planta_id != "" && idnivel != "" && superficie != "" ) {  
+                    total=total++;                                      
+                    var fila = '<tr class="selected" id="fila'+cont_n+'"><td><input type="hidden" name="id_tipo_planta[]" value="'+tipo_planta_id+'">'+tipo_planta+'</td><td><input type="hidden" name="niveles[]" value="'+idnivel+'">'+idnivel+'</td><td><input type="hidden" name="superficies[]" value="'+superficie+'">'+superficie+'</td><td><button type="button" cLass="btn btn-warning" onclick="eliminar('+cont_n+');">X</button></td></tr>';
+                    cont_n++;
+                    limpiar();
+                    evaluar();
+                    $('#detalles').append(fila);
+                }
+                else{
+                    alert("los campos estan vacios");
+                }
+            }
+            function limpiar(){
+                $("#tipo_planta_id").val(""); //id
+                $("#nivel").val("0");
+                $("#superficie").val("0.00");                
+            }
+            function evaluar() {
+                if (cont_n > 0) {
+                    $("#guardar").show();
+                } else {
+                    $("#guardar").hide();
+                }
+            }
+            function eliminar(index){
+                total=total-1;                
+                $("#fila"+index).remove();
+                evaluar();
+            }
+</script>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== --> 
