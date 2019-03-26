@@ -222,7 +222,7 @@ class Edificacion extends CI_Controller {
 
         public function next($cod_catastral = null ){
             $query = $this->db->query("UPDATE catastro.predio SET activo = 2 WHERE codcatas='$cod_catastral'");            
-            redirect(base_url().'predios/nuevo/'.$$cod_catastral);
+            redirect(base_url().'predios/nuevo/'.$cod_catastral);
         }
 
     

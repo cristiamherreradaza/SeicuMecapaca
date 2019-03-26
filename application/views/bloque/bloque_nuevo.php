@@ -83,10 +83,10 @@
                                     <?php 
 
                                     if ($i == 0) {  ?>
-                                      <hr>
+                                    <hr>
                                     <div class="row" style="background-color:Ivory;">
-                                        <div class="col-sm-5 col-md-8 " style="background-color:Ivory">                                         
-                                                    <h6> <b> <?php print_r($grupos_subgrupos[$i]['desc_grupo']); ?> </b></h6>                                                                                    
+                                        <div class="col-sm-5 col-md-8 " style="background-color:Ivory">
+                                            <h6> <b> <?php print_r($grupos_subgrupos[$i]['desc_grupo']); ?> </b></h6>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -156,13 +156,13 @@
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
                                             <h6> <b><?php 
-                                                print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                ?></h6></b> 
+                                                    print_r($grupos_subgrupos[$j]['desc_grupo']);
+                                                    ?></h6></b>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;"><small><i>Porcentaje %</i></small>
                                         </div>
                                     </div>
-                                    
+
                                     <?php 
                                 } ?>
 
@@ -206,12 +206,12 @@
                                     <?php 
 
                                     if ($i == $pos + 1) {  ?>
-                                      <hr>
+                                    <hr>
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
-                                            <h6> <b>  <?php 
-                                                print_r($grupos_subgrupos[$i]['desc_grupo']);
-                                                ?> </b> </h6>
+                                            <h6> <b> <?php 
+                                                        print_r($grupos_subgrupos[$i]['desc_grupo']);
+                                                        ?> </b> </h6>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -280,8 +280,8 @@
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
                                             <h6> <b> <?php 
-                                                print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                ?></h6> </b>
+                                                        print_r($grupos_subgrupos[$j]['desc_grupo']);
+                                                        ?></h6> </b>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -326,12 +326,12 @@
                                     <?php 
 
                                     if ($i == $pos + 1) {  ?>
-                                      <hr>
+                                    <hr>
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
-                                            <h6>  <b> <?php 
-                                                print_r($grupos_subgrupos[$i]['desc_grupo']);
-                                                ?></h6> </b>
+                                            <h6> <b> <?php 
+                                                        print_r($grupos_subgrupos[$i]['desc_grupo']);
+                                                        ?></h6> </b>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -396,9 +396,9 @@
                                     <div class="row" style="background-color:White;">
                                         <div class="col-sm-5 col-md-8" style="background-color:Ivory">
                                             <h6> <b>
-                                                <?php 
-                                                print_r($grupos_subgrupos[$j]['desc_grupo']);
-                                                ?></h6></b>
+                                                    <?php 
+                                                    print_r($grupos_subgrupos[$j]['desc_grupo']);
+                                                    ?></h6></b>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:Ivory;"><small><i>Porcentaje %</i></small>
                                         </div>
@@ -427,7 +427,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de construccion: <span class="text-danger"> *</span></label>
-                                            <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" max="2019" required>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_cons" name="anio_cons" min="1000" max="2019" required>
                                         </div>
                                     </div>
                                 </div>
@@ -435,7 +435,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de remodelacion: <span class="text-danger"> *</span></label>
-                                            <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" max="2019" required>
+                                            <input type="number" size="4" min="0" class="form-control required" id="anio_remo" name="anio_remo" min="1000" max="2019" required>
                                         </div>
                                     </div>
                                 </div>
@@ -486,39 +486,66 @@
                                     </div>
                                 </div>
                                 <h6 class="card-subtitle">Superficie de la Planta</h6>
-                                <div class="row" style="background-color:#f6f6f6">
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="location1">Tipo de planta :<span class="text-danger"> *</span></label>
-                                            <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id" >
-                                                <option value="">Seleccione Tipo de planta</option>
-                                                <?php foreach ($tipo_planta as $tp) : ?>
-                                                <option value="<?php echo $tp->tipo_planta_id; ?>"><?php echo $tp->descripcion; ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>                                
-                                <div class="row" style="background-color:#f6f6f6" >
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="wfirstName2">Nivel : <span class="text-danger"> * <small>metros</small></span> </label>
-                                            <input type="number" class="form-control" step='1' id="nivel" name="nivel" value="0" >
+                                <!--modal-->
+
+                                <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Registro de niveles</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                                            </div>
+                                            <div class="modal-body">                                                                                                
+                                                    
+                                                    <div class="row" >
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label for="location1">Tipo de planta :<span class="text-danger"> *</span></label>
+                                                                <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id">
+                                                                    <option value="">Seleccione Tipo de planta</option>
+                                                                    <?php foreach ($tipo_planta as $tp) : ?>
+                                                                    <option value="<?php echo $tp->tipo_planta_id; ?>"><?php echo $tp->descripcion; ?></option>
+                                                                    <?php endforeach; ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" >
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label for="wfirstName2">Nivel : <span class="text-danger"> * <small>metros</small></span> </label>
+                                                                <input type="number" class="form-control" step='1' id="nivel" name="nivel" value="0">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" >
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                <label for="wfirstName2">Superficie : <span class="text-danger"> * <small>metros</small></span> </label>
+                                                                <input type="number" class="form-control" step='0.100' id="superficie" name="superficie" value="0.00">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                              
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-success waves-effect waves-light" id="bt_add" >Agregar</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" style="background-color:#f6f6f6" >
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="wfirstName2">Superficie : <span class="text-danger"> * <small>metros</small></span> </label>
-                                            <input type="number" class="form-control" step='0.100' id="superficie" name="superficie" value="0.00" >
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="row" style="background-color:#f6f6f6" >
-                                    <div class="col-md-12">
-                                        <button type="button" id="bt_add" class="class btn btn-success">agregar</button>
+                                <!--fin modal-->
+
+
+
+
+                                <div class="row" >
+                                    <div class="col-md-12">                                        
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#responsive-modal">Adicionar Niveles</button>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -532,8 +559,8 @@
                                                         <th>Sup. mts</th>
                                                         <th>Acciones</th>
                                                     </tr>
-                                                </thead>                                                
-                                                <tbody>                                                    
+                                                </thead>
+                                                <tbody>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -559,52 +586,54 @@
 <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-                $('#bt_add').click(function() {
-                    agregar();
-                });
-            });
-            var cont_n = 0; 
-            estado = 0; 
-            total=0;
-            subtotal = []; 
+        $('#bt_add').click(function() {
+            agregar();
+        });
+    });
+    var cont_n = 0;
+    estado = 0;
+    total = 0;
+    subtotal = [];
+    $("#guardar").hide();
+
+    function agregar() {
+        tipo_planta_id = $("#tipo_planta_id").val();
+        tipo_planta = $("#tipo_planta_id option:selected").text();
+        idnivel = $("#nivel").val();
+        nivel = $("#nivel option:selected").text();
+        superficie = $("#superficie").val();
+
+        if (tipo_planta_id != "" && idnivel != "" && superficie != "") {
+            total = total++;
+            var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><button type="button" cLass="btn btn-warning" onclick="eliminar(' + cont_n + ');">X</button></td></tr>';
+            cont_n++;
+            limpiar();
+            evaluar();
+            $('#detalles').append(fila);
+        } else {
+            alert("los campos estan vacios");
+        }
+    }
+
+    function limpiar() {
+        $("#tipo_planta_id").val(""); //id
+        $("#nivel").val("0");
+        $("#superficie").val("0.00");
+    }
+
+    function evaluar() {
+        if (cont_n > 0) {
+            $("#guardar").show();
+        } else {
             $("#guardar").hide();
+        }
+    }
 
-            function agregar() {
-                tipo_planta_id = $("#tipo_planta_id").val();
-                tipo_planta = $("#tipo_planta_id option:selected").text();
-                idnivel = $("#nivel").val();
-                nivel = $("#nivel option:selected").text();
-                superficie = $("#superficie").val();
-
-                if (tipo_planta_id != "" && idnivel != "" && superficie != "" ) {  
-                    total=total++;                                      
-                    var fila = '<tr class="selected" id="fila'+cont_n+'"><td><input type="hidden" name="id_tipo_planta[]" value="'+tipo_planta_id+'">'+tipo_planta+'</td><td><input type="hidden" name="niveles[]" value="'+idnivel+'">'+idnivel+'</td><td><input type="hidden" name="superficies[]" value="'+superficie+'">'+superficie+'</td><td><button type="button" cLass="btn btn-warning" onclick="eliminar('+cont_n+');">X</button></td></tr>';
-                    cont_n++;
-                    limpiar();
-                    evaluar();
-                    $('#detalles').append(fila);
-                }
-                else{
-                    alert("los campos estan vacios");
-                }
-            }
-            function limpiar(){
-                $("#tipo_planta_id").val(""); //id
-                $("#nivel").val("0");
-                $("#superficie").val("0.00");                
-            }
-            function evaluar() {
-                if (cont_n > 0) {
-                    $("#guardar").show();
-                } else {
-                    $("#guardar").hide();
-                }
-            }
-            function eliminar(index){
-                total=total-1;                
-                $("#fila"+index).remove();
-                evaluar();
-            }
+    function eliminar(index) {
+        total = total - 1;
+        $("#fila" + index).remove();
+        evaluar();
+    }
 </script>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
