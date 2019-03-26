@@ -455,6 +455,8 @@ class Predios extends CI_Controller {
 			$data = $this->datos_combo();
 			$this->db->where('codcatas', $cod_catastral);
 			$data['predio'] = $this->db->get('catastro.predio')->result();
+			
+			// $this->db->where('codcatas', $cod_catastral);
 			// vdebug($data);
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
@@ -470,7 +472,9 @@ class Predios extends CI_Controller {
 
 
 	private function datos_combo(){
+		
 		if($this->session->userdata("login")){
+
 			$this->db->select('tipo_predio_id, descripcion');
 			$this->db->order_by('descripcion', 'ASC');
 			$query = $this->db->get('catastro.tipo_predio');

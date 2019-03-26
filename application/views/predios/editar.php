@@ -94,28 +94,28 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="nro_inmueble"> Num inmueble : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="nro_inmueble" name="nro_inmueble" required />
+                                                <input type="text" class="form-control" id="nro_inmueble" name="nro_inmueble"  value="<?php echo $predio[0]->nro_inmueble; ?>" required />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="distrito"> Distrito : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="distrito" step='1' name="distrito" required />
+                                                <input type="text" class="form-control" id="distrito" step='1' name="distrito" value="<?php echo $predio[0]->distrito; ?>" required />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="manzana"> Manzana : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="manzana" step='1' name="manzana" required />
+                                                <input type="text" class="form-control" id="manzana" step='1' name="manzana" value="<?php echo $predio[0]->manzana; ?>" required />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="predio"> Predio : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="predio" step='1' name="predio" required />
+                                                <input type="text" class="form-control" id="predio" step='1' name="predio" value="<?php echo $predio[0]->predio; ?>" required />
                                             </div>
                                         </div>
 
@@ -141,7 +141,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="zona_econo"> Zona eco : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="zona_econo" name="zona_econo" maxlength="5"/d>
+                                                <input type="text" class="form-control" id="zona_econo" name="zona_econo" maxlength="5" value="<?php echo $predio[0]->zona_econo; ?>" />
                                             </div>
                                         </div>
 
@@ -152,7 +152,7 @@
                                                 <select class="custom-select form-control" id="zonaurb_id" name="zonaurb_id" required />
                                                     <option value="">Seleccione zona</option>
                                                     <?php foreach ($dc_zona_urbana as $d): ?>
-                                                        <option value="<?php echo $d->zonaurb_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                        <option value="<?php echo $d->zonaurb_id; ?>" <?php echo $predio[0]->zonaurb_id == $d->zonaurb_id ?' selected ':''?>><?php echo $d->descripcion; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -161,14 +161,16 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="n_puerta"> Numero puerta : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="n_puerta" name="nro_puerta" required />
+                                                <input type="text" class="form-control" id="n_puerta" name="nro_puerta" value="<?php echo $predio[0]->nro_puerta; ?>" required />
                                             </div>
                                         </div>
-
+                                        <?php 
+                                            $latlong = explode(",", $predio[0]->latlong);
+                                         ?>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="latitud"> Latitud : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" maxlength="13" id="latitud" name="latitud" required />
+                                                <input type="text" class="form-control" maxlength="13" id="latitud" name="latitud" value="<?php echo $latlong[0]; ?>" required />
                                             </div>
                                         </div>
 
@@ -177,7 +179,7 @@
                                                 <label for="longintud"> Longitud : <span class="text-danger">*</span> </label>
                                                 <!-- <input type="text" class="form-control" id="longitud" name="longitud">  -->
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="longitud" id="longitud" maxlength="13" required />
+                                                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="longitud" id="longitud" maxlength="13" value="<?php echo $latlong[1]; ?>" required />
                                                     <div class="input-group-append">
                                                         <button class="btn btn-warning" type="button" id="google_maps" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="muestra_mapa();">Mapa</button>
                                                     </div>
@@ -193,25 +195,27 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_geo">Superficie Geo : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="superficie_geo" name="superficie_geo" required />
+                                                <input type="number" class="form-control" step='0.01' id="superficie_geo" name="superficie_geo" value="<?php echo $predio[0]->superficie_geo; ?>" required />
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_campo">Superficie Campo : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="superficie_campo" name="superficie_campo" min="1" required />
+                                                <input type="number" class="form-control" step='0.01' id="superficie_campo" name="superficie_campo" min="1" value="<?php echo $predio[0]->superficie_campo; ?>" required />
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="superficie_legal">Superficie Legal : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="superficie_legal" name="superficie_legal" min="1" required />
+                                                <input type="number" class="form-control" step='0.01' id="superficie_legal" name="superficie_legal" min="1" value="<?php echo $predio[0]->superficie_legal; ?>" required />
                                             </div>
                                         </div>
 
                                         </div>
+
+                                        <?php //vdebug($predio[0]); ?>
 
                                         <div class="row" style="background-color: #fffef7;">
 
@@ -223,7 +227,7 @@
                                                 <select class="custom-select form-control" id="ubicacion_id" name="ubicacion_id" required />
                                                     <option value="">Seleccione ubicacion</option>
                                                     <?php foreach ($dc_ubicacion as $d): ?>
-                                                    <option value="<?php echo $d->ubicacion_id; ?>">
+                                                    <option value="<?php echo $d->ubicacion_id; ?>" <?php echo $predio[0]->ubicacion_id == $d->ubicacion_id ?' selected ':''?>>
                                                         <?php echo $d->descripcion; ?>
                                                     </option>
                                                     <?php endforeach; ?>
@@ -238,7 +242,7 @@
                                                 <select class="custom-select form-control" id="pendiente_id" name="pendiente_id" required />
                                                     <option value="">Seleccione pendiente</option>
                                                     <?php foreach ($dc_pendiente as $d): ?>
-                                                    <option value="<?php echo $d->pendiente_id; ?>">
+                                                    <option value="<?php echo $d->pendiente_id; ?>" <?php echo $predio[0]->pendiente_id == $d->pendiente_id ?' selected ':''?>>
                                                         <?php echo $d->descripcion; ?>
                                                     </option>
                                                     <?php endforeach; ?>
@@ -253,7 +257,7 @@
                                                 <select class="custom-select form-control" id="nivel_id" name="nivel_id" required />
                                                     <option value="">Seleccione nivel</option>
                                                     <?php foreach ($dc_nivel as $d): ?>
-                                                    <option value="<?php echo $d->nivel_id; ?>">
+                                                    <option value="<?php echo $d->nivel_id; ?>" <?php echo $predio[0]->nivel_id == $d->nivel_id ?' selected ':''?>>
                                                         <?php echo $d->descripcion; ?>
                                                     </option>
                                                     <?php endforeach; ?>
@@ -268,7 +272,7 @@
                                                 <select class="custom-select form-control" id="forma_id" name="forma_id" required />
                                                     <option value="">Seleccione forma</option>
                                                     <?php foreach ($dc_forma as $d): ?>
-                                                    <option value="<?php echo $d->forma_id; ?>">
+                                                    <option value="<?php echo $d->forma_id; ?>" <?php echo $predio[0]->forma_id == $d->forma_id ?' selected ':''?>>
                                                         <?php echo $d->descripcion; ?>
                                                     </option>
                                                     <?php endforeach; ?>
@@ -280,7 +284,7 @@
 
                                         <div class="row" style="background-color: #f6f6f6;">
 
-                                        <div class="col-md-6">
+<!--                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="c_principal" name="principal" required />
@@ -293,7 +297,7 @@
                                                 <input type="text" class="form-control" id="zona" name="zona" required />
                                             </div>
                                         </div>
-
+ -->
                                         </div>
 
                                         <div class="row" style="background-color: #f6f6f6;">
@@ -301,14 +305,14 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="frente">Frente : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="frente" name="frente"/d>
+                                                <input type="number" class="form-control" step='0.01' id="frente" value="<?php echo $predio[0]->frente; ?>" name="frente"/d>
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="fondo">Fondo : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="fondo" name="fondo"/d>
+                                                <input type="number" class="form-control" step='0.01' id="fondo" value="<?php echo $predio[0]->fondo; ?>" name="fondo"/d>
                                             </div>
                                         </div>
 
@@ -316,10 +320,10 @@
                                             <div class="form-group">
                                             <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Clase Predio : <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="forma_id" name="clase_predio_id" required />
+                                                <select class="custom-select form-control" name="clase_predio_id" required />
                                                     <option value="">Seleccione clase</option>
                                                     <?php foreach ($dc_clase_predio as $d): ?>
-                                                        <option value="<?php echo $d->clase_predio_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                        <option value="<?php echo $d->clase_predio_id; ?>" <?php echo $predio[0]->clase_predio_id == $d->clase_predio_id ?' selected ':''?>><?php echo $d->descripcion; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -329,10 +333,10 @@
                                             <div class="form-group">
                                             <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Uso Suelo : <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="forma_id" name="uso_suelo_id" required />
+                                                <select class="custom-select form-control" name="uso_suelo_id" required />
                                                     <option value="">Seleccione clase</option>
                                                     <?php foreach ($dc_uso_suelo as $d): ?>
-                                                        <option value="<?php echo $d->uso_suelo_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                        <option value="<?php echo $d->uso_suelo_id; ?>" <?php echo $predio[0]->uso_suelo_id == $d->uso_suelo_id ?' selected ':''?>><?php echo $d->descripcion; ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
@@ -341,23 +345,27 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="forma">Matriz PH : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" id="forma" step='1' name="matriz_ph" required />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                            <?php //echo vdebug($dc_tipos_predio); ?>
-                                                <label for="forma_id"> Edificio : <span class="text-danger">*</span> </label>
-                                                <select class="custom-select form-control" id="forma_id" name="edificio_id" required />
-                                                    <option value="">Seleccione edificio</option>
-                                                    <?php foreach ($dc_edificio as $d): ?>
-                                                        <option value="<?php echo $d->edificio_id; ?>"><?php echo $d->descripcion; ?></option>
-                                                    <?php endforeach; ?>
+                                                <!-- <input type="number" class="form-control" id="forma" step='1' name="matriz_ph" required /> -->
+                                                <select class="custom-select form-control" name="matriz_ph" />
+                                                    <option value="1">SI</option>
+                                                    <option value="0">NO</option>
                                                 </select>
                                             </div>
                                         </div>
 
+<!--                                         <div class="col-md-2">
+                                            <div class="form-group">
+                                            <?php //echo vdebug($dc_tipos_predio); ?>
+                                                <label for="forma_id"> Edificio : <span class="text-danger">*</span> </label>
+                                                <select class="custom-select form-control" name="edificio_id" required />
+                                                    <option value="">Seleccione edificio</option>
+                                                    <?php //foreach ($dc_edificio as $d): ?>
+                                                        <option value="<?php //echo $d->edificio_id; ?>"><?php //echo $d->descripcion; ?></option>
+                                                    <?php //endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+ -->
                                         </div>
 
                                         <div class="row">
