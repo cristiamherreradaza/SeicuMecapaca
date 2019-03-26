@@ -388,6 +388,21 @@ class Predios extends CI_Controller {
 		}
 	}
 
+	public function editar_propietario($cod_catastral = null){
+		if($this->session->userdata("login")){
+		$data = $this->datos_combo();
+		$data = $id = $this->db->query("SELECT * FROM catastro.predio_ddrr WHERE codcatas = '$cod_catastral'")->row();
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('predios/editar_propietario', $data);
+		$this->load->view('admin/footer');
+		$this->load->view('admin/wizard_js');
+		}
+		else{
+			redirect(base_url());
+		}
+	}
+
 
 	public function certificado($cod_catastral = null){
 		if($this->session->userdata("login")){

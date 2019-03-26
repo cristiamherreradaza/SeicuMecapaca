@@ -28,30 +28,29 @@ class Persona extends CI_Controller {
 	{
 		$carrito = $this->cart->total_items();
 		$porcentajeR = 100 - $carrito;
-		$datos = $this->input->post();
-		
+		$porcen_parti = $this->input->post('porcen_parti');
 
-		if($datos['porcen_parti'] <= $porcentajeR){
-			if($this->persona_model->existeci($datos['ci']))
+		if($porcen_parti <= $porcentajeR){
+			if($this->persona_model->existeci($this->input->post('ci')))
 			{
 				$id = $this->session->userdata("persona_perfil_id");
 		        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
 		        $usu_creacion = $resi->persona_id; 
 
-				$nombres = $datos['nombres'];
-				$paterno = $datos['paterno'];
-				$materno = $datos['materno'];
-				$ci = $datos['ci'];
-				$fec_nacimiento = $datos['fec_nacimiento'];
+				$nombres = $this->input->post('nombres');
+				$paterno = $this->input->post('paterno');
+				$materno = $this->input->post('materno');
+				$ci = $this->input->post('ci');
+				$fec_nacimiento = $this->input->post('fec_nacimiento');
 				$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
 			}
 
-			$consulta = $this->persona_model->consulta($datos['ci']);
+			$consulta = $this->persona_model->consulta($this->input->post('ci'));
 
 			$dato = array(
 				'id'      => $consulta->persona_id,
 				'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
-				'qty'     => $datos['porcen_parti'],
+				'qty'     => $porcen_parti,
 				'price'   => $consulta->ci
 		//                'options' => array('Size' => 'L',
 		//                                   'Color' => 'Red')
