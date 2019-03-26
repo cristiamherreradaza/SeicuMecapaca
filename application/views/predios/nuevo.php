@@ -39,8 +39,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                           
-
                             <div class="row page-titles">
                             <div class="col-md-6 col-8 align-self-center">
                                  <h4 class="card-title">Registro de los datos del propietario</h4>
@@ -51,22 +49,16 @@
                                 </button>
                             </div>
                         </div>
-
                              <div class="row">
-
                                 <div class="col-md-4">
                                     <button class="btn btn-block btn-info" type="button"><span class="btn-label">1</span> REGISTRO DEL PREDIO</button>
                                 </div>
-
                                 <div class="col-md-4">
                                     <button class="btn btn-block btn-info" type="button"><span class="btn-label">2</span> REGISTRO DE BLOQUES</button>
                                 </div>
-
                                 <div class="col-md-4">
                                     <button class="btn btn-block btn-info" type="button"><span class="btn-label">3</span> REGISTRO DE PROPIETARIO</button>
                                 </div>
-                                
-                                
                             </div>
                             <p></p>
                             <div class="progress">
@@ -77,7 +69,6 @@
                             <!-- <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?> -->
                             <?php echo form_open_multipart('ddrr/guardar', array('method'=>'POST')); ?>
                             <!-- <?php //echo form_open('ddrr/guardar', array('method' => 'POST')); ?> -->
-                            
                                 <div class="row">
                                     <div class="col-md-6" style="background-color: #f7f9ff;">
                                         <h6>Datos propietario</h6>
@@ -112,7 +103,12 @@
                                                         <td><?php echo $items['price']; ?></td>
                                                         <td><?php echo $items['qty']; ?></td>
 
-                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a></td>
+                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a>
+                                                       
+                                                        </td>
+                                                       
+                                                        
+
                                                     </tr>
                                                     <?php
                                                         $i++;
@@ -131,12 +127,10 @@
                                             </table>
                                         </div>  
                                     </div>
-                                    <!--/span-->
                                     <div class="col-md-6">
                                         <div class="row" style="background-color: #f6f6f6;">
                                             <div class="col-md-0">
                                                 <div class="form-group">
-                                                    
                                                     <input type="hidden" class="form-control" name="cod_catastral" value="<?php echo $cod_catastral ?>" required />
                                                 </div>
                                             </div>
@@ -146,14 +140,10 @@
                                                     <input type="text" class="form-control" name="nro_matricula_folio" required />
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                             <div class="col-md-4">
-                                               
                                                 <div class="form-group">
-                                                     <label>Numero de folio : <span class="text-danger">*</span> </label>
-                                                    
+                                                    <label>Numero de folio : <span class="text-danger">*</span> </label>
                                                     <input type="text" id="nro_folio" class="form-control" name="nro_folio" placeholder="_.__._.__._______" title="Introducir numero de folio" input-mask="_.__._.__._______">
-                                                    
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -163,7 +153,6 @@
                                                     <!-- <input placeholder="dd/mm/yyyy hh:mm" data-slots="dmyh"> -->
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                         </div>
                                         <div class="row "  style="background-color: #fffef7;">
                                             <div class="col-md-12">
@@ -224,7 +213,6 @@
                                                     <input type="text" class="form-control" name="libro" required />
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Fecha de registro de libro : <span class="text-danger">*</span> </label>
@@ -232,11 +220,8 @@
 
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                         </div>
                                     </div>
-
-                                  
 
                                     <div class="form-actions col-md-12 offset-md-11">
                                         <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
@@ -299,16 +284,14 @@
                                                             <div class="form-group">
                                                                 <div class="form-group">
                                                                     <label>Fecha de nacimiento : <span class="text-danger">*</span></label>
-                                                                    <input type="date" class="form-control" name="fec_nacimiento1" id="fec_nacimiento1" required />
+                                                                    <input type="date" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" required />
                                                                 </div>
                                                                
                                                             </div>
                                                         </div>
                                                         <!--/span-->
                                                     </div>
-                                                    <?php $i= 100 - $this->cart->total_items(); 
-                                                    ?>
-
+                                                    <?php $i= 100 - $this->cart->total_items(); ?>
                                                     <div class="row">
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
@@ -343,6 +326,7 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script> 
    
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap" async defer></script> -->
 
@@ -374,9 +358,8 @@
                         $('#paterno1').val(data.paterno);
                         $('#materno1').val(data.materno);
                         $('#fec_nacimiento1').val(data.fec_nacimiento);
-                        $("#msg_alerta_catastral").html('Ingrese el porcentaje de participacion del propietario');
-                        
-                           
+                        $("#msg_alerta_catastral").html('Podria cambiar el porcentaje de participacion del propietario que sea menor o igual a lo indicado');
+                             
                     } else {
                         $("#msg_sucess_catastral").hide();
                          $("#msg_error_catastral").show();
@@ -387,19 +370,14 @@
                         $('#materno1').val('');
                         $('#fec_nacimiento1').val('');
                     }
-
                 },
                 error:function(jqXHR, textStatus, errorThrown) {
                     // alert("error");
                 }
             });
-            
-           
-
         });
 
-    function confirma(){
-        
+    function confirma(){ 
         var ci = $('#ci1').val();
         var nombres = $('#nombres1').val();
         var paterno = $('#paterno1').val();
@@ -414,66 +392,65 @@
         $.ajax({
             type:'POST',
             url:"<?php echo base_url();?>persona/insertar",
+            dataType: 'json',
             data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, cod_catastral:cod_catastral},
             success: function (data, textStatus, jqXHR){
                 if (data.estado == 'no') {
-                    alert('Porcentaje sobrepaso el 100%');
-                    $("#alerta-porcentaje").show();
-                    $("#alerta-porcentaje").html('El porcentaje es demasiado alto');
+                    swal("¡BIEN!", "Se adiciono con exito a la persona", "success");                  
                 }else{
-                    window.location.reload();
+                    swal("¡MAL!", "Porcentaje sobrepaso el 100%", "error");
                 }
-                
-            }
+               window.location.reload();
+            },
+                error:function(jqXHR, textStatus, errorThrown) {
+                    // alert("error");
+                }
         });
     }
-
-
-
-      
     </script>
+
     <script type="text/javascript">
         function validate_int(myEvento) {
-  if ((myEvento.charCode >= 48 && myEvento.charCode <= 57) || myEvento.keyCode == 9 || myEvento.keyCode == 10 || myEvento.keyCode == 13 || myEvento.keyCode == 8 || myEvento.keyCode == 116 || myEvento.keyCode == 46 || (myEvento.keyCode <= 40 && myEvento.keyCode >= 37)) {
-    dato = true;
-  } else {
-    dato = false;
-  }
-  return dato;
-}
-
-function phone_number_mask() {
-  var myMask = "_.__._.__._______";
-  var myCaja = document.getElementById("nro_folio");
-  var myText = "";
-  var myNumbers = [];
-  var myOutPut = ""
-  var theLastPos = 1;
-  myText = myCaja.value;
-  //get numbers
-  for (var i = 0; i < myText.length; i++) {
-    if (!isNaN(myText.charAt(i)) && myText.charAt(i) != " ") {
-      myNumbers.push(myText.charAt(i));
-    }
-  }
-  //write over mask
-  for (var j = 0; j < myMask.length; j++) {
-    if (myMask.charAt(j) == "_") { //replace "_" by a number 
-      if (myNumbers.length == 0)
-        myOutPut = myOutPut + myMask.charAt(j);
-      else {
-        myOutPut = myOutPut + myNumbers.shift();
-        theLastPos = j + 1; //set caret position
-      }
-    } else {
-      myOutPut = myOutPut + myMask.charAt(j);
-    }
-  }
-  document.getElementById("nro_folio").value = myOutPut;
-  document.getElementById("nro_folio").setSelectionRange(theLastPos, theLastPos);
-}
-
-document.getElementById("nro_folio").onkeypress = validate_int;
-document.getElementById("nro_folio").onkeyup = phone_number_mask;
+          if ((myEvento.charCode >= 48 && myEvento.charCode <= 57) || myEvento.keyCode == 9 || myEvento.keyCode == 10 || myEvento.keyCode == 13 || myEvento.keyCode == 8 || myEvento.keyCode == 116 || myEvento.keyCode == 46 || (myEvento.keyCode <= 40 && myEvento.keyCode >= 37)) {
+            dato = true;
+          } else {
+            dato = false;
+          }
+          return dato;
+        }
+        function folio_mask() {
+          var myMask = "_.__._.__._______";
+          var myCaja = document.getElementById("nro_folio");
+          var myText = "";
+          var myNumbers = [];
+          var myOutPut = ""
+          var theLastPos = 1;
+          myText = myCaja.value;
+          //get numbers
+          for (var i = 0; i < myText.length; i++) {
+            if (!isNaN(myText.charAt(i)) && myText.charAt(i) != " ") {
+              myNumbers.push(myText.charAt(i));
+            }
+          }
+          //write over mask
+          for (var j = 0; j < myMask.length; j++) {
+            if (myMask.charAt(j) == "_") { //replace "_" by a number 
+              if (myNumbers.length == 0)
+                myOutPut = myOutPut + myMask.charAt(j);
+              else {
+                myOutPut = myOutPut + myNumbers.shift();
+                theLastPos = j + 1; //set caret position
+              }
+            } else {
+              myOutPut = myOutPut + myMask.charAt(j);
+            }
+          }
+          document.getElementById("nro_folio").value = myOutPut;
+          document.getElementById("nro_folio").setSelectionRange(theLastPos, theLastPos);
+        }
+        document.getElementById("nro_folio").onkeypress = validate_int;
+        document.getElementById("nro_folio").onkeyup = folio_mask;
     </script>
-    
+
+        
+

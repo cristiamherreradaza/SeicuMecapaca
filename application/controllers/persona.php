@@ -26,12 +26,10 @@ class Persona extends CI_Controller {
 
 	public function insertar()
 	{
-
 		$carrito = $this->cart->total_items();
 		$porcentajeR = 100 - $carrito;
-
 		$datos = $this->input->post();
-		$cod_catastral = $datos['cod_catastral'];
+		
 
 		if($datos['porcen_parti'] <= $porcentajeR){
 			if($this->persona_model->existeci($datos['ci']))
@@ -59,14 +57,15 @@ class Persona extends CI_Controller {
 		//                                   'Color' => 'Red')
 			);
 			$this->cart->insert($dato);
-			$respuesta = array('estado'=>'no');
-			echo json_encode($respuesta);
+			$data = array('estado'=>'no');
+			echo json_encode($data);
+			
 		}else{
-			$respuesta = array('estado'=>'si');
-			echo json_encode($respuesta);
+			$data = array('estado'=>'si');
+			echo json_encode($data);
+			
 		}
-		
-		
+
 		/*$datos = $this->input->post();
 
 		if(isset($datos))
