@@ -553,4 +553,31 @@ class Predios extends CI_Controller {
 
 	}
 
+	public function ajax_genera_codcatas(){
+
+		$codigo = $this->input->post('codigo');
+		$distrito = $this->db->query("SELECT catastro.get_dist('$codigo')")->result();
+		$manzana = $this->db->query("SELECT catastro.get_manz('$codigo')")->result();
+		$predio = $this->db->query("SELECT catastro.get_pred('$codigo')")->result();
+
+
+		$nuevo_predio = $predio[0]->get_pred + 1;
+		if ($nuevo_predio > 1 && $nuevo_predio < 10) {
+			$ceros = "000";			
+		}elseif ($nuevo_predio > 9 && $nuevo_predio < 100) {
+			$ceros = "00";			
+		} else {
+			$ceros = "0";
+		}
+		// echo $nuevo_predio;
+
+		// echo $distrito[0]->get_dist;
+		// echo $manzana[0]->get_manz;
+		// echo $predio[0]->get_pred;
+
+		$cod_catastral = $distrito[0]->get_dist.$manzana[0]->get_manz.$ceros.$nuevo_predio;
+		echo json_encode($cod_catastral);
+		// vdebug($distrito[0]->get_dist);
+	}
+
 }

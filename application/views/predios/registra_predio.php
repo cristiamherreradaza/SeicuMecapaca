@@ -85,6 +85,19 @@
                                 <div class="row">
                                     <div class="col-md-9">
 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <div class="form-group">
+                                                <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
+                                                <textarea rows="4" class="form-control" id="cod_referencial"></textarea>
+                                                <div style="width: 100%;">
+                                                    <button class="btn btn-block btn-warning" type="button" id="btn_genera_catas">FINALIZADO</button>
+                                                </div>
+                                                <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row" style="background-color: #f6f6f6;">
 
                                         <div class="col-md-2">
@@ -660,6 +673,46 @@
                 }
             });
             
+        });
+
+        $("#btn_genera_catas").click(function(){
+
+            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
+            var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+            var csrf = $("input[name=csrf_test_name]").val()
+            // console.log(csrf);
+
+            var cod_referencial = $("#cod_referencial").val();
+            // alert(cod_referencial);
+            $.ajax({
+                url: '<?php echo base_url(); ?>predios/ajax_genera_codcatas/',
+                type: 'POST',
+                dataType: 'json',
+                data: {csrfName: csrfHash, codigo: cod_referencial, csrf_test_name: csrf},
+                success:function(data, textStatus, jqXHR) {
+                    // console.log(data);
+                    // var cod_cat = parseInt(data);
+                    $("#codigo_catastral").val(data);
+
+                    // $("#codigo_catastral").val(codigo_cat);
+                    var s_codigo_cat = data.toString();
+                    // var cod_catastral = $("#codigo_catastral").val();
+                    var predio = s_codigo_cat.substr(6, 10);
+                    var distrito = s_codigo_cat.substr(0, 3);
+                    var manzana = s_codigo_cat.substr(3, 3);
+
+                    $("#distrito").val(distrito);
+                    $("#manzana").val(manzana);
+                    $("#predio").val(predio);
+
+                    $("#distrito").prop('readonly', true);
+                    $("#manzana").prop('readonly', true);
+                    $("#predio").prop('readonly', true);
+                },
+                error:function(jqXHR, textStatus, errorThrown) {
+                }
+            });
+
         });
 
         $("#btn_sel_predio").click(function(event) {
