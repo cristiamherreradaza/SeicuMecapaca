@@ -393,7 +393,7 @@ class Predios extends CI_Controller {
 	public function editar_propietario($cod_catastral = null){
 		if($this->session->userdata("login")){
 		$data = $this->datos_combo();
-		$data = $id = $this->db->query("SELECT * FROM catastro.predio_ddrr WHERE codcatas = '$cod_catastral'")->row();
+		$data = $this->db->query("SELECT * FROM catastro.predio_ddrr WHERE codcatas = '$cod_catastral'")->row();
 		$ddrr_id = $data->ddrr_id;
 
 		$carrito = $this->Ddrr_model->carrito_ddrr($ddrr_id);
@@ -401,16 +401,15 @@ class Predios extends CI_Controller {
 		// $carrito = $this->db->query("SELECT p.*, pd.porcen_parti FROM catastro.predio_titular as pd INNER JOIN persona as p ON pd.persona_id = p.persona_id where ddrr_id = '$ddrr_id'")->row();
 		foreach ($carrito as $row => $cdata) {
 			$dato = array(
-				'id'      => $cdata->persona_id,
+				'id'      => $cdata->persona_id.'-'.$cdata->titular_id,
 				'name'    => $cdata->nombres.' '.$cdata->paterno.' '.$cdata->materno,
 				'qty'     => $cdata->porcen_parti,
 				'price'   => $cdata->ci
-		//                'options' => array('Size' => 'L',
+		//      'options' => array('Size' => 'L',
 		//                                   'Color' => 'Red')
 			);
 			$this->cart->insert($dato);
 		}
-
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('predios/editar_propietario', $data);

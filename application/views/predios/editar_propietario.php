@@ -103,12 +103,8 @@
                                                         <td><?php echo $items['price']; ?></td>
                                                         <td><?php echo $items['qty']; ?></td>
 
-                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$codcatas; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a>
-                                                       
+                                                        <td><a href="<?php echo site_url('persona/remove_edicion/'. $items['rowid'].'/' . $items['id']).'/'.$codcatas; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a>
                                                         </td>
-                                                       
-                                                        
-
                                                     </tr>
                                                     <?php
                                                         $i++;
@@ -150,7 +146,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Numero de folio : <span class="text-danger">*</span> </label>
-                                                    <input type="text" id="nro_folio" class="form-control" name="nro_folio" value="<?php echo $nro_matricula_folio ?>" placeholder="_.__._.__._______" title="Introducir numero de folio" input-mask="_.__._.__._______">
+                                                    <input type="text" id="nro_folio" class="form-control" name="nro_folio" value="<?php echo $nro_folio ?>" placeholder="_.__._.__._______" title="Introducir numero de folio" input-mask="_.__._.__._______">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">

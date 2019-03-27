@@ -225,6 +225,7 @@
 
                                     <a class="btn btn-success" href="<?php echo site_url('Predios/editar_propietario');?>/<?php echo $cod_catastral?>" align="right">Siguiente</a>
 
+
                                     <div class="form-actions col-md-12 offset-md-11">
                                         <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
                                     </div>
@@ -308,6 +309,7 @@
                                                     </div>
 
                                                 </div>
+
                                                 <div class="form-actions">
                                                     <button class="btn waves-effect waves-light btn-info" type="button" onclick="confirma()"> <i class="fa fa-check"></i>Guardar</button>
                                                     <button class="btn btn-danger" type="button"  data-dismiss="modal">Cerrar</button>

@@ -48,7 +48,7 @@ class Persona extends CI_Controller {
 			$consulta = $this->persona_model->consulta($this->input->post('ci'));
 
 			$dato = array(
-				'id'      => $consulta->persona_id,
+				'id'      => $consulta->persona_id.'-0',
 				'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
 				'qty'     => $porcen_parti,
 				'price'   => $consulta->ci
@@ -92,6 +92,35 @@ class Persona extends CI_Controller {
 			$this->cart->update($data);
 		}
 		redirect("predios/nuevo/$cod_catastral");
+	}
+
+	public function remove_edicion($rowid, $id, $cod_catastral)
+   	{
+        list($persona_id,$titular_id) = explode("-",$id);
+                                
+   		$id1 = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id1))->row();
+        $usu_eliminacion = $resi->persona_id;
+        $fec_eliminacion = date("Y-m-d H:i:s");
+        //var_dump($id);
+   		if ($rowid==="all")
+		{
+			$this->cart->destroy();
+		}else{
+			$data = array(
+			'rowid' => $rowid,
+			'qty' => 0
+			);
+			$this->cart->update($data);
+			$datos = array(
+            'activo' => 0,
+            'usu_eliminacion' => $usu_eliminacion,
+            'fec_eliminacion' => $fec_eliminacion
+        	);
+			$this->db->where('titular_id', $titular_id);
+        	$this->db->update('catastro.predio_titular', $datos);
+		}
+		redirect("predios/editar_propietario/$cod_catastral");
 	}
 
 	public function ajax_verifica(){

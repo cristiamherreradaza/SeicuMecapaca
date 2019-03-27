@@ -39,6 +39,7 @@ class Ddrr extends CI_Controller {
 		$this->cart->destroy();
 		redirect('predios/index');
 		
+		
 	}
 
 	
@@ -64,8 +65,9 @@ class Ddrr extends CI_Controller {
 		$libro = $this->input->post('libro');
 		$fecha_reg_libro = $this->input->post('fecha_reg_libro');
 		
-		$datos= $this->cart->contents();
-		$this->Ddrr_model->modificar_ddrr($ddrr_id, $codcatas, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_modificacion, $fec_modificacion);
+		$datos= $this->cart->contents();		
+		
+		$this->ddrr_model->modificar_ddrr($ddrr_id, $codcatas, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_modificacion, $fec_modificacion);
 		$this->cart->destroy();
 		redirect('predios/index');
 		

@@ -29,12 +29,13 @@ class Ddrr_model extends CI_Model {
 			);
 		$this->db->insert('catastro.predio_ddrr', $array);
 		$ddrr_id = $this->db->query("select ddrr_id from catastro.predio_ddrr order by ddrr_id desc limit 1")->row();
-		foreach ($this->cart->contents() as $items)
+		foreach ($datos as $items)
 		{
+			list($persona_id,$titular_id) = explode("-",$items['id']);
 			$array = array(
 				'ddrr_id' => (int)$ddrr_id->ddrr_id,
 				'porcen_parti' => $items['qty'],
-				'persona_id' => $items['id'], 
+				'persona_id' => $persona_id, 
 				'usu_creacion' => $usu_creacion
 			);
 			$this->db->insert('catastro.predio_titular', $array);
@@ -48,7 +49,7 @@ class Ddrr_model extends CI_Model {
 		// $this->db->where('pd.ddrr_id', $ddrr_id);
 		// $this->db->join(' persona as p', 'pd.persona_id = p.persona_id');
 		// $carrito = $this->db->get()->result();
-		$carrito = $this->db->query("SELECT p.*, pd.porcen_parti FROM catastro.predio_titular as pd INNER JOIN persona as p ON pd.persona_id = p.persona_id where ddrr_id = '$ddrr_id'")->result();
+		$carrito = $this->db->query("SELECT p.*, pd.porcen_parti, pd.titular_id FROM catastro.predio_titular as pd INNER JOIN persona as p ON pd.persona_id = p.persona_id where pd.ddrr_id = '$ddrr_id' and pd.activo = 1")->result();
 		return $carrito;
 	}
 
@@ -73,7 +74,22 @@ class Ddrr_model extends CI_Model {
 			);
 
 		$this->db->where('ddrr_id', $ddrr_id);
-        return $this->db->update('catastro.predio_ddrr', $array);
+        $this->db->update('catastro.predio_ddrr', $array);
+        foreach ($datos as $items)
+		{
+			list($persona_id,$titular_id) = explode("-",$items['id']);
+			$this->db->where('titular_id',$titular_id);
+			$reg = $this->db->get('catastro.predio_titular');
+		    if($reg->num_rows()<1) {
+		        $array = array(
+				'ddrr_id' => $ddrr_id,
+				'porcen_parti' => $items['qty'],
+				'persona_id' => $persona_id, 
+				'usu_creacion' => $usu_modificacion
+				);
+				$this->db->insert('catastro.predio_titular', $array);
+		    }
+		}
 
 	}
 }
