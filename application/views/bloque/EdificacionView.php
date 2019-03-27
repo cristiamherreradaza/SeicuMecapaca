@@ -67,18 +67,16 @@
                                                         <th>Nombre</th>
                                                         <th>Estado fisico</th>
                                                         <th>Año construccion</th>
-                                                        <th>Altura</th>                                                   
+                                                        <th>Altura</th>
                                                         <th>Destino</th>
                                                         <th>Uso</th>
-                                                        
+                                                        <th>Acciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
-
                                                     <?php foreach ($bloques as $row) { ?>
                                                     <tr>
-                                                        <th scope="row"><?php echo $row->codcatas; ?></th>                                                    
+                                                        <td scope="row"><?php echo $row->codcatas; ?></td>
                                                         <td><?php echo $row->nro_bloque; ?></td>
                                                         <td><?php echo $row->nom_bloque; ?></td>
                                                         <td><?php echo $row->estado_fisico; ?></td>
@@ -87,34 +85,24 @@
                                                         <td><?php echo $row->desc_bloque_dest; ?></td>
                                                         <td><?php echo $row->desc_bloque_uso; ?> </td>
                                                         <td>
+                                                            <a href="<?php echo site_url('edificacion/update'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->codcatas; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>
+                                                            <a href="<?php echo site_url('edificacion/delete'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->codcatas; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
                                                         </td>
-
-
                                                     </tr>
                                                     <?php 
                                                 } ?>
-
                                                 </tbody>
                                             </table>
-
                                         </div>
                                         <div align="right">
-                                            <a class="btn btn-success" href="<?php echo site_url('Edificacion/next');?>/<?php echo $cod_catastral?>" align="right">Siguiente</a>
+                                            <a class="btn btn-success" href="<?php echo site_url('Edificacion/next'); ?>/<?php echo $cod_catastral ?>" align="right">Siguiente</a>
                                         </div>
-
                                     </div>
                                 </div>
-
-
-
-
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <!-- ============================================================== --> 

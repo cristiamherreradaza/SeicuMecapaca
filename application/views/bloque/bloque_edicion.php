@@ -20,20 +20,23 @@
 
                     <div class="card-body">
 
-                        <?php 
-                        /*$max = sizeof($grupos_subgrupos);
-                        echo $max;
-
-                        for ($i = 0; $i < $max ; $i++) {
-
-                           //$last_names = array_column($result_array, 'alias');
-                           
-                         echo "<pre>";                                                                         
-                         print_r($grupos_subgrupos[$i]['desc_grupo']);
-                         echo "</pre>"; }*/
-
-
-                        ?>
+                    <?php foreach ($datos_bloque as $row) { 
+                        $bloque_id= $row->bloque_id;
+                        $codcatas = $row->codcatas;
+                        $nro_bloque = $row->nro_bloque;
+                        $nom_bloque = $row->nom_bloque;
+                        $estado_fisico = $row->estado_fisico;
+                        $altura = $row->altura;
+                        $anio_cons= $row->anio_cons;
+                        $anio_remo= $row->anio_remo;
+                        $porcentaje_remo= $row->porcentaje_remo;
+                        $destino_bloque_id= $row->destino_bloque_id;
+                        $desc_bloque_dest= $row->desc_bloque_dest;
+                        $uso_bloque_id= $row->uso_bloque_id; 
+                        $desc_bloque_uso= $row->desc_bloque_uso; 
+                        //$tipolo_id= $row->tipolo_id;
+                        //$activo= $row->activo;                        
+                    } ?>
                         <!-- Step 2 -->
 
                         <div class="row page-titles">
@@ -46,10 +49,11 @@
                                 </button>
                             </div>
                         </div>
-                        <?php echo form_open('Edificacion/create', array('method' => 'POST')); ?>
+                        <?php echo form_open('Edificacion/actualizar', array('method' => 'POST')); ?>
 
                         <input type="hidden" class="form-control required" id="cod_catastral" name="cod_catastral" readonly="" value="<?php echo $cod_catastral; ?>">
                         <input type="hidden" class="form-control required" id="nro_bloque" name="nro_bloque" readonly="" value="<?php echo $nro_bloque; ?>">
+                        <input type="hidden" class="form-control required" id="nro_bloque" name="bloque_id" readonly="" value="<?php echo $bloque_id; ?>">
                         <h4>Caracteristicas de la construccion</h4>
 
 
@@ -69,13 +73,16 @@
 
                                     $ngrupos = sizeof($grupos);
                                     $longgrupo = $ngrupos - 1;
+                                    
                                     $cant = $longgrupo / 3;
                                     $cantgrupos = round($cant, 0);
 
 
                                     $count2 = 0; //contador de los ciclos
 
-                                    $pos = 0; //posicion final de la ultima grid                                                                        
+                                    $pos = 0; //posicion final de la ultima grid   
+                                    
+                                    $suma_total=0;
 
 
                                     for ($i = 0; $i < $max; $i++) { ?>
@@ -113,7 +120,8 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0">
+                                            <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
                                         </div>
                                     </div>
 
@@ -125,7 +133,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="<?php echo $suma_total ?>" readonly />
                                             <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
                                             </div>
                                         </div>
@@ -142,8 +150,9 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0 " style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="<?php echo $suma_total ?>" readonly />
                                             <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
+                                            <?php $suma_total=0 ?>
                                             </div>
                                         </div>
                                     </div>
@@ -199,6 +208,7 @@
                                     $cant = $longgrupo / 3;
                                     $cantgrupos = round($cant, 0);
                                     $count3 = $cantgrupos * 2; //contador de los ciclos
+                                    $suma_total=0;
 
 
                                     for ($i = $pos + 1; $i < $max; $i++) { ?>
@@ -236,7 +246,8 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0">
+                                            <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
 
                                         </div>
                                     </div>
@@ -249,7 +260,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" readonly />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="<?php echo $suma_total ?>" readonly />
                                             <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
                                             </div>
                                         </div>
@@ -266,7 +277,8 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="<?php echo $suma_total ?>" readonly />
+                                            <?php  $suma_total=0; ?>
                                             <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
                                             </div>
                                         </div>
@@ -321,6 +333,8 @@
                                     $cantgrupos = round($cant, 0);
                                     $count3 = $cantgrupos * 2; //contador de los ciclos
 
+                                    $suma_total=0;
+
                                     for ($i = $pos + 1; $i < $max; $i++) { ?>
 
                                     <?php 
@@ -355,7 +369,8 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0">
+                                            <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
                                         </div>
                                     </div>
 
@@ -366,7 +381,7 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="<?php echo $suma_total ?>" readonly />
                                             <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
                                             </div>
                                         </div>
@@ -382,8 +397,9 @@
                                         <div class="col-sm-5 col-sm-offset-2 col-md-8 col-md-offset-0" style="background-color:White;" align="right">Total
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-0" style="background-color:White;">
-                                            <input type="text" class="form-control total<?php echo $count ?>" value="" readonly />
+                                            <input type="text" class="form-control total<?php echo $count ?>" value="<?php echo $suma_total ?>" readonly />
                                             <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
+                                            <?php $suma_total=0 ?>
                                             </div>
                                         </div>
                                     </div>
@@ -419,7 +435,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Nombre de Bloque :<span class="text-danger"> *</span></label>
-                                            <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque" required>
+                                            <input type="text" class="form-control required" id="nom_bloque" name="nom_bloque" value="<?php echo $nom_bloque; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -427,7 +443,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de construccion: <span class="text-danger"> *</span></label>
-                                            <input type="number" size="4" class="form-control required" id="anio_cons" name="anio_cons" min="1000" max="2019" required>                                            
+                                            <input type="number" size="4" class="form-control required" id="anio_cons" name="anio_cons" min="1000" max="2019" value="<?php echo $anio_cons; ?>" required>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -435,7 +451,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de remodelacion: <span class="text-danger"> *</span></label>
-                                            <input type="number" size="4" class="form-control required" id="anio_remo" name="anio_remo" min="1000" max="2019" required>
+                                            <input type="number" size="4" class="form-control required" id="anio_remo" name="anio_remo" min="1000" max="2019" value="<?php echo $anio_remo; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -444,9 +460,11 @@
                                         <div class="form-group">
                                             <label for="location1">Destino :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" required>
-                                                <option value="">Seleccione destino</option>
+                                            <option value="<?php echo $destino_bloque_id; ?>" selected><?php echo $desc_bloque_dest; ?></option>
                                                 <?php foreach ($destino_bloque as $d) : ?>
+                                                <?php if (($d->destino_bloque_id) != $destino_bloque_id): ?>
                                                 <option value="<?php echo $d->destino_bloque_id; ?>"><?php echo $d->descripcion; ?></option>
+                                                <?php endif; ?>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -457,9 +475,11 @@
                                         <div class="form-group">
                                             <label for="location1">Uso :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="uso_bloque_id" name="uso_bloque_id" required>
-                                                <option value="">Seleccione Uso</option>
+                                            <option value="<?php echo $uso_bloque_id; ?>" selected><?php echo $desc_bloque_uso; ?></option>
                                                 <?php foreach ($destino_uso as $du) : ?>
+                                                <?php if (($du->uso_bloque_id) != $uso_bloque_id): ?>
                                                 <option value="<?php echo $du->uso_bloque_id; ?>"><?php echo $du->descripcion; ?></option>
+                                                <?php endif; ?>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -467,9 +487,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <div class="form-group">                                            
+                                        <div class="form-group">
                                             <label for="wfirstName2">Estado Fisico : <span class="text-danger"> *  <small> </small> </span> </label>
-                                            <input type="text" class="form-control"  id="estado_fisico" name="estado_fisico"  required>
+                                            <input type="text" class="form-control"  id="estado_fisico" name="estado_fisico" value="<?php echo $estado_fisico; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -477,7 +497,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Altura : <span class="text-danger"> * (90.1) <small> metros </small> </span> </label>
-                                            <input type="number" class="form-control" step='0.1' id="altura" name="altura" value="0.0" required>
+                                            <input type="number" class="form-control" step='0.1' id="altura" name="altura" value="<?php echo $altura; ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -557,6 +577,27 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                <script>
+                                                 var cont_n = 0;
+                                                    estado = 0;
+                                                    total = 0;
+                                                </script>
+                                                <?php $contador=0; foreach ($datos_bloque_piso as $rowd) { ?>
+                                                    <tr class="selected" id="fila<?php echo $contador; ?>">
+                                                        <td><input type="hidden" name="id_tipo_planta[]" value="<?php echo $rowd->tipo_planta_id; ?>"><?php echo $rowd->descripcion;?></td>
+                                                        <td><input type="hidden" name="niveles[]" value="<?php echo $rowd->nivel; ?>"><?php echo $rowd->nivel; ?></td>
+                                                        <td><input type="hidden" name="superficies[]" value="<?php echo $rowd->superficie; ?>"><?php echo $rowd->superficie; ?></td>                                                                                                             
+                                                        <td>                                                            
+                                                         <button type="button" cLass="btn btn-danger" onclick="eliminar(<?php echo $contador; ?>);"><span class="fas fa-trash-alt" aria-hidden="true"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                    <script>
+                                                        cont_n++;                                                        
+                                                        total++;
+                                                    </script>
+                                                    <?php $contador++; ?>
+                                                    <?php 
+                                                } ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -587,9 +628,9 @@
             $('#responsive-modal').modal('hide');
         });
     });
-    var cont_n = 0;
-    estado = 0;
-    total = 0;
+    //var cont_n = 0;
+    //estado = 0;
+    //total = 0;
     subtotal = [];
     $("#guardar").hide();
 
