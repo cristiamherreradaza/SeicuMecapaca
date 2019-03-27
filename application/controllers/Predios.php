@@ -477,10 +477,7 @@ class Predios extends CI_Controller {
 			$this->db->where('codcatas', $cod_catastral);
 			$data['servicios'] = $this->db->get('catastro.predio_servicios')->result();
 
-			$consulta = $this->db->query("SELECT catastro.get_dist('MultiPolygon (((458869.78909999970346689 8009023.56230000033974648, 458863.56599999964237213 8009012.66299999970942736, 458854.47730000037699938 8009018.23849999997764826, 458841.43290000036358833 8009026.24060000013560057, 458839.07620000001043081 8009027.6863000001758337, 458844.05049999989569187 8009038.43580000009387732, 458869.78909999970346689 8009023.56230000033974648)))');")->result();
-			
-			// $this->db->where('codcatas', $cod_catastral);
-			vdebug($consulta);
+			// vdebug($consulta);
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
 			// $this->load->view('predios/nuevo', $data);

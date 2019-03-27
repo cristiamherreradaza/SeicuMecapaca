@@ -302,19 +302,19 @@
 
                                         <div class="row" style="background-color: #f6f6f6;">
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="c_principal" name="principal" required />
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="zona">Zona : <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="zona" name="zona" required />
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         </div>
 
@@ -432,6 +432,7 @@
                                                 <input type="file" id="input-file-now" class="dropify" name="foto_plano" data-allowed-file-extensions="jpg" required />
                                             </div>
                                         </div>
+
                                         <div class="card">
                                             <div class="card-body">
                                                 <h4 class="card-title">Foto Fachada</h4>
