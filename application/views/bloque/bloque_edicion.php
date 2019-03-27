@@ -610,8 +610,11 @@
                             <!--fin col-lg-5-->
                         </div>
                         <!--fin column-->
-                        <button type="submit" class="btn btn-info" value="save">Guardar</button>
-                        <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral ?>" align="right">Cancelar</a>
+                        <div class="col-md-12" align="right">
+                            <button type="submit" class="btn btn-info" value="save" id="">Guardar</button>
+                            <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral ?>" align="right">Cancelar</a>
+                        </div>
+                        
                         </form>
                     </div>
                     <!--</form>-->
@@ -632,7 +635,8 @@
     //estado = 0;
     //total = 0;
     subtotal = [];
-    $("#guardar").hide();
+    //$("#guardar").hide();
+    //evaluar();
 
     function agregar() {
         tipo_planta_id = $("#tipo_planta_id").val();
