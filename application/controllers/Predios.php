@@ -302,7 +302,8 @@ class Predios extends CI_Controller {
 				'clase_predio_id'=>$this->input->post('clase_predio_id'),
 				'uso_suelo_id'=>$this->input->post('uso_suelo_id'),
 				'matriz_ph'=>$this->input->post('matriz_ph'),
-				'edificio_id'=>$this->input->post('edificio_id'),
+				// 'edificio_id'=>$this->input->post('edificio_id'),
+				'edificio_id'=>2,
 				'usu_creacion' =>$usu_creacion
 			);
 			$this->db->insert('catastro.predio', $data);

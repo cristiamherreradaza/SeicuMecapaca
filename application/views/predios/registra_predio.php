@@ -89,7 +89,7 @@
                                         <div class="col-md-12">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
-                                                <textarea rows="4" class="form-control" id="cod_referencial"></textarea>
+                                                <textarea rows="4" class="form-control" id="cod_referencial" autofocus ></textarea>
                                                 <div style="width: 100%;">
                                                     <button class="btn btn-block btn-warning" type="button" id="btn_genera_catas">FINALIZADO</button>
                                                 </div>
@@ -103,7 +103,7 @@
                                         <div class="col-md-2">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
-                                                <input autofocus type="text" class="form-control" id="codigo_catastral" name="codigo_catastral" maxlength="11" required />
+                                                <input type="text" class="form-control" id="codigo_catastral" name="codigo_catastral" maxlength="11" required />
                                                 <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                             </div>
                                         </div>
@@ -363,22 +363,26 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="forma">Matriz PH : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" id="forma" step='1' name="matriz_ph" required />
+                                                <!-- <input type="number" class="form-control" id="forma" step='1' name="matriz_ph" required /> -->
+                                                <select class="custom-select form-control" name="matriz_ph" />
+                                                    <option value="1">SI</option>
+                                                    <option value="0">NO</option>
+                                                </select>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <!-- <div class="col-md-2">
                                             <div class="form-group">
                                             <?php //echo vdebug($dc_tipos_predio); ?>
                                                 <label for="forma_id"> Edificio : <span class="text-danger">*</span> </label>
                                                 <select class="custom-select form-control" id="forma_id" name="edificio_id" required />
                                                     <option value="">Seleccione edificio</option>
-                                                    <?php foreach ($dc_edificio as $d): ?>
-                                                        <option value="<?php echo $d->edificio_id; ?>"><?php echo $d->descripcion; ?></option>
-                                                    <?php endforeach; ?>
+                                                    <?php //foreach ($dc_edificio as $d): ?>
+                                                        <option value="<?php //echo $d->edificio_id; ?>"><?php //echo $d->descripcion; ?></option>
+                                                    <?php //endforeach; ?>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         </div>
 
@@ -706,6 +710,7 @@
                     $("#manzana").val(manzana);
                     $("#predio").val(predio);
 
+                    $("#codigo_catastral").prop('readonly', true);
                     $("#distrito").prop('readonly', true);
                     $("#manzana").prop('readonly', true);
                     $("#predio").prop('readonly', true);
