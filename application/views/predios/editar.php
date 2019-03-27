@@ -382,8 +382,18 @@
                                                     <label class="custom-control-label" for="customCheck99"><b>Selecciona Todos</b></label>
                                                 </div>
                                                     <?php foreach ($listado_servicios as $key => $ls): ?>
+
                                                     <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>" checked />
+                                                        <?php foreach ($servicios as $s): ?>
+                                                            <?php if ($s->servicio_id == $ls->servicio_id): ?>
+                                                                <?php $seleccionado = "checked" ?>
+                                                                <?php break ?>
+                                                            <?php else: ?>
+                                                                <?php $seleccionado = "" ?>
+                                                            <?php endif ?>
+                                                        <?php endforeach ?>
+
+                                                        <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>" <?php echo $seleccionado; ?> />
                                                         <label class="custom-control-label" for="customCheck<?php echo $key; ?>"><?php echo $ls->descripcion ?></label>
                                                     </div>
                                                     <?php endforeach; ?>
@@ -397,6 +407,7 @@
                                             <div class="form-group">
                                                 <label for="observaciones">Observaciones : </label>
                                                 <input type="text" class="form-control" id="observaciones" name="observaciones" required />
+                                                <?php //vdebug($servicios); ?>
                                             </div>
                                         </div>
 
