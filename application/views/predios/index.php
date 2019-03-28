@@ -66,8 +66,9 @@
                                                     <a href="<?php echo base_url(); ?>edificacion/nuevo/<?php echo $lp->codcatas; ?>" class="btn btn-primary footable-edit">
                                                         <span class="fas fas fa-edit" aria-hidden="true"></span>
                                                     </a>
+                                                    
                                                 <?php else: ?>
-                                                    <a href="<?php echo base_url(); ?>predios/nuevo/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
+                                                    <a href="<?php echo base_url(); ?>predios/editar_propietario/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
                                                         <span class="fas fas fa-edit" aria-hidden="true"></span>
                                                     </a>
                                                 <?php endif ?>

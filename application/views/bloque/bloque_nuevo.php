@@ -476,8 +476,8 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <label for="wfirstName2">Altura : <span class="text-danger"> * (90.1) <small> metros </small> </span> </label>
-                                            <input type="number" class="form-control" step='0.1' id="altura" name="altura" value="0.0" required>
+                                            <label for="wfirstName2">Altura : <span class="text-danger"> * (90.34) <small> metros </small> </span> </label>
+                                            <input type="number" class="form-control" step="0.01" id="altura" name="altura" value="0.00" required>                                           
                                         </div>
                                     </div>
                                 </div>
@@ -510,7 +510,7 @@
                                                     <div class="row" >
                                                         <div class="col-md-8">
                                                             <div class="form-group">
-                                                                <label for="wfirstName2">Nivel : <span class="text-danger"> * <small>metros</small></span> </label>
+                                                                <label for="wfirstName2">Nivel : <span class="text-danger"> * <small></small></span> </label>
                                                                 <input type="number" class="form-control" step='1' id="nivel" name="nivel" value="0">
                                                             </div>
                                                         </div>
@@ -540,7 +540,7 @@
 
                                 <div class="row" >
                                     <div class="col-md-12">                                        
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#responsive-modal">Adicionar Niveles</button>
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#responsive-modal">Adicionar Niveles</button><span class="text-danger"> * requerido<small></small></span>
 
                                     </div>
                                 </div>
@@ -570,7 +570,7 @@
                         </div>
                         <!--fin column-->
                         <div class="col-md-12" align="right">
-                            <button type="submit" class="btn btn-info" value="save" id="">Guardar</button>
+                            <button type="submit" class="btn btn-info" value="save" id="guardar">Guardar</button>
                             <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral ?>" align="right">Cancelar</a>
                         </div>
                         </form>
@@ -603,7 +603,7 @@
         superficie = $("#superficie").val();
 
         if (tipo_planta_id != "" && idnivel != "" && superficie != "") {
-            total = total++;
+            total = total+1;
             var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
             cont_n++;
             limpiar();
@@ -621,7 +621,7 @@
     }
 
     function evaluar() {
-        if (cont_n > 0) {
+        if (total > 0) {
             $("#guardar").show();
         } else {
             $("#guardar").hide();

@@ -51,8 +51,9 @@ class Edificacion extends CI_Controller
         }else{
 			$this->load->view('login/login');	
 		}
-
     }*/
+
+
     public function nuevo($cod_catastral = null)
     {
 
@@ -75,10 +76,11 @@ class Edificacion extends CI_Controller
             $this->load->view('admin/header');
             $this->load->view('admin/menu');
             $this->load->view('bloque/edificacionView', $data);
-            //$this->load->view('bloque/jtables');       
-            $this->load->view('bloque/validar');
-            $this->load->view('admin/wizard_js');
+            $this->load->view('bloque/validar');//footer
             //$this->load->view('admin/footer'); 
+            $this->load->view('bloque/jtables');
+            //$this->load->view('admin/wizard_js');
+            
         } else {
             redirect(base_url());
         }
