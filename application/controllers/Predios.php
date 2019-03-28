@@ -314,7 +314,7 @@ class Predios extends CI_Controller {
 			$this->db->insert('catastro.predio', $data);
 			// fin guardamos datos del predio
 
-			// guardamos las fotografias
+			// guardamos 
 			$foto_plano = $_FILES['foto_plano']['tmp_name'];
 			$contenido_foto_plano = file_get_contents($foto_plano);
 			$contenido_tranformado_plano = pg_escape_bytea($contenido_foto_plano);

@@ -42,10 +42,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                            <h4 class="card-title">
+                            <!-- <h4 class="card-title">
                                 Registro de Predio
                                 <button type="button" class="btn waves-effect waves-light btn-success" id="btn_sel_predio">Seleccionar predio</button>
-                            </h4>
+                            </h4> -->
                             <div id="muestra_mapa" style="display: none;">
                                 <div id="map" style="width: 100%; height: 650px;"></div>
                                 <div style="width: 100%;">
@@ -81,14 +81,14 @@
                             <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
                             <?php echo form_open_multipart('predios/guarda', array('method'=>'POST')); ?>
 
-                            <h6>Datos del terreno</h6>
+                            <!-- <h6>Datos del terreno</h6> -->
                                 <div class="row">
                                     <div class="col-md-9">
 
                                     <div class="row">
                                         <div class="col-md-12">
                                         <div class="form-group">
-                                                <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
+                                                <label for="codigo_catastral"> Ingrese la Geometria : <span class="text-danger">*</span> </label>
                                                 <textarea rows="4" class="form-control" id="cod_referencial" autofocus ></textarea>
                                                 <div style="width: 100%;">
                                                     <button class="btn btn-block btn-warning" type="button" id="btn_genera_catas">FINALIZADO</button>
