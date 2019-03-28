@@ -305,6 +305,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
+                                                <div id="predio_vias"></div>
                                                 <input type="text" class="form-control" id="c_principal" name="principal" required />
                                             </div>
                                         </div>
@@ -695,12 +696,30 @@
                 dataType: 'json',
                 data: {csrfName: csrfHash, codigo: cod_referencial, csrf_test_name: csrf},
                 success:function(data, textStatus, jqXHR) {
-                    // console.log(data);
+                    // var datos = JSON.parse
+                    // var datos = JSON.parse(data);
+                    var datos = jQuery.parseJSON(JSON.stringify(data));
+                    // console.log(datos.vias);
+
+                    var combos_vias = '<select class="custom-select form-control" id="ubicacion_id" name="ubicacion_id" required="">';
+                    datos.vias.forEach(function(element){
+                        // console.log(element.sp_get_vias);
+                        var aux1 = element.sp_get_vias;
+                        var aux2 = element.sp_get_vias.split(",");
+                        var aux3 = aux2[0].substring(1);
+                        // console.log(aux3);
+                        combos_vias += '<option value="'+aux3+'">'+element.sp_get_vias+'</option>';
+                    });
+
+                    combos_vias += "</select>"
+                    // console.log(combos_vias);
+                    $("#predio_vias").html(combos_vias);
+
                     // var cod_cat = parseInt(data);
-                    $("#codigo_catastral").val(data);
+                    $("#codigo_catastral").val(datos.codcatas);
 
                     // $("#codigo_catastral").val(codigo_cat);
-                    var s_codigo_cat = data.toString();
+                    var s_codigo_cat = datos.codcatas.toString();
                     // var cod_catastral = $("#codigo_catastral").val();
                     var predio = s_codigo_cat.substr(6, 10);
                     var distrito = s_codigo_cat.substr(0, 3);

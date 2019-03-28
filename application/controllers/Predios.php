@@ -556,7 +556,14 @@ class Predios extends CI_Controller {
 		$distrito = $this->db->query("SELECT catastro.get_dist('$codigo')")->result();
 		$manzana = $this->db->query("SELECT catastro.get_manz('$codigo')")->result();
 		$predio = $this->db->query("SELECT catastro.get_pred('$codigo')")->result();
-
+		$vias = $this->db->query("SELECT catastro.sp_get_vias('$codigo')")->result();
+		// vdebug($vias);
+		// $vias_predio = array();
+		// foreach ($vias as $key => $v) {
+		// 	// echo $v->sp_get_vias."<br />";
+		// 	$vias_predio[$key] = $v->sp_get_vias;
+		// }
+		// echo $vias_predio;
 
 		$nuevo_predio = $predio[0]->get_pred + 1;
 		if ($nuevo_predio > 1 && $nuevo_predio < 10) {
@@ -571,9 +578,13 @@ class Predios extends CI_Controller {
 		// echo $distrito[0]->get_dist;
 		// echo $manzana[0]->get_manz;
 		// echo $predio[0]->get_pred;
-
+		$datos = array();
 		$cod_catastral = $distrito[0]->get_dist.$manzana[0]->get_manz.$ceros.$nuevo_predio;
-		echo json_encode($cod_catastral);
+		$datos['codcatas']=$cod_catastral;
+		$datos['vias']=$vias;
+
+		echo json_encode($datos);
+		// echo ($datos);
 		// vdebug($distrito[0]->get_dist);
 	}
 
