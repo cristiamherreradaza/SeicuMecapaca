@@ -6,6 +6,8 @@ class Persona extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('form_validation');
+        $this->load->helper("url");
 		$this->load->model("persona_model");
 		$this->load->helper('form');
 		$this->load->library('cart');
@@ -29,7 +31,6 @@ class Persona extends CI_Controller {
 		$carrito = $this->cart->total_items();
 		$porcentajeR = 100 - $carrito;
 		$porcen_parti = $this->input->post('porcen_parti');
-
 		if($porcen_parti <= $porcentajeR){
 			if($this->persona_model->existeci($this->input->post('ci')))
 			{
@@ -44,7 +45,6 @@ class Persona extends CI_Controller {
 				$fec_nacimiento = $this->input->post('fec_nacimiento');
 				$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
 			}
-
 			$consulta = $this->persona_model->consulta($this->input->post('ci'));
 
 			$dato = array(
@@ -52,13 +52,10 @@ class Persona extends CI_Controller {
 				'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
 				'qty'     => $porcen_parti,
 				'price'   => $consulta->ci
-		//                'options' => array('Size' => 'L',
-		//                                   'Color' => 'Red')
 			);
 			$this->cart->insert($dato);
 			$data = array('estado'=>'no');
 			echo json_encode($data);
-			
 		}else{
 			$data = array('estado'=>'si');
 			echo json_encode($data);
