@@ -398,9 +398,9 @@
             data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, cod_catastral:cod_catastral},
             success: function (data, textStatus, jqXHR){
                 if (data.estado == 'no') {
-                    swal("¡BIEN!", "Se adiciono con exito a la persona", "success");                  
+                    //swal("¡BIEN!", "Se adiciono con exito a la persona", "success");                  
                 }else{
-                    swal("¡MAL!", "Porcentaje sobrepaso el 100%", "error");
+                    //swal("¡MAL!", "Porcentaje sobrepaso el 100%", "error");
                 }
                window.location.reload();
             },
