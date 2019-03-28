@@ -93,8 +93,7 @@ class Predios extends CI_Controller {
 			//sacar el perfil de la persona logueada
 			// 1 = ADMINISTRADOR  ///// 2 = OPERADOR  ///// 3 = USUARIO   ////// 4 = BENEFICIARIO
 			$persona_perfil_id = $id->persona_perfil_id;
-			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE 
-						persona_perfil_id = '$persona_perfil_id'")->row();
+			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE persona_perfil_id = '$persona_perfil_id'")->row();
 			$perfil = $persona_perfil->perfil_id; 
 			
 				if ($perfil == '1') {
@@ -392,29 +391,14 @@ class Predios extends CI_Controller {
 
 	public function editar_propietario($cod_catastral = null){
 		if($this->session->userdata("login")){
-		$data = $this->datos_combo();
-		$data = $this->db->query("SELECT * FROM catastro.predio_ddrr WHERE codcatas = '$cod_catastral'")->row();
-		$ddrr_id = $data->ddrr_id;
+			$data = $this->datos_combo();
+			$data = $this->Ddrr_model->datos_editar($cod_catastral); //al actualizar esto se recarga
 
-		$carrito = $this->Ddrr_model->carrito_ddrr($ddrr_id);
-
-		// $carrito = $this->db->query("SELECT p.*, pd.porcen_parti FROM catastro.predio_titular as pd INNER JOIN persona as p ON pd.persona_id = p.persona_id where ddrr_id = '$ddrr_id'")->row();
-		foreach ($carrito as $row => $cdata) {
-			$dato = array(
-				'id'      => $cdata->persona_id.'-'.$cdata->titular_id,
-				'name'    => $cdata->nombres.' '.$cdata->paterno.' '.$cdata->materno,
-				'qty'     => $cdata->porcen_parti,
-				'price'   => $cdata->ci
-		//      'options' => array('Size' => 'L',
-		//                                   'Color' => 'Red')
-			);
-			$this->cart->insert($dato);
-		}
-		$this->load->view('admin/header');
-		$this->load->view('admin/menu');
-		$this->load->view('predios/editar_propietario', $data);
-		$this->load->view('admin/footer');
-		$this->load->view('admin/wizard_js');
+			$this->load->view('admin/header');
+			$this->load->view('admin/menu');
+			$this->load->view('predios/editar_propietario', $data);
+			$this->load->view('admin/footer');
+			$this->load->view('admin/wizard_js');
 		}
 		else{
 			redirect(base_url());

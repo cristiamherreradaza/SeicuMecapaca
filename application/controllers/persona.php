@@ -64,19 +64,56 @@ class Persona extends CI_Controller {
 			echo json_encode($data);
 			
 		}
+	}
 
-		/*$datos = $this->input->post();
+	public function insertar_editar()
+	{
+		$carrito = $this->cart->total_items();
+		$porcentajeR = 100 - $carrito;
+		$porcen_parti = $this->input->post('porcen_parti');
+		$ddrr_id = $this->input->post('ddrr_id');
 
-		if(isset($datos))
-		{
-			$nombres = $datos['nombres'];
-			$paterno = $datos['paterno'];
-			$materno = $datos['materno'];
-			$ci = $datos['ci'];
-			$fec_nacimiento = $datos['fec_nacimiento'];
-			$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
-			redirect('predios/nuevo');
-		}*/
+		if($porcen_parti <= $porcentajeR){
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_creacion = $resi->persona_id;
+			if($this->persona_model->existeci($this->input->post('ci')))
+			{ 
+				$nombres = $this->input->post('nombres');
+				$paterno = $this->input->post('paterno');
+				$materno = $this->input->post('materno');
+				$ci = $this->input->post('ci');
+				$fec_nacimiento = $this->input->post('fec_nacimiento');
+				$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
+			}
+
+			$consulta = $this->persona_model->consulta($this->input->post('ci'));
+
+			$dato = array(
+				'id'      => $consulta->persona_id.'-0',
+				'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
+				'qty'     => $porcen_parti,
+				'price'   => $consulta->ci
+		//                'options' => array('Size' => 'L',
+		//                                   'Color' => 'Red')
+			);
+			
+			$array = array(
+				'ddrr_id' => $ddrr_id,
+				'porcen_parti' => $porcen_parti,
+				'persona_id' => $consulta->persona_id, 
+				'usu_creacion' => $usu_creacion
+			);
+			$this->db->insert('catastro.predio_titular', $array);
+			$this->cart->insert($dato);
+			$data = array('estado'=>'no');
+			echo json_encode($data);
+			
+		}else{
+			$data = array('estado'=>'si');
+			echo json_encode($data);
+			
+		}
 	}
 
    	public function remove($rowid, $cod_catastral)

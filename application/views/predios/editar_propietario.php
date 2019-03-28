@@ -133,8 +133,8 @@
                                         <div class="row" style="background-color: #f6f6f6;">
                                             <div class="col-md-0">
                                                 <div class="form-group">
-                                                    <input type="hidden" class="form-control" name="cod_catastral" value="<?php echo $codcatas ?>" required />
-                                                    <input type="hidden" class="form-control" name="ddrr_id" value="<?php echo $ddrr_id ?>" required />
+                                                    <input type="hidden" class="form-control" id="cod_catastral" name="cod_catastral" value="<?php echo $codcatas ?>" required />
+                                                    <input type="hidden" class="form-control" id="ddrr_id" name="ddrr_id" value="<?php echo $ddrr_id ?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -391,12 +391,13 @@
         var lqs=document.cookie.split('=');
         var tok = lqs[1];
         var cod_catastral = $('#cod_catastral').val();
+        var ddrr_id = $('#ddrr_id').val();
 
         $.ajax({
             type:'POST',
-            url:"<?php echo base_url();?>persona/insertar",
+            url:"<?php echo base_url();?>persona/insertar_editar",
             dataType: 'json',
-            data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, cod_catastral:cod_catastral},
+            data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, cod_catastral:cod_catastral, ddrr_id:ddrr_id},
             success: function (data, textStatus, jqXHR){
                 if (data.estado == 'no') {
                     swal("¡BIEN!", "Se adiciono con exito a la persona", "success");                  
