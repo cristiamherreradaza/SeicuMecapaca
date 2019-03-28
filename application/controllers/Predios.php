@@ -227,11 +227,16 @@ class Predios extends CI_Controller {
 				$query = $this->db->get('catastro.servicio');
 				$data['listado_servicios'] = $query->result();
 
+				$this->db->select('matvia_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
+				$this->db->where('activo', 1);
+				$query = $this->db->get('catastro.matvia');
+				$data['dc_materiales_via'] = $query->result();
 
 				// $data['dc'] = $this->tipopredio_model->listado_combo();
 				// vdebug($this->tipopredio_model->hola());
 
-				$data['hola'] = "Mi cuate es un Pillin";
+				// $data['hola'] = "Mi cuate es un Pillin";
 				$con = $this->db->get('catastro.tipo_predio');
 				// log_message('debug', print_r($con,TRUE));
 				// vdebug($con);
@@ -283,7 +288,8 @@ class Predios extends CI_Controller {
 				'distrito'=>$this->input->post('distrito'),
 				'manzana'=>$this->input->post('manzana'),
 				'predio'=>$this->input->post('predio'),
-				'latlong'=>$latitud_longitud,
+				'latlong'=>$this->input->post('latlong'),
+				// 'latlong'=>$latitud_longitud,
 				'zona_econo'=>$this->input->post('zona_econo'),
 				'via_id'=>1,
 				'zonaurb_id'=>$this->input->post('zonaurb_id'),
