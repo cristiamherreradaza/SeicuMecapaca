@@ -7,11 +7,13 @@ class Tipopredio extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("tipopredio_model");
+		$this->load->model("rol_model");
 	}
 
 	public function tipopredio(){
 		if($this->session->userdata("login")){
-		
+
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['tipopredio'] = $this->tipopredio_model->index();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

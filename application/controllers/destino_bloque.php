@@ -7,11 +7,13 @@ class Destino_bloque extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("destino_bloque_model");
+		$this->load->model("rol_model");
 	}
 
 	public function destino_bloque(){
 		if($this->session->userdata("login")){
-		
+
+		$lista['verifica'] = $this->rol_model->verifica();
 		$lista['destino_bloque'] = $this->destino_bloque_model->index();
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');

@@ -33,7 +33,7 @@
                         ADMINISTRACI&Oacute;N USO BLOQUE <?php $i=1; //echo $data['title']; ?>
                         <div class="card-body wizard-content">
                             <div class="col-lg-2 col-md-4">
-                                <button type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nueva Uso Bloque</button>
+                                <button <?php echo $verifica['alta']; ?> type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nueva Uso Bloque</button>
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -62,11 +62,11 @@
                                                 <td><?php echo $lis->coeficiente;?></td>
                                                 <td>
 
-                                                    <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
+                                                    <button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
                                                             <span class="fas fa-pencil-alt" aria-hidden="true">
                                                             </span>
                                                     </button> 
-                                                    <a href="<?= base_url('uso_bloque/eliminar/'. $lis->uso_bloque_id); ?>" type="button" class="btn btn-danger footable-delete">
+                                                    <a <?php echo $verifica['baja'];?>="<?= base_url('uso_bloque/eliminar/'. $lis->uso_bloque_id); ?>" type="button" class="btn btn-danger footable-delete">
                                                         <span class="fas fa-trash-alt" aria-hidden="true">
                                                         </span>
                                                     </a>

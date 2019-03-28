@@ -8,11 +8,13 @@ class Bloque_grupo_mat extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->model("bloque_grupo_mat_model");
+		$this->load->model("rol_model");
 	}
 
 	public function bloque_grupo_mat(){
 		if($this->session->userdata("login")){
 
+		$lista['verifica'] = $this->rol_model->verifica();
 		$lista['bloque_grupo_mat'] = $this->bloque_grupo_mat_model->index();
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');

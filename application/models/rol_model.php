@@ -24,6 +24,92 @@ class Rol_model extends CI_Model {
 		}
 	}
 
+	public function verifica()
+	{
+		$id = $this->session->userdata("persona_perfil_id");
+        $rol = $this->db->query("SELECT c.*, r.*
+                    FROM credencial c, rol r
+                    WHERE c.persona_perfil_id = '$id'
+                    AND c.rol_id = r.rol_id")->row();
+     
+        
+
+        	if ($rol->rol == 'Todo') {
+                    $array = array(
+					'alta' =>'',
+					'alta1' =>'href',
+					'baja' =>'href',
+					'modificacion' =>'',
+					'modificacion1' =>'href',
+					'imprimir' =>'href',
+					'nada' =>''
+					);
+					return $array;
+                }
+                elseif ($rol->rol == 'Alta') {
+                	$array = array(
+						'alta' =>'',
+						'alta1' =>'href',
+						'baja' =>'name',
+						'modificacion' =>'disabled',
+						'modificacion1' =>'name',
+						'imprimir' =>'name',
+						'nada' =>'disabled'
+						);
+						return $array;
+                }
+                elseif ($rol->rol == 'Baja') {
+                	$array = array(
+						'alta' =>'disabled',
+						'alta1' =>'name',
+						'baja' =>'href',
+						'modificacion' =>'disabled',
+						'modificacion1' =>'name',
+						'imprimir' =>'name',
+						'nada' =>'disabled'
+						);
+						return $array;
+                }
+                elseif ($rol->rol == 'Modificacion') {
+                	$array = array(
+						'alta' =>'disabled',
+						'alta1' =>'name',
+						'baja' =>'name',
+						'modificacion' =>'',
+						'modificacion1' =>'href',
+						'imprimir' =>'name',
+						'nada' =>'disabled'
+						);
+						return $array;
+                }
+                elseif ($rol->rol == 'Imprimir') {
+                	$array = array(
+						'alta' =>'disabled',
+						'alta1' =>'name',
+						'baja' =>'name',
+						'modificacion' =>'disabled',
+						'modificacion1' =>'name',
+						'imprimir' =>'href',
+						'nada' =>'disabled'
+						);
+						return $array;
+                }
+                elseif ($rol->rol == 'Nada') {
+                	$array = array(
+						'alta' =>'disabled',
+						'alta1' =>'name',
+						'baja' =>'name',
+						'modificacion' =>'disabled',
+						'modificacion1' =>'name',
+						'imprimir' =>'name',
+						'nada' =>'disabled'
+						);
+						return $array;
+                }
+                
+                
+	}
+
 	public function insertar_rol($rol, $usu_creacion)
 	{	
 		

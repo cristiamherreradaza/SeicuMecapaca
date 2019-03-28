@@ -74,7 +74,8 @@
                                         <h6>Datos propietario</h6>
                                         <div  id="registro" style="padding-top: 30px;">
                                             <div class="button-box">
-                                                <button class="btn btn-success waves-effect waves-light " type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span> 
+                                                <button <?php echo $verifica['alta']; ?> class="btn btn-success waves-effect waves-light " type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span> 
+
                                             </div>
                                         </div>
                                         <!-- <?php //echo form_open('path/to/controller/update/method'); ?> -->
@@ -103,7 +104,7 @@
                                                         <td><?php echo $items['price']; ?></td>
                                                         <td><?php echo $items['qty']; ?></td>
 
-                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a>
+                                                        <td><a <?php echo $verifica['baja']; ?>="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a>
                                                        
                                                         </td>
                                                        

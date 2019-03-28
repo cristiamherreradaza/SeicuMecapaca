@@ -7,11 +7,13 @@ class Pendiente extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("pendiente_model");
+		$this->load->model("rol_model");
 	}
 
 	public function pendiente(){
 		if($this->session->userdata("login")){
-		
+			
+		$lista['verifica'] = $this->rol_model->verifica();
 		$lista['pendiente'] = $this->pendiente_model->index();
 		
 		$this->load->view('admin/header');

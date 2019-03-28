@@ -13,6 +13,8 @@ class Edificacion extends CI_Controller
         //$this->load->model("logacceso_model");
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
+        $this->load->model("rol_model");
+
     }
 
     public function index()
@@ -65,6 +67,7 @@ class Edificacion extends CI_Controller
             //$ip = $this->logacceso_model->ip_publico();
             //$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
             //$cod='123456789';
+            $data['verifica'] = $this->rol_model->verifica();
             $data['result_array'] = $this->Edificacion_model->getAllData();
             $data['bloques'] = $this->Edificacion_model->get_Bloque($cod_catastral);
             $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();

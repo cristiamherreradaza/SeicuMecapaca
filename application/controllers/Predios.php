@@ -12,6 +12,7 @@ class Predios extends CI_Controller {
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
          $this->load->library('cart');
+        $this->load->model("rol_model");
     }
 
     public function principal(){
@@ -39,13 +40,13 @@ class Predios extends CI_Controller {
 						persona_perfil_id = '$persona_perfil_id'")->row();
 			$perfil = $persona_perfil->perfil_id; 
 			
-				if ($perfil == '1') {
+				//if ($perfil == '1') {
 					
 					$this->load->view('admin/header');
 					$this->load->view('admin/menu');
 					$this->load->view('admin/index');
 					$this->load->view('admin/footer');
-				}
+				/*}
 				elseif ($perfil == '2') {
 					
 
@@ -65,7 +66,7 @@ class Predios extends CI_Controller {
 					$this->load->view('admin/menu_beneficiario');
 					$this->load->view('admin/index');
 					$this->load->view('admin/footer');
-				}	
+				}*/	
 		}
 		else{
 			redirect(base_url());
@@ -96,7 +97,7 @@ class Predios extends CI_Controller {
 			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE persona_perfil_id = '$persona_perfil_id'")->row();
 			$perfil = $persona_perfil->perfil_id; 
 			
-				if ($perfil == '1') {
+				//if ($perfil == '1') {
 
 					
 					// $this->db->select(array('catastro.predio.fec_creacion', 'catastro.predio.codcatas', 'catastro.predio.nro_inmueble', 'catastro.zona_urbana.descripcion'));
@@ -106,6 +107,7 @@ class Predios extends CI_Controller {
 					$query = $this->db->get('catastro.predio');
 					// vdebug($this->db->last_query());
 					$data['listado_predios'] = $query->result();
+					$data['verifica'] = $this->rol_model->verifica();
 					//var_dump($usu_creacion);
 
 					$this->load->view('admin/header');
@@ -113,7 +115,7 @@ class Predios extends CI_Controller {
 					$this->load->view('predios/index', $data);
 					$this->load->view('admin/footer');
 					$this->load->view('predios/index_js');
-				}
+				/*}
 				elseif ($perfil == '2') {
 
 					$data['listado_predios'] = $this->db->query("SELECT p.*
@@ -144,7 +146,7 @@ class Predios extends CI_Controller {
 					
 					$this->load->view('admin/footer');
 					$this->load->view('predios/index_js');
-				}	
+				}*/	
 		}
 		else{
 			redirect(base_url());
@@ -376,7 +378,9 @@ class Predios extends CI_Controller {
 
 	public function nuevo($cod_catastral = null){
 		if($this->session->userdata("login")){
+		
 		$data = $this->datos_combo();
+		$data['verifica'] = $this->rol_model->verifica();
 		$data['cod_catastral']= $cod_catastral;
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
@@ -391,6 +395,7 @@ class Predios extends CI_Controller {
 
 	public function editar_propietario($cod_catastral = null){
 		if($this->session->userdata("login")){
+			$data['verifica'] = $this->rol_model->verifica();
 			$data = $this->datos_combo();
 			$data = $this->Ddrr_model->datos_editar($cod_catastral); //al actualizar esto se recarga
 

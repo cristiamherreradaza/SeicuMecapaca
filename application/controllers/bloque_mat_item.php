@@ -9,11 +9,13 @@ class Bloque_mat_item extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model("Bloque_mat_item_model");
 		$this->load->model("zona_urbana_model");
+		$this->load->model("rol_model");
 	}
 
 	public function bloque_mat_item(){
 		if($this->session->userdata("login")){
 			
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['bloque_mat_item'] = $this->Bloque_mat_item_model->index();
 			
 			$this->load->view('admin/header');
