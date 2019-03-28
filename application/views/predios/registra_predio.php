@@ -190,7 +190,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="latitud"> Latitud y Longitud: <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" id="latlong" name="latitud" required />
+                                                <input type="text" class="form-control" id="latlong" name="latlong" required />
                                             </div>
                                         </div>
 
