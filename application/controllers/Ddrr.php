@@ -15,6 +15,7 @@ class Ddrr extends CI_Controller {
 
 	public function guardar()
 	{
+		
 		$id = $this->session->userdata("persona_perfil_id");
         $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
         $usu_creacion = $resi->persona_id;

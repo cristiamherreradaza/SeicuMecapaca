@@ -42,10 +42,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                            <h4 class="card-title">
+                            <!-- <h4 class="card-title">
                                 Registro de Predio
                                 <button type="button" class="btn waves-effect waves-light btn-success" id="btn_sel_predio">Seleccionar predio</button>
-                            </h4>
+                            </h4> -->
                             <div id="muestra_mapa" style="display: none;">
                                 <div id="map" style="width: 100%; height: 650px;"></div>
                                 <div style="width: 100%;">
@@ -81,14 +81,14 @@
                             <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
                             <?php echo form_open_multipart('predios/guarda', array('method'=>'POST')); ?>
 
-                            <h6>Datos del terreno</h6>
+                            <!-- <h6>Datos del terreno</h6> -->
                                 <div class="row">
                                     <div class="col-md-9">
 
                                     <div class="row">
                                         <div class="col-md-12">
                                         <div class="form-group">
-                                                <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
+                                                <label for="codigo_catastral"> Ingrese la Geometria : <span class="text-danger">*</span> </label>
                                                 <textarea rows="4" class="form-control" id="cod_referencial" autofocus ></textarea>
                                                 <div style="width: 100%;">
                                                     <button class="btn btn-block btn-warning" type="button" id="btn_genera_catas">FINALIZADO</button>
@@ -187,26 +187,26 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="latitud"> Latitud : <span class="text-danger">*</span> </label>
-                                                <input type="text" class="form-control" maxlength="13" id="latitud" name="latitud" required />
+                                                <label for="latitud"> Latitud y Longitud: <span class="text-danger">*</span> </label>
+                                                <input type="text" class="form-control" id="latlong" name="latlong" required />
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <label for="longintud"> Longitud : <span class="text-danger">*</span> </label>
+                                        <!-- <div class="col-md-2"> -->
+                                            <!-- <div class="form-group"> -->
+                                                <!-- <label for="longintud"> Longitud : <span class="text-danger">*</span> </label> -->
                                                 <!-- <input type="text" class="form-control" id="longitud" name="longitud">  -->
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="longitud" id="longitud" maxlength="13" required />
+                                                <!-- <div class="input-group mb-3"> -->
+                                                    <!-- <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" name="longitud" id="longitud" maxlength="13" required /> -->
                                                     <!-- <div class="input-group-append">
                                                         <button class="btn btn-warning" type="button" id="google_maps" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="muestra_mapa();">Mapa</button>
                                                     </div> -->
-                                                </div>
+                                                <!-- </div> -->
                                                  <!-- <img src="../assets/images/alert/model2.png" alt="default" data-toggle="modal" data-target=".bs-example-modal-lg" class="model_img img-fluid" required /> -->
-                                            </div>
-                                        </div>
+                                            <!-- </div> -->
+                                        <!-- </div> -->
 
                                         </div>
 
@@ -302,20 +302,28 @@
 
                                         <div class="row" style="background-color: #f6f6f6;">
 
-                                        <div class="col-md-12">
+                                        <div class="col-md-9">
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
                                                 <div id="predio_vias"></div>
-                                                <input type="text" class="form-control" id="c_principal" name="principal" required />
+                                                <!-- <input type="text" class="form-control" id="c_principal" name="principal" required /> -->
                                             </div>
                                         </div>
 
-                                        <!-- <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="zona">Zona : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="zona" name="zona" required />
+                                                <label for="zona">Material : <span class="text-danger">*</span></label>
+                                                <!-- <input type="text" class="form-control" id="zona" name="zona" required /> -->
+                                                <select class="custom-select form-control" id="forma_id" name="forma_id" required />
+                                                    <option value="">Seleccione material</option>
+                                                    <?php foreach ($dc_materiales_via as $v): ?>
+                                                    <option value="<?php echo $v->matvia_id; ?>">
+                                                        <?php echo $v->descripcion; ?>
+                                                    </option>
+                                                    <?php endforeach; ?>
+                                                </select>
                                             </div>
-                                        </div> -->
+                                        </div>
 
                                         </div>
 
@@ -701,7 +709,7 @@
                     var datos = jQuery.parseJSON(JSON.stringify(data));
                     // console.log(datos.vias);
 
-                    var combos_vias = '<select class="custom-select form-control" id="ubicacion_id" name="ubicacion_id" required="">';
+                    var combos_vias = '<select class="custom-select form-control" id="" name="" required="">';
                     datos.vias.forEach(function(element){
                         // console.log(element.sp_get_vias);
                         var aux1 = element.sp_get_vias;

@@ -229,11 +229,16 @@ class Predios extends CI_Controller {
 				$query = $this->db->get('catastro.servicio');
 				$data['listado_servicios'] = $query->result();
 
+				$this->db->select('matvia_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
+				$this->db->where('activo', 1);
+				$query = $this->db->get('catastro.matvia');
+				$data['dc_materiales_via'] = $query->result();
 
 				// $data['dc'] = $this->tipopredio_model->listado_combo();
 				// vdebug($this->tipopredio_model->hola());
 
-				$data['hola'] = "Mi cuate es un Pillin";
+				// $data['hola'] = "Mi cuate es un Pillin";
 				$con = $this->db->get('catastro.tipo_predio');
 				// log_message('debug', print_r($con,TRUE));
 				// vdebug($con);
@@ -285,7 +290,8 @@ class Predios extends CI_Controller {
 				'distrito'=>$this->input->post('distrito'),
 				'manzana'=>$this->input->post('manzana'),
 				'predio'=>$this->input->post('predio'),
-				'latlong'=>$latitud_longitud,
+				'latlong'=>$this->input->post('latlong'),
+				// 'latlong'=>$latitud_longitud,
 				'zona_econo'=>$this->input->post('zona_econo'),
 				'via_id'=>1,
 				'zonaurb_id'=>$this->input->post('zonaurb_id'),
@@ -310,7 +316,7 @@ class Predios extends CI_Controller {
 			$this->db->insert('catastro.predio', $data);
 			// fin guardamos datos del predio
 
-			// guardamos las fotografias
+			// guardamos 
 			$foto_plano = $_FILES['foto_plano']['tmp_name'];
 			$contenido_foto_plano = file_get_contents($foto_plano);
 			$contenido_tranformado_plano = pg_escape_bytea($contenido_foto_plano);
