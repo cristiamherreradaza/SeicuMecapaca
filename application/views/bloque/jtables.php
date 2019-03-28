@@ -25,7 +25,7 @@
     <!-- end - This is for export functionality only -->
     <script>
     $(function() {
-        $('#myTable').DataTable();
+        $('#bloque_table').DataTable();
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 "columnDefs": [{
@@ -70,6 +70,14 @@
         ]
     });
     $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+    $('#bloque_table').DataTable( {
+        "order": [[ 0, "desc" ]],
+        "oLanguage": {
+            "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        },
+    });
+
+
     </script>
     <!-- ============================================================== -->
     <!-- Style switcher -->

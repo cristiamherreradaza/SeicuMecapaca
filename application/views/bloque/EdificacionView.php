@@ -59,7 +59,7 @@
                                         <h4 class="card-title">Bloques Registrados</h4>
                                         <h6 class="card-subtitle">...</h6>
                                         <div class="table-responsive m-t-40">
-                                            <table id="myTable" class="table table-bordered table-striped">
+                                            <table id="bloque_table" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>Codcatastro</th>
@@ -106,3 +106,6 @@
             </div>
         </div>
         <!-- ============================================================== --> 
+
+      
+        
