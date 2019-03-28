@@ -401,7 +401,7 @@ class Predios extends CI_Controller {
 
 	public function editar_propietario($cod_catastral = null){
 		if($this->session->userdata("login")){
-			$data['verifica'] = $this->rol_model->verifica();
+			
 			$data = $this->datos_combo();
 			$data = $this->Ddrr_model->datos_editar($cod_catastral); //al actualizar esto se recarga
 
