@@ -104,7 +104,7 @@
                                                         <td><?php echo $items['price']; ?></td>
                                                         <td><?php echo $items['qty']; ?></td>
 
-                                                        <td><a <?php echo $verifica['baja']; ?>="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a>
+                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a>
                                                        
                                                         </td>
                                                        
@@ -239,6 +239,13 @@
                                             <h4 class="modal-title" id="exampleModalLabel1">Registrar datos del propietario</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         </div>
+
+                                        <?php if (validation_errors()): ?>
+                                           <div class="alert alert-error">
+                                              <?php echo validation_errors(); ?>
+                                           </div>
+                                        <?php endif; ?>
+
                                         <div class="modal-body">
                                             <!--<form action="<?php //echo base_url();?>persona/insertar" method="POST">-->
                                             <?php echo form_open('persona/insertar', array('method' => 'GET')); ?>
@@ -248,7 +255,7 @@
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
                                                                 <label for="ci"> Carnet : <span class="text-danger">*</span> </label>
-                                                                <input type="text" class="form-control" id="ci1" name="ci1" required />
+                                                                <input type="text" class="form-control" id="ci1" name="ci1" />
                                                                 <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                                 <small id="msg_sucess_catastral" class="form-control-feedback" style="display: none; color: #31B404"></small>
                                                             </div>
@@ -258,7 +265,7 @@
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
                                                                 <label>Nombres : <span class="text-danger">*</span></label>
-                                                                <input type="text" class="form-control" id="nombres1" name="nombres1" required />
+                                                                <input type="text" class="form-control" id="nombres1" name="nombres1"/>
                                                                 
                                                             </div>
                                                         </div>
@@ -267,14 +274,14 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Paterno : <span class="text-danger">*</span></label>
-                                                                <input type="text" name="paterno1" id="paterno1" class="form-control" required />
+                                                                <input type="text" name="paterno1" id="paterno1" class="form-control"/>
                                                             </div>
                                                         </div>
                                                         <!--/span-->
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Materno : <span class="text-danger">*</span></label>
-                                                                <input type="text" class="form-control" name="materno1" id="materno1" required />
+                                                                <input type="text" class="form-control" name="materno1" id="materno1"/>
                                                             </div>
                                                         </div>
                                                         <!--/span-->
@@ -286,7 +293,7 @@
                                                             <div class="form-group">
                                                                 <div class="form-group">
                                                                     <label>Fecha de nacimiento : <span class="text-danger">*</span></label>
-                                                                    <input type="date" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" required />
+                                                                    <input type="date" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" />
                                                                 </div>
                                                                
                                                             </div>
@@ -298,14 +305,17 @@
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
                                                                 <label>Porcentaje : <span class="text-danger">*</span></label>
-                                                                <input type="number" class="form-control" id="porcen_parti1" name="porcen_parti1" value="<?php echo $i; ?>" max="<?php $i; ?>" required />
+                                                                <input type="number" class="form-control" id="porcen_parti1" name="porcen_parti1" value="<?php echo $i; ?>" max="<?php $i; ?>"/>
                                                                 <small id="msg_alerta_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                                 <small id="alerta-porcentaje" class="form-control-feedback" style="display: none; color: #ff0000"></small>
+                                                                <small id="no-valido" class="form-control-feedback" style="display: none; color: #ff0000"></small>
+
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                 </div>
+
 
                                                 <div class="form-actions">
                                                     <button class="btn waves-effect waves-light btn-info" type="button" onclick="confirma()"> <i class="fa fa-check"></i>Guardar</button>
@@ -398,12 +408,37 @@
             dataType: 'json',
             data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, cod_catastral:cod_catastral},
             success: function (data, textStatus, jqXHR){
-                if (data.estado == 'no') {
-                    //swal("¡BIEN!", "Se adiciono con exito a la persona", "success");                  
-                }else{
+                if (data.estado == 'sobrepasa') {
+                    $("#msg_error_catastral").hide();    
+                    $("#msg_sucess_catastral").show();
+                    $("#msg_alerta_catastral").hide();
+                    $("#no-valido").show();
+                    $("#ci1").val(data.ci);    
+                    $('#nombres1').val(data.nombres);
+                    $('#paterno1').val(data.paterno);
+                    $('#materno1').val(data.materno);
+                    $('#fec_nacimiento1').val(data.fec_nacimiento);
+                    $('#porcen_parti1').val(data.fec_nacimiento);
+                    $("#no-valido").html('El porcentaje es menor de lo q se esperaba');
+                     //swal("¡BIEN!", "Se adiciono con exito a la persona", "success");                  
+                }else if(data.estado == 'guardado'){
+                    window.location.reload();
                     //swal("¡MAL!", "Porcentaje sobrepaso el 100%", "error");
+                }else{
+                    $("#msg_error_catastral").hide();    
+                    $("#msg_sucess_catastral").show();
+                    $("#msg_alerta_catastral").hide();
+                    $("#no-valido").show();
+                    $("#ci1").val(data.ci);    
+                    $('#nombres1').val(data.nombres);
+                    $('#paterno1').val(data.paterno);
+                    $('#materno1').val(data.materno);
+                    $('#fec_nacimiento1').val(data.fec_nacimiento);
+                    $('#porcen_parti1').val(data.porcen_parti);
+                    $("#no-valido").html('Llene correctamente');
+                     //swal("¡BIEN!", "Se adiciono con exito a la persona", "success");
                 }
-               window.location.reload();
+               //window.location.reload();
             },
                 error:function(jqXHR, textStatus, errorThrown) {
                     // alert("error");
