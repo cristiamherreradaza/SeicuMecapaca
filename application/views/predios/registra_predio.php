@@ -410,8 +410,8 @@
                                                 </div>
                                                     <?php foreach ($listado_servicios as $key => $ls): ?>
                                                     <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>">
-                                                            <label class="custom-control-label" for="customCheck<?php echo $key; ?>"><?php echo $ls->descripcion ?></label>
+                                                        <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>">
+                                                        <label class="custom-control-label" for="customCheck<?php echo $key; ?>"><?php echo $ls->descripcion ?></label>
                                                     </div>
                                                     <?php endforeach; ?>
 
@@ -654,6 +654,9 @@
     </script>
     <script type="text/javascript">
 
+         var contador_eliminados = 0;
+         var todos = new Array();
+
         $("#codigo_catastral").focusout(function(){
 
             var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
@@ -709,19 +712,33 @@
                     var datos = jQuery.parseJSON(JSON.stringify(data));
                     // console.log(datos.vias);
 
-                    var combos_vias = '<select class="custom-select form-control" id="" name="" required="">';
+                    //var combos_vias = '<select class="custom-select form-control" id="" name="" required="">';
+                    var checkbox_vias = '<table>';
+                    var contador = 0;
+                   
                     datos.vias.forEach(function(element){
                         // console.log(element.sp_get_vias);
                         var aux1 = element.sp_get_vias;
                         var aux2 = element.sp_get_vias.split(",");
                         var aux3 = aux2[0].substring(1);
-                        // console.log(aux3);
-                        combos_vias += '<option value="'+aux3+'">'+element.sp_get_vias+'</option>';
-                    });
+                        todos[contador] = aux3; 
+                        // console.log(todos);
+                        // console.log(contador);
+                        // combos_vias += '<option value="'+aux3+'">'+element.sp_get_vias+'</option>';
+                        // checkbox_vias += '<input type="checkbox" name="'+aux3+'" value="Bike"> '+element.sp_get_vias+'<br>';
+                        checkbox_vias += '<tr id=fila_'+aux3+'><td><div class="custom-control custom-checkbox"> \
+                                            <input type="checkbox" class="custom-control-input" name="vias['+aux3+']" value="'+aux3+'" id="customCheck_'+aux3+'">\
+                                            <label class="custom-control-label" for="customCheck_'+aux3+'">'+element.sp_get_vias+'</label></div>\
+                                            </td><td><button type="button" class="btn btn-danger" onclick="elimina_fila_tabla('+aux3+')">\
+                                                    <span class="fas fa-trash-alt"></span>\
+                                                </button></td></tr>';
+                        contador++;
+                        });
+                    checkbox_vias += '</table>';
 
-                    combos_vias += "</select>"
+                    //combos_vias += "</select>"
                     // console.log(combos_vias);
-                    $("#predio_vias").html(combos_vias);
+                    $("#predio_vias").html(checkbox_vias);
 
                     // var cod_cat = parseInt(data);
                     $("#codigo_catastral").val(datos.codcatas);
@@ -781,11 +798,8 @@
             $("#superficie_campo").val(60);
             $("#superficie_legal").val(90);
 
-            console.log('Aqui mi cod'+lat);
-
+            // console.log('Aqui mi cod'+lat);
         });
-
-
 
 /*        var aplicacion = new Vue({
           el: '#aplicacion',
@@ -816,11 +830,27 @@
         llena: function(event) {
             // $("#muestra_mapa").toggle('slow');    
             var cod_catastral = getRndInteger(1, 9999999999);
-
-
         },
     }
 }) */
+
+function elimina_fila_tabla(fila){
+    $('#fila_'+fila).remove();
+
+    // console.log(array)
+    var index = todos.indexOf(fila);
+    console.log(index);
+    if (index > -1) {
+      todos.splice(index, 1);
+    }
+    // array = [2, 9]
+    // console.log(array);
+
+    // contador_eliminados++;
+    // console.log(contador_eliminados);
+    console.log(todos);
+    console.log(fila);
+}
 
 function getGeneraRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
