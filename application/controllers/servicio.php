@@ -7,11 +7,13 @@ class Servicio extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("servicio_model");
+		$this->load->model("rol_model");
 	}
 
 	public function servicio(){
 		if($this->session->userdata("login")){
 
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['servicio'] = $this->servicio_model->index();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

@@ -7,11 +7,13 @@ class Forma extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("forma_model");
+		$this->load->model("rol_model");
 	}
 
 	public function forma(){
 		if($this->session->userdata("login")){
 
+		$lista['verifica'] = $this->rol_model->verifica();
 		$lista['forma'] = $this->forma_model->index();
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');

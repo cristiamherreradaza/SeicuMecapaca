@@ -7,11 +7,13 @@ class uso_bloque extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("uso_bloque_model");
+		$this->load->model("rol_model");
 	}
 
 	public function uso_bloque(){
 		if($this->session->userdata("login")){
 		
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['uso_bloque'] = $this->uso_bloque_model->index();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

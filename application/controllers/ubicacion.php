@@ -7,11 +7,13 @@ class Ubicacion extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("ubicacion_model");
+		$this->load->model("rol_model");
 	}
 
 	public function ubicacion(){
 		if($this->session->userdata("login")){
 
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['ubicacion'] = $this->ubicacion_model->index();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

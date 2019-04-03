@@ -12,6 +12,7 @@ class Rol extends CI_Controller {
 	public function rol(){
 		if($this->session->userdata("login")){
 
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['rol'] = $this->rol_model->index();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

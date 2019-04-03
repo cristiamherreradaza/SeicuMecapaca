@@ -13,6 +13,8 @@ class Edificacion extends CI_Controller
         //$this->load->model("logacceso_model");
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
+        $this->load->model("rol_model");
+
     }
 
     public function index()
@@ -65,6 +67,7 @@ class Edificacion extends CI_Controller
             //$ip = $this->logacceso_model->ip_publico();
             //$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
             //$cod='123456789';
+            $data['verifica'] = $this->rol_model->verifica();
             $data['result_array'] = $this->Edificacion_model->getAllData();
             $data['bloques'] = $this->Edificacion_model->get_Bloque($cod_catastral);
             $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
@@ -98,6 +101,8 @@ class Edificacion extends CI_Controller
             //$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
             //$cod='123456789';
 
+            $anio_act=date("Y");//obtiene el anio actual
+
             $cant_bloque = $this->db->query("SELECT count(nro_bloque) as total FROM catastro.bloque where activo=1 and codcatas='$cod_catastral'");
             foreach ($cant_bloque->result() as $nro) {
                 $total_bloq = $nro->total;
@@ -112,6 +117,7 @@ class Edificacion extends CI_Controller
             $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
             $data['cod_catastral'] = $cod_catastral;
             $data['nro_bloque'] = $total_bloq;
+            $data['anio_actual'] = $anio_act;
             $this->load->view('admin/header');
             $this->load->view('admin/menu');
             $this->load->view('bloque/bloque_nuevo', $data);
@@ -140,11 +146,11 @@ class Edificacion extends CI_Controller
             'altura' => $this->input->post('altura'),
             'anio_cons' => $this->input->post('anio_cons'),
             'anio_remo' => $this->input->post('anio_remo'),
-            'porcentaje_remo' => '100', //validar
+            'porcentaje_remo' => $this->input->post('porcentaje_remo'), //validar
             'destino_bloque_id' => $this->input->post('destino_bloque_id'),
             'uso_bloque_id' => $this->input->post('uso_bloque_id'),
             'activo' => '1',
-            'tipolo_id' => '12', //no existe en la db 
+            'tipolo_id' => '12', //no existe relacion en la bd
             'usu_creacion' => 1 //aun no captura el usuario 
         );
         $this->db->insert('catastro.bloque', $data);
@@ -172,12 +178,14 @@ class Edificacion extends CI_Controller
         $id_tipo_planta = $this->input->post('id_tipo_planta');
         $nivel_a = $this->input->post('niveles');
         $superficie_a = $this->input->post('superficies');
+        $altura_p = $this->input->post('alturas');
         for ($j = 0; $j < count($id_tipo_planta); $j++) {
             $bloque_piso = array(
                 'nro_bloque' => $this->input->post('nro_bloque'),
                 'nivel' => $nivel_a[$j],
                 'tipo_planta_id' => $id_tipo_planta[$j],
                 'superficie' => $superficie_a[$j],
+                'altura' => $altura_p[$j],
                 'bloque_id' => $bloque_id_form, //id del bloque nro x                       
                 'usu_creacion' => 1 //aun no captura el usuario 
             );
@@ -278,7 +286,7 @@ class Edificacion extends CI_Controller
             'altura' => $this->input->post('altura'),
             'anio_cons' => $this->input->post('anio_cons'),
             'anio_remo' => $this->input->post('anio_remo'),
-            //'porcentaje_remo' => '100', //validar
+            'porcentaje_remo' => $this->input->post('porcentaje_remo'), //validar
             'destino_bloque_id' => $this->input->post('destino_bloque_id'),
             'uso_bloque_id' => $this->input->post('uso_bloque_id'),
             //'activo' => '1',
@@ -311,12 +319,14 @@ class Edificacion extends CI_Controller
         $id_tipo_planta = $this->input->post('id_tipo_planta');
         $nivel_a = $this->input->post('niveles');
         $superficie_a = $this->input->post('superficies');
+        $altura_p = $this->input->post('alturas');
         for ($j = 0; $j < count($id_tipo_planta); $j++) {
             $bloque_piso = array(
                 'nro_bloque' => $this->input->post('nro_bloque'),
                 'nivel' => $nivel_a[$j],
                 'tipo_planta_id' => $id_tipo_planta[$j],
                 'superficie' => $superficie_a[$j],
+                'altura' => $altura_p[$j],
                 'bloque_id' => $bloque_id, //id del bloque nro x                       
                 'usu_creacion' => 1 //aun no captura el usuario 
             );

@@ -59,26 +59,26 @@
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
                                                 <?php if ($lp->activo == 1): ?>
-                                                    <a href="<?php echo base_url(); ?>predios/editar/<?php echo $lp->codcatas; ?>" class="btn btn-warning footable-edit">
+                                                    <a <?php echo $verifica['modificacion1'];?>="<?php echo base_url(); ?>predios/editar/<?php echo $lp->codcatas; ?>" class="btn btn-warning footable-edit">
                                                         <span class="fas fas fa-edit" aria-hidden="true"></span>
                                                     </a>
                                                 <?php elseif($lp->activo == 2): ?>
-                                                    <a href="<?php echo base_url(); ?>edificacion/nuevo/<?php echo $lp->codcatas; ?>" class="btn btn-primary footable-edit">
+                                                    <a <?php echo $verifica['modificacion1'];?>="<?php echo base_url(); ?>edificacion/nuevo/<?php echo $lp->codcatas; ?>" class="btn btn-primary footable-edit">
                                                         <span class="fas fas fa-edit" aria-hidden="true"></span>
                                                     </a>
                                                     
                                                 <?php else: ?>
-                                                    <a href="<?php echo base_url(); ?>predios/editar_propietario/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
+                                                    <a <?php echo $verifica['modificacion1'];?>="<?php echo base_url(); ?>predios/editar_propietario/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
                                                         <span class="fas fas fa-edit" aria-hidden="true"></span>
                                                     </a>
                                                 <?php endif ?>
 
-                                                <a href="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
+                                                <a <?php echo $verifica['imprimir'];?>="<?php echo base_url(); ?>predios/certificado/<?php echo $lp->codcatas; ?>" class="btn btn-success footable-edit">
                                                     <span class="fas fas fa-print" aria-hidden="true"></span>
                                                 </a> 
-                                                <button type="button" class="btn btn-danger footable-delete">
+                                                <a <?php echo $verifica['baja'];?>="" type="button" class="btn btn-danger footable-delete">
                                                     <span class="fas fa-trash-alt" aria-hidden="true"></span>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>    

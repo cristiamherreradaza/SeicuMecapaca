@@ -28,7 +28,7 @@ class Persona extends CI_Controller {
 
 	public function insertar()
 	{
-		$carrito = $this->cart->total_items();
+		/*$carrito = $this->cart->total_items();
 		$porcentajeR = 100 - $carrito;
 		$porcen_parti = $this->input->post('porcen_parti');
 		if($porcen_parti <= $porcentajeR){
@@ -46,7 +46,6 @@ class Persona extends CI_Controller {
 				$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
 			}
 			$consulta = $this->persona_model->consulta($this->input->post('ci'));
-
 			$dato = array(
 				'id'      => $consulta->persona_id.'-0',
 				'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
@@ -59,17 +58,66 @@ class Persona extends CI_Controller {
 		}else{
 			$data = array('estado'=>'si');
 			echo json_encode($data);
-			
-		}
+		}*/
+
+			$carrito = $this->cart->total_items();
+		$porcentajeR = 100 - $carrito;
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_creacion = $resi->persona_id; 
+
+		$nombres = $this->input->post('nombres');
+		$paterno = $this->input->post('paterno');
+		$materno = $this->input->post('materno');
+		$ci = $this->input->post('ci');
+		$fec_nacimiento = $this->input->post('fec_nacimiento');
+		$porcen_parti = $this->input->post('porcen_parti');
+
+		//$this->form_validation->set_rules('nombres', 'Nombres', 'required'); 
+		$this->form_validation->set_rules('paterno', 'Apellido paterno', 'required');
+		$this->form_validation->set_rules('materno', 'Apellido materno', 'required');
+		$this->form_validation->set_rules('ci', 'Carnet de identidad', 'required');
+		$this->form_validation->set_rules('fec_nacimiento', 'Fecha de nacimiento', 'required');
+		$this->form_validation->set_rules('porcen_parti', 'Porcentaje de participación', 'required');
+      	
+      	$this->form_validation->set_message('required', '%s es obligatorio.');
+
+
+      	//Verifica que el formulario esté validado.
+      	if ($this->form_validation->run() == TRUE){
+         	if($porcen_parti <= $porcentajeR){
+				if($this->persona_model->existeci($ci))
+				{
+					$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
+				}
+				$consulta = $this->persona_model->consulta($ci);
+				$dato = array(
+					'id'      => $consulta->persona_id.'-0',
+					'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
+					'qty'     => $porcen_parti,
+					'price'   => $consulta->ci
+				);
+				$this->cart->insert($dato);
+				$data = array('estado'=>'guardado');
+				echo json_encode($data);
+			}else{
+				$data = array('estado'=>'sobrepasa', 'ci'=>$ci, 'nombres' => $nombres, 'paterno' => $paterno, 'materno' => $materno, 'fec_nacimiento'=>$fec_nacimiento, 'porcen_parti'=> $porcen_parti);
+				echo json_encode($data);
+	     	}
+      	}else{
+      		$data = array('estado'=>'incorrecto', 'ci'=>$ci, 'nombres' => $nombres, 'paterno' => $paterno, 'materno' => $materno, 'fec_nacimiento'=>$fec_nacimiento, 'porcen_parti'=> $porcen_parti);
+				echo json_encode($data);
+      	}
+
+
 	}
 
 	public function insertar_editar()
 	{
-		$carrito = $this->cart->total_items();
+		/*$carrito = $this->cart->total_items();
 		$porcentajeR = 100 - $carrito;
 		$porcen_parti = $this->input->post('porcen_parti');
 		$ddrr_id = $this->input->post('ddrr_id');
-
 		if($porcen_parti <= $porcentajeR){
 			$id = $this->session->userdata("persona_perfil_id");
 	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
@@ -83,18 +131,13 @@ class Persona extends CI_Controller {
 				$fec_nacimiento = $this->input->post('fec_nacimiento');
 				$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
 			}
-
 			$consulta = $this->persona_model->consulta($this->input->post('ci'));
-
 			$dato = array(
 				'id'      => $consulta->persona_id.'-0',
 				'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
 				'qty'     => $porcen_parti,
 				'price'   => $consulta->ci
-		//                'options' => array('Size' => 'L',
-		//                                   'Color' => 'Red')
 			);
-			
 			$array = array(
 				'ddrr_id' => $ddrr_id,
 				'porcen_parti' => $porcen_parti,
@@ -109,7 +152,57 @@ class Persona extends CI_Controller {
 		}else{
 			$data = array('estado'=>'si');
 			echo json_encode($data);
-			
+		}*/
+			$carrito = $this->cart->total_items();
+		$porcentajeR = 100 - $carrito;
+		$ddrr_id = $this->input->post('ddrr_id');
+			$id = $this->session->userdata("persona_perfil_id");
+        	$resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_creacion = $resi->persona_id;
+        $nombres = $this->input->post('nombres');
+		$paterno = $this->input->post('paterno');
+		$materno = $this->input->post('materno');
+		$ci = $this->input->post('ci');
+		$fec_nacimiento = $this->input->post('fec_nacimiento');
+		$porcen_parti = $this->input->post('porcen_parti');
+
+		$this->form_validation->set_rules('nombres', 'Nombres', 'required'); 
+		$this->form_validation->set_rules('paterno', 'Apellido paterno', 'required');
+		$this->form_validation->set_rules('materno', 'Apellido materno', 'required');
+		$this->form_validation->set_rules('ci', 'Carnet de identidad', 'required');
+		$this->form_validation->set_rules('fec_nacimiento', 'Fecha de nacimiento', 'required');
+		$this->form_validation->set_rules('porcen_parti', 'Porcentaje de participación', 'required');
+
+		if ($this->form_validation->run() == TRUE){
+			if($porcen_parti <= $porcentajeR){
+				if($this->persona_model->existeci($ci))
+				{ 
+					$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
+				}
+				$consulta = $this->persona_model->consulta($ci);
+				$dato = array(
+					'id'      => $consulta->persona_id.'-0',
+					'name'    => $consulta->nombres.' '.$consulta->paterno.' '.$consulta->materno,
+					'qty'     => $porcen_parti,
+					'price'   => $consulta->ci
+				);
+				$array = array(
+					'ddrr_id' => $ddrr_id,
+					'porcen_parti' => $porcen_parti,
+					'persona_id' => $consulta->persona_id, 
+					'usu_creacion' => $usu_creacion
+				);
+				$this->db->insert('catastro.predio_titular', $array);
+				$this->cart->insert($dato);
+				$data = array('estado'=>'guardado');
+				echo json_encode($data);
+			}else{
+				$data = array('estado'=>'sobrepasa', 'ci'=>$ci, 'nombres' => $nombres, 'paterno' => $paterno, 'materno' => $materno, 'fec_nacimiento'=>$fec_nacimiento, 'porcen_parti'=> $porcen_parti);
+				echo json_encode($data);	
+			}
+		}else{
+			$data = array('estado'=>'incorrecto', 'ci'=>$ci, 'nombres' => $nombres, 'paterno' => $paterno, 'materno' => $materno, 'fec_nacimiento'=>$fec_nacimiento, 'porcen_parti'=> $porcen_parti);
+				echo json_encode($data);
 		}
 	}
 

@@ -49,7 +49,7 @@ class Edificacion_model extends CI_Model {
         return $query->result();
     }
     function get_datos_bloque_piso($id) {//obtiene los datos del bloque por id
-        $query = $this->db->query("SELECT x.bloque_piso_id,x.nro_bloque,x.nivel,x.tipo_planta_id,y.descripcion,x.superficie,x.bloque_id FROM catastro.bloque_piso x LEFT JOIN catastro.tipo_planta y on x.tipo_planta_id=y.tipo_planta_id WHERE x.bloque_id='$id' and x.activo=1 and y.activo=1");
+        $query = $this->db->query("SELECT x.bloque_piso_id,x.nro_bloque,x.nivel,x.tipo_planta_id,y.descripcion,x.superficie,x.altura,x.bloque_id FROM catastro.bloque_piso x LEFT JOIN catastro.tipo_planta y on x.tipo_planta_id=y.tipo_planta_id WHERE x.bloque_id='$id' and x.activo=1 and y.activo=1");
         return $query->result();
     }
 

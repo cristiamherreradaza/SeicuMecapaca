@@ -120,7 +120,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
                                             <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
                                         </div>
                                     </div>
@@ -246,7 +246,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
                                             <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
 
                                         </div>
@@ -369,7 +369,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
                                             <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
                                         </div>
                                     </div>
@@ -458,6 +458,14 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
+                                            <label for="wfirstName2">Porcentaje de remodelacion: <span class="text-danger"> *<small> entre (0 y 100) % </small> </span>   </label>
+                                            <input type="number" size="3" class="form-control required" id="porcentaje_remo" name="porcentaje_remo" value="<?php echo $porcentaje_remo; ?>" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" required>                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
                                             <label for="location1">Destino :<span class="text-danger"> *</span></label>
                                             <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" required>
                                             <option value="<?php echo $destino_bloque_id; ?>" selected><?php echo $desc_bloque_dest; ?></option>
@@ -538,6 +546,14 @@
                                                     <div class="row" >
                                                         <div class="col-md-8">
                                                             <div class="form-group">
+                                                                <label for="wfirstName2">Altura : <span class="text-danger"> * <small>metros</small></span> </label>
+                                                                <input type="number" class="form-control" step='0.100' id="altura_p" name="altura_p" value="0.00">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" >
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
                                                                 <label for="wfirstName2">Superficie : <span class="text-danger"> * <small>metros</small></span> </label>
                                                                 <input type="number" class="form-control" step="0.100" id="superficie" name="superficie" value="0.00">
                                                             </div>
@@ -572,7 +588,8 @@
                                                     <tr>
                                                         <th>Planta</th>
                                                         <th>Nivel</th>
-                                                        <th>Sup. mts</th>
+                                                        <th>Sup </th>
+                                                        <th>altura</th>
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
@@ -586,7 +603,8 @@
                                                     <tr class="selected" id="fila<?php echo $contador; ?>">
                                                         <td><input type="hidden" name="id_tipo_planta[]" value="<?php echo $rowd->tipo_planta_id; ?>"><?php echo $rowd->descripcion;?></td>
                                                         <td><input type="hidden" name="niveles[]" value="<?php echo $rowd->nivel; ?>"><?php echo $rowd->nivel; ?></td>
-                                                        <td><input type="hidden" name="superficies[]" value="<?php echo $rowd->superficie; ?>"><?php echo $rowd->superficie; ?></td>                                                                                                             
+                                                        <td><input type="hidden" name="superficies[]" value="<?php echo $rowd->superficie; ?>"><?php echo $rowd->superficie; ?></td> 
+                                                        <td><input type="hidden" name="alturas[]" value="<?php echo $rowd->altura; ?>"><?php echo $rowd->altura; ?></td>                                                                                                             
                                                         <td>                                                            
                                                          <button type="button" cLass="btn btn-danger" onclick="eliminar(<?php echo $contador; ?>);"><span class="fas fa-trash-alt" aria-hidden="true"></span></button>
                                                         </td>
@@ -644,10 +662,12 @@
         idnivel = $("#nivel").val();
         nivel = $("#nivel option:selected").text();
         superficie = $("#superficie").val();
+        altura = $("#altura_p").val();
 
-        if (tipo_planta_id != "" && idnivel != "" && superficie != "") {
+        if (tipo_planta_id != "" && idnivel != "" && superficie != "" && altura != "") {
             total = total+1;
-            var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
+            var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><input type="hidden" name="alturas[]" value="' + altura + '">' + altura +'</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
+            //var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
             cont_n++;
             limpiar();
             evaluar();
@@ -661,6 +681,7 @@
         $("#tipo_planta_id").val(""); //id
         $("#nivel").val("0");
         $("#superficie").val("0.00");
+        $("#altura_p").val("0.00");
     }
 
     function evaluar() {
@@ -676,6 +697,20 @@
         $("#fila" + index).remove();
         evaluar();
     }
+</script>
+
+<script>
+$(document).ready(function() {
+
+$('input[type=number][max]:not([max=""])').on('input', function(ev) {
+  var $this = $(this);
+  var maxlength = $this.attr('max').length;
+  var value = $this.val();
+  if (value && value.length >= maxlength) {
+    $this.val(value.substr(0, maxlength));
+  } 
+});
+});
 </script>
 
 

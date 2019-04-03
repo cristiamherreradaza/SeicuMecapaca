@@ -7,11 +7,13 @@ class Matvia extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("matvia_model");
+		$this->load->model("rol_model");
 	}
 
 	public function matvia(){
 		if($this->session->userdata("login")){
 		
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['matvia'] = $this->matvia_model->index();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

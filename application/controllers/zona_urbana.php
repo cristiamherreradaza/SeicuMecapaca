@@ -8,12 +8,14 @@ class Zona_urbana extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->model("zona_urbana_model");
+		$this->load->model("rol_model");
 	}
 
 	public function zona_urbana(){
 		if($this->session->userdata("login")){
-
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['zona_urbana'] = $this->zona_urbana_model->index();
+			
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
 			$this->load->view('crud/zona_urbana', $lista);
@@ -25,7 +27,7 @@ class Zona_urbana extends CI_Controller {
 		
 	}
 
-	
+
 	public function index()
 	{
 		if($this->session->userdata("login")){

@@ -7,11 +7,13 @@ class Tipo_planta extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("tipo_planta_model");
+		$this->load->model("rol_model");
 	}
 
 	public function tipo_planta(){
 		if($this->session->userdata("login")){
 		
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['tipo_planta'] = $this->tipo_planta_model->index();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

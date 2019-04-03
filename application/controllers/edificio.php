@@ -7,11 +7,13 @@ class Edificio extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("edificio_model");
+		$this->load->model("rol_model");
 	}
 
 	public function edificio(){
 		if($this->session->userdata("login")){  
 		
+		$lista['verifica'] = $this->rol_model->verifica();
 		$lista['edificio'] = $this->edificio_model->index();
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');

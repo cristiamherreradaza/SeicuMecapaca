@@ -8,11 +8,13 @@ class Predio_via extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->model("Predio_via_model");
+		$this->load->model("rol_model");
 	}
 
 	public function predio_via(){
 		if($this->session->userdata("login")){
 		
+		$lista['verifica'] = $this->rol_model->verifica();
 		$lista['predio_via'] = $this->Predio_via_model->index();
 		
 		$this->load->view('admin/header');

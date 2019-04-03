@@ -7,11 +7,13 @@ class Clase_predio extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model("clase_predio_model");
+		$this->load->model("rol_model");
 	}
 
 	public function clase_predio(){
 		if($this->session->userdata("login")){
-		
+
+			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['clase_predio'] = $this->clase_predio_model->index();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
