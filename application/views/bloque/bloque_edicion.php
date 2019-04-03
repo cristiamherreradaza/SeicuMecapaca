@@ -604,7 +604,7 @@
                                                         <td><input type="hidden" name="id_tipo_planta[]" value="<?php echo $rowd->tipo_planta_id; ?>"><?php echo $rowd->descripcion;?></td>
                                                         <td><input type="hidden" name="niveles[]" value="<?php echo $rowd->nivel; ?>"><?php echo $rowd->nivel; ?></td>
                                                         <td><input type="hidden" name="superficies[]" value="<?php echo $rowd->superficie; ?>"><?php echo $rowd->superficie; ?></td> 
-                                                        <td>78</td>                                                                                                             
+                                                        <td><input type="hidden" name="alturas[]" value="<?php echo $rowd->altura; ?>"><?php echo $rowd->altura; ?></td>                                                                                                             
                                                         <td>                                                            
                                                          <button type="button" cLass="btn btn-danger" onclick="eliminar(<?php echo $contador; ?>);"><span class="fas fa-trash-alt" aria-hidden="true"></span></button>
                                                         </td>
@@ -664,7 +664,7 @@
         superficie = $("#superficie").val();
         altura = $("#altura_p").val();
 
-        if (tipo_planta_id != "" && idnivel != "" && superficie != "") {
+        if (tipo_planta_id != "" && idnivel != "" && superficie != "" && altura != "") {
             total = total+1;
             var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><input type="hidden" name="alturas[]" value="' + altura + '">' + altura +'</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
             //var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
@@ -681,6 +681,7 @@
         $("#tipo_planta_id").val(""); //id
         $("#nivel").val("0");
         $("#superficie").val("0.00");
+        $("#altura_p").val("0.00");
     }
 
     function evaluar() {

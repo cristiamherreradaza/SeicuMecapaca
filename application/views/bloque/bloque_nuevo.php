@@ -605,11 +605,12 @@
         $('#bt_add').click(function() {
             agregar();
             $('#responsive-modal').modal('hide');
-        });
+        });     
     });
     var cont_n = 0;
     estado = 0;
     total = 0;
+    
     subtotal = [];
     $("#guardar").hide();
 
@@ -621,7 +622,7 @@
         superficie = $("#superficie").val();
         altura = $("#altura_p").val();
 
-        if (tipo_planta_id != "" && idnivel != "" && superficie != "") {
+        if (tipo_planta_id != "" && idnivel != "" && superficie != "" && altura != "") {
             total = total+1;
             var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><input type="hidden" name="alturas[]" value="' + altura + '">' + altura +'</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
             cont_n++;

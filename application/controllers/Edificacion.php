@@ -185,6 +185,7 @@ class Edificacion extends CI_Controller
                 'nivel' => $nivel_a[$j],
                 'tipo_planta_id' => $id_tipo_planta[$j],
                 'superficie' => $superficie_a[$j],
+                'altura' => $altura_p[$j],
                 'bloque_id' => $bloque_id_form, //id del bloque nro x                       
                 'usu_creacion' => 1 //aun no captura el usuario 
             );
@@ -325,6 +326,7 @@ class Edificacion extends CI_Controller
                 'nivel' => $nivel_a[$j],
                 'tipo_planta_id' => $id_tipo_planta[$j],
                 'superficie' => $superficie_a[$j],
+                'altura' => $altura_p[$j],
                 'bloque_id' => $bloque_id, //id del bloque nro x                       
                 'usu_creacion' => 1 //aun no captura el usuario 
             );
