@@ -73,7 +73,7 @@ class Persona extends CI_Controller {
 		$fec_nacimiento = $this->input->post('fec_nacimiento');
 		$porcen_parti = $this->input->post('porcen_parti');
 
-		$this->form_validation->set_rules('nombres', 'Nombres', 'required'); 
+		//$this->form_validation->set_rules('nombres', 'Nombres', 'required'); 
 		$this->form_validation->set_rules('paterno', 'Apellido paterno', 'required');
 		$this->form_validation->set_rules('materno', 'Apellido materno', 'required');
 		$this->form_validation->set_rules('ci', 'Carnet de identidad', 'required');

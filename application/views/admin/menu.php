@@ -99,6 +99,13 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Administraci&oacute;n</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="<?php echo base_url(); ?>organigrama_persona/inicio"><i class=" fas fa-book"></i> Asignaci&oacute;n de oficinas</a></li>
+                        
+                    </ul> 
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
