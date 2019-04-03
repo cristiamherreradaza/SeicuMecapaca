@@ -113,7 +113,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
                                         </div>
                                     </div>
 
@@ -129,7 +129,7 @@
                                             <div class="form-control-feedback" Style="color:red;"><small id="validsuma<?php echo $count ?>"><i></i></small>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>                                   
                                     <hr>
                                     <?php 
                                 } ?>
@@ -147,6 +147,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <hr>
                                     <?php 
                                     $count2++;
@@ -236,7 +237,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
 
                                         </div>
                                     </div>
@@ -355,7 +356,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0" size="3" min="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
                                         </div>
                                     </div>
 
@@ -427,7 +428,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de construccion: <span class="text-danger"> *</span></label>
-                                            <input type="number" size="4" class="form-control required" id="anio_cons" name="anio_cons" min="1000" max="2019" required>                                            
+                                            <input type="number" size="4" class="form-control required" id="anio_cons" name="anio_cons" min="1000" max="<?php echo $anio_actual; ?>"  required>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -435,7 +436,15 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Año de remodelacion: <span class="text-danger"> *</span></label>
-                                            <input type="number" size="4" class="form-control required" id="anio_remo" name="anio_remo" min="1000" max="2019" required>
+                                            <input type="number" size="4" class="form-control required" id="anio_remo" name="anio_remo" min="1000" max="<?php echo $anio_actual; ?>"  required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="wfirstName2">Porcentaje de remodelacion: <span class="text-danger"> *<small> entre (0 y 100) % </small> </span>   </label>
+                                            <input type="number" size="3" class="form-control required" id="porcentaje_remo" name="porcentaje_remo" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" required>                                          
                                         </div>
                                     </div>
                                 </div>
@@ -518,6 +527,14 @@
                                                     <div class="row" >
                                                         <div class="col-md-8">
                                                             <div class="form-group">
+                                                                <label for="wfirstName2">Altura : <span class="text-danger"> * <small>metros</small></span> </label>
+                                                                <input type="number" class="form-control" step='0.100' id="altura_p" name="altura_p" value="0.00">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" >
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
                                                                 <label for="wfirstName2">Superficie : <span class="text-danger"> * <small>metros</small></span> </label>
                                                                 <input type="number" class="form-control" step='0.100' id="superficie" name="superficie" value="0.00">
                                                             </div>
@@ -552,7 +569,8 @@
                                                     <tr>
                                                         <th>Planta</th>
                                                         <th>Nivel</th>
-                                                        <th>Sup. mts</th>
+                                                        <th>Sup </th>
+                                                        <th>altura</th>
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
@@ -601,10 +619,11 @@
         idnivel = $("#nivel").val();
         nivel = $("#nivel option:selected").text();
         superficie = $("#superficie").val();
+        altura = $("#altura_p").val();
 
         if (tipo_planta_id != "" && idnivel != "" && superficie != "") {
             total = total+1;
-            var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
+            var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><input type="hidden" name="alturas[]" value="' + altura + '">' + altura +'</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
             cont_n++;
             limpiar();
             evaluar();
@@ -618,6 +637,7 @@
         $("#tipo_planta_id").val(""); //id
         $("#nivel").val("0");
         $("#superficie").val("0.00");
+        $("#altura_p").val("0.00");
     }
 
     function evaluar() {
@@ -633,6 +653,20 @@
         $("#fila" + index).remove();
         evaluar();
     }
+</script>
+
+<script>
+$(document).ready(function() {
+
+$('input[type=number][max]:not([max=""])').on('input', function(ev) {
+  var $this = $(this);
+  var maxlength = $this.attr('max').length;
+  var value = $this.val();
+  if (value && value.length >= maxlength) {
+    $this.val(value.substr(0, maxlength));
+  } 
+});
+});
 </script>
 
 
