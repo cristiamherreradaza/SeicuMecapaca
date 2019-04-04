@@ -726,9 +726,10 @@
                         // console.log(contador);
                         // combos_vias += '<option value="'+aux3+'">'+element.sp_get_vias+'</option>';
                         // checkbox_vias += '<input type="checkbox" name="'+aux3+'" value="Bike"> '+element.sp_get_vias+'<br>';
-                        checkbox_vias += '<tr id=fila_'+aux3+'><td><div class="custom-control custom-checkbox"> \
-                                            <input type="checkbox" class="custom-control-input" name="vias['+aux3+']" value="'+aux3+'" id="customCheck_'+aux3+'">\
-                                            <label class="custom-control-label" for="customCheck_'+aux3+'">'+element.sp_get_vias+'</label></div>\
+                        checkbox_vias += '<tr id=fila_'+aux3+'>\
+                            <td><div class="custom-control custom-radio">\
+                                            <input type="radio" id="customRadio_'+aux3+'" name="customRadio" class="custom-control-input">\
+                                            <label class="custom-control-label" for="customRadio_'+aux3+'">'+element.sp_get_vias+'</label></div>\
                                             </td><td><button type="button" class="btn btn-danger" onclick="elimina_fila_tabla('+aux3+')">\
                                                     <span class="fas fa-trash-alt"></span>\
                                                 </button></td></tr>';
@@ -835,6 +836,7 @@
 }) */
 
 function elimina_fila_tabla(fila){
+
     $('#fila_'+fila).remove();
 
     // console.log(array)
@@ -853,7 +855,7 @@ function elimina_fila_tabla(fila){
 }
 
 function getGeneraRandom(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) ) + min;
+return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
 </script>
