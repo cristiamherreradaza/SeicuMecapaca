@@ -20,7 +20,7 @@ class OrganigramaP_model extends CI_Model {
 	}
 
 	public function persona(){
-		$personas = $this->db->query("SELECT p.persona_id, p.nombres FROM persona as p JOIN persona_perfil as pf ON p.persona_id = pf.persona_id JOIN perfil as pe ON pf.perfil_id = pe.perfil_id WHERE pe.perfil != 'Beneficiario' AND pf.activo = 1")->result();
+		$personas = $this->db->query("SELECT p.persona_id, p.nombres, p.paterno, p.materno FROM persona as p JOIN persona_perfil as pf ON p.persona_id = pf.persona_id JOIN perfil as pe ON pf.perfil_id = pe.perfil_id WHERE pe.perfil != 'Beneficiario' AND pf.activo = 1")->result();
 		if ($personas > 0) {
 			return $personas;
 		}

@@ -94,7 +94,7 @@
                                <!--  <select class="select2" style="width: 100%" name="persona_id" id="persona_id"> -->
                                     <option>Select</option>
                                     <?php foreach($personas as $plista){ ?>
-                                        <option value="<?php echo $plista->persona_id; ?>"><?php echo $plista->nombres; ?></option>
+                                        <option value="<?php echo $plista->persona_id; ?>"><?php echo $plista->nombres.' '.$plista->paterno.' '.$plista->materno; ?></option>
                                     <?php } ?>
                                     
                                 </select>
@@ -140,7 +140,7 @@
                                 <select class="select2 " style="width: 100%" name="persona_id" id="persona_id">
                                     <option>Select</option>
                                     <?php foreach($personas as $plista){ ?>
-                                        <option value="<?php echo $plista->persona_id; ?>"><?php echo $plista->nombres; ?></option>
+                                        <option value="<?php echo $plista->persona_id; ?>"><?php echo $plista->nombres.' '.$plista->paterno.' '.$plista->materno; ?></option>
                                     <?php } ?>
                                     
                                 </select>
