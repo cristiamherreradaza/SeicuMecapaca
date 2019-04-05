@@ -23,6 +23,7 @@
 
 		<!--end::Base Styles -->
 		<link rel="shortcut icon" href="<?php echo base_url().'publico/assets/demo/default/media/img/logo/favicon.ico' ;?>" />
+		 
 	</head>
 	<!-- end::Head -->
 	<!-- end::Body -->

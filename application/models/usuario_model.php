@@ -10,10 +10,29 @@ class Usuario_model extends CI_Model {
 		parent::__construct();
 	}
 
+	public function index()
+	{
+		$lista = $this->db->query("SELECT pe.nombres, pe.paterno, c.usuario, pf.perfil, r.rol, c.activo, c.credencial_id
+										FROM credencial c, persona_perfil p, rol r, persona pe, perfil pf 
+										WHERE c.persona_perfil_id = p.persona_perfil_id
+										AND p.persona_id = pe.persona_id
+										AND p.perfil_id = pf.perfil_id
+										AND c.rol_id = r.rol_id
+										ORDER BY pe.nombres, pe.paterno")->result();
+
+		if ($lista > 0) {
+			return $lista;
+		}
+		else{
+			return false;
+		}
+	}
+
 	public function login($usuario, $contrasenia)
 	{
 		$this->db->where('usuario', $usuario);
 		$this->db->where('contrasenia', $contrasenia);
+		$this->db->where('activo', '1');
 		
 		$resultado = $this->db->get("credencial");
 
