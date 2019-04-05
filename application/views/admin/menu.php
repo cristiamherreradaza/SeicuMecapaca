@@ -94,6 +94,9 @@
                                 <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
                                 <li><a href="<?php echo base_url(); ?>Uso_suelo">Uso Suelo</a></li>
                                 <li><a href="<?php echo base_url(); ?>Zona_urbana">Zona Urbana</a></li>
+                                <li><a href="<?php echo base_url(); ?>Tipo_documento">Tipo Documento</a></li>
+                                <li><a href="<?php echo base_url(); ?>Tipo_correspondencia">Tipo Correspondecia</a></li>
+                                <li><a href="<?php echo base_url(); ?>Organigrama">Orgranigrama</a></li>
                                 
                             </ul>
                         </li>

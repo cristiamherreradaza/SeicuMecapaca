@@ -29,33 +29,6 @@ class Edificacion extends CI_Controller
 
 
 
-    /*
-    public function nuevo(){
-        if($this->session->userdata("login"))
-		{
-	    $credencial_id = $this->session->userdata("persona_perfil_id");
-		$acceso_inicio = date("Y-m-d H:i:s");
-
-		$ip = $this->logacceso_model->ip_publico();
-		$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
-
-        $data['result_array'] = $this->Edificacion_model->getAllData();
-        $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque(); 
-        $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
-        $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
-        $this->load->view('admin/header');
-        $this->load->view('admin/menu');
-        $this->load->view('bloque/EdificacionView',$data); 
-        $this->load->view('bloque/jtables');       
-        $this->load->view('bloque/validar');
-        $this->load->view('admin/wizard_js');        
-
-        }else{
-			$this->load->view('login/login');	
-		}
-    }*/
-
-
     public function nuevo($cod_catastral = null)
     {
 
@@ -165,15 +138,6 @@ class Edificacion extends CI_Controller
         }
         //captura de datos para la tabla bloque_piso
 
-        /*$bloque_piso = array (
-           'nro_bloque' =>$this->input->post('nro_bloque'),
-           'nivel' => $this->input->post('nivel'),
-           'tipo_planta_id' =>$this->input->post('tipo_planta_id'),  
-           'superficie' => $this->input->post('superficie'),
-           'bloque_id' =>$bloque_id_form,//id del bloque nro x                       
-           'usu_creacion' =>1 //aun no captura el usuario 
-       );
-       $this->db->insert('catastro.bloque_piso', $bloque_piso);*/
         $cont = 0;
         $id_tipo_planta = $this->input->post('id_tipo_planta');
         $nivel_a = $this->input->post('niveles');
@@ -190,21 +154,7 @@ class Edificacion extends CI_Controller
                 'usu_creacion' => 1 //aun no captura el usuario 
             );
             $this->db->insert('catastro.bloque_piso', $bloque_piso);
-        }
-
-
-        /*while($cont < count($id_tipo_planta)){
-                $bloque_piso = array(
-                    'nro_bloque' => $this->input->post('nro_bloque'),
-                    'nivel' => $nivel_a[$cont],
-                    'tipo_planta_id' => $id_tipo_planta[$cont],
-                    'superficie' => $superficie_a[$cont],
-                    'bloque_id' => $bloque_id_form, //id del bloque nro x                       
-                    'usu_creacion' => 1 //aun no captura el usuario 
-                );
-                $this->db->insert('catastro.bloque_piso', $bloque_piso);
-                $cont=$cont++;
-            }*/
+        }    
 
         //fin de insertar datos en tabla bloque_piso
 
