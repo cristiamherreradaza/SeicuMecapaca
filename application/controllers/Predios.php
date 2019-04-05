@@ -280,10 +280,11 @@ class Predios extends CI_Controller {
 	        foreach($calles_array as $ca){
 	       		$data_calles = array(
 	       			'codcatas'=>$this->input->post('codigo_catastral'),	
-	       		)	     
+	       			'codcatas'=>$this->input->post('codigo_catastral')	
+	       		);	     
 	        	// echo $ca.'<br />';
 	        }
-	        vdebug($calles_array);
+	        // vdebug($calles_array);
 
 	        // vdebug($this->input->post('calles_colindantes'));
 
