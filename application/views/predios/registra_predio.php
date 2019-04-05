@@ -306,6 +306,7 @@
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
                                                 <div id="predio_vias"></div>
+                                                <input type="hidden" name="calles_colindantes" id="calles_colindantes">
                                                 <!-- <input type="text" class="form-control" id="c_principal" name="principal" required /> -->
                                             </div>
                                         </div>
@@ -721,7 +722,7 @@
                         var aux1 = element.sp_get_vias;
                         var aux2 = element.sp_get_vias.split(",");
                         var aux3 = aux2[0].substring(1);
-                        todos[contador] = aux3; 
+                        todos.push(aux3); 
                         // console.log(todos);
                         // console.log(contador);
                         // combos_vias += '<option value="'+aux3+'">'+element.sp_get_vias+'</option>';
@@ -736,6 +737,8 @@
                         contador++;
                         });
                     checkbox_vias += '</table>';
+                    $("#calles_colindantes").val(todos);
+                    // console.log('Aqui los datos: '+todos);
 
                     //combos_vias += "</select>"
                     // console.log(combos_vias);
@@ -837,25 +840,44 @@
 
 function elimina_fila_tabla(fila){
 
+    console.log('Aqui los datos '+ todos);
+    var fila_numero = parseInt(fila);
     $('#fila_'+fila).remove();
 
     // console.log(array)
-    var index = todos.indexOf(fila);
-    console.log(index);
-    if (index > -1) {
-      todos.splice(index, 1);
-    }
+    var index = todos.indexOf("fila_numero");
+
+    // var index = todos.findIndex(fila_numero);
+    // console.log('encontrado '+todos.includes(fila));
+    console.log('A buscar '+fila_numero);
+    // console.log('El indice '+index);
+
+    todos.forEach(function (elemento, indice, array) {
+        console.log(elemento, indice);
+        if(elemento==fila){
+            // console.log('Si');
+            todos.splice(index, 1);
+        }else{
+            // console.log('No');
+        }
+    });
+    console.log('Aqui los modificados '+ todos);
+    $('#calles_colindantes').val(todos);
+
+
+    // if (index > -1) {
+    // }
     // array = [2, 9]
     // console.log(array);
 
     // contador_eliminados++;
     // console.log(contador_eliminados);
-    console.log(todos);
-    console.log(fila);
+    // console.log(todos);
+    // console.log(fila);
 }
 
 function getGeneraRandom(min, max) {
-return Math.floor(Math.random() * (max - min + 1) ) + min;
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
 </script>

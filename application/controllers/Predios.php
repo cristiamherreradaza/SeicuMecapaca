@@ -275,6 +275,17 @@ class Predios extends CI_Controller {
 	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
 	        $usu_creacion = $resi->persona_id;
 
+	        $calles = $this->input->post('calles_colindantes');
+	        $calles_array = explode(",", $calles);
+	        foreach($calles_array as $ca){
+	       		$data_calles = array(
+	       			'codcatas'=>$this->input->post('codigo_catastral'),	
+	       		)	     
+	        	// echo $ca.'<br />';
+	        }
+	        vdebug($calles_array);
+
+	        // vdebug($this->input->post('calles_colindantes'));
 
 			$datos = array();
 			$datos = $this->input->post();
@@ -349,6 +360,10 @@ class Predios extends CI_Controller {
 				$this->db->insert('catastro.predio_servicios', $data_servicios);
 			}
 			// fin guardamos los servicios
+
+			// guardamos las calles
+
+			// fin guardamos las calles
 
 			// guarda las observaciones
 			$data_obs = array(
