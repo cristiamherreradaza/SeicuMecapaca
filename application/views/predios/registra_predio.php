@@ -729,7 +729,7 @@
                         // checkbox_vias += '<input type="checkbox" name="'+aux3+'" value="Bike"> '+element.sp_get_vias+'<br>';
                         checkbox_vias += '<tr id=fila_'+aux3+'>\
                             <td><div class="custom-control custom-radio">\
-                                            <input type="radio" id="customRadio_'+aux3+'" name="customRadio" class="custom-control-input">\
+                                            <input type="radio" id="customRadio_'+aux3+'" name="calle_principal" class="custom-control-input" value="'+aux3+'">\
                                             <label class="custom-control-label" for="customRadio_'+aux3+'">'+element.sp_get_vias+'</label></div>\
                                             </td><td><button type="button" class="btn btn-danger" onclick="elimina_fila_tabla('+aux3+')">\
                                                     <span class="fas fa-trash-alt"></span>\
@@ -840,7 +840,7 @@
 
 function elimina_fila_tabla(fila){
 
-    console.log('Aqui los datos '+ todos);
+    // console.log('Aqui los datos '+ todos);
     var fila_numero = parseInt(fila);
     $('#fila_'+fila).remove();
 
@@ -849,11 +849,11 @@ function elimina_fila_tabla(fila){
 
     // var index = todos.findIndex(fila_numero);
     // console.log('encontrado '+todos.includes(fila));
-    console.log('A buscar '+fila_numero);
+    // console.log('A buscar '+fila_numero);
     // console.log('El indice '+index);
 
     todos.forEach(function (elemento, indice, array) {
-        console.log(elemento, indice);
+        // console.log(elemento, indice);
         if(elemento==fila){
             // console.log('Si');
             todos.splice(index, 1);
@@ -861,9 +861,8 @@ function elimina_fila_tabla(fila){
             // console.log('No');
         }
     });
-    console.log('Aqui los modificados '+ todos);
+    // console.log('Aqui los modificados '+ todos);
     $('#calles_colindantes').val(todos);
-
 
     // if (index > -1) {
     // }

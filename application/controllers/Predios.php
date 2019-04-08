@@ -13,6 +13,7 @@ class Predios extends CI_Controller {
         $this->load->helper('vayes_helper');
          $this->load->library('cart');
         $this->load->model("rol_model");
+        $this->load->library('email');
     }
 
     public function principal(){
@@ -275,17 +276,6 @@ class Predios extends CI_Controller {
 	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
 	        $usu_creacion = $resi->persona_id;
 
-	        $calles = $this->input->post('calles_colindantes');
-	        $calles_array = explode(",", $calles);
-	        foreach($calles_array as $ca){
-	       		$data_calles = array(
-	       			'codcatas'=>$this->input->post('codigo_catastral'),	
-	       			'codcatas'=>$this->input->post('codigo_catastral')	
-	       		);	     
-	        	// echo $ca.'<br />';
-	        }
-	        // vdebug($calles_array);
-
 	        // vdebug($this->input->post('calles_colindantes'));
 
 			$datos = array();
@@ -363,8 +353,34 @@ class Predios extends CI_Controller {
 			// fin guardamos los servicios
 
 			// guardamos las calles
-
+			$calles = $this->input->post('calles_colindantes');
+			$calles_array = explode(",", $calles);
+			foreach($calles_array as $ca){
+				if($ca == $this->input->post('calle_principal')){
+					$tipo_calle = 1;
+				}else{
+					$tipo_calle = 0;
+				}
+				$data_calles = array(
+					'codcatas'=>$this->input->post('codigo_catastral'),	
+					'objectid_via'=>1,
+					'matvia_id'=>1,
+					'activo'=>1,
+					'gvia_id'=>$ca,
+					'gvia_tipo'=>$tipo_calle,
+				);	     
+				$this->db->insert('catastro.predio_via', $data_calles);
+			 	// echo $ca.'<br />';
+			}		
+			 // vdebug($calles_array);
 			// fin guardamos las calles
+
+			// editamos la calle principal
+			// $this->db->set('gvia_tipo', 1);
+			// $this->db->where('codcatas', $this->input->post('codigo_catastral'));
+			// $this->db->where('gvia_id', $this->input->post('calle_principal'));
+			// $this->db->update('catastro.predio_via');
+			// editamos la calle principal
 
 			// guarda las observaciones
 			$data_obs = array(
@@ -491,6 +507,14 @@ class Predios extends CI_Controller {
 			$this->db->where('codcatas', $cod_catastral);
 			$data['servicios'] = $this->db->get('catastro.predio_servicios')->result();
 
+			$this->db->select('catastro.predio_via.gvia_id, catastro.geo_vias.nombre, catastro.predio_via.gvia_tipo');
+			$this->db->from('catastro.predio_via');
+			$this->db->where('codcatas', $cod_catastral);
+			$this->db->join('catastro.geo_vias', 'catastro.geo_vias.gvia_id=catastro.predio_via.gvia_id');
+			// $data['calles'] = $this->db->get('catastro.predio_via')->result();
+			$data['calles'] = $this->db->get()->result();
+			// vdebug($calles);
+
 			// vdebug($consulta);
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
@@ -600,6 +624,10 @@ class Predios extends CI_Controller {
 		echo json_encode($datos);
 		// echo ($datos);
 		// vdebug($distrito[0]->get_dist);
+	}
+
+	public function envia_email(){
+
 	}
 
 }

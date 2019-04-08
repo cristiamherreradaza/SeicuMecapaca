@@ -272,7 +272,7 @@
                                                 <select class="custom-select form-control" id="forma_id" name="forma_id" required />
                                                     <option value="">Seleccione forma</option>
                                                     <?php foreach ($dc_forma as $d): ?>
-                                                    <option value="<?php echo $d->forma_id; ?>" <?php echo $predio[0]->forma_id == $d->forma_id ?' selected ':''?>>
+                                                    <option value="<?php echo $d->forma_id; ?>" <?php echo $predio[0]->forma_id == $d->forma_id ?' selected ':'' ?>>
                                                         <?php echo $d->descripcion; ?>
                                                     </option>
                                                     <?php endforeach; ?>
@@ -284,20 +284,33 @@
 
                                         <div class="row" style="background-color: #f6f6f6;">
 
-<!--                                         <div class="col-md-6">
+                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control" id="c_principal" name="principal" required />
+
+                                                    <?php foreach ($calles as $key => $c): ?>
+                                                        <?php if ($c->gvia_tipo==1): ?>
+                                                            <?php  ?>
+                                                        <?php else: ?>        
+                                                        <?php endif ?>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" id="customRadio_<?php echo $key; ?>" name="calle_principal" class="custom-control-input" <?php echo $c->gvia_tipo == 1 ?' checked ':'' ?> >
+                                                            <label class="custom-control-label" for="customRadio_<?php echo $key; ?>">
+                                                                <?php echo $c->nombre ?>
+                                                            </label>
+                                                        </div>    
+                                                    <?php endforeach ?>
+                                                <!-- <input type="text" class="form-control" id="c_principal" name="principal" required /> -->
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <!-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="zona">Zona : <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control" id="zona" name="zona" required />
                                             </div>
-                                        </div>
- -->
+                                        </div> -->
+
                                         </div>
 
                                         <div class="row" style="background-color: #f6f6f6;">
