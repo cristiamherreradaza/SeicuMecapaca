@@ -628,6 +628,35 @@ class Predios extends CI_Controller {
 
 	public function envia_email(){
 
+		$this->load->library('email');
+
+        $this->email->set_newline("\r\n");
+
+		$config['protocol']    = 'smtp';
+		// $config['smtp_host']    = 'ssl://smtp.gmail.com';
+		$config['smtp_host']    = 'mail.vergarasociados.com';
+		$config['smtp_port']    = '465';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user']    = 'cristiam@vergarasociados.com';
+		$config['smtp_pass']    = '123cristiam456';
+		$config['charset']    = 'utf-8';
+		$config['newline']    = "\r\n";
+	    $config['mailtype'] = 'text'; // or html
+	    $config['validation'] = TRUE; // bool whether to validate email or not      
+
+	    $this->email->initialize($config);
+
+	    $this->email->from('cristiam@vergarasociados.com', 'Cristiam Prueba');
+	    $this->email->to('cristiamherrera@gmail.com'); 
+
+	    $this->email->subject('Prueba dede codeigniter');
+	    $this->email->message('Aqui el mensaje de prueba.');  
+
+	    $this->email->send();
+
+	    echo $this->email->print_debugger();
+
+	    // $this->load->view('email_view');
 	}
 
 }

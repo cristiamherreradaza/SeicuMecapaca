@@ -845,18 +845,20 @@ function elimina_fila_tabla(fila){
     $('#fila_'+fila).remove();
 
     // console.log(array)
-    var index = todos.indexOf("fila_numero");
+    // var index = todos.indexOf("fila_numero");
 
     // var index = todos.findIndex(fila_numero);
-    // console.log('encontrado '+todos.includes(fila));
+    console.log('array ', todos);
+    console.log('encontrado '+todos.indexOf(fila));
     // console.log('A buscar '+fila_numero);
     // console.log('El indice '+index);
 
     todos.forEach(function (elemento, indice, array) {
         // console.log(elemento, indice);
         if(elemento==fila){
-            // console.log('Si');
-            todos.splice(index, 1);
+            // console.log('Si '+indice);
+            todos.splice(indice, 1);
+            // console.log(todos.indexOf(fila));
         }else{
             // console.log('No');
         }
