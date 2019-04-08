@@ -40,7 +40,9 @@ class Login extends CI_Controller {
 		//var_dump("hola");
 		
 		$usuario = $this->input->post("usuario");
-		$contrasenia = $this->input->post("contrasenia");
+		$contrasena = $this->input->post("contrasenia");
+		$contrasenia = md5($contrasena);
+		
 		$res = $this->usuario_model->login($usuario, $contrasenia);
 		if (!$res) {
 			redirect(base_url());

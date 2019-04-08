@@ -1,6 +1,4 @@
 
-
-
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Container fluid  -->
@@ -20,59 +18,54 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        ADMINISTRACI&Oacute;N DE EDIFICIO <?php $i=2; //echo $data['title']; ?>
-                        <div class="card-body wizard-content">
-                            <div class="col-lg-2 col-md-4">
-                                <button type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nueva Edificio</button>
-                            </div><div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                  <table class="table table-bordered table-striped" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Nro</th>
-                                                <th>Fecha creacion</th>
-                                                <th>Persona</th>
-                                                <th>Unidad</th>
-                                                <th>Vigencia</th>
-                                                <th>Accion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach($datos as $lista){ ?>
-                                                <tr>
-                                                    <td><?php echo $i++;?></td>
-                                                    <td><?php echo $lista->fec_alta ?></td>
-                                                    <td><?php echo $lista->nombres; echo ' '; echo $lista->paterno; echo " "; echo $lista->materno; ?></td>
-                                                    <td><?php echo $lista->unidad; ?></td>
-                                                    <td><?php echo $lista->vigencia; ?></td>
-                                                    <td>
-
-                                                        <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('')">
-                                                                <span class="fas fa-pencil-alt" aria-hidden="true">
-                                                                </span>
-                                                        </button> 
-                                                        <a href= "" type="button" class="btn btn-danger footable-delete">
-                                                            <span class="fas fa-trash-alt" aria-hidden="true">
-                                                            </span>
-                                                        </a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <h4 class="card-title">ASIGNACI&Oacute;N DE OFICINAS</h4>
+                        <div class="col-lg-2 col-md-4">
+                            <button type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nueva asignaci&oacute;n</button>
                         </div>
-                            <div class="col-lg-6">
-                        
-                    </div>
-                        </div>
+                        <?php $i=1; //echo $data['title']; ?>
+                        <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>Nro</th>
+                                    <th>Fecha de alta</th>
+                                    <th>Fecha de baja</th>
+                                    <th>Persona</th>
+                                    <th>Unidad</th>
+                                    <th>Vigencia</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($datos as $lista){ ?>
+                                    <tr>
+                                        <td><?php echo $i++;?></td>
+                                        <td><?php echo $lista->fec_alta ?></td>
+                                        <td><?php echo $lista->fec_baja ?></td>
+                                        <td><?php echo $lista->nombres; echo ' '; echo $lista->paterno; echo " "; echo $lista->materno; ?></td>
+                                        <td><?php echo $lista->unidad; ?></td>
+                                        <td><?php echo $lista->vigencia; ?> mes(es)</td>
+                                        <td>
 
-                    </div>
+                                            <!-- <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('')">
+                                                    <span class="fas fa-pencil-alt" aria-hidden="true">
+                                                    </span>
+                                            </button>  -->
+                                            <a href= "<?php echo site_url('organigrama_persona/eliminar/'.$lista->organigrama_persona_id); ?>" type="button" title="Eliminar" class="btn btn-danger footable-delete">
+                                                <span class="fas fa-trash-alt" aria-hidden="true">
+                                                </span>
+                                            </a>
+                                            </button> 
+                                            <a  href="<?php echo site_url('organigrama_persona/baja/'.$lista->organigrama_persona_id); ?>" type="button" title="Dar de baja" class="btn btn-success footable-action"><span class="fas fa-arrow-down" aria-hidden="true">
+                                                </span></a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            
+                            </tbody>
+                        </table>      
+                    </div>  
                 </div>
+                
             </div>
         </div>
 
@@ -81,22 +74,38 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Editar Ubicaci&oacute;n</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Editar asignaci&oacute;n</h4>
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php //echo base_url();?>edificio/update" method="POST">-->
                         <?php echo form_open('edificio/update', array('method'=>'POST')); ?>
                             <div class="form-group">
-                                <input type="text" hidden="" id="edificio_id" name="edificio_id">
+                                <label for="recipient-name" class="control-label">Personal</label>
+                                <select class="select2" style="width: 100%">
+                               <!--  <select class="select2" style="width: 100%" name="persona_id" id="persona_id"> -->
+                                    <option>Select</option>
+                                    <?php foreach($personas as $plista){ ?>
+                                        <option value="<?php echo $plista->persona_id; ?>"><?php echo $plista->nombres.' '.$plista->paterno.' '.$plista->materno; ?></option>
+                                    <?php } ?>
+                                    
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion">
+                                <label for="recipient-name" class="control-label">Oficina</label>
+                                <select class="select2" style="width: 100%" name="organigrama_id" id="organigrama_id">
+                                    <option>Select</option>
+                                    <?php foreach($organigramas as $olista){ ?>
+                                        <option value="<?php echo $olista->organigrama_id; ?>"><?php echo $olista->unidad; ?></option>
+                                    <?php } ?>
+                                    
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Alias</label>
-                                <input type="text" class="form-control" id="alias" name="alias">
+                                <label for="recipient-name" class="control-label">Fecha de alta</label>
+                                <input type="date" class="form-control" id="fec_alta" name="fec_alta">
                             </div>
+
+                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -108,85 +117,40 @@
             </div>
         </div>
 
-        <div class="modal fade" id="Modal_insert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+        <div class="modal fade" id="Modal_insert"  role="dialog" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Edificio</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Asignacion de oficina</h4>
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>edificio/insertar" method="POST">-->
-                        <?php echo form_open('edificio/insertar', array('method'=>'POST')); ?>
+                        <?php echo form_open('organigrama_persona/insertar', array('method'=>'POST')); ?>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
-                                <select class="select2" style="width: 100%">
+                                <label for="recipient-name" class="control-label">Personal</label>
+                                <select class="select2 " style="width: 100%" name="persona_id" id="persona_id">
                                     <option>Select</option>
-                                    <optgroup label="Alaskan/Hawaiian Time Zone">
-                                        <option value="AK">Alaska</option>
-                                        <option value="HI">Hawaii</option>
-                                    </optgroup>
-                                    <optgroup label="Pacific Time Zone">
-                                        <option value="CA">California</option>
-                                        <option value="NV">Nevada</option>
-                                        <option value="OR">Oregon</option>
-                                        <option value="WA">Washington</option>
-                                    </optgroup>
-                                    <optgroup label="Mountain Time Zone">
-                                        <option value="AZ">Arizona</option>
-                                        <option value="CO">Colorado</option>
-                                        <option value="ID">Idaho</option>
-                                        <option value="MT">Montana</option>
-                                        <option value="NE">Nebraska</option>
-                                        <option value="NM">New Mexico</option>
-                                        <option value="ND">North Dakota</option>
-                                        <option value="UT">Utah</option>
-                                        <option value="WY">Wyoming</option>
-                                    </optgroup>
-                                    <optgroup label="Central Time Zone">
-                                        <option value="AL">Alabama</option>
-                                        <option value="AR">Arkansas</option>
-                                        <option value="IL">Illinois</option>
-                                        <option value="IA">Iowa</option>
-                                        <option value="KS">Kansas</option>
-                                        <option value="KY">Kentucky</option>
-                                        <option value="LA">Louisiana</option>
-                                        <option value="MN">Minnesota</option>
-                                        <option value="MS">Mississippi</option>
-                                        <option value="MO">Missouri</option>
-                                        <option value="OK">Oklahoma</option>
-                                        <option value="SD">South Dakota</option>
-                                        <option value="TX">Texas</option>
-                                        <option value="TN">Tennessee</option>
-                                        <option value="WI">Wisconsin</option>
-                                    </optgroup>
-                                    <optgroup label="Eastern Time Zone">
-                                        <option value="CT">Connecticut</option>
-                                        <option value="DE">Delaware</option>
-                                        <option value="FL">Florida</option>
-                                        <option value="GA">Georgia</option>
-                                        <option value="IN">Indiana</option>
-                                        <option value="ME">Maine</option>
-                                        <option value="MD">Maryland</option>
-                                        <option value="MA">Massachusetts</option>
-                                        <option value="MI">Michigan</option>
-                                        <option value="NH">New Hampshire</option>
-                                        <option value="NJ">New Jersey</option>
-                                        <option value="NY">New York</option>
-                                        <option value="NC">North Carolina</option>
-                                        <option value="OH">Ohio</option>
-                                        <option value="PA">Pennsylvania</option>
-                                        <option value="RI">Rhode Island</option>
-                                        <option value="SC">South Carolina</option>
-                                        <option value="VT">Vermont</option>
-                                        <option value="VA">Virginia</option>
-                                        <option value="WV">West Virginia</option>
-                                    </optgroup>
+                                    <?php foreach($personas as $plista){ ?>
+                                        <option value="<?php echo $plista->persona_id; ?>"><?php echo $plista->nombres.' '.$plista->paterno.' '.$plista->materno; ?></option>
+                                    <?php } ?>
+                                    
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Alias</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="alias">
+                                <label for="recipient-name" class="control-label">Oficina</label>
+                                <select class="select2" style="width: 100%" name="organigrama_id" id="organigrama_id">
+                                    <option>Select</option>
+                                    <?php foreach($organigramas as $olista){ ?>
+                                        <option value="<?php echo $olista->organigrama_id; ?>"><?php echo $olista->unidad; ?></option>
+                                    <?php } ?>
+                                    
+                                </select>
                             </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Fecha de alta</label>
+                                <input type="date" class="form-control" id="fec_alta" name="fec_alta">
+                            </div>
+
                             
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -201,82 +165,22 @@
     </div>
 
 
-    
-<script>
+
+<script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+
+    <script>
     jQuery(document).ready(function() {
-        // Switchery
-        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-        $('.js-switch').each(function() {
-            new Switchery($(this)[0], $(this).data());
+        $('.select2').select2({
+            dropdownParent: $('#Modal_insert'),
         });
-        // For select 2
-        $(".select2").select2();
-        $('.selectpicker').selectpicker();
-       //Bootstrap-TouchSpin
-        $(".vertical-spin").TouchSpin({
-            verticalbuttons: true
-        });
-        var vspinTrue = $(".vertical-spin").TouchSpin({
-            verticalbuttons: true
-        });
-        if (vspinTrue) {
-            $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
-        }
-        $("input[name='tch1']").TouchSpin({
-            min: 0,
-            max: 100,
-            step: 0.1,
-            decimals: 2,
-            boostat: 5,
-            maxboostedstep: 10,
-            postfix: '%'
-        });
-        $("input[name='tch2']").TouchSpin({
-            min: -1000000000,
-            max: 1000000000,
-            stepinterval: 50,
-            maxboostedstep: 10000000,
-            prefix: '$'
-        });
-        $("input[name='tch3']").TouchSpin();
-        $("input[name='tch3_22']").TouchSpin({
-            initval: 40
-        });
-        $("input[name='tch5']").TouchSpin({
-            prefix: "pre",
-            postfix: "post"
-        });
-        // For multiselect
-        $('#pre-selected-options').multiSelect();
-        $('#optgroup').multiSelect({
-            selectableOptgroup: true
-        });
-        $('#public-methods').multiSelect();
-        $('#select-all').click(function() {
-            $('#public-methods').multiSelect('select_all');
-            return false;
-        });
-        $('#deselect-all').click(function() {
-            $('#public-methods').multiSelect('deselect_all');
-            return false;
-        });
-        $('#refresh').on('click', function() {
-            $('#public-methods').multiSelect('refresh');
-            return false;
-        });
-        $('#add-option').on('click', function() {
-            $('#public-methods').multiSelect('addOption', {
-                value: 42,
-                text: 'test 42',
-                index: 0
-            });
-            return false;
-        });
+        
+        
         $(".ajax").select2({
             ajax: {
                 url: "https://api.github.com/search/repositories",
                 dataType: 'json',
                 delay: 250,
+                
                 data: function(params) {
                     return {
                         q: params.term, // search term
@@ -305,5 +209,74 @@
             //templateResult: formatRepo, // omitted for brevity, see the source of this page
             //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
         });
+    });
+    </script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+
+<script>
+    $(function() {
+        $('#myTable').DataTable({
+            "oLanguage": {
+                "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            },
+        });
+        $(document).ready(function() {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [0, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            // Order by the grouping
+            $('#example tbody').on('click', 'tr.group', function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
+        });
+    });
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+
+    $('#tabla_din').DataTable( {
+        "order": [[ 0, "desc" ]],
+        "oLanguage": {
+            "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        },
     });
     </script>

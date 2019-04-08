@@ -7,28 +7,34 @@ class Usuario extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('session');
-		$this->load->model("Usuario_model");
+		$this->load->model("usuario_model");
+		$this->load->model("rol_model");
 	}
 
-	public function zona_urbana(){
-		if($this->session->userdata("login")){
-
-			$lista['zona_urbana'] = $this->zona_urbana_model->index();
-			$this->load->view('admin/header');
-			$this->load->view('admin/menu');
-			$this->load->view('crud/zona_urbana', $lista);
-			$this->load->view('admin/footer');
-		}
-		else{
-			redirect(base_url());
-		}
-	}
-
+	
 	public function prueba(){
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('usuarios/usuarios');
 		$this->load->view('admin/footer');
+		
+	}
+
+	public function listar(){
+
+		if($this->session->userdata("login")){
+
+			$lista['verifica'] = $this->rol_model->verifica();
+			$lista['usuario'] = $this->usuario_model->index();
+
+			$this->load->view('admin/header');
+			$this->load->view('admin/menu');
+			$this->load->view('usuarios/listar', $lista);
+			$this->load->view('admin/footer');
+		}
+		else{
+			redirect(base_url());
+		}
 		
 	}
 
@@ -90,13 +96,23 @@ class Usuario extends CI_Controller {
 	        $usu_modificacion = $resi->persona_id;
 	        $fec_modificacion = date("Y-m-d H:i:s"); 
 
-		    $zonaurb_id = $this->input->post('zonaurb_id');
-		    $descripcion = $this->input->post('descripcion');
-		   // var_dump($zonaurb_id);
+	        			
+	        			$cre = $this->input->post('credencial');
+		   		
+		        foreach ($this->input->post('menus') as $me) {
+		        	
+					$menu = array(
+						'credencial_id'=>$cre,
+						'menu_id'=>$me,
+						'activo'=>1
+					);
+					
+					$this->db->insert('public.credencial_menu', $menu);
+					
 
-		    $actualizar = $this->zona_urbana_model->actualizar($zonaurb_id, $descripcion, $usu_modificacion, $fec_modificacion);
-		  	redirect('Zona_urbana');
-		 }
+					 }
+					 redirect('usuario/listar');
+			}
 		else{
 			redirect(base_url());
 		}
@@ -157,7 +173,9 @@ class Usuario extends CI_Controller {
 				$rol_id = $datos['rol_id'];
 				$usuario = $datos['usuario'];
 				$contrasenia = $datos['contrasenia'];
-				$this->Usuario_model->insertar_credencial($persona_perfil_id, $rol_id, $usuario, $contrasenia);
+				$pass_cifrado = md5($contrasenia);
+
+				$this->Usuario_model->insertar_credencial($persona_perfil_id, $rol_id, $usuario, $pass_cifrado);
 				
 				redirect('Predios');
 				
@@ -179,6 +197,43 @@ class Usuario extends CI_Controller {
 
 	 }
 
+
+	 public function asignar($credencial_id)
+	{	
+		if($this->session->userdata("login")){
+			$datos = $this->input->post();
+			
+			if(isset($datos))
+			{
+				//$c = $this->uri->segment(3);
+				//echo $c;
+				
+				//OBTENER EL ID DEL USUARIO LOGUEADO
+				$id = $this->session->userdata("persona_perfil_id");
+	            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	            $usu_creacion = $resi->persona_id;
+
+	            $lista['verifica'] = $this->rol_model->verifica();
+				$lista['credencial_id'] =  $this->uri->segment(3);
+
+				$this->load->view('admin/header');
+				$this->load->view('admin/menu');
+				$this->load->view('usuarios/crear_menu', $lista);
+				$this->load->view('admin/footer');
+				
+				//$descripcion = $datos['descripcion'];
+				//$this->zona_urbana_model->insertar_zona($descripcion, $usu_creacion);
+				//redirect('Zona_urbana');
+
+			}
+		}
+		else{
+			redirect(base_url());
+		}
+		
+		
+	
+	}
 }
 
 	

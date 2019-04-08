@@ -55,7 +55,7 @@
                     <h3 class="box-title mb-3">Inicia Sesi&oacute;n</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="Nombre de Usuario" name="usuario"> </div>
+                            <input class="form-control" type="text" required="" placeholder="Nombre de Usuario" name="usuario" autofocus> </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">

@@ -38,39 +38,18 @@ class Predios extends CI_Controller {
 			$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 
 			//sacar el perfil de la persona logueada
-			// 1 = ADMINISTRADOR  ///// 2 = OPERADOR  ///// 3 = USUARIO   ////// 4 = BENEFICIARIO
 			$persona_perfil_id = $id->persona_perfil_id;
 			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE 
 						persona_perfil_id = '$persona_perfil_id'")->row();
 			$perfil = $persona_perfil->perfil_id; 
 			
-				//if ($perfil == '1') {
+			
 					
 					$this->load->view('admin/header');
 					$this->load->view('admin/menu');
 					$this->load->view('admin/index');
 					$this->load->view('admin/footer');
-				/*}
-				elseif ($perfil == '2') {
-					
-
-					$this->load->view('admin/header');
-					$this->load->view('admin/menu_operador');
-					$this->load->view('admin/index');
-					$this->load->view('admin/footer');
-				}
-				elseif ($perfil == '3') {
-					$this->load->view('admin/header');
-					$this->load->view('admin/menu_usuario');
-					$this->load->view('admin/index');
-					$this->load->view('admin/footer');
-				}
-				elseif ($perfil == '4') {
-					$this->load->view('admin/header');
-					$this->load->view('admin/menu_beneficiario');
-					$this->load->view('admin/index');
-					$this->load->view('admin/footer');
-				}*/	
+				
 		}
 		else{
 			redirect(base_url());
@@ -96,12 +75,12 @@ class Predios extends CI_Controller {
 			$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 
 			//sacar el perfil de la persona logueada
-			// 1 = ADMINISTRADOR  ///// 2 = OPERADOR  ///// 3 = USUARIO   ////// 4 = BENEFICIARIO
+	
 			$persona_perfil_id = $id->persona_perfil_id;
 			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE persona_perfil_id = '$persona_perfil_id'")->row();
 			$perfil = $persona_perfil->perfil_id; 
 			
-				//if ($perfil == '1') {
+		
 
 					
 					// $this->db->select(array('catastro.predio.fec_creacion', 'catastro.predio.codcatas', 'catastro.predio.nro_inmueble', 'catastro.zona_urbana.descripcion'));
@@ -119,38 +98,7 @@ class Predios extends CI_Controller {
 					$this->load->view('predios/index', $data);
 					$this->load->view('admin/footer');
 					$this->load->view('predios/index_js');
-				/*}
-				elseif ($perfil == '2') {
-
-					$data['listado_predios'] = $this->db->query("SELECT p.*
-												FROM catastro.predio p, persona_perfil pp
-												WHERE pp.persona_perfil_id = '$persona_perfil_id'
-												AND p.usu_creacion = pp.persona_id
-												AND pp.perfil_id = '2'")->result();
-
-					//$query = $this->db->get('catastro.predio');
-					//$data['listado_predios'] = $query->result();
-
-					$this->load->view('admin/header');
-					$this->load->view('admin/menu_operador');
-					$this->load->view('predios/index', $data);
-					$this->load->view('admin/footer');
-					$this->load->view('predios/index_js');
-				}
-				elseif ($perfil == '3') {
-					$this->load->view('admin/header');
-					$this->load->view('admin/menu_usuario');
-					
-					$this->load->view('admin/footer');
-					$this->load->view('predios/index_js');
-				}
-				elseif ($perfil == '4') {
-					$this->load->view('admin/header');
-					$this->load->view('admin/menu_beneficiario');
-					
-					$this->load->view('admin/footer');
-					$this->load->view('predios/index_js');
-				}*/	
+				
 		}
 		else{
 			redirect(base_url());
