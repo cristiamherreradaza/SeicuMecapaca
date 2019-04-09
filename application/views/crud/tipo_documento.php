@@ -43,16 +43,17 @@
                                             <table id="documento_table" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>id</th>
+                                                        <th>nro</th>
                                                         <th>descripcion</th>                                                        
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php $i=1;?>
                                                     <?php foreach ($data_tdoc as $row) { $datos = $row->tipo_documento_id."||".
                                                          $row->documento; ?>
                                                     <tr>
-                                                        <td scope="row"><?php echo $row->tipo_documento_id; ?></td>
+                                                        <td><?php echo $i++; ?></td>
                                                         <td><?php echo $row->documento; ?></td>                                                                                                             
                                                         <td>
                                                         <button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">

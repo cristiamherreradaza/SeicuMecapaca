@@ -30,15 +30,16 @@ class Organigrama_model extends CI_Model {
     }
 
     function get_last_nivel() {//obtiene el valor del ultimo nivel
-        $query = $this->db->query("SELECT nivel from tramite.organigrama
-        WHERE activo=1
-        ORDER BY nivel DESC LIMIT 1");        
+        $query = $this->db->query("SELECT nivel from tramite.organigrama WHERE activo=1 ORDER BY nivel DESC LIMIT 1");        
         return $query->row();
     }
     function get_datos_chart() {//obtiene todos los datos del organigrama ordenado por niveles
-        $query = $this->db->query('SELECT * from tramite.organigrama
-        WHERE activo=1
-       ORDER BY nivel asc');
+        $query = $this->db->query('SELECT x.unidad,x.hijo,x.nivel,x.organigrama_id,y.organigrama_id as padre_id,y.unidad as jefe FROM tramite.organigrama x
+        LEFT JOIN
+        tramite.organigrama y
+        on x.hijo=y.organigrama_id
+        WHERE x.activo=1 and y.activo=1
+        ORDER BY y.unidad asc');
         return $query->result();
     }
 

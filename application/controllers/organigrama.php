@@ -90,13 +90,13 @@ class Organigrama extends CI_Controller
                 $nivel = $row->nivel;
                 $hijo = $row->hijo;
             } 
-            $nivel=$nivel+1;
+            $nivel=$nivel+1;           
             $img=$img.'.png';
     
             $data = array(            
                 'nivel' => $nivel, //input 
                 'hijo' => $id, //input          
-                'unidad' => $this->input->post('unidad'), //input        
+                'unidad' => ucwords(strtolower($this->input->post('unidad'))), //input        
                 'url' => 'public/assets/images/organigrama', //input 
                 'imagen' => $img, //input 
                 'activo' => '1',           
@@ -125,7 +125,7 @@ class Organigrama extends CI_Controller
                 $data = array(                
                     'nivel' => $nivel, //input 
                     'hijo' => $id, //input          
-                    'unidad' => $this->input->post('unidad'), //input
+                    'unidad' => ucwords($this->input->post('unidad')), //input
                     'imagen' => $img, //input                                                        
                 );
                 $organigrama_id=$this->input->post('organigrama_id_e');            
@@ -236,9 +236,14 @@ class Organigrama extends CI_Controller
 
     public function chart() {
         if ($this->session->userdata("login")) {
-            $data['nivel'] = $this->organigrama_model->get_data();   
-            $data['data_chart'] = $this->organigrama_model->get_data();                       
-            $this->load->view('charts/organigrama_chart');            			       
+            $data['nivel'] = $this->organigrama_model->get_last_nivel();   
+            $data['data_chart'] = $this->organigrama_model->get_datos_chart();
+
+            $this->load->view('charts/header');
+			$this->load->view('admin/menu');
+            $this->load->view('charts/organigrama_chart', $data);
+            $this->load->view('charts/footer');
+                       			       
         } else {
             redirect(base_url());
         }

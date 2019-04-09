@@ -52,19 +52,20 @@
                                             <table id="documento_table" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>id</th>                                                        
+                                                        <th>nro</th>                                                        
                                                         <th>Unidad superior</th>                                                         
                                                         <th>unidad</th>
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php $i=1;?>
                                                     <?php foreach ($data_org as $row) { 
                                                          $datos = $row->organigrama_id."||".
                                                                   $row->padre_id."||".                                                         
                                                                   $row->unidad; ?>
                                                     <tr>
-                                                        <td scope="row"><?php echo $row->organigrama_id; ?></td>
+                                                        <td><?php echo $i++; ?></td>
                                                         <td><?php echo $row->jefe; ?></td>    
                                                         <td><?php echo $row->unidad; ?></td>                                                                                                                                                                
                                                         <td>

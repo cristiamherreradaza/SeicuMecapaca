@@ -23,7 +23,7 @@
 
                         <div class="row page-titles">
                             <div class="col-md-6 col-8 align-self-center">
-                                <h4 class="card-title">Datos Tipo de Documento</h4>                                
+                                <h4 class="card-title">Cargos</h4>                                
                             </div>
                            
                         </div>
@@ -33,34 +33,34 @@
                          <!-- Step 1 -->                         
                          <div class="row" >
                                 <div class="col-md-12">                                        
-                                    <button <?php echo $verifica['alta']; ?> type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_insertar"><i class="mdi mdi-plus"></i> Nueva Correspondencia</button>
+                                    <button <?php echo $verifica['alta']; ?> type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_insertar"><i class="mdi mdi-plus"></i> Nuevo Cargo</button>
                                 </div>
                         </div>
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Documentos Registrados</h4>                                        
+                                        <h4 class="card-title">Cargos Registrados</h4>                                        
                                         <div class="table-responsive m-t-40">
                                             <table id="documento_table" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>nro</th>
-                                                        <th>correspondencia</th>                                                        
+                                                        <th>descripcion</th>                                                        
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php $i=1;?>                                                
-                                                    <?php foreach ($data_tcorr as $row) { $datos = $row->tipo_correspondencia_id."||".
-                                                         $row->correspondencia; ?>
+                                                <?php $i=1;?>
+                                                    <?php foreach ($data_cargo as $row) { $datos = $row->cargo_id."||".
+                                                         $row->descripcion; ?>
                                                     <tr>
-                                                        <td><?php echo $i++; ?></td>
-                                                        <td><?php echo $row->correspondencia; ?></td>                                                                                                             
+                                                        <td ><?php echo $i++;?></td>
+                                                        <td><?php echo $row->descripcion; ?></td>                                                                                                             
                                                         <td>
                                                         <button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
                                                             <span class="fas fas fa-edit" aria-hidden="true">
                                                             </span>
                                                         </button>                                                        
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_correspondencia/delete'); ?>/<?php echo $row->tipo_correspondencia_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('cargo/delete'); ?>/<?php echo $row->cargo_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
                                                             
                                                         </td>
                                                     </tr>
@@ -77,15 +77,15 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Insertar nueva correspondencia</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Insertar nuevo Cargo</h4>
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
-                        <?php echo form_open('tipo_correspondencia/create', array('method'=>'POST', 'id'=>'insertar')); ?>
+                        <?php echo form_open('cargo/create', array('method'=>'POST', 'id'=>'insertar')); ?>
 
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Correspondencia</label>
-                                <input type="text" class="form-control" id="correspondencia" name="correspondencia">
+                                <label for="recipient-name" class="control-label">Descripcion</label>
+                                <input type="text" class="form-control" id="descripcion" name="descripcion">
                             </div>
                           
                             <div class="modal-footer">
@@ -105,13 +105,13 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar Grupo Material</h4>
                     </div>
                     <div class="modal-body">                        
-                        <?php echo form_open('tipo_correspondencia/update', array('method'=>'POST')); ?>                            
+                        <?php echo form_open('cargo/update', array('method'=>'POST')); ?>                            
                             <div class="form-group">
-                                <input type="text" class="form-control" hidden="" id="tipo_correspondencia_e" name="tipo_correspondencia_e">
+                                <input type="text" class="form-control" hidden="" id="cargo_id" name="cargo_id">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Documento</label>
-                                <input type="text" class="form-control" id="correspondencia_e" name="correspondencia_e" >
+                                <input type="text" class="form-control" id="descripcion_e" name="descripcion_e" >
                             </div>                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -137,8 +137,8 @@
         function agregarform(datos)
         {
              d=datos.split('||');
-              $('#tipo_correspondencia_e').val(d[0]);
-              $('#correspondencia_e').val(d[1]);
+              $('#cargo_id').val(d[0]);
+              $('#descripcion_e').val(d[1]);
         }
     </script>
         
