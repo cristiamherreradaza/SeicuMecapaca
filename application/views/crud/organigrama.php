@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/css/pasos.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/css/dropify.min.css">
 
 <div class="page-wrapper">
     <!-- ============================================================== -->
@@ -31,14 +32,17 @@
                            
                         </div>
 
-                       
+                      
                        
                         <p></p>
                        
                          <!-- Step 1 -->                         
                          <div class="row" >
-                                <div class="col-md-12">                                        
+                                <div class="col-md-6">                                        
                                     <button <?php echo $verifica['alta']; ?> type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_insertar"><i class="mdi mdi-plus"></i> Nuevo</button>
+                                </div>
+                                <div class="col-md-6" align="right">                                        
+                                <a  class=" btn btn-success" <?php echo $verifica['alta1'];?>="<?php echo site_url('organigrama/chart'); ?>" align="right"><i class="mdi mdi-plus"></i>visualizar organigrama</a>
                                 </div>
                         </div>
                                 <div class="card">
@@ -64,10 +68,8 @@
                                                         <td><?php echo $row->jefe; ?></td>    
                                                         <td><?php echo $row->unidad; ?></td>                                                                                                                                                                
                                                         <td>
-                                                        <button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
-                                                            <span class="fas fas fa-edit" aria-hidden="true">
-                                                            </span>
-                                                        </button>                                                        
+                                                          
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/edit'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>                                                      
                                                         <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/delete'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
                                                             
                                                         </td>
@@ -88,8 +90,9 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Nueva Unidad</h4>
                     </div>
                     <div class="modal-body">
-                        <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
-                        <?php echo form_open('organigrama/create', array('method'=>'POST', 'id'=>'insertar')); ?>
+                       
+                        <!--<?php echo form_open('organigrama/create', array('method'=>'POST', 'id'=>'insertar')); ?>-->
+                        <?php echo form_open_multipart('organigrama/do_upload'); ?>
 
                             <div class="form-group">
                                 <label for="location1">Nivel Superior :<span class="text-danger"> *</span></label>
@@ -104,8 +107,21 @@
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Unidad</label>
                                 <input type="text" class="form-control" id="unidad" name="unidad">
+                                <input type="hidden" class="form-control" id="opcion" name="opcion" value="1">
                             </div>
-                           
+                            <div class="form-group">
+                                <div class="card">
+                                    
+                                <label for="recipient-name" class="control-label">Foto</label>
+                                        <label for="input-file-now">
+                                        <button type="button" class="btn waves-effect waves-light btn-sm btn-info">
+                                            <i class="fas fa-exclamation"></i>
+                                        </button>
+                                            OJO Solo archivos png
+                                        </label>
+                                        <input type="file" id="input-file-now" class="dropify" name="foto_org" data-allowed-file-extensions="png" required />                                   
+                                </div>
+                            </div>
                           
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -117,40 +133,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Editar Grupo Material</h4>
-                    </div>
-                    <div class="modal-body">                        
-                        <?php echo form_open('organigrama/update', array('method'=>'POST')); ?>                            
-                        <div class="form-group">
-                                <label for="location1">Nivel Superior :<span class="text-danger"> *</span></label>
-                                                                <select class="custom-select form-control" id="padre_id_e" name="padre_id_e">
-                                                                    <option value="">Seleccione Unidad Superior</option>
-                                                                    <?php foreach ($data_grupo as $tp) : ?>
-                                                                    <option value="<?php echo $tp->organigrama_id; ?>"><?php echo $tp->unidad; ?></option>
-                                                                    <?php endforeach; ?>
-                                                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="control-label">Unidad</label>
-                                <input type="text" class="form-control" id="unidad_e" name="unidad_e">
-                            </div>
-                            
-                            <input type="hidden" class="form-control" id="organigrama_id_e" name="organigrama_id_e">
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-
-                            </div>
-                        </form>
-                    </div>                    
-                </div>
-            </div>
-        </div>
+       
 
 
 
@@ -186,17 +169,17 @@
 <script>
     $(document).ready(function() {
         // Basic
-        $('.dropify').dropify();
+        
 
-        // Translated
-        $('.dropify-fr').dropify({
+        $('.dropify').dropify({
             messages: {
-                default: 'Glissez-déposez un fichier ici ou cliquez',
-                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
-                remove: 'Supprimer',
-                error: 'Désolé, le fichier trop volumineux'
+                default: 'Arrastre un archivo o haga click',
+                replace: 'Arrastre un archivo para reemplazar',
+                remove: 'eliminar',
+                error: 'Lo sentimos, el archivo es demasiado grande.'
             }
         });
+        
 
         // Used events
         var drEvent = $('#input-file-events').dropify();

@@ -43,7 +43,7 @@ class Tipo_correspondencia extends CI_Controller
             'correspondencia' => $this->input->post('correspondencia'), //input        
             'activo' => '1',           
         );
-        $this->db->insert('tramite.tipo_correspondencia', $data);
+        $this->db->insert('tramite.tipo_tramite', $data);
         redirect(base_url() . 'tipo_correspondencia/nuevo/');
     }
     public function update($id = null)
@@ -55,7 +55,7 @@ class Tipo_correspondencia extends CI_Controller
             );
             $id_tipo_corr=$this->input->post('tipo_correspondencia_e');            
             $this->db->where('tipo_correspondencia_id', $id_tipo_corr);
-            $this->db->update('tramite.tipo_correspondencia', $data); 
+            $this->db->update('tramite.tipo_tramite', $data); 
             redirect(base_url() . 'tipo_correspondencia/nuevo/');           
            
         } else {
@@ -70,7 +70,7 @@ class Tipo_correspondencia extends CI_Controller
                 'activo' => '0', //input                                 
             );
             $this->db->where('tipo_correspondencia_id', $id);
-            $this->db->update('tramite.tipo_correspondencia', $data); 
+            $this->db->update('tramite.tipo_tramite', $data); 
             
 
             redirect(base_url() . 'tipo_correspondencia/nuevo/');
