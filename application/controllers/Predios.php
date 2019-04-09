@@ -106,6 +106,7 @@ class Predios extends CI_Controller {
 	}
 
 	public function registra_predio(){
+		
 		if($this->session->userdata("login")){
 
 			if ($this->input->post()) {

@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/css/dropify.min.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/css/pasos.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" type="text/css">
 <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script> -->
 
 <!-- sample modal content -->
@@ -737,6 +738,7 @@
                         contador++;
                         });
                     checkbox_vias += '</table>';
+
                     $("#calles_colindantes").val(todos);
                     // console.log('Aqui los datos: '+todos);
 
@@ -746,6 +748,14 @@
 
                     // var cod_cat = parseInt(data);
                     $("#codigo_catastral").val(datos.codcatas);
+
+                    cantidad_codcatas = datos.codcatas.length;
+                    // console.log(datos.codcatas.length);
+
+
+                    if (cantidad_codcatas != 10) {
+                        swal("Error!", "El codigo catastral no es valido!", "error");
+                    }
 
                     // $("#codigo_catastral").val(codigo_cat);
                     var s_codigo_cat = datos.codcatas.toString();
@@ -848,8 +858,8 @@ function elimina_fila_tabla(fila){
     // var index = todos.indexOf("fila_numero");
 
     // var index = todos.findIndex(fila_numero);
-    console.log('array ', todos);
-    console.log('encontrado '+todos.indexOf(fila));
+    // console.log('array ', todos);
+    // console.log('encontrado '+todos.indexOf(fila));
     // console.log('A buscar '+fila_numero);
     // console.log('El indice '+index);
 
