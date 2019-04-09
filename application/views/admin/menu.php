@@ -74,7 +74,7 @@
                                                 <li><a href="<?php echo base_url(); ?><?php echo $menu2->url?>"><i class=" <?php echo $menu2->icono ?>"></i> <?php echo $menu2->descripcion ?></a>
                                                     
                                                         
-                                                        <!--<ul aria-expanded="false" class="collapse">
+                                                        <ul aria-expanded="false" class="collapse">
 
                                                             <?php   
                                                                 
@@ -100,7 +100,7 @@
                                                                        }
                                                                  ?>
                                                             
-                                                        </ul>-->
+                                                        </ul>
                                                     
 
                                                 </li>

@@ -159,13 +159,13 @@ class Usuario extends CI_Controller {
 				$materno = $datos['materno'];
 				$ci = $datos['ci'];
 				$fec_nacimiento = $datos['fec_nacimiento'];
-				$this->Usuario_model->insertar_usuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
+				$this->usuario_model->insertar_usuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
 
 				$id = $this->db->query("SELECT * FROM persona WHERE ci = '$ci'")->row();
 
 				$persona_id = $id->persona_id;
 				$perfil_id = $datos['perfil_id'];
-				$this->Usuario_model->insertar_persona_perfil($persona_id, $perfil_id);
+				$this->usuario_model->insertar_persona_perfil($persona_id, $perfil_id);
 
 				$perfil_id = $this->db->query("SELECT MAX(persona_perfil_id) as max FROM persona_perfil")->row();
 
@@ -175,9 +175,9 @@ class Usuario extends CI_Controller {
 				$contrasenia = $datos['contrasenia'];
 				$pass_cifrado = md5($contrasenia);
 
-				$this->Usuario_model->insertar_credencial($persona_perfil_id, $rol_id, $usuario, $pass_cifrado);
+				$this->usuario_model->insertar_credencial($persona_perfil_id, $rol_id, $usuario, $pass_cifrado);
 				
-				redirect('Predios');
+				redirect('usuario/listar');
 				
 
 			}
