@@ -1,325 +1,210 @@
-<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/css/dropify.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>public/css/pasos.css">
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.9/dist/vue.js"></script> -->
 
- 
-    <!--nestable CSS -->
-    <link href="<?php echo base_url(); ?>public/assets/plugins/nestable/nestable.css" rel="stylesheet" type="text/css" />
-    <!-- Custom CSS -->
-    <style type="text/css">
-                label {
-            display: block;
-            padding-left: 15px;
-            text-indent: -15px;
-            float: right;
-        }
-         
-        input {
-            width: 13px;
-            height: 13px;
-            padding: 0;
-            margin:0;
-            vertical-align: bottom;
-            position: relative;
-            top: -1px;
-            *overflow: hidden;
-        }
+<!-- sample modal content -->
 
-        #izquierda {
-           
-            float: right;
-        }
-    </style>
-   
-
-
-<div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
-        <div class="container-fluid">
-<!-- vertical wizard -->
-                <div class="row">
-                    <?php
-                 
-                    $nivel1 = $this->db->query("SELECT *
-                                                FROM menu
-                                                WHERE padre = '0'
-                                                AND nivel = '1'
-                                                ORDER BY orden")->result();
-                    
-                 ?>
-                    
-                <div class="col-lg-4 col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                                <?php echo form_open('usuario/update', array('method'=>'POST')); ?>
-                                    <h4 class="card-title">Men&uacute; Administrador</h4>
-                                        <div class="form-group">
-                                            <input type="text" hidden="" value="<?php echo $credencial_id; ?>" name="credencial">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
-                                     
-                                    <div class="myadmin-dd dd" id="nestable">
-                                        <?php foreach ($nivel1 as $menu1) { ?>
-                                        <ol class="dd-list">
-                                            <li class="dd-item" data-id="1">
-                                                <div class="dd-handle"><i class="<?php echo $menu1->icono ?>"></i> <?php echo $menu1->descripcion ?> 
-                                                        <label class="custom-control custom-checkbox">
-                                                            <input type="checkbox" value="<?php echo $menu1->menu_id ?>" name="menus[<?php echo $menu1->menu_id; ?>]" class="custom-control-input">
-                                                                <span class="custom-control-label"></span>
-                                                        </label>
-                                                    
-                                                    
-                                                </div>
-                                                 <?php
-                     
-                                                    $nivel2 = $this->db->query("SELECT *
-                                                                                FROM menu
-                                                                                WHERE padre = '$menu1->menu_id'
-                                                                                AND nivel = '2'
-                                                                                ORDER BY orden")->result();
-                                                 ?>
-                                                    <?php foreach ($nivel2 as $menu2) { ?>
-                                                        <ol class="dd-list">
-                                                            <li class="dd-item" data-id="1">
-                                                                <div class="dd-handle"><i class="<?php echo $menu2->icono ?>"></i> <?php echo $menu2->descripcion ?>
-                                                                        <label class="custom-control custom-checkbox">
-                                                                            <input type="checkbox" value="<?php echo $menu2->menu_id; ?>" name="menus[<?php echo $menu2->menu_id; ?>]" class="custom-control-input">
-                                                                                <span class="custom-control-label"></span>
-                                                                         </label>
-                                                                </div>
-                                                                         <?php
-                                                                            $nivel3 = $this->db->query("SELECT *
-                                                                                                        FROM menu
-                                                                                                        WHERE padre = '$menu2->menu_id'
-                                                                                                        AND nivel = '3'
-                                                                                                        ORDER BY orden")->result();
-                                                                         ?>
-                                                                            <?php foreach ($nivel3 as $menu3) { ?>
-                                                                                <ol class="dd-list">
-                                                                                    <li class="dd-item" data-id="1">
-                                                                                        <div class="dd-handle"><i class="<?php echo $menu3->icono ?>"></i> <?php echo $menu3->descripcion ?>
-                                                                                                <label class="custom-control custom-checkbox">
-                                                                                                    <input type="checkbox" value="<?php echo $menu2->menu_id; ?>" name="menus[<?php echo $menu3->menu_id; ?>]" class="custom-control-input">
-                                                                                                        <span class="custom-control-label"></span>
-                                                                                                </label>
-                                                                                        </div>
-                                                                                        
-                                                                                    </li>
-                                                                                </ol>
-                                                                            <?php
-                                                                                }
-                                                                            ?>
-                                                            </li>
-                                                        </ol>
-                                                    <?php
-                                                        }
-                                                    ?>
-
-
-                                            </li>
-                                           
-                                        </ol>
-                                         <?php
-                                              }
-                                          ?>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <!--<div class="col-lg-4 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Men&uacute; Operador</h4>
-                                <div class="myadmin-dd dd" id="nestable">
-                                    <ol class="dd-list">
-                                        <li class="dd-item" data-id="1">
-                                            <div class="dd-handle"> Item 1 </div>
-                                        </li>
-                                        <li class="dd-item" data-id="2">
-                                            <div class="dd-handle"> Item 2 </div>
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="3">
-                                                    
-                                                    <div class="dd-handle"> Item 3 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="4">
-                                                    <div class="dd-handle"> Item 4 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="5">
-                                                    <div class="dd-handle"> Item 5 </div>
-                                                    <ol class="dd-list">
-                                                        <li class="dd-item" data-id="6">
-                                                            <div class="dd-handle"> Item 6 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="7">
-                                                            <div class="dd-handle"> Item 7 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="8">
-                                                            <div class="dd-handle"> Item 8 </div>
-                                                        </li>
-                                                    </ol>
-                                                </li>
-                                                <li class="dd-item" data-id="9">
-                                                    <div class="dd-handle"> Item 9 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="10">
-                                                    <div class="dd-handle"> Item 10 </div>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Men&uacute; Usuario</h4>
-                                <div class="myadmin-dd dd" id="nestable">
-                                    <ol class="dd-list">
-                                        <li class="dd-item" data-id="1">
-                                            <div class="dd-handle"> Item 1 </div>
-                                        </li>
-                                        <li class="dd-item" data-id="2">
-                                            <div class="dd-handle"> Item 2 </div>
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="3">
-                                                    <div class="dd-handle"> Item 3 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="4">
-                                                    <div class="dd-handle"> Item 4 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="5">
-                                                    <div class="dd-handle"> Item 5 </div>
-                                                    <ol class="dd-list">
-                                                        <li class="dd-item" data-id="6">
-                                                            <div class="dd-handle"> Item 6 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="7">
-                                                            <div class="dd-handle"> Item 7 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="8">
-                                                            <div class="dd-handle"> Item 8 </div>
-                                                        </li>
-                                                    </ol>
-                                                </li>
-                                                <li class="dd-item" data-id="9">
-                                                    <div class="dd-handle"> Item 9 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="10">
-                                                    <div class="dd-handle"> Item 10 </div>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Men&uacute; Beneficiario</h4>
-                                <div class="myadmin-dd dd" id="nestable">
-                                    <ol class="dd-list">
-                                        <li class="dd-item" data-id="1">
-                                            <div class="dd-handle"> Item 1 </div>
-                                        </li>
-                                        <li class="dd-item" data-id="2">
-                                            <div class="dd-handle"> Item 2 </div>
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="3">
-                                                    <div class="dd-handle"> Item 3 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="4">
-                                                    <div class="dd-handle"> Item 4 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="5">
-                                                    <div class="dd-handle"> Item 5 </div>
-                                                    <ol class="dd-list">
-                                                        <li class="dd-item" data-id="6">
-                                                            <div class="dd-handle"> Item 6 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="7">
-                                                            <div class="dd-handle"> Item 7 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="8">
-                                                            <div class="dd-handle"> Item 8 </div>
-                                                        </li>
-                                                    </ol>
-                                                </li>
-                                                <li class="dd-item" data-id="9">
-                                                    <div class="dd-handle"> Item 9 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="10">
-                                                    <div class="dd-handle"> Item 10 </div>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
-
-            </div>
-    </div>
-</div>
-                <!-- ============================================================== -->
+<!-- /.modal -->
 
 <!-- ============================================================== -->
-    
-    <!-- Bootstrap tether Core JavaScript -->
-    
+<!-- Start Page Content 
+   <select class="custom-select form-control" id="tipo_predio" name="tipo_predio_id" required />
+        <option value="">Seleccione tipo</option>
+        <?php foreach ($dc_tipos_predio as $d): ?>
+            <option value="<?php echo $d->tipo_predio_id; ?>"><?php echo $d->descripcion; ?></option>
+        <?php endforeach; ?>
+    </select>  
+-->
+<!-- ============================================================== -->
 
-    <!--Nestable js -->
+<div class="page-wrapper">
     <!-- ============================================================== -->
-    <!-- Style switcher -->
+    <!-- Container fluid  -->
     <!-- ============================================================== -->
-  <!--Nestable js -->
-    <script src="<?php echo base_url(); ?>public/assets/plugins/nestable/jquery.nestable.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        // Nestable
-        var updateOutput = function(e) {
-            var list = e.length ? e : $(e.target),
-                output = list.data('output');
-            if (window.JSON) {
-                output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
-            } else {
-                output.val('JSON browser support required for this demo.');
-            }
-        };
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-body">
+                            <!-- <h4 class="card-title">
+                                Registro de Predio
+                                <button type="button" class="btn waves-effect waves-light btn-success" id="btn_sel_predio">Seleccionar predio</button>
+                            </h4> -->
+                           
 
-        $('#nestable').nestable({
-            group: 1
-        }).on('change', updateOutput);
+                            <!-- <h6 class="card-subtitle">Ingrese los datos del predio </h6> -->
+                            
 
-        $('#nestable2').nestable({
-            group: 1
-        }).on('change', updateOutput);
+                          
 
-        updateOutput($('#nestable').data('output', $('#nestable-output')));
-        updateOutput($('#nestable2').data('output', $('#nestable2-output')));
+                            <!-- <form action="#" class="validation-wizard wizard-circle"> -->
+                            <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
+                            <?php echo form_open_multipart('tipo_tramite/insertar', array('method'=>'POST')); ?>
+                                    <h4 class="card-title">Registro de Tramite</h4>
+                               
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationCustom01">Organigrama Persona</label>
+                                            <!-- CONSULTA POR LA TABLA ORGANIGRAMA PERSONA -->
+                                            <?php $lista = $this->db->query("SELECT op.organigrama_persona_id, o.unidad, p.nombres, p.paterno
+                                                                            FROM tramite.organigrama_persona op, tramite.organigrama o, public.persona p
+                                                                            WHERE op.organigrama_id = o.organigrama_id
+                                                                            AND op.persona_id = p.persona_id
+                                                                            AND op.activo = '1'
+                                                                            ORDER BY op.organigrama_persona_id ASC")->result();
+                                            ?>  
+                                           <select class="custom-select form-control" id="organigrama_persona_id" name="organigrama_persona_id" required />
+                                                <option value="">Seleccione tipo</option>
+                                                <?php foreach ($lista as $op): ?>
+                                                    <option value="<?php echo $op->organigrama_persona_id; ?>">Organigrama <?php echo $op->unidad; ?>, Correspondiente a <?php echo $op->nombres; ?> <?php echo $op->paterno; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>  
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationCustom02">Tipo de Documento</label>
 
-        $('#nestable-menu').on('click', function(e) {
-            var target = $(e.target),
-                action = target.data('action');
-            if (action === 'expand-all') {
-                $('.dd').nestable('expandAll');
-            }
-            if (action === 'collapse-all') {
-                $('.dd').nestable('collapseAll');
-            }
-        });
+                                            <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
+                                            <?php $lista1 = $this->db->query("SELECT * FROM tramite.tipo_documento  WHERE activo = '1' ORDER BY tipo_documento_id ASC")->result();
+                                            ?> 
 
-        $('#nestable-menu').nestable();
-    });
-    </script>
+                                            <select class="custom-select form-control" id="tipo_documento_id" name="tipo_documento_id" required />
+                                                <option value="">Seleccione tipo</option>
+                                                <?php foreach ($lista1 as $td): ?>
+                                                    <option value="<?php echo $td->tipo_documento_id; ?>"><?php echo $td->documento; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>  
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationCustomUsername">Tipo de Correspondencia</label>
 
+                                            <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
+                                            <?php $lista2 = $this->db->query("SELECT * FROM tramite.tipo_tramite  WHERE activo = '1' ORDER BY tipo_correspondencia_id ASC")->result();
+                                            ?> 
+                                            <div class="input-group">
+                                                <select class="custom-select form-control" id="tipo_correspondencia_id" name="tipo_correspondencia_id" required />
+                                                <option value="">Seleccione tipo</option>
+                                                <?php foreach ($lista2 as $tc): ?>
+                                                    <option value="<?php echo $tc->tipo_correspondencia_id; ?>"><?php echo $tc->correspondencia; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>  
+                                                <div class="invalid-feedback">
+                                                    Please choose a username.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationCustom03">Cite</label>
+                                            <input type="text" class="form-control" id="validationCustom03" name="cite" placeholder="INF/MOPSV/VMVU/PMGM Nº 0306/2019" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid city.
+                                            </div>
+                                        </div>
 
+                                        <div class="col-md-2">
+                                        <div class="form-group">
+                                                <label for="codigo_catastral"> Fecha<span class="text-danger">*</span> </label>
+                                                <input type="date" class="form-control" id="fecha" name="fecha" maxlength="11" required="">
+                                                <small id="msg_error_catastral" class="form-control-feedback"></small>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                        <div class="form-group">
+                                                <label for="codigo_catastral"> Fojas<span class="text-danger">*</span> </label>
+                                                <input type="integer" class="form-control" id="fojas" name="fojas" maxlength="11" required="">
+                                                <small id="msg_error_catastral" class="form-control-feedback"></small>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                        <div class="form-group">
+                                                <label for="codigo_catastral"> Anexos<span class="text-danger">*</span> </label>
+                                                <input type="integer" class="form-control" id="anexos" name="anexos" maxlength="11" required="">
+                                                <small id="msg_error_catastral" class="form-control-feedback"></small>
+                                            </div>
+                                        </div>                                                                              
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="validationCustom03">Remitente</label>
+                                            <input type="text" class="form-control" id="validationCustom03" name="remitente" placeholder="Remitente" required>
+                                            <div class="invalid-feedback">
+                                                Por Favor Ingrese el Remitente.
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="validationCustom03">Procedencia</label>
+                                            <input type="text" class="form-control" id="validationCustom03" name="procedencia" placeholder="Procedencia" required>
+                                            <div class="invalid-feedback">
+                                                Por Favor Ingrese el Procedencia.
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-3">
+                                            <label for="validationCustom03">Referencia</label>
+                                            <input type="text" class="form-control" id="validationCustom03" name="referencia" placeholder="Referencia" required>
+                                            <div class="invalid-feedback">
+                                                Por Favor Ingrese el Referencia.
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    <button class="btn btn-primary" type="submit">Guardar</button>
+                                </form>
+                                <script>
+                                // Example starter JavaScript for disabling form submissions if there are invalid fields
+                                (function() {
+                                    'use strict';
+                                    window.addEventListener('load', function() {
+                                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                        var forms = document.getElementsByClassName('needs-validation');
+                                        // Loop over them and prevent submission
+                                        var validation = Array.prototype.filter.call(forms, function(form) {
+                                            form.addEventListener('submit', function(event) {
+                                                if (form.checkValidity() === false) {
+                                                    event.preventDefault();
+                                                    event.stopPropagation();
+                                                }
+                                                form.classList.add('was-validated');
+                                            }, false);
+                                        });
+                                    }, false);
+                                })();
+                                </script>
+                            
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+    </div>
+</div>
+
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap&libraries=drawing" async defer></script>
 
 
