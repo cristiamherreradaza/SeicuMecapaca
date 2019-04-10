@@ -10,7 +10,7 @@ class OrganigramaP_model extends CI_Model {
 	}
 
 	public function lista(){
-		$lista = $this->db->query("SELECT op.organigrama_persona_id, to_char(op.fec_alta, 'DD-MM-YYYY') as fec_alta, to_char(op.fec_baja, 'DD-MM-YYYY') as fec_baja, op.vigencia, p.nombres, p.paterno, p.materno, o.unidad FROM tramite.organigrama_persona as op JOIN persona as p ON op.persona_id = p.persona_id JOIN tramite.organigrama as o ON op.organigrama_id = o.organigrama_id WHERE op.activo = '1' ORDER BY op.organigrama_persona_id ASC")->result();
+		$lista = $this->db->query("SELECT op.organigrama_persona_id, to_char(op.fec_alta, 'DD-MM-YYYY') as fec_alta, to_char(op.fec_baja, 'DD-MM-YYYY') as fec_baja, op.vigencia, p.nombres, p.paterno, p.materno, o.unidad, ca.descripcion FROM tramite.organigrama_persona as op JOIN persona as p ON op.persona_id = p.persona_id JOIN tramite.organigrama as o ON op.organigrama_id = o.organigrama_id JOIN tramite.cargo as ca ON op.cargo_id = ca.cargo_id WHERE op.activo = '1' ORDER BY op.organigrama_persona_id ASC")->result();
 		if ($lista > 0) {
 			return $lista;
 		}
@@ -39,13 +39,24 @@ class OrganigramaP_model extends CI_Model {
 		}
 	}
 
-	public function insertarOrganigrama($organigrama_id, $persona_id, $fec_alta, $usu_creacion){
+	public function cargo(){
+		$cargos = $this->db->query("SELECT cargo_id, descripcion FROM tramite.cargo where activo = 1")->result();
+		if ($cargos > 0) {
+			return $cargos;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public function insertarOrganigrama($organigrama_id, $persona_id, $fec_alta, $usu_creacion, $cargo_id){
 		$array = array(
 			'organigrama_id' =>$organigrama_id,
 			'persona_id' => $persona_id,
 			'fec_alta' => $fec_alta,
 			'vigencia' => 0,
-			'usu_creacion' =>$usu_creacion
+			'usu_creacion' =>$usu_creacion,
+			'cargo_id' => $cargo_id
 			);
 		$this->db->insert('tramite.organigrama_persona', $array);
 	}
@@ -69,4 +80,14 @@ class OrganigramaP_model extends CI_Model {
         $this->db->where('organigrama_persona_id', $organigrama_persona_id);
         return $this->db->update('tramite.organigrama_persona', $data);
 	}
+
+	public function buscaOr($id){
+		$con = $this->db->query("SELECT to_char(op.fec_alta, 'YYYY-MM-DD') as fec_alta, p.persona_id, p.nombres, p.paterno, p.materno, o.organigrama_id, o.unidad, ca.cargo_id, ca.descripcion FROM tramite.organigrama_persona as op JOIN persona as p ON op.persona_id = p.persona_id JOIN tramite.organigrama as o ON op.organigrama_id = o.organigrama_id JOIN tramite.cargo as ca ON op.cargo_id = ca.cargo_id WHERE op.activo = '1' AND op.organigrama_persona_id = '".$id."'");
+		// print_r($con);
+	    if($con)
+	    // if ($con->num_rows() > 0)
+	        return $con->row();
+	    else
+	    	return null;
+	 }
 }

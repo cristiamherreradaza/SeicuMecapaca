@@ -82,7 +82,6 @@ class Persona extends CI_Controller {
       	
       	$this->form_validation->set_message('required', '%s es obligatorio.');
 
-
       	//Verifica que el formulario esté validado.
       	if ($this->form_validation->run() == TRUE){
          	if($porcen_parti <= $porcentajeR){
@@ -100,6 +99,7 @@ class Persona extends CI_Controller {
 				$this->cart->insert($dato);
 				$data = array('estado'=>'guardado');
 				echo json_encode($data);
+
 			}else{
 				$data = array('estado'=>'sobrepasa', 'ci'=>$ci, 'nombres' => $nombres, 'paterno' => $paterno, 'materno' => $materno, 'fec_nacimiento'=>$fec_nacimiento, 'porcen_parti'=> $porcen_parti);
 				echo json_encode($data);

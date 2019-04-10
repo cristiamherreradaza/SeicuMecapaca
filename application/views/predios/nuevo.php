@@ -418,7 +418,7 @@
                     $('#paterno1').val(data.paterno);
                     $('#materno1').val(data.materno);
                     $('#fec_nacimiento1').val(data.fec_nacimiento);
-                    $('#porcen_parti1').val(data.fec_nacimiento);
+                    $('#porcen_parti1').val(data.porcen_parti);
                     $("#no-valido").html('El porcentaje es menor de lo q se esperaba');
                      //swal("¡BIEN!", "Se adiciono con exito a la persona", "success");                  
                 }else if(data.estado == 'guardado'){

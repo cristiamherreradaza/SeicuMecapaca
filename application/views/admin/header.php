@@ -12,6 +12,8 @@
     <title>MOP</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
 
     <link href="<?php echo base_url(); ?>public/css/style.css" rel="stylesheet">

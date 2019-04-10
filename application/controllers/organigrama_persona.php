@@ -15,6 +15,7 @@ class Organigrama_persona extends CI_Controller {
 			$lista['datos'] = $this->organigramaP_model->lista();
 			$lista['personas'] = $this->organigramaP_model->persona();
 			$lista['organigramas'] = $this->organigramaP_model->organigrama();
+			$lista['cargos'] = $this->organigramaP_model->cargo();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
 			$this->load->view('organigrama/asignacion_organigrama', $lista);
@@ -32,14 +33,16 @@ class Organigrama_persona extends CI_Controller {
 		    $usu_creacion = $resi->persona_id;
 			$persona_id = $this->input->post('persona_id');
 			$organigrama_id = $this->input->post('organigrama_id');
+			$cargo_id = $this->input->post('cargo_id');
 			$fec_alta = $this->input->post('fec_alta');
 
 			$this->form_validation->set_rules('persona_id', 'Persona', 'required');
 			$this->form_validation->set_rules('organigrama_id', 'Organigrama', 'required');
+			$this->form_validation->set_rules('cargo_id', 'Persona', 'required');
 			$this->form_validation->set_rules('fec_alta', 'Fecha', 'required');
 
 			if ($this->form_validation->run() == TRUE){
-				$this->organigramaP_model->insertarOrganigrama($organigrama_id, $persona_id, $fec_alta, $usu_creacion);
+				$this->organigramaP_model->insertarOrganigrama($organigrama_id, $persona_id, $fec_alta, $usu_creacion, $cargo_id);
 			}
 			redirect(base_url()."Organigrama_persona/inicio");
 		}else{
@@ -65,6 +68,8 @@ class Organigrama_persona extends CI_Controller {
 			$vigencia=  $fecha->format("%a")/30;
 
 			$this->organigramaP_model->agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia);
+			
+			
 			redirect(base_url()."Organigrama_persona/inicio");
 		}else{
 			redirect(base_url());
@@ -78,7 +83,7 @@ class Organigrama_persona extends CI_Controller {
 			$this->load->database();
 			if(!empty($this->input->get("q"))){
 				$this->db->like('nombres', $this->input->get("q"));
-				$query = $this->db->select('persona_id, nombres as text')
+				$query = $this->db->select('persona_id as id, nombres as text')
 							->limit(10)
 							->get("persona");
 				$json = $query->result();
@@ -95,10 +100,26 @@ class Organigrama_persona extends CI_Controller {
 	        $usu_eliminacion = $resi->persona_id;
 			$fec_eliminacion = date("Y-m-d H:i:s");
 			$this->organigramaP_model->eliminarOrganigrama($organigrama_persona_id, $usu_eliminacion, $fec_eliminacion);
-			redirect(base_url()."Organigrama_persona/inicio");
+			redirect("organigrama_persona/inicio");
+			//redirect(base_url()."Organigrama_persona/inicio");
 		}else{
 			redirect(base_url());
 		}
+	}
+
+	public function editar_organigrama($id){
+		
+		
+		$data = $this->organigramaP_model->buscaOr($id);
+		// print_r($ci);
+		//  print_r($verifica_cod->result());die;
+		// if (count($verifica_cod) > 0) {
+		echo json_encode($data);	
+	}
+
+	public function guardar_editado(){
+
+		
 	}
 }
 

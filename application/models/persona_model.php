@@ -49,8 +49,7 @@ class Persona_model extends CI_Model {
 	        return $con->row();
 	    else
 	    	return null;
-	  }
-
+	 }
 
     public function actualizar($persona_id, $nombres, $paterno, $materno, $ci, $fec_nacimiento)
     {
