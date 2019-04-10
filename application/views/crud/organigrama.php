@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/css/pasos.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/css/dropify.min.css">
 
+
+
+
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Container fluid  -->
@@ -42,12 +45,22 @@
                                     <button <?php echo $verifica['alta']; ?> type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_insertar"><i class="mdi mdi-plus"></i> Nuevo</button>
                                 </div>
                                 <div class="col-md-6" align="right">                                        
-                                <a  class=" btn btn-success" <?php echo $verifica['alta1'];?>="<?php echo site_url('organigrama/chart'); ?>" align="right"><i class="mdi mdi-plus"></i>visualizar organigrama</a>
+                                <a  class=" btn btn-warning" <?php echo $verifica['alta1'];?>="<?php echo site_url('organigrama/chart'); ?>" align="right"><i class="mdi mdi-printer"></i> visualizar organigrama</a>
                                 </div>
                         </div>
+
+                        
+
+
+
+   
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">organigramas Registrados</h4>                                        
+
+                                    
+                                        <h4 class="card-title">organigramas Registrados</h4>
+                                        
+                                                                             
                                         <div class="table-responsive m-t-40">
                                             <table id="documento_table" class="table table-bordered table-striped">
                                                 <thead>
@@ -146,7 +159,7 @@
         <!-- ============================================================== --> 
         
 
-        <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/bootstrap/js/popper.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/plugins/bootstrap/js/bootstrap.min.js"></script>

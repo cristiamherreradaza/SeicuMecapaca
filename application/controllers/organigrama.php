@@ -31,11 +31,11 @@ class Organigrama extends CI_Controller
         if ($this->session->userdata("login")) {
             $data['data_org'] = $this->organigrama_model->get_data();
             $data['data_grupo'] = $this->organigrama_model->get_grupo();
-			$data['verifica'] = $this->rol_model->verifica();
+            $data['verifica'] = $this->rol_model->verifica();           
             $this->load->view('admin/header');
 			$this->load->view('admin/menu');
             $this->load->view('crud/organigrama', $data);
-            //$this->load->view('predios/registra_js'); 
+           
 			$this->load->view('organigrama/footer_js');            
         } else {
             redirect(base_url());
