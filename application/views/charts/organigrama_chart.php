@@ -64,13 +64,22 @@ border-collapse: separate !important;
                     
 
 
-                        <div class="row page-titles">
-                            <div class="col-md-6 col-8 align-self-center">
-                                <h4 class="card-title">Organigrama de la organizacion</h4>
-                                                                
-                            </div>
-                            
+                        <div class="row page-titles" align="center">
+                            <div class="col-md-12 col-8 align-self-center">
+                                <h2 class="card-title">Organigrama de la organizacion</h2>                                                                
+                            </div>                            
                         </div>	
+
+                        <div class="row" >                                
+                                <div class="col-md-6" align="left">                                        
+                                <a  class=" btn btn-success" href="<?php echo site_url('organigrama/nuevo'); ?>" align="right"><i class="mdi mdi-plus"></i> adicionar</a>
+                                </div>
+                        </div>
+                        <br>
+
+
+
+
                         <div id="chart_div"></div>					
                         
                     </div>
