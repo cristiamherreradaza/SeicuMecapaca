@@ -51,7 +51,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nombre</th>
+                                                <th>Nombres</th>
                                                 <th>Usuario</th>
                                                 <th>Perfil</th>
                                                 <th>Rol</th>
@@ -71,19 +71,17 @@
                                                 <td><?php echo $lis->perfil;?></td>
                                                 <td><?php echo $lis->rol;?></td>
                                                 <td>
-                                                    <div class="bt-switch">
-                                                        <?php
-                                                            if ($lis->activo == '1') {
-                                                                //echo $lis->activo;             
-                                                            }
-                                                            else
-                                                            {
-                                                                //echo $lis->activo;  
-                                                            }
-                                                        ?>
+                                                    <?php if ($lis->activo == '1') {
+                                                        $var = 'checked';
+                                                    } 
+                                                    else
+                                                    {
+                                                        $var = '';
+                                                    }
 
-                                                        <input type="checkbox" checked data-size="mini" data-on-text="Activo" data-off-text="Inactivo" checked data-on-color="success" data-off-color="danger" /> 
-                                                        
+                                                    ?>
+                                                    <div class="bt-switch">
+                                                        <input type="checkbox" <?php echo $var; ?> data-size="mini" data-on-text="Activo" data-off-text="Inactivo" <?php echo $var; ?> data-on-color="success" data-off-color="danger" /> 
                                                     </div>
                                                     
                                                     <!--<button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
@@ -119,31 +117,6 @@
               
         
 
-        <div class="modal fade" id="Modal_insert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Zona Urbana</h4>
-                    </div>
-                    <div class="modal-body">
-                        <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
-                        <?php echo form_open('zona_urbana/insertar', array('method'=>'POST', 'id'=>'insertar')); ?>
-
-                            <div class="form-group">
-                                <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="descripcion">
-                            </div>
-                          
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
        
 
 
@@ -183,111 +156,6 @@
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 
-<!--
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#insertar').submit(function (e) {
-                e.preventDefault();
-                //captura todos los valores que tiene el formulario es decir todos los input que esten en ese formulario...
-                var datos=$(this).serialize();
-                 
-                 setTimeout('document.location.reload()',2000);
-                $.ajax({
-                    type:"POST",
-                    url:"<?php echo base_url();?>zona_urbana/insertar",
-                    data:datos,
-
-                    success:function(data){
-                        swal(
-                            'Buen Trabajo',
-                            'Insertaste Correctamente el Registro.',
-                            'success'
-                        );
-                        
-                        //imprimo el resultado en el div mensaje que procesa ajax
-                       // $("#mensaje").html(data);                    
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#footable-delete').submit(function (e) {
-                e.preventDefault();
-                //captura todos los valores que tiene el formulario es decir todos los input que esten en ese formulario...
-                var datos=$(this).serialize();
-                 /*swal(
-                 'Titulo del Mensaje',
-                 'Mensaje',
-                 'Tipo de mesaje'
-                 );*/
-                 setTimeout('document.location.reload()',2000);
-                $.ajax({
-                    type:"POST",
-                    url:"<?php echo base_url();?>zona_urbana/insertar",
-                    data:datos,
-
-                    success:function(data){
-                        Swal.fire({
-                              title: 'Are you sure?',
-                              text: "You won't be able to revert this!",
-                              type: 'warning',
-                              showCancelButton: true,
-                              confirmButtonColor: '#3085d6',
-                              cancelButtonColor: '#d33',
-                              confirmButtonText: 'Yes, delete it!'
-                            }).then((result) => {
-                              if (result.value) {
-                                Swal.fire(
-                                  'Deleted!',
-                                  'Your file has been deleted.',
-                                  'success'
-                                )
-                              }
-                            });
-                        
-                        //imprimo el resultado en el div mensaje que procesa ajax
-                       // $("#mensaje").html(data);                    
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#editar').submit(function (e) {
-                e.preventDefault();
-                //captura todos los valores que tiene el formulario es decir todos los input que esten en ese formulario...
-                var datos=$(this).serialize();
-                 /*swal(
-                 'Titulo del Mensaje',
-                 'Mensaje',
-                 'Tipo de mesaje'
-                 );*/
-                 setTimeout('document.location.reload()',2000);
-                $.ajax({
-                    type:"POST",
-                    url:"<?php echo base_url();?>zona_urbana/insertar",
-                    data:datos,
-
-                    success:function(data){
-                        swal(
-                            'Buen Trabajo',
-                            'Insertaste Correctamente el Registro.',
-                            'success'
-                        );
-                        
-                        //imprimo el resultado en el div mensaje que procesa ajax
-                       // $("#mensaje").html(data);                    
-                    }
-                });
-            });
-        });
-    </script>
--->
 <!-- bt-switch -->
 
     <script src="<?php echo base_url(); ?>public/assets/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
@@ -296,6 +164,7 @@
     var radioswitch = function() {
 
         var bt = function() {
+
             $(".radio-switch").on("switch-change", function() {
                 $(".radio-switch").bootstrapSwitch("toggleRadioState")
             }), $(".radio-switch").on("switch-change", function() {

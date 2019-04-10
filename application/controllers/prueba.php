@@ -88,4 +88,13 @@ class Prueba extends CI_Controller {
         $this->load->view('admin/footer');
        
     }
+
+     public function tramite()    
+    {  
+        $this->load->view('admin/header');
+        $this->load->view('admin/menuprueba');
+        $this->load->view('tramites/tramite');
+        $this->load->view('admin/footer');
+       
+    }
 }
