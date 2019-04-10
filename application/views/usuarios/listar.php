@@ -71,8 +71,17 @@
                                                 <td><?php echo $lis->perfil;?></td>
                                                 <td><?php echo $lis->rol;?></td>
                                                 <td>
+                                                    <?php if ($lis->activo == '1') {
+                                                        $var = 'checked';
+                                                    } 
+                                                    else
+                                                    {
+                                                        $var = '';
+                                                    }
+
+                                                    ?>
                                                     <div class="bt-switch">
-                                                        <input type="checkbox" checked data-size="mini" data-on-text="Activo" data-off-text="Inactivo" checked data-on-color="success" data-off-color="danger" /> 
+                                                        <input type="checkbox" <?php echo $var; ?> data-size="mini" data-on-text="Activo" data-off-text="Inactivo" <?php echo $var; ?> data-on-color="success" data-off-color="danger" /> 
                                                     </div>
                                                     
                                                     <!--<button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">

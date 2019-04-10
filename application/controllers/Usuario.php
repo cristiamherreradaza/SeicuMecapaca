@@ -88,36 +88,6 @@ class Usuario extends CI_Controller {
 
 	 }
 
-	 public function update()     
-	{  
-		if($this->session->userdata("login")){ 
-			$id = $this->session->userdata("persona_perfil_id");
-	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-	        $usu_modificacion = $resi->persona_id;
-	        $fec_modificacion = date("Y-m-d H:i:s"); 
-
-	        			
-	        			$cre = $this->input->post('credencial');
-		   		
-		        foreach ($this->input->post('menus') as $me) {
-		        	
-					$menu = array(
-						'credencial_id'=>$cre,
-						'menu_id'=>$me,
-						'activo'=>1
-					);
-					
-					$this->db->insert('public.credencial_menu', $menu);
-					
-
-					 }
-					 redirect('usuario/listar');
-			}
-		else{
-			redirect(base_url());
-		}
-	}
-	
 
 	public function eliminar()
 	{
@@ -230,9 +200,38 @@ class Usuario extends CI_Controller {
 		else{
 			redirect(base_url());
 		}
-		
-		
-	
+	}
+
+
+	 public function update()     
+	{  
+		if($this->session->userdata("login")){ 
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_modificacion = $resi->persona_id;
+	        $fec_modificacion = date("Y-m-d H:i:s"); 
+
+	        			
+	        	$cre = $this->input->post('credencial');
+		   		
+		        foreach ($this->input->post('menus') as $me) {
+		        	
+					$menu = array(
+						'credencial_id'=>$cre,
+						'menu_id'=>$me,
+						'activo'=>1
+					);
+					
+					$this->db->insert('public.credencial_menu', $menu);
+					
+
+					 }
+					 redirect('usuario/listar');
+			}
+		else
+		{
+			redirect(base_url());
+		}
 	}
 }
 

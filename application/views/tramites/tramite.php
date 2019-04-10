@@ -49,21 +49,22 @@
                                
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
-                                            <label for="validationCustom01">Organigrama Persona</label>
+                                            <label for="validationCustom01">Persona</label>
                                             <!-- CONSULTA POR LA TABLA ORGANIGRAMA PERSONA -->
-                                            <?php $lista = $this->db->query("SELECT op.organigrama_persona_id, o.unidad, p.nombres, p.paterno
-                                                                            FROM tramite.organigrama_persona op, tramite.organigrama o, public.persona p
-                                                                            WHERE op.organigrama_id = o.organigrama_id
+                                            <?php $lista = $this->db->query("SELECT op.organigrama_persona_id, op.persona_id, p.persona_id, p.nombres, p.paterno
+                                                                            FROM tramite.organigrama_persona op, public.persona p
+                                                                            WHERE op.organigrama_persona_id = '$idss'
                                                                             AND op.persona_id = p.persona_id
-                                                                            AND op.activo = '1'
-                                                                            ORDER BY op.organigrama_persona_id ASC")->result();
+                                                                            ORDER BY op.organigrama_persona_id ASC")->row();
+                                           
                                             ?>  
-                                           <select class="custom-select form-control" id="organigrama_persona_id" name="organigrama_persona_id" required />
-                                                <option value="">Seleccione tipo</option>
-                                                <?php foreach ($lista as $op): ?>
-                                                    <option value="<?php echo $op->organigrama_persona_id; ?>">Organigrama <?php echo $op->unidad; ?>, Correspondiente a <?php echo $op->nombres; ?> <?php echo $op->paterno; ?></option>
-                                                <?php endforeach; ?>
-                                            </select>  
+                                                <select type="text" class="form-control" id="" name="organigrama_persona_id"/>
+                                                    <option value="<?php echo $lista->organigrama_persona_id ?>"><?php echo $lista->nombres ?> <?php echo $lista->paterno ?></option>
+                                                </select>
+
+                                            <div class="invalid-feedback">
+                                                Please provide a valid city.
+                                            </div>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -106,7 +107,7 @@
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="validationCustom03">Cite</label>
+                                            <label for="validationCustom03">Cite<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="validationCustom03" name="cite" placeholder="INF/MOPSV/VMVU/PMGM Nº 0306/2019" required>
                                             <div class="invalid-feedback">
                                                 Please provide a valid city.
@@ -140,7 +141,7 @@
 
                                     <div class="form-row">
                                         <div class="col-md-12 mb-3">
-                                            <label for="validationCustom03">Remitente</label>
+                                            <label for="validationCustom03">Remitente<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="validationCustom03" name="remitente" placeholder="Remitente" required>
                                             <div class="invalid-feedback">
                                                 Por Favor Ingrese el Remitente.
@@ -148,7 +149,7 @@
                                         </div>
 
                                         <div class="col-md-12 mb-3">
-                                            <label for="validationCustom03">Procedencia</label>
+                                            <label for="validationCustom03">Procedencia<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="validationCustom03" name="procedencia" placeholder="Procedencia" required>
                                             <div class="invalid-feedback">
                                                 Por Favor Ingrese el Procedencia.
@@ -156,7 +157,7 @@
                                         </div>
 
                                         <div class="col-md-12 mb-3">
-                                            <label for="validationCustom03">Referencia</label>
+                                            <label for="validationCustom03">Referencia<span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" id="validationCustom03" name="referencia" placeholder="Referencia" required>
                                             <div class="invalid-feedback">
                                                 Por Favor Ingrese el Referencia.
@@ -166,6 +167,7 @@
                                     </div>
                                     
                                     <button class="btn btn-primary" type="submit">Guardar</button>
+
                                 </form>
                                 <script>
                                 // Example starter JavaScript for disabling form submissions if there are invalid fields

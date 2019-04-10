@@ -15,11 +15,29 @@ class Tipo_tramite extends CI_Controller {
 		if($this->session->userdata("login")){
 			//$lista['verifica'] = $this->rol_model->verifica();
 			//$lista['zona_urbana'] = $this->zona_urbana_model->index();
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $dato = $resi->persona_id;
+            $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
+
+            $consulta = $this->db->query("SELECT organigrama_persona_id
+                                            FROM tramite.organigrama_persona
+                                            WHERE fec_baja is NULL
+                                            AND persona_id = '$res->persona_id'
+                                            ")->row();
+            $ids['idss'] = $consulta->organigrama_persona_id;
+		            if ($consulta) {
+		            	$this->load->view('admin/header');
+				        $this->load->view('admin/menuprueba');
+				        $this->load->view('tramites/tramite', $ids);
+				        $this->load->view('admin/footer');
+				        
+		            }else
+		            {
+		            	var_dump('No tiene los permisos necesarios para realizar TRAMITES');
+		            }
+				
 			
-			$this->load->view('admin/header');
-	        $this->load->view('admin/menuprueba');
-	        $this->load->view('tramites/tramite');
-	        $this->load->view('admin/footer');
        		}
 		else{
 			redirect(base_url());
