@@ -23,7 +23,7 @@
 
                         <div class="row page-titles">
                             <div class="col-md-6 col-8 align-self-center">
-                                <h4 class="card-title">Datos Tipo de Documento</h4>                                
+                                <h4 class="card-title">Datos Tipo de Tramite</h4>                                
                             </div>
                            
                         </div>
@@ -44,7 +44,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>nro</th>
-                                                        <th>correspondencia</th>                                                        
+                                                        <th>correspondencia</th>
+                                                        <th>Estado</th>                                                           
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
@@ -54,13 +55,28 @@
                                                          $row->correspondencia; ?>
                                                     <tr>
                                                         <td><?php echo $i++; ?></td>
-                                                        <td><?php echo $row->correspondencia; ?></td>                                                                                                             
+                                                        <td><?php echo $row->correspondencia; ?></td>
+                                                        <td>                                           
+                                                        <?php if (($row->activo)==1):?>
+                                                        <button type="button" class="btn btn-success">Activo</button>
+                                                        <?php endif ?>
+                                                        <?php if (($row->activo)==0):?>
+                                                        <button type="button" class="btn btn-danger">Inactivo</button>
+                                                        <?php endif ?>
+                                                        </td>                                                                                                              
                                                         <td>
                                                         <button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
                                                             <span class="fas fas fa-edit" aria-hidden="true">
                                                             </span>
                                                         </button>                                                        
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_correspondencia/delete'); ?>/<?php echo $row->tipo_correspondencia_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
+                                                        
+
+                                                        <?php if (($row->activo)==1):?>
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_tramite_doc/delete'); ?>/<?php echo $row->tipo_correspondencia_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Dar de Baja</button></a>                                                          
+                                                        <?php endif ?>
+                                                        <?php if (($row->activo)==0):?>
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_tramite_doc/delete'); ?>/<?php echo $row->tipo_correspondencia_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Dar de Alta</button></a>                                                          
+                                                        <?php endif ?>
                                                             
                                                         </td>
                                                     </tr>
@@ -81,7 +97,7 @@
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
-                        <?php echo form_open('tipo_correspondencia/create', array('method'=>'POST', 'id'=>'insertar')); ?>
+                        <?php echo form_open('tipo_tramite_doc/create', array('method'=>'POST', 'id'=>'insertar')); ?>
 
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Correspondencia</label>
@@ -105,7 +121,7 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar Grupo Material</h4>
                     </div>
                     <div class="modal-body">                        
-                        <?php echo form_open('tipo_correspondencia/update', array('method'=>'POST')); ?>                            
+                        <?php echo form_open('tipo_tramite_doc/update', array('method'=>'POST')); ?>                            
                             <div class="form-group">
                                 <input type="text" class="form-control" hidden="" id="tipo_correspondencia_e" name="tipo_correspondencia_e">
                             </div>

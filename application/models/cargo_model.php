@@ -7,7 +7,7 @@ class Cargo_model extends CI_Model {
         $this->load->database();
     }   
     function get_data() {//obtiene los datos de la tabla tipo_documento en array result
-        $query = $this->db->query('SELECT * FROM tramite.cargo WHERE activo=1 ORDER BY cargo_id ASC');
+        $query = $this->db->query('SELECT * FROM tramite.cargo ORDER BY cargo_id ASC');
         return $query->result();
     }
 }

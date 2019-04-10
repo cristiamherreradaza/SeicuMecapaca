@@ -208,10 +208,16 @@ class Organigrama extends CI_Controller
     public function delete($id = null)
     {
         if ($this->session->userdata("login")) {
-            //$query = $this->db->query("UPDATE tramite.tipo_documento SET activo = 0  WHERE tipo_documento_id='$id'");
+            $activo = $this->db->query("SELECT activo from tramite.organigrama WHERE organigrama_id=$id");            
+            foreach ($activo ->result() as $row)
+            {
+                $valor=$row->activo;                    
+            }  
+            $valor=1-$valor;
+
             $data = array(
 
-                'activo' => '0', //input                                 
+                'activo' => $valor, //input                                 
             );
             $this->db->where('organigrama_id', $id);
             $this->db->update('tramite.organigrama', $data);          

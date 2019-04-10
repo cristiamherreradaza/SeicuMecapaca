@@ -62,12 +62,13 @@
                                         
                                                                              
                                         <div class="table-responsive m-t-40">
-                                            <table id="documento_table" class="table table-bordered table-striped">
+                                            <table id="org_chart_table" class="table table-bordered table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>nro</th>                                                        
                                                         <th>Unidad superior</th>                                                         
                                                         <th>unidad</th>
+                                                        <th>Estado</th>
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
@@ -80,11 +81,25 @@
                                                     <tr>
                                                         <td><?php echo $i++; ?></td>
                                                         <td><?php echo $row->jefe; ?></td>    
-                                                        <td><?php echo $row->unidad; ?></td>                                                                                                                                                                
+                                                        <td><?php echo $row->unidad; ?></td>    
+                                                        <td>                                           
+                                                        <?php if (($row->activo)==1):?>
+                                                        <button type="button" class="btn btn-success">Activo</button>
+                                                        <?php endif ?>
+                                                        <?php if (($row->activo)==0):?>
+                                                        <button type="button" class="btn btn-danger">Inactivo</button>
+                                                        <?php endif ?>
+                                                        </td>                                                                                                                                                             
                                                         <td>
                                                           
                                                         <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/edit'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>                                                      
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/delete'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
+                                                        
+                                                        <?php if (($row->activo)==1):?>
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/delete'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Dar de Baja</button></a>                                                          
+                                                        <?php endif ?>
+                                                        <?php if (($row->activo)==0):?>
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/delete'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Dar de Alta</button></a>                                                          
+                                                        <?php endif ?>
                                                             
                                                         </td>
                                                     </tr>

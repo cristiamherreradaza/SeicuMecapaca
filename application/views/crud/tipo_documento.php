@@ -1,4 +1,5 @@
 <link href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Container fluid  -->
@@ -44,7 +45,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>nro</th>
-                                                        <th>descripcion</th>                                                        
+                                                        <th>descripcion</th>
+                                                        <th>Estado</th>                                                        
                                                         <th>Acciones</th>
                                                     </tr>
                                                 </thead>
@@ -54,14 +56,28 @@
                                                          $row->documento; ?>
                                                     <tr>
                                                         <td><?php echo $i++; ?></td>
-                                                        <td><?php echo $row->documento; ?></td>                                                                                                             
+                                                        <td><?php echo $row->documento; ?></td>       
+                                                        <td>                                           
+                                                        <?php if (($row->activo)==1):?>
+                                                        <button type="button" class="btn btn-success">Activo</button>
+                                                        <?php endif ?>
+                                                        <?php if (($row->activo)==0):?>
+                                                        <button type="button" class="btn btn-danger">Inactivo</button>
+                                                        <?php endif ?>
+                                                        </td>                                                                                                          
                                                         <td>
                                                         <button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
                                                             <span class="fas fas fa-edit" aria-hidden="true">
                                                             </span>
-                                                        </button>                                                        
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_documento/delete'); ?>/<?php echo $row->tipo_documento_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
-                                                            
+                                                        </button>
+
+                                                        <?php if (($row->activo)==1):?>
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_documento/delete'); ?>/<?php echo $row->tipo_documento_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Dar de Baja</button></a>                                                          
+                                                        <?php endif ?>
+                                                        <?php if (($row->activo)==0):?>
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_documento/delete'); ?>/<?php echo $row->tipo_documento_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Dar de Alta</button></a>                                                          
+                                                        <?php endif ?>
+                                                        
                                                         </td>
                                                     </tr>
                                                     <?php 
@@ -141,4 +157,5 @@
               $('#documento_e').val(d[1]);
         }
     </script>
+        
         
