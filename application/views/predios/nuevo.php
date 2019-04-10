@@ -277,28 +277,50 @@
                                                                 <input type="text" name="paterno1" id="paterno1" class="form-control"/>
                                                             </div>
                                                         </div>
-                                                        <!--/span-->
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Materno : <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" name="materno1" id="materno1"/>
                                                             </div>
                                                         </div>
-                                                        <!--/span-->
                                                     </div>
-                                                    <!--/row-->
                                                     <div class="row">
-                                                        
                                                         <div class="col-md-12">
                                                             <div class="form-group">
-                                                                <div class="form-group">
-                                                                    <label>Fecha de nacimiento : <span class="text-danger">*</span></label>
-                                                                    <input type="date" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" />
-                                                                </div>
-                                                               
+                                                                <label>Fecha de nacimiento : <span class="text-danger">*</span></label>
+                                                                <input type="date" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" />
                                                             </div>
                                                         </div>
-                                                        <!--/span-->
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Direccion : <span class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control" name="direccion1" id="direccion1" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Email : <span class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control" name="email1" id="email1" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                     <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Telefono fijo </label>
+                                                                <input type="text" name="telefono_fijo1" id="telefono_fijo1" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Telefono celular : <span class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control" name="telefono_celular1" id="telefono_celular1"/>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <?php $i= 100 - $this->cart->total_items(); ?>
                                                     <div class="row">
@@ -397,6 +419,10 @@
         var materno = $('#materno1').val();
         var fec_nacimiento = $('#fec_nacimiento1').val();
         var porcen_parti = $('#porcen_parti1').val();
+        var direccion = $('#direccion1').val();
+        var email = $('#email1').val();
+        var telefono_fijo = $('#telefono_fijo1').val();
+        var telefono_celular = $('#telefono_celular1').val();
         var csrf_test_name = $('#csrf_test_name').val();
         var lqs=document.cookie.split('=');
         var tok = lqs[1];
@@ -406,7 +432,7 @@
             type:'POST',
             url:"<?php echo base_url();?>persona/insertar",
             dataType: 'json',
-            data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, cod_catastral:cod_catastral},
+            data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, direccion:direccion, email:email, telefono_fijo:telefono_fijo, telefono_celular:telefono_celular ,cod_catastral:cod_catastral},
             success: function (data, textStatus, jqXHR){
                 if (data.estado == 'sobrepasa') {
                     $("#msg_error_catastral").hide();    

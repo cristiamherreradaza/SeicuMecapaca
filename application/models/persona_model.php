@@ -9,7 +9,7 @@ class Persona_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion)
+	public function insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo, $telefono_celular)
 	{	
 		
 		$array = array(
@@ -18,7 +18,11 @@ class Persona_model extends CI_Model {
 			'materno' =>$materno,
 			'ci' =>$ci,
 			'fec_nacimiento' =>$fec_nacimiento,
-			'usu_creacion' =>$usu_creacion
+			'usu_creacion' =>$usu_creacion,
+			'direccion' => $direccion,
+			'email' => $email,
+			'telefono_fijo' => $telefono_fijo,
+			'telefono_celular' => $telefono_celular
 			);
 		$this->db->insert('persona', $array);
 	}

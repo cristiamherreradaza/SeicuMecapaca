@@ -108,18 +108,27 @@ class Organigrama_persona extends CI_Controller {
 	}
 
 	public function editar_organigrama($id){
-		
-		
 		$data = $this->organigramaP_model->buscaOr($id);
-		// print_r($ci);
-		//  print_r($verifica_cod->result());die;
-		// if (count($verifica_cod) > 0) {
 		echo json_encode($data);	
 	}
 
 	public function guardar_editado(){
+		if($this->session->userdata("login")){
+			$id1 = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id1))->row();
+	        $usu_modificacion = $resi->persona_id;
+			$fec_modificacion = date("Y-m-d H:i:s");
 
-		
+			$organigrama_persona_id = $this->input->post('organigrama_persona_id');
+			$persona_id = $this->input->post('persona_id1');
+			$organigrama_id = $this->input->post('organigrama_id1');
+			$cargo_id = $this->input->post('cargo_id1');
+			$fec_alta = $this->input->post('fec_alta1');			
+			$this->organigramaP_model->insertarEditado($organigrama_persona_id, $persona_id, $organigrama_id, $cargo_id, $fec_alta, $usu_modificacion, $fec_modificacion);
+			redirect(base_url()."Organigrama_persona/inicio");
+		}else{
+			redirect(base_url());
+		}
 	}
 }
 
