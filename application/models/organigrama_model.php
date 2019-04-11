@@ -24,7 +24,7 @@ class Organigrama_model extends CI_Model {
         LEFT JOIN
         tramite.organigrama y
         on x.hijo=y.organigrama_id
-        WHERE x.activo=1 and y.activo=1 and x.organigrama_id=$id");        
+        WHERE x.organigrama_id=$id");        
         return $query->row();
     }
 

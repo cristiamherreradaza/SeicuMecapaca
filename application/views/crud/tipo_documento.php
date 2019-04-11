@@ -93,7 +93,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Insertar nuevo documento</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Insertar Nuevo Tipo de Documento</h4>
                     </div>
                     <div class="modal-body">
                         <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
@@ -118,7 +118,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Editar Grupo Material</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Editar Tipo Documento</h4>
                     </div>
                     <div class="modal-body">                        
                         <?php echo form_open('tipo_documento/update', array('method'=>'POST')); ?>                            

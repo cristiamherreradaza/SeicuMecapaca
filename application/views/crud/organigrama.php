@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Unidad</label>
+                                <label for="recipient-name" class="control-label">editar Unidad</label>
                                 <input type="text" class="form-control" id="unidad" name="unidad">
                                 <input type="hidden" class="form-control" id="opcion" name="opcion" value="1">
                             </div>

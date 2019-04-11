@@ -27,7 +27,7 @@
 
                         <div class="row page-titles">
                             <div class="col-md-6 col-8 align-self-center">
-                                <h4 class="card-title">Datos Organigrama</h4>                                
+                                <h4 class="card-title">Editar unidad </h4>                                
                             </div>
                         </div>						
                         <div class="col-lg-3">
