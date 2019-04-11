@@ -1,19 +1,6 @@
 
 <div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
     <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -37,14 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
-                                <?php foreach($datos as $lista){ 
-                                    $datos = $lista->organigrama_persona_id."||".
-                                             $lista->fec_alta."||".
-                                             $lista->nombres."||".
-                                             
-                                             $lista->unidad;
-                                             ?>
+                                <?php foreach($datos as $lista){ ?>
                                     <tr>
                                         <td><?php echo $i++;?></td>
                                         <td><?php echo $lista->fec_alta ?></td>
@@ -55,7 +35,11 @@
                                         <td><?php echo $lista->vigencia; ?> mes(es)</td>
                                         <td>
                                             <?php if (is_null($lista->fec_baja)) {?>
-                                            <button class="btn btn-warning" title="Editar" onclick="edit_book(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-pencil-alt" aria-hidden="true"></span></button>
+                                                <!-- <a  href="<?php //echo site_url('organigrama_persona/baja/'.$lista->organigrama_persona_id); ?>" type="button" title="Dar de baja" class="darbaja btn btn-success footable-action"><span class="fas fa-arrow-down" aria-hidden="true">
+                                                    </span></a> -->
+                                                <button class="btn btn-success" title="Editar" onclick="dar_baja(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-arrow-down" aria-hidden="true"></span></button>
+                                                <button class="btn btn-warning" title="Editar" onclick="edit_book(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-pencil-alt" aria-hidden="true"></span></button>
+                                                
                                             <?php } ?>
                                             <!-- <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('$lista->organigrama_persona_id')">
                                                     <span class="fas fa-pencil-alt" aria-hidden="true"></span>
@@ -66,20 +50,15 @@
                                             </a>
                                             <!--<button class="btn btn-danger" onclick="validate(this)" value="<?php //echo $lista->organigrama_persona_id?>"><i class="icon icon-times"></i></button>
                                             </button> -->
-                                            <a  href="<?php echo site_url('organigrama_persona/baja/'.$lista->organigrama_persona_id); ?>" type="button" title="Dar de baja" class="darbaja btn btn-success footable-action"><span class="fas fa-arrow-down" aria-hidden="true">
-                                                </span></a>
                                         </td>
                                     </tr>
                                 <?php } ?>
-                            
                             </tbody>
                         </table>      
                     </div>  
                 </div>
-                
             </div>
         </div>
-
         <div class="modal fade" id="Modal_insert"  role="dialog" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -87,7 +66,6 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Asignacion de oficina</h4>
                     </div>
                     <div class="modal-body">
-                        <!--<form action="<?php echo base_url();?>edificio/insertar" method="POST">-->
                         <?php echo form_open('organigrama_persona/insertar', array('method'=>'POST')); ?>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Personal</label>
@@ -129,7 +107,6 @@
                 </div>
             </div>
         </div>
-              
         <div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -137,7 +114,6 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Editar asignaci&oacute;n</h4>
                     </div>
                     <div class="modal-body">
-                        <!--<form action="<?php //echo base_url();?>edificio/update" method="POST">-->
                         <?php echo form_open('organigrama_persona/guardar_editado', array('method'=>'POST')); ?>
                             <div class="form-group">
                                 <input type="text"  name="organigrama_persona_id">
@@ -145,7 +121,6 @@
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Personal</label>
                                 <select class="select2" style="width: 100%" name="persona_id1" id="persona_id1">
-                               <!--  <select class="select2" style="width: 100%" name="persona_id" id="persona_id"> -->
                                     <option>Select</option>
                                     <?php foreach($personas as $plista){ ?>
                                         <option value="<?php echo $plista->persona_id; ?>"><?php echo $plista->nombres.' '.$plista->paterno.' '.$plista->materno; ?></option>
@@ -180,13 +155,35 @@
                             </div>
                         </form>
                     </div>
-                    
                 </div>
             </div>
         </div>
-
+        <div class="modal fade" id="modalBaja" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel1">Dar de baja</h4>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo form_open('organigrama_persona/baja', array('method'=>'POST')); ?>
+                            <div class="form-group">
+                                <input type="text"  name="organigrama_persona_id1">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Fecha de alta</label>
+                                <input type="text" class="form-control" id="observacion" name="observacion">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+</div>
 <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
 <script>
     jQuery(document).ready(function() {
@@ -209,8 +206,8 @@
                     // parse the results into the format expected by Select2
                     // since we are using custom formatting functions we do not need to
                     // alter the remote JSON data, except to indicate that infinite
-                    // scrolling can be used
-                    
+                    // scrolling can be
+
                     params.page = params.page || 1;
                     return {
                         results: data.items,
@@ -336,7 +333,7 @@
         }).then((result) => {
           if (result.value) {
             swal("Dado de baja!", "Se realizo con exito!", "success");
-                window.location.replace(url);
+            window.location.replace(url);
             
           }else{
             swal("Cancelado", "Su información está a salvo! :)", "error");
@@ -346,7 +343,6 @@
 </script>
 
 <script type="text/javascript">
-    
     function edit_book(id){
        var personas = $("#persona_id1");
        var organigramas = $("#organigrama_id1");
@@ -362,7 +358,6 @@
             personas.append('<option selected value="' +data.persona_id+ '">' + data.nombres +  ' ' + data.paterno + ' ' + data.materno +' </option>');
             organigramas.append('<option selected value="' +data.organigrama_id+ '">' + data.unidad + '</option>');
             cargos.append('<option selected value="' +data.cargo_id+ '">' + data.descripcion + '</option>');
-            
             $('#modalEdicion').modal('show'); // show bootstrap modal when complete loaded
            // $('.modal-title').text('Edit Book'); // Set title to Bootstrap modal title
  
@@ -372,5 +367,11 @@
             alert('Error get data from ajax');
         }
     });
+    }
+</script>
+<script type="text/javascript">
+    function dar_baja(id){
+        $('[name="organigrama_persona_id1"]').val(id);
+        $('#modalBaja').modal('show');
     }
 </script>

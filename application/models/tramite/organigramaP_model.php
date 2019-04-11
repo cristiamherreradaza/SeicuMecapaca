@@ -61,12 +61,13 @@ class OrganigramaP_model extends CI_Model {
 		$this->db->insert('tramite.organigrama_persona', $array);
 	}
 
-	public function agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia){
+	public function agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia, $observacion){
 		$data = array(
 			'fec_baja' => $fec_modificacion,
             'usu_modificacion' => $usu_modificacion,
             'vigencia' => $vigencia,
-            'fec_modificacion' => $fec_modificacion
+            'fec_modificacion' => $fec_modificacion,
+            'observacion' => $observacion
         );
         $this->db->where('organigrama_persona_id', $organigrama_persona_id);
         return $this->db->update('tramite.organigrama_persona', $data);

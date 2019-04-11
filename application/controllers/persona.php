@@ -267,7 +267,7 @@ class Persona extends CI_Controller {
 		//  print_r($verifica_cod->result());die;
 		// if (count($verifica_cod) > 0) {
 		if ($verifica_cod) {
-			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fecha, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
+			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fecha, 'persona_id'=>$verifica_cod->persona_id, 'direccion' =>$verifica_cod->direccion, 'email'=>$verifica_cod->email, 'telefono_fijo'=>$verifica_cod->telefono_fijo, 'telefono_celular'=>$verifica_cod->telefono_celular, 'estado'=>'si');
 			echo json_encode($respuesta);
 		} else {
 			$respuesta = array('ci'=>$ci, 'estado'=>'no');

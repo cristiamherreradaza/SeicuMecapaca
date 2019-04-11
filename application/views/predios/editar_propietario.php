@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/plugins/dropify/dist/css/dropify.min.css">
 
-<!-- sample modal content -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -74,7 +73,9 @@
                                         <h6>Datos propietario</h6>
                                         <div  id="registro" style="padding-top: 30px;">
                                             <div class="button-box">
-                                                <button class="btn btn-success waves-effect waves-light " type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span> 
+                                                <?php if ( $this->cart->total_items() < 100) { ?>
+                                                    <button class="btn btn-success waves-effect waves-light " type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span>
+                                                <?php } ?> 
                                             </div>
                                         </div>
                                         <!-- <?php //echo form_open('path/to/controller/update/method'); ?> -->
@@ -122,6 +123,11 @@
                                                 </tr>
                                             </table>
                                         </div>  
+                                        <?php if ( $this->cart->total_items() < 100) { ?>
+                                            <div class="alert alert-info">
+                                                <h3 class="text-info"><i class="fa fa-exclamation-circle"></i> Información</h3> Mientras el total del porcentaje de participacion no llegue al 100% no podra finalizar el registro.
+                                            </div>
+                                        <?php } ?>
                                     </div>
 
                                     <?php 
@@ -227,7 +233,9 @@
                                     </div>
 
                                     <div class="form-actions col-md-12 offset-md-11">
-                                        <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
+                                        <?php if ( $this->cart->total_items() == 100) { ?>
+                                            <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             

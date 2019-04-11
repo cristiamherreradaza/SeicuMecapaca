@@ -3,15 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Persona_model extends CI_Model {
 
-	public function __construct()
-	{
+	public function __construct(){
 		parent::__construct();
 		$this->load->database();
 	}
 
-	public function insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo, $telefono_celular)
-	{	
-		
+	public function insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo, $telefono_celular){	
 		$array = array(
 			'nombres' =>$nombres,
 			'paterno' =>$paterno,
@@ -27,8 +24,7 @@ class Persona_model extends CI_Model {
 		$this->db->insert('persona', $array);
 	}
 
-	public function existeci($ci)
-	{
+	public function existeci($ci){
 		$this->db->where('ci',$ci);
 		$reg = $this->db->get('persona');
       if($reg->num_rows()>0) {
@@ -38,8 +34,7 @@ class Persona_model extends CI_Model {
 			}
 	}
 
-	public function consulta($ci)
-	{
+	public function consulta($ci){
 		$this->db->where('ci',$ci);
 		$reg = $this->db->get('persona')->row();
 		return $reg;
@@ -47,16 +42,13 @@ class Persona_model extends CI_Model {
 
 	public function buscaci( $ci ){
 		$con = $this->db->query("SELECT to_char(fec_nacimiento, 'YYYY-MM-DD') as fecha, * FROM persona WHERE ci = '".$ci."'");
-		// print_r($con);
 	    if($con)
-	    // if ($con->num_rows() > 0)
 	        return $con->row();
 	    else
 	    	return null;
 	 }
 
-    public function actualizar($persona_id, $nombres, $paterno, $materno, $ci, $fec_nacimiento)
-    {
+    public function actualizar($persona_id, $nombres, $paterno, $materno, $ci, $fec_nacimiento){
         $data = array(
             'nombres' => $nombres,
             'paterno' => $paterno,

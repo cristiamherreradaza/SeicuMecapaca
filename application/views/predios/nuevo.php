@@ -20,20 +20,9 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
-
-<!-- ============================================================== -->
-<!-- Start Page Content -->
-<!-- ============================================================== -->
 
 <div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
     <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -49,7 +38,7 @@
                                 </button>
                             </div>
                         </div>
-                             <div class="row">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <button class="btn btn-block btn-info" type="button"><span class="btn-label">1</span> REGISTRO DEL PREDIO</button>
                                 </div>
@@ -65,8 +54,6 @@
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 100%;height:15px;" role="progressbar"> 100% </div>
                             </div>
                             <p></p>
-                            <!-- <form action="#" class="validation-wizard wizard-circle"> -->
-                            <!-- <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?> -->
                             <?php echo form_open_multipart('ddrr/guardar', array('method'=>'POST')); ?>
                             <!-- <?php //echo form_open('ddrr/guardar', array('method' => 'POST')); ?> -->
                                 <div class="row">
@@ -74,11 +61,11 @@
                                         <h6>Datos propietario</h6>
                                         <div  id="registro" style="padding-top: 30px;">
                                             <div class="button-box">
-                                                <button <?php echo $verifica['alta']; ?> class="btn btn-success waves-effect waves-light " type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span> 
-
+                                                <?php if ( $this->cart->total_items() < 100) { ?>
+                                                    <button <?php echo $verifica['alta']; ?> class="btn btn-success waves-effect waves-light " type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span>
+                                                <?php } ?> 
                                             </div>
                                         </div>
-                                        <!-- <?php //echo form_open('path/to/controller/update/method'); ?> -->
                                         <div class="portlet-body" style="padding-top: 30px;">
                                           <!-- <form action="SendMatCivController/actualizar_carrito" method="post"> -->
                                             <!-- <?php //echo form_open('persona/insertar', array('method' => 'POST')); ?> -->
@@ -103,13 +90,8 @@
                                                         <td><?php echo $items['name']; ?></td>
                                                         <td><?php echo $items['price']; ?></td>
                                                         <td><?php echo $items['qty']; ?></td>
-
-                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="btn btn-danger btn-xs" title="Borrar"><i class="fa fa-trash"></i></a>
-                                                       
+                                                        <td><a href="<?php echo site_url('persona/remove/' . $items['rowid']).'/'.$cod_catastral; ?>" class="eliminarPersona btn btn-danger btn-xs" title="Eliminar" data-toggle="tooltip" ><i class="fa fa-trash"></i></a>
                                                         </td>
-                                                       
-                                                        
-
                                                     </tr>
                                                     <?php
                                                         $i++;
@@ -127,6 +109,11 @@
                                                 </tr>
                                             </table>
                                         </div>  
+                                        <?php if ( $this->cart->total_items() < 100) { ?>
+                                            <div class="alert alert-info">
+                                                <h3 class="text-info"><i class="fa fa-exclamation-circle"></i> Información</h3> Mientras el total del porcentaje de participacion no llegue al 100% no podra finalizar el registro.
+                                            </div>
+                                        <?php } ?>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="row" style="background-color: #f6f6f6;">
@@ -151,7 +138,6 @@
                                                 <div class="form-group">
                                                     <label>Fecha de folio : <span class="text-danger">*</span> </label>
                                                     <input type="date" class="form-control date-inputmask" name="fecha_folio" required />
-                                                    <!-- <input placeholder="dd/mm/yyyy hh:mm" data-slots="dmyh"> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -224,7 +210,10 @@
                                         </div>
                                     </div>
                                     <div class="form-actions col-md-12 offset-md-11">
-                                        <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
+                                        <?php if ( $this->cart->total_items() == 100) { ?>
+                                            <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
+                                        <?php } ?>
+                                        
                                     </div>
                                 </div>
 
@@ -353,64 +342,84 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End PAge Content -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
-    <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script> 
-   
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap" async defer></script> -->
+</div>
+<script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script> 
+<script type="text/javascript">
+    $("#ci1").focusout(function(){
+        var ci = $("#ci1").val();
+        var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
+        var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 
-    <script type="text/javascript">
-        $("#ci1").focusout(function(){
-            var ci = $("#ci1").val();
-            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
-            var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+        $.ajax({
+            url: '<?php echo base_url(); ?>persona/ajax_verifica/',
+            type: 'GET',
+            dataType: 'json',
+            data: {csrfName: csrfHash, param1: ci},
+            // data: {param1: cod_catastral},
+            success:function(data, textStatus, jqXHR) {
+                //alert("Se envio bien");
+                // csrfName = data.csrfName;
+                // csrfHash = data.csrfHash;
+                // alert(data.message);
+                if (data.estado == 'si') {
+                    // console.log('Si se esta');
+                    $("#msg_error_catastral").hide();    
+                    $("#msg_sucess_catastral").show();
+                    $("#msg_alerta_catastral").show();
+                    $("#ci").val("");    
+                    $("#msg_sucess_catastral").html('La persona existe: '+data.ci);
+                    $('#nombres1').val(data.nombres);
+                    $("#nombres1").prop("disabled", true);
+                    $('#paterno1').val(data.paterno);
+                    $("#paterno1").prop("disabled", true);
+                    $('#materno1').val(data.materno);
+                    $("#materno1").prop("disabled", true);
+                    $('#fec_nacimiento1').val(data.fec_nacimiento);
+                    $("#fec_nacimiento1").prop("disabled", true);
+                    $("#direccion1").val(data.direccion);
+                    $("#direccion1").prop("disabled", true);
+                    $("#email1").val(data.email);
+                    $("#email1").prop("disabled", true);
+                    $("#telefono_fijo1").val(data.telefono_fijo);
+                    $("#telefono_fijo1").prop("disabled", true);
+                    $("#telefono_celular1").val(data.telefono_celular);
+                    $("#telefono_celular1").prop("disabled", true);
+                    $("#msg_alerta_catastral").html('Podria cambiar el porcentaje de participacion del propietario que sea menor o igual a lo indicado');
+                         
+                } else {
+                    $("#msg_sucess_catastral").hide();
+                     $("#msg_error_catastral").show();
+                     $("#msg_alerta_catastral").hide();
+                    $("#msg_error_catastral").html('La persona no existe: '+data.ci);
+                    $('#nombres1').val('');
+                    $('#paterno1').val('');
+                    $('#materno1').val('');
+                    $('#fec_nacimiento1').val('');
+                    $("#nombres1").prop("disabled", false);
+                   
+                    $("#paterno1").prop("disabled", false);
+                    
+                    $("#materno1").prop("disabled", false);
+                    
+                    $("#fec_nacimiento1").prop("disabled", false);
+                    $("#direccion1").val('');
+                    $("#direccion1").prop("disabled", false);
+                    $("#email1").val('');
+                    $("#email1").prop("disabled", false);
+                    $("#telefono_fijo1").val('');
+                    $("#telefono_fijo1").prop("disabled", false);
+                    $("#telefono_celular1").val('');
+                    $("#telefono_celular1").prop("disabled", false);
 
-            $.ajax({
-                url: '<?php echo base_url(); ?>persona/ajax_verifica/',
-                type: 'GET',
-                dataType: 'json',
-                data: {csrfName: csrfHash, param1: ci},
-                // data: {param1: cod_catastral},
-                success:function(data, textStatus, jqXHR) {
-                    //alert("Se envio bien");
-                    // csrfName = data.csrfName;
-                    // csrfHash = data.csrfHash;
-                    // alert(data.message);
-                    if (data.estado == 'si') {
-                        // console.log('Si se esta');
-                        $("#msg_error_catastral").hide();    
-                        $("#msg_sucess_catastral").show();
-                        $("#msg_alerta_catastral").show();
-                        $("#ci").val("");    
-                        $("#msg_sucess_catastral").html('La persona existe: '+data.ci);
-                        $('#nombres1').val(data.nombres);
-                        $('#paterno1').val(data.paterno);
-                        $('#materno1').val(data.materno);
-                        $('#fec_nacimiento1').val(data.fec_nacimiento);
-                        $("#msg_alerta_catastral").html('Podria cambiar el porcentaje de participacion del propietario que sea menor o igual a lo indicado');
-                             
-                    } else {
-                        $("#msg_sucess_catastral").hide();
-                         $("#msg_error_catastral").show();
-                         $("#msg_alerta_catastral").hide();
-                        $("#msg_error_catastral").html('La persona no existe: '+data.ci);
-                        $('#nombres1').val('');
-                        $('#paterno1').val('');
-                        $('#materno1').val('');
-                        $('#fec_nacimiento1').val('');
-                    }
-                },
-                error:function(jqXHR, textStatus, errorThrown) {
-                    // alert("error");
                 }
-            });
+            },
+            error:function(jqXHR, textStatus, errorThrown) {
+                // alert("error");
+            }
         });
+    });
 
     function confirma(){ 
         var ci = $('#ci1').val();
@@ -471,50 +480,69 @@
                 }
         });
     }
-    </script>
-
-    <script type="text/javascript">
-        function validate_int(myEvento) {
-          if ((myEvento.charCode >= 48 && myEvento.charCode <= 57) || myEvento.keyCode == 9 || myEvento.keyCode == 10 || myEvento.keyCode == 13 || myEvento.keyCode == 8 || myEvento.keyCode == 116 || myEvento.keyCode == 46 || (myEvento.keyCode <= 40 && myEvento.keyCode >= 37)) {
+</script>
+<script type="text/javascript">
+    function validate_int(myEvento) {
+        if ((myEvento.charCode >= 48 && myEvento.charCode <= 57) || myEvento.keyCode == 9 || myEvento.keyCode == 10 || myEvento.keyCode == 13 || myEvento.keyCode == 8 || myEvento.keyCode == 116 || myEvento.keyCode == 46 || (myEvento.keyCode <= 40 && myEvento.keyCode >= 37)) {
             dato = true;
-          } else {
+        } else {
             dato = false;
-          }
-          return dato;
         }
-        function folio_mask() {
-          var myMask = "_.__._.__._______";
-          var myCaja = document.getElementById("nro_folio");
-          var myText = "";
-          var myNumbers = [];
-          var myOutPut = ""
-          var theLastPos = 1;
-          myText = myCaja.value;
-          //get numbers
-          for (var i = 0; i < myText.length; i++) {
+      return dato;
+    }
+    function folio_mask() {
+        var myMask = "_.__._.__._______";
+        var myCaja = document.getElementById("nro_folio");
+        var myText = "";
+        var myNumbers = [];
+        var myOutPut = ""
+        var theLastPos = 1;
+        myText = myCaja.value;
+        for (var i = 0; i < myText.length; i++) {
             if (!isNaN(myText.charAt(i)) && myText.charAt(i) != " ") {
-              myNumbers.push(myText.charAt(i));
+                myNumbers.push(myText.charAt(i));
             }
-          }
-          //write over mask
-          for (var j = 0; j < myMask.length; j++) {
-            if (myMask.charAt(j) == "_") { //replace "_" by a number 
-              if (myNumbers.length == 0)
-                myOutPut = myOutPut + myMask.charAt(j);
-              else {
-                myOutPut = myOutPut + myNumbers.shift();
-                theLastPos = j + 1; //set caret position
-              }
-            } else {
-              myOutPut = myOutPut + myMask.charAt(j);
-            }
-          }
-          document.getElementById("nro_folio").value = myOutPut;
-          document.getElementById("nro_folio").setSelectionRange(theLastPos, theLastPos);
         }
-        document.getElementById("nro_folio").onkeypress = validate_int;
-        document.getElementById("nro_folio").onkeyup = folio_mask;
-    </script>
-
+        for (var j = 0; j < myMask.length; j++) {
+            if (myMask.charAt(j) == "_") { //replace "_" by a number 
+                if (myNumbers.length == 0)
+                    myOutPut = myOutPut + myMask.charAt(j);
+                else {
+                    myOutPut = myOutPut + myNumbers.shift();
+                    theLastPos = j + 1; //set caret position
+                }
+            }else{
+                myOutPut = myOutPut + myMask.charAt(j);
+            }
+        }
+            document.getElementById("nro_folio").value = myOutPut;
+            document.getElementById("nro_folio").setSelectionRange(theLastPos, theLastPos);
+    }
+    document.getElementById("nro_folio").onkeypress = validate_int;
+    document.getElementById("nro_folio").onkeyup = folio_mask;
+</script>
+<script type="text/javascript">
+    $('.eliminarPersona').on("click", function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        Swal({
+        title: 'Está seguro?',
+        text: "No podrá recuperar una vez sea eliminado!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: "No, Cancelar!",
+        confirmButtonText: 'Si, Eliminarlo!'
+        }).then((result) => {
+            if (result.value) {
+                window.location.replace(url);
+                swal("Eliminado!", "Su información ha sido eliminado!", "success");
+            }else{
+                swal("Cancelado", "Su información está a salvo! :)", "error");
+            }
+        });
+    });
+</script>
         
 
