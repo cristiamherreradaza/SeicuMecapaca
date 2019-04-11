@@ -45,9 +45,11 @@ class Derivaciones extends CI_Controller
 
             $organi = $this->db->get_where('tramite.organigrama', array('organigrama_id'=>$persona_organigrama->organigrama_id))->row();
             // vdebug($organi);
-            $consulta = array('nivel >='=>$organi->nivel, 'unidad'=>$organi->unidad, 'organigrama_id !='=>$organi->organigrama_id);
+            // $consulta = array('nivel >='=>$organi->nivel, 'unidad'=>$organi->unidad, 'organigrama_id !='=>$organi->organigrama_id);
+            $consulta = array('nivel >='=>$organi->nivel, 'organigrama_id !='=>$organi->organigrama_id);
             $this->db->where($consulta);
             $per = $this->db->get('tramite.organigrama')->result();
+            // vdebug($per);
             // print_r($per);
             $array_personas = array();
             forEach($per as $p){
@@ -69,7 +71,6 @@ class Derivaciones extends CI_Controller
 
             // $sql = $this->db->last_query();
             // vdebug($sql);
-
 
             $padre_org = $this->db->get_where('tramite.organigrama_persona', array('organigrama_id'=>$organi->hijo))->row();
 
