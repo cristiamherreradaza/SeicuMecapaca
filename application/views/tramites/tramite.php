@@ -44,7 +44,7 @@
 
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
                             <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
-                            <?php echo form_open_multipart('tipo_tramite/insertar', array('method'=>'POST')); ?>
+                            <?php echo form_open_multipart('derivaciones/nuevo', array('method'=>'POST')); ?>
                                     <h4 class="card-title">Registro de Tramite</h4>
                                
                                     <div class="form-row">
