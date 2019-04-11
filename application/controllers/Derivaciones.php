@@ -99,8 +99,9 @@ class Derivaciones extends CI_Controller
 
     public function listado(){
 
-        $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
-        $query = $this->db->get('tramite.derivacion');
+        // $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
+        $this->db->order_by('tramite.tramite.fec_creacion', 'DESC');
+        $query = $this->db->get('tramite.tramite');
         // vdebug($this->db->last_query());
         $data['mis_tramites'] = $query->result();
         $data['verifica'] = $this->rol_model->verifica();

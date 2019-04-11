@@ -79,11 +79,8 @@
                                             <?php echo $inmediato_superior->materno; ?><br>
                                         </option>
                                         <?php //foreach ($personas_derivacion as $key => $pd): ?>
-                                            <option value="0">
-                                                <?php //echo $pd->nombres; ?>
-                                                <?php //echo $pd->paterno; ?>
-                                                <?php //echo $pd->materno; ?>
-                                            </option>
+                                            <option value="0">Ricardo Vargas Tapia</option>
+                                            <option value="0">Juan Perez Perez</option>
                                         <?php //endforeach ?>
                                     </select>
                                 </div>
