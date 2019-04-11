@@ -101,7 +101,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="button" class="btn waves-effect waves-light btn-block btn-info">Derivar</button>
+                                <button type="button" class="btn waves-effect waves-light btn-block btn-info" onclick="envia();">Derivar</button>
                             </div>
                         </div>
 
@@ -117,3 +117,9 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+        function envia(){
+            // console.log('Hizo click');
+            window.location = "http://localhost/CodeigniterPMGM/derivaciones/listado";
+        }
+    </script>

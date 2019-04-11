@@ -38,7 +38,7 @@ class Derivaciones extends CI_Controller
 	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
 	        $usu_creacion = $resi->persona_id;
 
-            $idTramite = 1;
+            $idTramite = 13;
             $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
 
             $persona_organigrama = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$data['tramite']->organigrama_persona_id))->row();
