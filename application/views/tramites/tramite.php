@@ -106,34 +106,42 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="validationCustom03">Cite<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="validationCustom03" name="cite" placeholder="INF/MOPSV/VMVU/PMGM Nº 0306/2019" required>
-                                            <div class="invalid-feedback">
-                                                Please provide a valid city.
-                                            </div>
+                                         <?php $cite = $this->db->query("SELECT *
+                                                                            FROM tramite.numero_tramite
+                                                                            WHERE gestion = '2019'
+                                                                            AND activo = '1'")->row();
+                                               $tcite = $this->db->query("SELECT count(*) AS id FROM tramite.tramite")->row();
+                                               $numero = $tcite->id + 1 ;
+                                               $numeroConCeros = str_pad($numero, 5, "0", STR_PAD_LEFT);                                                
+
+                                        ?>  
+
+
+                                        <div>
+                                            <input hidden type="text" name="cite" value="<?php echo $cite->tipo ?>/<?php echo $cite->gestion ?>-<?php echo $numeroConCeros ?>" >
+                                            
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-4 mb-3">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Fecha<span class="text-danger">*</span> </label>
-                                                <input type="date" class="form-control" id="fecha" name="fecha" maxlength="11" required="">
+                                                <input type="date" class="form-control" id="fecha" name="fecha" required>
                                                 <small id="msg_error_catastral" class="form-control-feedback"></small>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-4 mb-3">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Fojas<span class="text-danger">*</span> </label>
-                                                <input type="integer" class="form-control" id="fojas" name="fojas" maxlength="11" required="">
+                                                <input type="integer" class="form-control" id="fojas" name="fojas" required pattern="[0-9]{1,40}">
                                                 <small id="msg_error_catastral" class="form-control-feedback"></small>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-4 mb-3">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Anexos<span class="text-danger">*</span> </label>
-                                                <input type="integer" class="form-control" id="anexos" name="anexos" maxlength="11" required="">
+                                                <input type="integer" class="form-control" id="anexos" name="anexos" required pattern="[0-9]{1,40}">
                                                 <small id="msg_error_catastral" class="form-control-feedback"></small>
                                             </div>
                                         </div>                                                                              

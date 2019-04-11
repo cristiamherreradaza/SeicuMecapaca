@@ -25,8 +25,11 @@ class Tipo_tramite extends CI_Controller {
                                             WHERE fec_baja is NULL
                                             AND persona_id = '$res->persona_id'
                                             ")->row();
-            $ids['idss'] = $consulta->organigrama_persona_id;
+            
+
+           
 		            if ($consulta) {
+		            	 $ids['idss'] = $consulta->organigrama_persona_id;
 		            	$this->load->view('admin/header');
 				        $this->load->view('admin/menuprueba');
 				        $this->load->view('tramites/tramite', $ids);
@@ -34,9 +37,9 @@ class Tipo_tramite extends CI_Controller {
 				        
 		            }else
 		            {
-		            	var_dump('No tiene los permisos necesarios para realizar TRAMITES');
+		            	redirect(base_url()."prueba/sin_permisos");
 		            }
-				
+			
 			
        		}
 		else{

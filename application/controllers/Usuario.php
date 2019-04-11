@@ -216,17 +216,24 @@ class Usuario extends CI_Controller {
 		   		
 		        foreach ($this->input->post('menus') as $me) {
 		        	
-					$menu = array(
+		        	$consulta = $this->db->query("SELECT *
+	                                                FROM credencial_menu
+	                                                WHERE credencial_id = '$cre'
+	                                                AND menu_id = '$me'")->row();
+
+		        	if (!$consulta) {
+		        		$menu = array(
 						'credencial_id'=>$cre,
 						'menu_id'=>$me,
 						'activo'=>1
-					);
-					
-					$this->db->insert('public.credencial_menu', $menu);
-					
+						);
 
+						$this->db->insert('public.credencial_menu', $menu);
+			        	}
+						
 					 }
-					 redirect('usuario/listar');
+					 
+					redirect('usuario/listar');
 			}
 		else
 		{

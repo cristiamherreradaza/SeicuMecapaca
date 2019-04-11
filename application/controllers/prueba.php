@@ -97,4 +97,13 @@ class Prueba extends CI_Controller {
         $this->load->view('admin/footer');
        
     }
+
+     public function sin_permisos()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/proceso1');
+        $this->load->view('admin/footer');
+       
+    }
 }

@@ -64,7 +64,7 @@
                                             $compara =  $this->db->query("SELECT *
                                                                             FROM credencial_menu
                                                                             WHERE menu_id = '$menu1->menu_id'
-                                                                            AND credencial_id = '18'
+                                                                            AND credencial_id = '$credencial_id'
                                                                             ORDER BY credencial_menu_id")->row();
 
                                             if ($compara) {
@@ -99,7 +99,7 @@
                                                             $compara2 =  $this->db->query("SELECT *
                                                                             FROM credencial_menu
                                                                             WHERE menu_id = '$menu2->menu_id'
-                                                                            AND credencial_id = '18'
+                                                                            AND credencial_id = '$credencial_id'
                                                                             ORDER BY credencial_menu_id")->row();
 
                                                             if ($compara2) {
@@ -132,7 +132,7 @@
                                                                                 $compara3 =  $this->db->query("SELECT *
                                                                                                                 FROM credencial_menu
                                                                                                                 WHERE menu_id = '$menu3->menu_id'
-                                                                                                                AND credencial_id = '18'
+                                                                                                                AND credencial_id = '$credencial_id'
                                                                                                                 ORDER BY credencial_menu_id")->row();
 
                                                                                 if ($compara3) {
@@ -177,142 +177,7 @@
                         </div>
                     </div>
                    
-                    <!--<div class="col-lg-4 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Men&uacute; Operador</h4>
-                                <div class="myadmin-dd dd" id="nestable">
-                                    <ol class="dd-list">
-                                        <li class="dd-item" data-id="1">
-                                            <div class="dd-handle"> Item 1 </div>
-                                        </li>
-                                        <li class="dd-item" data-id="2">
-                                            <div class="dd-handle"> Item 2 </div>
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="3">
-                                                    
-                                                    <div class="dd-handle"> Item 3 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="4">
-                                                    <div class="dd-handle"> Item 4 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="5">
-                                                    <div class="dd-handle"> Item 5 </div>
-                                                    <ol class="dd-list">
-                                                        <li class="dd-item" data-id="6">
-                                                            <div class="dd-handle"> Item 6 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="7">
-                                                            <div class="dd-handle"> Item 7 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="8">
-                                                            <div class="dd-handle"> Item 8 </div>
-                                                        </li>
-                                                    </ol>
-                                                </li>
-                                                <li class="dd-item" data-id="9">
-                                                    <div class="dd-handle"> Item 9 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="10">
-                                                    <div class="dd-handle"> Item 10 </div>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Men&uacute; Usuario</h4>
-                                <div class="myadmin-dd dd" id="nestable">
-                                    <ol class="dd-list">
-                                        <li class="dd-item" data-id="1">
-                                            <div class="dd-handle"> Item 1 </div>
-                                        </li>
-                                        <li class="dd-item" data-id="2">
-                                            <div class="dd-handle"> Item 2 </div>
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="3">
-                                                    <div class="dd-handle"> Item 3 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="4">
-                                                    <div class="dd-handle"> Item 4 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="5">
-                                                    <div class="dd-handle"> Item 5 </div>
-                                                    <ol class="dd-list">
-                                                        <li class="dd-item" data-id="6">
-                                                            <div class="dd-handle"> Item 6 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="7">
-                                                            <div class="dd-handle"> Item 7 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="8">
-                                                            <div class="dd-handle"> Item 8 </div>
-                                                        </li>
-                                                    </ol>
-                                                </li>
-                                                <li class="dd-item" data-id="9">
-                                                    <div class="dd-handle"> Item 9 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="10">
-                                                    <div class="dd-handle"> Item 10 </div>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Men&uacute; Beneficiario</h4>
-                                <div class="myadmin-dd dd" id="nestable">
-                                    <ol class="dd-list">
-                                        <li class="dd-item" data-id="1">
-                                            <div class="dd-handle"> Item 1 </div>
-                                        </li>
-                                        <li class="dd-item" data-id="2">
-                                            <div class="dd-handle"> Item 2 </div>
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="3">
-                                                    <div class="dd-handle"> Item 3 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="4">
-                                                    <div class="dd-handle"> Item 4 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="5">
-                                                    <div class="dd-handle"> Item 5 </div>
-                                                    <ol class="dd-list">
-                                                        <li class="dd-item" data-id="6">
-                                                            <div class="dd-handle"> Item 6 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="7">
-                                                            <div class="dd-handle"> Item 7 </div>
-                                                        </li>
-                                                        <li class="dd-item" data-id="8">
-                                                            <div class="dd-handle"> Item 8 </div>
-                                                        </li>
-                                                    </ol>
-                                                </li>
-                                                <li class="dd-item" data-id="9">
-                                                    <div class="dd-handle"> Item 9 </div>
-                                                </li>
-                                                <li class="dd-item" data-id="10">
-                                                    <div class="dd-handle"> Item 10 </div>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
+                    
 
             </div>
     </div>
