@@ -12,25 +12,31 @@
         data.addColumn('string', 'ToolTip');
 
         // For each orgchart box, provide the name, manager, and tooltip to show.
-        //obtiene el valor del ultimo nivel del organigrama
-        var cant='<?php echo $nivel->nivel; ?>';
-        
         data.addRows([
-          //level one       
-
-          <?php foreach ($data_chart as $tp) : ?>           
-              ['<?php echo $tp->unidad; ?>', '<?php echo $tp->jefe; ?>', ''],  
-          <?php endforeach; ?>          
+          [{v:'Mike', f:'Mike<div style="color:red; font-style:italic">President</div>'},
+           '', 'The President'],
+          [{v:'Jim', f:'Jim<div style="color:red; font-style:italic">Vice President</div>'},
+           'Mike', 'VP'],
+          [{v:'Jim', f:'Jim<div style="color:red; font-style:italic">Vice President</div>'},
+           'Mike', 'VP'],
+          ['Alice', 'Mike', ''],
+          ['Bob', 'Jim', 'Bob Sponge'],
+          ['Carol', 'Bob', '']
         ]);
 
         // Create the chart.
-        var chart = new google.visualization.OrgChart(document.getElementById('chart_div_pmgm'));
+        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
         // Draw the chart, setting the allowHtml option to true for the tooltips.
         chart.draw(data, {allowHtml:true});
       }
    </script>
+   <style>
+table{
+border-collapse: separate !important;
+}
+</style>
     </head>
   <body>
-    <div id="chart_div_pmgm"></div>
+    <div id="chart_div"></div>
   </body>
 </html>

@@ -42,4 +42,20 @@ class Organigrama_model extends CI_Model {
         return $query->result();
     }
 
+    function get_datos_nombre_chart() {//obtiene todos los datos del organigrama ordenado por niveles
+        $query = $this->db->query('SELECT x.unidad,x.hijo,t.unidad as jefe,x.nivel,x.organigrama_id,y.persona_id,y.cargo_id,z.nombres FROM tramite.organigrama x
+        LEFT JOIN
+        tramite.organigrama_persona y
+        on x.organigrama_id=y.organigrama_id	
+				LEFT JOIN
+        public.persona z
+        on z.persona_id=y.persona_id
+				LEFT JOIN
+        tramite.organigrama t
+        on t.organigrama_id=x.hijo
+        WHERE x.activo=1 and y.activo=1 
+        ORDER BY x.unidad asc');
+        return $query->result();
+    }
+
 }
