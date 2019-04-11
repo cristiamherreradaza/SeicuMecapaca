@@ -25,13 +25,10 @@ class Tipo_tramite extends CI_Controller {
                                             WHERE fec_baja is NULL
                                             AND persona_id = '$res->persona_id'
                                             ")->row();
-            
-
-           
 		            if ($consulta) {
 		            	 $ids['idss'] = $consulta->organigrama_persona_id;
 		            	$this->load->view('admin/header');
-				        $this->load->view('admin/menuprueba');
+				        $this->load->view('admin/menu');
 				        $this->load->view('tramites/tramite', $ids);
 				        $this->load->view('admin/footer');
 				        
@@ -39,7 +36,6 @@ class Tipo_tramite extends CI_Controller {
 		            {
 		            	redirect(base_url()."prueba/sin_permisos");
 		            }
-			
 			
        		}
 		else{
@@ -52,7 +48,7 @@ class Tipo_tramite extends CI_Controller {
 	public function index()
 	{
 		if($this->session->userdata("login")){
-			redirect(base_url()."Tipo_tramite/tipo_tramite");
+			redirect(base_url()."tipo_tramite/tipo_tramite");
 		}
 		else{
 			redirect(base_url());

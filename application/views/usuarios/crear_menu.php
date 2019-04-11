@@ -148,7 +148,7 @@
                                                                                     <li class="dd-item" data-id="1">
                                                                                         <div class="dd-handle"><i class="<?php echo $menu3->icono ?>"></i> <?php echo $menu3->descripcion; ?>
                                                                                                 <label class="custom-control custom-checkbox">
-                                                                                                    <input type="checkbox" <?php echo $var3; ?> value="<?php echo $menu2->menu_id; ?>" name="menus[<?php echo $menu3->menu_id; ?>]" class="custom-control-input">
+                                                                                                    <input type="checkbox" <?php echo $var3; ?> value="<?php echo $menu3->menu_id; ?>" name="menus[<?php echo $menu3->menu_id; ?>]" class="custom-control-input">
                                                                                                         <span class="custom-control-label"></span>
                                                                                                 </label>
                                                                                         </div>
