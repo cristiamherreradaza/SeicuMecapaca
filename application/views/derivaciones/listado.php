@@ -45,10 +45,10 @@
                                         <td><?php echo $la->referencia; ?></td>
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
-                                                <a <?php echo $verifica['imprimir'];?>="<?php echo base_url(); ?>predios/certificado/<?php echo $la->organigrama_persona_id; ?>" class="btn btn-success footable-edit">
+                                                <a href="#" class="btn btn-success footable-edit">
                                                     <span class="fas fas fa-print" aria-hidden="true"></span>
                                                 </a> 
-                                                <a <?php echo $verifica['baja'];?>="" type="button" class="btn btn-danger footable-delete">
+                                                <a href="#" type="button" class="btn btn-danger footable-delete">
                                                     <span class="fas fa-trash-alt" aria-hidden="true"></span>
                                                 </a>
                                             </div>
