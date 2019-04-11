@@ -80,7 +80,7 @@
 
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
                             <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
-                            <?php echo form_open_multipart('predios/guarda', array('method'=>'POST')); ?>
+                            <?php echo form_open_multipart('predios/guarda', array('method'=>'POST', 'id'=>'predio_form')); ?>
 
                             <!-- <h6>Datos del terreno</h6> -->
                                 <div class="row">
@@ -886,6 +886,14 @@ function elimina_fila_tabla(fila){
     // console.log(todos);
     // console.log(fila);
 }
+
+// $('#predio_form').submit(function(e) {
+    
+//     swal("Excelente!", "Puedes continuar con el siguiente paso!", "success");
+//     e.preventDefault(); // don't submit multiple times
+//     this.submit(); // use the native submit method of the form element
+    // $('#imagefile').val(''); // blank the input
+// });
 
 function getGeneraRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) ) + min;

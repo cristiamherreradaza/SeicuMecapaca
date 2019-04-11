@@ -39,17 +39,17 @@ class Predios extends CI_Controller {
 
 			//sacar el perfil de la persona logueada
 			$persona_perfil_id = $id->persona_perfil_id;
-			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE 
+			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE
 						persona_perfil_id = '$persona_perfil_id'")->row();
-			$perfil = $persona_perfil->perfil_id; 
-			
-			
-					
+			$perfil = $persona_perfil->perfil_id;
+
+
+
 					$this->load->view('admin/header');
 					$this->load->view('admin/menu');
 					$this->load->view('admin/index');
 					$this->load->view('admin/footer');
-				
+
 		}
 		else{
 			redirect(base_url());
@@ -75,18 +75,18 @@ class Predios extends CI_Controller {
 			$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
 
 			//sacar el perfil de la persona logueada
-	
+
 			$persona_perfil_id = $id->persona_perfil_id;
 			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE persona_perfil_id = '$persona_perfil_id'")->row();
-			$perfil = $persona_perfil->perfil_id; 
-			
-		
+			$perfil = $persona_perfil->perfil_id;
 
-					
+
+
+
 					// $this->db->select(array('catastro.predio.fec_creacion', 'catastro.predio.codcatas', 'catastro.predio.nro_inmueble', 'catastro.zona_urbana.descripcion'));
 					// $this->db->join('catastro.zona_urbana', 'catastro.predio.zonaurb_id = catastro.zona_urbana.zonaurb_id');
 					// $this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
-					$this->db->order_by('catastro.predio.fec_creacion', 'DESC');					
+					$this->db->order_by('catastro.predio.fec_creacion', 'DESC');
 					$query = $this->db->get('catastro.predio');
 					// vdebug($this->db->last_query());
 					$data['listado_predios'] = $query->result();
@@ -98,7 +98,7 @@ class Predios extends CI_Controller {
 					$this->load->view('predios/index', $data);
 					$this->load->view('admin/footer');
 					$this->load->view('predios/index_js');
-				
+
 		}
 		else{
 			redirect(base_url());
@@ -106,7 +106,7 @@ class Predios extends CI_Controller {
 	}
 
 	public function registra_predio(){
-		
+
 		if($this->session->userdata("login")){
 
 			if ($this->input->post()) {
@@ -270,7 +270,7 @@ class Predios extends CI_Controller {
 			$this->db->insert('catastro.predio', $data);
 			// fin guardamos datos del predio
 
-			// guardamos 
+			// guardamos
 			$foto_plano = $_FILES['foto_plano']['tmp_name'];
 			$contenido_foto_plano = file_get_contents($foto_plano);
 			$contenido_tranformado_plano = pg_escape_bytea($contenido_foto_plano);
@@ -311,16 +311,16 @@ class Predios extends CI_Controller {
 					$tipo_calle = 0;
 				}
 				$data_calles = array(
-					'codcatas'=>$this->input->post('codigo_catastral'),	
+					'codcatas'=>$this->input->post('codigo_catastral'),
 					'objectid_via'=>1,
 					'matvia_id'=>1,
 					'activo'=>1,
 					'gvia_id'=>$ca,
 					'gvia_tipo'=>$tipo_calle,
-				);	     
+				);
 				$this->db->insert('catastro.predio_via', $data_calles);
 			 	// echo $ca.'<br />';
-			}		
+			}
 			 // vdebug($calles_array);
 			// fin guardamos las calles
 
@@ -368,7 +368,7 @@ class Predios extends CI_Controller {
 
 	public function nuevo($cod_catastral = null){
 		if($this->session->userdata("login")){
-		
+
 		$data = $this->datos_combo();
 		$data['verifica'] = $this->rol_model->verifica();
 		$data['cod_catastral']= $cod_catastral;
@@ -385,7 +385,7 @@ class Predios extends CI_Controller {
 
 	public function editar_propietario($cod_catastral = null){
 		if($this->session->userdata("login")){
-			
+
 			$data = $this->datos_combo();
 			$data = $this->Ddrr_model->datos_editar($cod_catastral); //al actualizar esto se recarga
 
@@ -403,7 +403,7 @@ class Predios extends CI_Controller {
 
 	public function certificado($cod_catastral = null){
 		if($this->session->userdata("login")){
-		
+
 		// $data['predio']=$this->db->get_where('catastro.predio', array('codcatas'=>$cod_catastral))->result();
 		$this->db->select('*');
 		$this->db->from('catastro.predio');
@@ -438,15 +438,15 @@ class Predios extends CI_Controller {
 			} else {
 				$respuesta = array('codigo'=>$cod_catastral, 'estado'=>'no');
 				echo json_encode($respuesta);
-			}	
+			}
 		}
 		else{
 			redirect(base_url());
-		}	
+		}
 	}
 
 	public function editar($cod_catastral = null){
-		
+
 		if($this->session->userdata("login")){
 			// vdebug($cod_catastral);
 			$data = $this->datos_combo();
@@ -554,9 +554,9 @@ class Predios extends CI_Controller {
 
 		$nuevo_predio = $predio[0]->get_pred + 1;
 		if ($nuevo_predio > 1 && $nuevo_predio < 10) {
-			$ceros = "000";			
+			$ceros = "000";
 		}elseif ($nuevo_predio > 9 && $nuevo_predio < 100) {
-			$ceros = "00";			
+			$ceros = "00";
 		} else {
 			$ceros = "0";
 		}
@@ -583,23 +583,23 @@ class Predios extends CI_Controller {
 
 		$config['protocol']    = 'smtp';
 		// $config['smtp_host']    = 'ssl://smtp.gmail.com';
-		$config['smtp_host']    = 'mail.vergarasociados.com';
-		$config['smtp_port']    = '465';
+		$config['smtp_host']  = 'mail.vergarasociados.com';
+		$config['smtp_port']  = '465';
 		$config['smtp_timeout'] = '7';
 		$config['smtp_user']    = 'cristiam@vergarasociados.com';
 		$config['smtp_pass']    = '123cristiam456';
 		$config['charset']    = 'utf-8';
 		$config['newline']    = "\r\n";
 	    $config['mailtype'] = 'text'; // or html
-	    $config['validation'] = TRUE; // bool whether to validate email or not      
+	    $config['validation'] = TRUE; // bool whether to validate email or not
 
 	    $this->email->initialize($config);
 
 	    $this->email->from('cristiam@vergarasociados.com', 'Cristiam Prueba');
-	    $this->email->to('cristiamherrera@gmail.com'); 
+	    $this->email->to('cristiamherrera@gmail.com');
 
 	    $this->email->subject('Prueba dede codeigniter');
-	    $this->email->message('Aqui el mensaje de prueba.');  
+	    $this->email->message('Aqui el mensaje de prueba.');
 
 	    $this->email->send();
 

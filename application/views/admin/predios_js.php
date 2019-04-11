@@ -12,7 +12,7 @@
 <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
 <script>
-	! function(window, document, $) {
+	function(window, document, $) {
 		"use strict";
 		$("input,select,textarea").not("[type=submit]").jqBootstrapValidation()
 	}(window, document, jQuery);
