@@ -72,6 +72,10 @@ class Persona extends CI_Controller {
 		$ci = $this->input->post('ci');
 		$fec_nacimiento = $this->input->post('fec_nacimiento');
 		$porcen_parti = $this->input->post('porcen_parti');
+		$direccion = $this->input->post('direccion');
+		$email = $this->input->post('email');
+		$telefono_fijo = $this->input->post('telefono_fijo');
+		$telefono_celular = $this->input->post('telefono_celular');
 
 		//$this->form_validation->set_rules('nombres', 'Nombres', 'required'); 
 		$this->form_validation->set_rules('paterno', 'Apellido paterno', 'required');
@@ -87,7 +91,7 @@ class Persona extends CI_Controller {
          	if($porcen_parti <= $porcentajeR){
 				if($this->persona_model->existeci($ci))
 				{
-					$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
+					$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo,$telefono_celular);
 				}
 				$consulta = $this->persona_model->consulta($ci);
 				$dato = array(
@@ -165,6 +169,10 @@ class Persona extends CI_Controller {
 		$ci = $this->input->post('ci');
 		$fec_nacimiento = $this->input->post('fec_nacimiento');
 		$porcen_parti = $this->input->post('porcen_parti');
+		$direccion = $this->input->post('direccion');
+		$email = $this->input->post('email');
+		$telefono_fijo = $this->input->post('telefono_fijo');
+		$telefono_celular = $this->input->post('telefono_celular');
 
 		$this->form_validation->set_rules('nombres', 'Nombres', 'required'); 
 		$this->form_validation->set_rules('paterno', 'Apellido paterno', 'required');
@@ -177,7 +185,7 @@ class Persona extends CI_Controller {
 			if($porcen_parti <= $porcentajeR){
 				if($this->persona_model->existeci($ci))
 				{ 
-					$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion);
+					$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo,$telefono_celular);
 				}
 				$consulta = $this->persona_model->consulta($ci);
 				$dato = array(

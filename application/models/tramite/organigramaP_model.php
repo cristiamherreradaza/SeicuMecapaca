@@ -90,4 +90,17 @@ class OrganigramaP_model extends CI_Model {
 	    else
 	    	return null;
 	 }
+
+	public function insertarEditado($organigrama_persona_id, $persona_id, $organigrama_id, $cargo_id , $fec_alta, $usu_modificacion, $fec_modificacion){
+		$data = array(
+			'organigrama_id' =>$organigrama_id,
+			'persona_id' => $persona_id,
+			'fec_alta' => $fec_alta,
+			'usu_modificacion' =>$usu_modificacion,
+			'fec_modificacion' =>$fec_modificacion,
+			'cargo_id' => $cargo_id
+        );
+        $this->db->where('organigrama_persona_id', $organigrama_persona_id);
+        return $this->db->update('tramite.organigrama_persona', $data);
+	}
 }
