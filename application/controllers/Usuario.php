@@ -88,36 +88,6 @@ class Usuario extends CI_Controller {
 
 	 }
 
-	 public function update()     
-	{  
-		if($this->session->userdata("login")){ 
-			$id = $this->session->userdata("persona_perfil_id");
-	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-	        $usu_modificacion = $resi->persona_id;
-	        $fec_modificacion = date("Y-m-d H:i:s"); 
-
-	        			
-	        			$cre = $this->input->post('credencial');
-		   		
-		        foreach ($this->input->post('menus') as $me) {
-		        	
-					$menu = array(
-						'credencial_id'=>$cre,
-						'menu_id'=>$me,
-						'activo'=>1
-					);
-					
-					$this->db->insert('public.credencial_menu', $menu);
-					
-
-					 }
-					 redirect('usuario/listar');
-			}
-		else{
-			redirect(base_url());
-		}
-	}
-	
 
 	public function eliminar()
 	{
@@ -159,13 +129,13 @@ class Usuario extends CI_Controller {
 				$materno = $datos['materno'];
 				$ci = $datos['ci'];
 				$fec_nacimiento = $datos['fec_nacimiento'];
-				$this->Usuario_model->insertar_usuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
+				$this->usuario_model->insertar_usuario($nombres, $paterno, $materno, $ci, $fec_nacimiento);
 
 				$id = $this->db->query("SELECT * FROM persona WHERE ci = '$ci'")->row();
 
 				$persona_id = $id->persona_id;
 				$perfil_id = $datos['perfil_id'];
-				$this->Usuario_model->insertar_persona_perfil($persona_id, $perfil_id);
+				$this->usuario_model->insertar_persona_perfil($persona_id, $perfil_id);
 
 				$perfil_id = $this->db->query("SELECT MAX(persona_perfil_id) as max FROM persona_perfil")->row();
 
@@ -175,9 +145,9 @@ class Usuario extends CI_Controller {
 				$contrasenia = $datos['contrasenia'];
 				$pass_cifrado = md5($contrasenia);
 
-				$this->Usuario_model->insertar_credencial($persona_perfil_id, $rol_id, $usuario, $pass_cifrado);
+				$this->usuario_model->insertar_credencial($persona_perfil_id, $rol_id, $usuario, $pass_cifrado);
 				
-				redirect('Predios');
+				redirect('usuario/listar');
 				
 
 			}
@@ -230,9 +200,45 @@ class Usuario extends CI_Controller {
 		else{
 			redirect(base_url());
 		}
-		
-		
-	
+	}
+
+
+	 public function update()     
+	{  
+		if($this->session->userdata("login")){ 
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_modificacion = $resi->persona_id;
+	        $fec_modificacion = date("Y-m-d H:i:s"); 
+
+	        			
+	        	$cre = $this->input->post('credencial');
+		   		
+		        foreach ($this->input->post('menus') as $me) {
+		        	
+		        	$consulta = $this->db->query("SELECT *
+	                                                FROM credencial_menu
+	                                                WHERE credencial_id = '$cre'
+	                                                AND menu_id = '$me'")->row();
+
+		        	if (!$consulta) {
+		        		$menu = array(
+						'credencial_id'=>$cre,
+						'menu_id'=>$me,
+						'activo'=>1
+						);
+
+						$this->db->insert('public.credencial_menu', $menu);
+			        	}
+						
+					 }
+					 
+					redirect('usuario/listar');
+			}
+		else
+		{
+			redirect(base_url());
+		}
 	}
 }
 
