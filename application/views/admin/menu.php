@@ -12,7 +12,6 @@
             <!-- User profile image -->
             <div class="profile-img"> <img src="<?php echo base_url(); ?>public/assets/images/users/perfil1.jpg" alt="user" /> </div>
             <!-- User profile text-->
-
              <?php
                     $id = $this->session->userdata("persona_perfil_id");
                     $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
@@ -22,12 +21,11 @@
                     $res = $this->db->get_where('persona', array('persona_id' => $persona))->row();
                     $res1 = $this->db->get_where('perfil', array('perfil_id' => $perfil))->row();
 
-
+                    $credencial = $this->db->get_where('credencial', array('persona_perfil_id' => $id))->row();
+                    $id_credencial = $credencial->credencial_id;
              ?>
-            
             <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">USUARIO <?php echo strtoupper($res1->perfil);?> <span class="caret"></span></a>
                 <div class="dropdown-menu animated flipInY">
-                   
                     <div class="dropdown-divider"></div> <a href="<?php echo base_url(); ?>login/logout" class="dropdown-item"><i class="fa fa-power-off"></i> Cerrar Sesi&oacute;n</a>
                 </div>
             </div>
@@ -36,77 +34,80 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-home fa-lg"></i><span class="hide-menu"> Inicio </span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>predios/principal"><i class=" hide-menu"></i> Principal</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Catastro </span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>predios/registra_predio"><i class=" fas fa-book"></i> Registro</a></li>
-                        <li><a href="<?php echo base_url(); ?>predios/index"><i class="fas fa-clipboard-list"></i>  Listado</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Tramites</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>prueba"><i class=" fas fa-book"></i> Registro</a></li>
-                        <li><a href="<?php echo base_url(); ?>prueba/index1"><i class="fas fa-clipboard-list"></i> Listado</a></li>
-                        <li><a href="<?php echo base_url(); ?>organigrama_persona/inicio"><i class=" fas fa-book"></i> Asignacion de Oficinas</a></li>
-                        <li><a href="<?php echo base_url(); ?>tipo_tramite/index"><i class="fas fa-clipboard-list"></i> Tramite</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="has-arrow " href="#" aria-expanded="false"><i class="fa fa-folder-open"></i><span class="hide-menu"> Gesti&oacute;n de Inspecciones</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="<?php echo base_url(); ?>prueba/index2"><i class=" fas fa-book"></i> Registro</a></li>
-                        <li><a href="<?php echo base_url(); ?>prueba/index3"><i class="fas fa-clipboard-list"></i> Listado</a></li>
-                    </ul> 
-                </li>
-                <li>
-                    <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu"> Mantenimiento</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a class="has-arrow" href="<?php echo base_url(); ?>usuario/listar"><i class="fas fa-user"></i> Usuarios</a></li>
-                        <li><a href="<?php echo base_url(); ?>Usuario"><i class="fas fa-address-card"></i> Perfil</a></li>
-                        <li><a href="<?php echo base_url(); ?>prueba/index5"><i class="fas fa-users"></i> Roles</a></li>
-                        <li><a href="<?php echo base_url(); ?>prueba/index6"><i class="fas fa-th-list"></i> Men&uacute;</a></li>
-
+                 <?php
+                 
+                    $nivel1 = $this->db->query("SELECT m.*
+                                                FROM credencial_menu cm, menu m
+                                                WHERE credencial_id = '$id_credencial'
+                                                AND cm.menu_id = m.menu_id
+                                                AND m.padre = '0'
+                                                AND m.nivel = '1'
+                                                ORDER BY m.orden")->result();
+                 ?>
+                    <?php foreach ($nivel1 as $menu1) { ?>
                         <li>
-                            <a class="has-arrow " href="#" aria-expanded="false"><i class=" fas fa-thumbtack"></i><span class="hide-menu"> PARAM&Eacute;TRICAS CATASTRO</span></a>
-                            <ul aria-expanded="false" class="collapse">
+                            <a class="has-arrow" href="<?php echo base_url(); ?><?php echo $menu1->url?>" aria-expanded="false"><i class="<?php echo $menu1->icono ?>"></i><span class="hide-menu"><?php echo $menu1->descripcion ?>  </span></a>
+                            
+                            
+                                <ul aria-expanded="false" class="collapse">   
+                                <?php   
+                                        $nivel2 = $this->db->query("SELECT m.*
+                                                                    FROM credencial_menu cm, menu m
+                                                                    WHERE credencial_id = '$id_credencial'
+                                                                    AND cm.menu_id = m.menu_id
+                                                                    AND m.nivel = '2'
+                                                                    AND m.padre = '$menu1->menu_id'
+                                                                    ORDER BY m.orden")->result();
+                                ?>
 
-                                <li><a href="<?php echo base_url(); ?>Bloque_grupo_mat">Bloque Grupo Material</a></li>
-                                <li><a href="<?php echo base_url(); ?>Bloque_mat_item">Bloque Material item</a></li>
-                                <li><a href="<?php echo base_url(); ?>Clase_predio">Clase Predio</a></li>
-                                <li><a href="<?php echo base_url(); ?>Destino_bloque">Destino Bloque</a></li>
-                                <li><a href="<?php echo base_url(); ?>Edificio">Edificio</a></li>
-                                <li><a href="<?php echo base_url(); ?>Forma">Forma</a></li>
-                                <li><a href="<?php echo base_url(); ?>Matvia">Matvia</a></li>
-                                <li><a href="<?php echo base_url(); ?>Nivel">Nivel</a></li>
-                                <li><a href="<?php echo base_url(); ?>Pendiente">Pendiente</a></li>
-                                <li><a href="<?php echo base_url(); ?>Predio_via">Predio Via</a></li>
-                                <li><a href="<?php echo base_url(); ?>Rol">Rol</a></li>
-                                <li><a href="<?php echo base_url(); ?>Servicio">Servicio</a></li>
-                                <li><a href="<?php echo base_url(); ?>Tipopredio">Tipo de Predio</a></li>
-                                <li><a href="<?php echo base_url(); ?>Tipo_planta">Tipo Planta</a></li>
-                                <li><a href="<?php echo base_url(); ?>Ubicacion">Ubicaci&oacute;n</a></li>
-                                <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
-                                <li><a href="<?php echo base_url(); ?>Uso_suelo">Uso Suelo</a></li>
-                                <li><a href="<?php echo base_url(); ?>Zona_urbana">Zona Urbana</a></li>
-                                <li><a href="<?php echo base_url(); ?>Tipo_documento/nuevo">Tipo de Documento</a></li>
-                                <li><a href="<?php echo base_url(); ?>Tipo_tramite_doc/nuevo">Tipo Tramite</a></li>
-                                <li><a href="<?php echo base_url(); ?>Organigrama/nuevo">Organigrama</a></li>
-                                <li><a href="<?php echo base_url(); ?>Cargo/nuevo">Cargo</a></li>
-                                
+                                    <?php foreach ($nivel2 as $menu2) { ?>
+                                    
+                                             <?php if ($menu1->menu_id = $menu2->padre) { ?>
+                                                 
+                                                <li><a href="<?php echo base_url(); ?><?php echo $menu2->url?>"><i class=" <?php echo $menu2->icono ?>"></i> <?php echo $menu2->descripcion ?></a>
+                                                        <ul aria-expanded="false" class="collapse">
+                                                            <?php   
+                                                                    $nivel3 = $this->db->query("SELECT m.*
+                                                                                                FROM credencial_menu cm, menu m
+                                                                                                WHERE credencial_id = '$id_credencial'
+                                                                                                AND cm.menu_id = m.menu_id
+                                                                                                AND m.nivel = '3'
+                                                                                                AND m.padre = '$menu2->menu_id'
+                                                                                                ORDER BY m.orden")->result();
+                                                            ?>
 
-                                
-                            </ul>
+                                                                <?php foreach ($nivel3 as $menu3) { ?>
+                                                                
+                                                                         <?php if ($menu2->menu_id = $menu3->padre) { ?>
+
+                                                                               <li><a href="<?php echo base_url(); ?><?php echo $menu3->url?>"><i class=" <?php echo $menu3->icono ?>"></i> <?php echo $menu3->descripcion ?></a>
+                                                                               </li>
+                                                                         <?php
+                                                                             } 
+                                                                        ?>
+                                                                 <?php
+                                                                       }
+                                                                 ?>
+                                                            
+                                                        </ul>
+                                                    
+
+                                                </li>
+                                                                                        
+                                            <?php
+                                                 }
+                                            ?>
+                                    <?php 
+                                         }
+                                    ?>
+                                </ul>
+                            
+                          
                         </li>
-                    </ul>
-                </li>
+                    <?php   
+                         }
+                    ?>
+               
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

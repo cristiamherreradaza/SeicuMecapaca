@@ -72,25 +72,26 @@
                                                 <td><?php echo $lis->rol;?></td>
                                                 <td>
                                                     <?php if ($lis->activo == '1') {
-                                                        $var = 'checked';
+
+                                                        $var = '1';
+                                                        $color = 'success';
+                                                        $mensaje = 'Activo';
                                                     } 
                                                     else
                                                     {
-                                                        $var = '';
+                                                        $var = '0';
+                                                        $color = 'danger';
+                                                        $mensaje = 'Inactivo';
                                                     }
 
                                                     ?>
-                                                    <div class="bt-switch">
-                                                        <input type="checkbox" <?php echo $var; ?> data-size="mini" data-on-text="Activo" data-off-text="Inactivo" <?php echo $var; ?> data-on-color="success" data-off-color="danger" /> 
-                                                    </div>
-                                                    
-                                                    <!--<button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
-                                                            <span class="fas fa-pencil-alt" aria-hidden="true">
-                                                            </span>
-                                                    </button> -->
+                                                    <a <?php echo $verifica['baja'];?>="<?= base_url('usuario/activo/'. $lis->credencial_id); ?>" type="button" class="btn btn-<?php echo $color ?>"><?php echo $mensaje ?>
+                                                        
+                                                    </a>  
+
                                                 </td>
                                                 <td>
-                                                    <a <?php echo $verifica['baja'];?>="<?= base_url('usuario/asignar/'. $lis->credencial_id); ?>" type="button" class="btn btn-success button">
+                                                    <a <?php echo $verifica['baja'];?>="<?= base_url('usuario/asignar/'. $lis->credencial_id); ?>" type="button" class="btn btn-info button">
                                                         <span disabled class="fas fa-tasks" aria-hidden="true">
                                                         </span>
                                                     </a>                                                    
@@ -160,29 +161,13 @@
 
     <script src="<?php echo base_url(); ?>public/assets/plugins/bootstrap-switch/bootstrap-switch.min.js"></script>
     <script type="text/javascript">
-    $(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
-    var radioswitch = function() {
+            function ver_boton(id)
+            {
+                alert(id);
 
-        var bt = function() {
-
-            $(".radio-switch").on("switch-change", function() {
-                $(".radio-switch").bootstrapSwitch("toggleRadioState")
-            }), $(".radio-switch").on("switch-change", function() {
-                $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck")
-            }), $(".radio-switch").on("switch-change", function() {
-                $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck", !1)
-            })
-        };
-        return {
-            init: function() {
-                bt()
             }
-        }
-    }();
-    $(document).ready(function() {
-        radioswitch.init()
-    });
     </script>
+
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->

@@ -55,7 +55,7 @@
                             <a class="has-arrow" href="<?php echo base_url(); ?><?php echo $menu1->url?>" aria-expanded="false"><i class="<?php echo $menu1->icono ?>"></i><span class="hide-menu"><?php echo $menu1->descripcion ?>  </span></a>
                             
                             
-                                <ul aria-expanded="false" class="collapse">   
+                                <ul aria-expanded="true" class="collapse">   
                                 <?php   
                                        
                                         $nivel2 = $this->db->query("SELECT m.*
@@ -74,7 +74,7 @@
                                                 <li><a href="<?php echo base_url(); ?><?php echo $menu2->url?>"><i class=" <?php echo $menu2->icono ?>"></i> <?php echo $menu2->descripcion ?></a>
                                                     
                                                         
-                                                        <ul aria-expanded="false" class="collapse">
+                                                        <ul aria-expanded="true" class="collapse">
 
                                                             <?php   
                                                                 

@@ -240,6 +240,29 @@ class Usuario extends CI_Controller {
 			redirect(base_url());
 		}
 	}
+
+	public function activo($id)
+    {
+        if ($this->session->userdata("login")) {
+
+            $consulta = $this->db->query("SELECT *
+										FROM credencial
+										WHERE credencial_id = $id")->row();            
+            $valor = $consulta->activo;
+            
+            $valor=1-$valor;
+
+            $data = array(
+
+                'activo' => $valor, //input                                 
+            );
+            $this->db->where('credencial_id', $id);
+            $this->db->update('public.credencial', $data);          
+            redirect(base_url() . 'usuario/listar/');
+        } else {
+            redirect(base_url());
+        }
+    }
 }
 
 	

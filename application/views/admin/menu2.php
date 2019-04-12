@@ -55,6 +55,8 @@
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="<?php echo base_url(); ?>prueba"><i class=" fas fa-book"></i> Registro</a></li>
                         <li><a href="<?php echo base_url(); ?>prueba/index1"><i class="fas fa-clipboard-list"></i> Listado</a></li>
+                        <li><a href="<?php echo base_url(); ?>organigrama_persona/inicio"><i class=" fas fa-book"></i> Asignacion de Oficinas</a></li>
+                        <li><a href="<?php echo base_url(); ?>tipo_tramite/index"><i class="fas fa-clipboard-list"></i> Tramite</a></li>
                     </ul>
                 </li>
                 <li>
@@ -67,7 +69,7 @@
                 <li>
                     <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-cog"></i><span class="hide-menu"> Mantenimiento</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a class="has-arrow" href="<?php echo base_url(); ?>prueba/index4"><i class="fas fa-user"></i> Personas</a></li>
+                        <li><a class="has-arrow" href="<?php echo base_url(); ?>usuario/listar"><i class="fas fa-user"></i> Usuarios</a></li>
                         <li><a href="<?php echo base_url(); ?>Usuario"><i class="fas fa-address-card"></i> Perfil</a></li>
                         <li><a href="<?php echo base_url(); ?>prueba/index5"><i class="fas fa-users"></i> Roles</a></li>
                         <li><a href="<?php echo base_url(); ?>prueba/index6"><i class="fas fa-th-list"></i> Men&uacute;</a></li>
@@ -94,6 +96,12 @@
                                 <li><a href="<?php echo base_url(); ?>Uso_bloque">Uso Bloque</a></li>
                                 <li><a href="<?php echo base_url(); ?>Uso_suelo">Uso Suelo</a></li>
                                 <li><a href="<?php echo base_url(); ?>Zona_urbana">Zona Urbana</a></li>
+                                <li><a href="<?php echo base_url(); ?>Tipo_documento/nuevo">Tipo de Documento</a></li>
+                                <li><a href="<?php echo base_url(); ?>Tipo_tramite_doc/nuevo">Tipo Tramite</a></li>
+                                <li><a href="<?php echo base_url(); ?>Organigrama/nuevo">Organigrama</a></li>
+                                <li><a href="<?php echo base_url(); ?>Cargo/nuevo">Cargo</a></li>
+                                
+
                                 
                             </ul>
                         </li>

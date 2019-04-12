@@ -107,7 +107,7 @@
 
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $lis->zonaurb_id;?>">
+                                <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $lis->descripcion;?>">
                             </div>
                             
                             <div class="modal-footer">
