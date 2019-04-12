@@ -37,7 +37,7 @@
                                             <?php if (is_null($lista->fec_baja)) {?>
                                                 <!-- <a  href="<?php //echo site_url('organigrama_persona/baja/'.$lista->organigrama_persona_id); ?>" type="button" title="Dar de baja" class="darbaja btn btn-success footable-action"><span class="fas fa-arrow-down" aria-hidden="true">
                                                     </span></a> -->
-                                                <button class="btn btn-success" title="Editar" onclick="dar_baja(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-arrow-down" aria-hidden="true"></span></button>
+                                                <button class="btn btn-success" title="Dar de baja" onclick="dar_baja(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-arrow-down" aria-hidden="true"></span></button>
                                                 <button class="btn btn-warning" title="Editar" onclick="edit_book(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-pencil-alt" aria-hidden="true"></span></button>
                                                 
                                             <?php } ?>
@@ -116,7 +116,7 @@
                     <div class="modal-body">
                         <?php echo form_open('organigrama_persona/guardar_editado', array('method'=>'POST')); ?>
                             <div class="form-group">
-                                <input type="text"  name="organigrama_persona_id">
+                                <input type="text" hidden="" name="organigrama_persona_id">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Personal</label>
@@ -167,10 +167,10 @@
                     <div class="modal-body">
                         <?php echo form_open('organigrama_persona/baja', array('method'=>'POST')); ?>
                             <div class="form-group">
-                                <input type="text"  name="organigrama_persona_id1">
+                                <input type="text" hidden="" name="organigrama_persona_id1">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Fecha de alta</label>
+                                <label for="recipient-name" class="control-label">Observación para dar de baja</label>
                                 <input type="text" class="form-control" id="observacion" name="observacion">
                             </div>
                             <div class="modal-footer">
