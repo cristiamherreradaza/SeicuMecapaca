@@ -20,7 +20,7 @@ class OrganigramaP_model extends CI_Model {
 	}
 
 	public function persona(){
-		$personas = $this->db->query("SELECT p.persona_id, p.nombres, p.paterno, p.materno FROM persona as p JOIN persona_perfil as pf ON p.persona_id = pf.persona_id JOIN perfil as pe ON pf.perfil_id = pe.perfil_id WHERE pe.perfil != 'Beneficiario' AND pf.activo = 1")->result();
+		$personas = $this->db->query("SELECT DISTINCT p.persona_id, p.nombres, p.paterno, p.materno FROM persona as p JOIN persona_perfil as pf ON p.persona_id = pf.persona_id JOIN perfil as pe ON pf.perfil_id = pe.perfil_id WHERE pe.perfil != 'Beneficiario' AND pf.activo = 1 AND NOT EXISTS (SELECT NULL FROM tramite.organigrama_persona as op WHERE p.persona_id = op.persona_id AND op.fec_baja IS NULL)")->result();
 		if ($personas > 0) {
 			return $personas;
 		}
@@ -61,9 +61,9 @@ class OrganigramaP_model extends CI_Model {
 		$this->db->insert('tramite.organigrama_persona', $array);
 	}
 
-	public function agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia, $observacion){
+	public function agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia, $observacion, $fec_baja){
 		$data = array(
-			'fec_baja' => $fec_modificacion,
+			'fec_baja' => $fec_baja,
             'usu_modificacion' => $usu_modificacion,
             'vigencia' => $vigencia,
             'fec_modificacion' => $fec_modificacion,
@@ -104,4 +104,8 @@ class OrganigramaP_model extends CI_Model {
         $this->db->where('organigrama_persona_id', $organigrama_persona_id);
         return $this->db->update('tramite.organigrama_persona', $data);
 	}
+
+	
+
+
 }
