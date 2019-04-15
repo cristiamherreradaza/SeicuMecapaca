@@ -106,4 +106,13 @@ class Prueba extends CI_Controller {
         $this->load->view('admin/footer');
        
     }
+
+    public function probar()
+    {
+        $this->load->view('admin/header');
+        $this->load->view('admin/prueba_menu');
+        $this->load->view('admin/footer');
+
+
+    }
 }
