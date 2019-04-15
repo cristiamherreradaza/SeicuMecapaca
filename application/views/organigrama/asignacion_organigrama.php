@@ -40,7 +40,7 @@
                                                 <button class="btn btn-success" title="Dar de baja" onclick="dar_baja(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-arrow-down" aria-hidden="true"></span></button>
                                                 <button class="btn btn-warning" title="Editar" onclick="edit_book(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-pencil-alt" aria-hidden="true"></span></button>
                                                 
-                                            <?php } ?>
+                                            <?php }else{ ?>
                                             <!-- <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('$lista->organigrama_persona_id')">
                                                     <span class="fas fa-pencil-alt" aria-hidden="true"></span>
                                             </button> -->
@@ -48,6 +48,7 @@
                                                 <span class="fas fa-trash-alt" aria-hidden="true">
                                                 </span>
                                             </a>
+                                        <?php } ?>
                                             <!--<button class="btn btn-danger" onclick="validate(this)" value="<?php //echo $lista->organigrama_persona_id?>"><i class="icon icon-times"></i></button>
                                             </button> -->
                                         </td>
@@ -94,6 +95,7 @@
                                     <?php } ?>
                                 </select>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Fecha de alta</label>
                                 <input type="date" class="form-control" id="fec_alta" name="fec_alta">
@@ -121,7 +123,6 @@
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Personal</label>
                                 <select class="select2" style="width: 100%" name="persona_id1" id="persona_id1">
-                                    <option>Select</option>
                                     <?php foreach($personas as $plista){ ?>
                                         <option value="<?php echo $plista->persona_id; ?>"><?php echo $plista->nombres.' '.$plista->paterno.' '.$plista->materno; ?></option>
                                     <?php } ?>
@@ -130,16 +131,15 @@
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Oficina</label>
                                 <select class="select2" style="width: 100%" name="organigrama_id1" id="organigrama_id1">
-                                    <option name="d2">Select</option>
                                     <?php foreach($organigramas as $olista){ ?>
                                         <option value="<?php echo $olista->organigrama_id; ?>"><?php echo $olista->unidad; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Cargo</label>
                                 <select class="select2" style="width: 100%" name="cargo_id1" id="cargo_id1">
-                                    <option>Select</option>
                                     <?php foreach($cargos as $clista){ ?>
                                         <option value="<?php echo $clista->cargo_id; ?>"><?php echo $clista->descripcion; ?></option>
                                     <?php } ?>
@@ -165,17 +165,22 @@
                         <h4 class="modal-title" id="exampleModalLabel1">Dar de baja</h4>
                     </div>
                     <div class="modal-body">
-                        <?php echo form_open('organigrama_persona/baja', array('method'=>'POST')); ?>
+                    <?php echo form_open('organigrama_persona/baja', array('method'=>'POST')); ?>
+                        <form>
                             <div class="form-group">
                                 <input type="text" hidden="" name="organigrama_persona_id1">
                             </div>
                             <div class="form-group">
+                                <label for="recipient-name" class="control-label">Fecha de baja</label>
+                                <input type="date" class="form-control" id="fec_baja" name="fec_baja" value="<?php echo set_value('fec_baja'); ?>">
+                            </div>
+                            <div class="form-group">
                                 <label for="recipient-name" class="control-label">Observación para dar de baja</label>
-                                <input type="text" class="form-control" id="observacion" name="observacion">
+                                <input type="text" class="form-control" id="observacion" name="observacion" value="<?php echo set_value('observacion'); ?>">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="submit"  class="btn btn-primary" >Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -185,14 +190,18 @@
     </div>
 </div>
 <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script>
     jQuery(document).ready(function() {
         $('.select2').select2({
             dropdownParent: $('#modalEdicion'),
         });
         $(".ajax").select2({
+            minimumInputLength: 2,
             ajax: {
-                //url: "<?php echo base_url();?>organigrama_persona/ajax_select2",
+                //url: "<?php //echo base_url();?>organigrama_persona/ajax_select2",
                 url: "https://api.github.com/search/repositories",
                 dataType: 'json',
                 delay: 250,
@@ -221,13 +230,11 @@
             escapeMarkup: function(markup) {
                 return markup;
             }, // let our custom formatter work
-            minimumInputLength: 1,
             //templateResult: formatRepo, // omitted for brevity, see the source of this page
             //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
         });
     });
-</script>
-
+</script> 
 <script src="<?php echo base_url(); ?>public/assets/plugins/datatables/datatables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
@@ -317,30 +324,27 @@
             swal("Cancelado", "Su información está a salvo! :)", "error");
           }
         });
-    });
-    $('.darbaja').on("click", function(e) {
-          e.preventDefault();
-          var url = $(this).attr('href');
-          Swal({
-          title: 'Está seguro?',
-          text: "No podras editar una vez realizado!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-           cancelButtonText: "No, Cancelar!",
-          confirmButtonText: 'Si, dar de baja!'
-        }).then((result) => {
-          if (result.value) {
-            swal("Dado de baja!", "Se realizo con exito!", "success");
-            window.location.replace(url);
-            
-          }else{
-            swal("Cancelado", "Su información está a salvo! :)", "error");
-          }
-        });
-    });
+    });    
 </script>
+
+<!-- <script type="text/javascript">
+$('#guardar_baja').click(function() {
+    var form_data = {
+        fec_baja: $('#fec_baja').val(),
+        observacion: $('#observacion').val(),
+    };
+    $.ajax({
+        url: "<?php //echo site_url('organigrama_persona/baja'); ?>",
+        type: 'POST',
+        data: form_data,
+        success: function(msg) {
+            
+            $('#alert-msg').html('<div class="alert alert-danger">' + msg + '</div>');
+        }
+    });
+    return false;
+});
+</script> -->
 
 <script type="text/javascript">
     function edit_book(id){
@@ -374,4 +378,6 @@
         $('[name="organigrama_persona_id1"]').val(id);
         $('#modalBaja').modal('show');
     }
+
+
 </script>
