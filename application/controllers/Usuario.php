@@ -26,6 +26,7 @@ class Usuario extends CI_Controller {
 
 			$lista['verifica'] = $this->rol_model->verifica();
 			$lista['usuario'] = $this->usuario_model->index();
+			
 
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
@@ -185,6 +186,11 @@ class Usuario extends CI_Controller {
 
 	            $lista['verifica'] = $this->rol_model->verifica();
 				$lista['credencial_id'] =  $this->uri->segment(3);
+				$this->db->select('servicio_id, descripcion');
+				$this->db->order_by('descripcion', 'ASC');
+				$this->db->where('activo', 1);
+				$query = $this->db->get('catastro.servicio');
+				$lista['listado_servicios'] = $query->result();
 
 				$this->load->view('admin/header');
 				$this->load->view('admin/menu');
@@ -213,27 +219,31 @@ class Usuario extends CI_Controller {
 
 	        			
 	        	$cre = $this->input->post('credencial');
+
+	        	$borrar = $this->db->query("SELECT *
+											FROM credencial_menu 
+											WHERE credencial_id = '$cre'
+											ORDER BY credencial_menu_id")->result();
+
+	        	foreach ($borrar as $valor) {
+	        		$this->db->delete('credencial_menu', array('credencial_menu_id' => $valor->credencial_menu_id));
+	        	}
 		   		
 		        foreach ($this->input->post('menus') as $me) {
-		        	
-		        	$consulta = $this->db->query("SELECT *
-	                                                FROM credencial_menu
-	                                                WHERE credencial_id = '$cre'
-	                                                AND menu_id = '$me'")->row();
 
-		        	if (!$consulta) {
-		        		$menu = array(
+		        $menu = array(
 						'credencial_id'=>$cre,
 						'menu_id'=>$me,
 						'activo'=>1
 						);
 
 						$this->db->insert('public.credencial_menu', $menu);
-			        	}
+			        	
 						
 					 }
 					 
 					redirect('usuario/listar');
+					
 			}
 		else
 		{
