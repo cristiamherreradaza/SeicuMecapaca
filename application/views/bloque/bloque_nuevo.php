@@ -113,7 +113,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required placeholder="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
                                         </div>
                                     </div>
 
@@ -237,7 +237,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required placeholder="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
 
                                         </div>
                                     </div>
@@ -356,7 +356,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" placeholder="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" required>
                                         </div>
                                     </div>
 
@@ -486,7 +486,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Altura : <span class="text-danger"> * (90.34) <small> metros </small> </span> </label>
-                                            <input type="number" class="form-control" step="0.01" id="altura" name="altura" value="0.00" required>                                           
+                                            <input type="number" class="form-control" step="0.01" id="altura" name="altura" placeholder="0.00" required>                                           
                                         </div>
                                     </div>
                                 </div>
@@ -520,7 +520,7 @@
                                                         <div class="col-md-8">
                                                             <div class="form-group">
                                                                 <label for="wfirstName2">Nivel : <span class="text-danger"> * <small></small></span> </label>
-                                                                <input type="number" class="form-control" step='1' id="nivel" name="nivel" value="0">
+                                                                <input type="number" class="form-control" step='1' id="nivel" name="nivel" placeholder="0">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -528,7 +528,7 @@
                                                         <div class="col-md-8">
                                                             <div class="form-group">
                                                                 <label for="wfirstName2">Altura : <span class="text-danger"> * <small>metros</small></span> </label>
-                                                                <input type="number" class="form-control" step='0.100' id="altura_p" name="altura_p" value="0.00">
+                                                                <input type="number" class="form-control" step='0.100' id="altura_p" name="altura_p" placeholder="0.00">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -536,7 +536,7 @@
                                                         <div class="col-md-8">
                                                             <div class="form-group">
                                                                 <label for="wfirstName2">Superficie : <span class="text-danger"> * <small>metros</small></span> </label>
-                                                                <input type="number" class="form-control" step='0.100' id="superficie" name="superficie" value="0.00">
+                                                                <input type="number" class="form-control" step='0.100' id="superficie" name="superficie" placeholder="0.00">
                                                             </div>
                                                         </div>
                                                     </div>
