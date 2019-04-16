@@ -52,34 +52,9 @@ class Organigrama_persona extends CI_Controller {
 	}
 
 	public function baja(){
-		if($this->session->userdata("login"))
-		{
-			$this->_validate();
-			$id1 = $this->session->userdata("persona_perfil_id");
-	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id1))->row();
-	        $usu_modificacion = $resi->persona_id;
-			$fec_modificacion = date("Y-m-d H:i:s");
-			$organigrama_persona_id = $this->input->post('organigrama_persona_id1');
-			$fec_baja = $this->input->post('fec_baja');
-			$observacion = $this->input->post('observacion');
-
-			
-				$lista = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id' => $organigrama_persona_id))->row();
-				$fecha1 = new DateTime($lista->fec_alta);
-				$fecha2 = new DateTime($fec_baja);
-				$fecha = $fecha1->diff($fecha2);
-				//$anio = $fecha->format("%y");
-				$vigencia=  $fecha->format("%a")/30;
-				$this->organigramaP_model->agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia, $observacion, $fec_baja);
-			
-
-			echo json_encode(array("status" => TRUE));
-		}else{
-			redirect(base_url());
-		}
-
 		// if($this->session->userdata("login"))
 		// {
+		// 	$this->_validate();
 		// 	$id1 = $this->session->userdata("persona_perfil_id");
 	 //        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id1))->row();
 	 //        $usu_modificacion = $resi->persona_id;
@@ -88,14 +63,7 @@ class Organigrama_persona extends CI_Controller {
 		// 	$fec_baja = $this->input->post('fec_baja');
 		// 	$observacion = $this->input->post('observacion');
 
-		// 	//$this->load->helper(array('form', 'url'));
-  // 			$this->load->library('form_validation');
-
-		// 	$this->form_validation->set_rules('fec_baja', 'Fecha de baja', 'required');
-		// 	$this->form_validation->set_rules('observacion', 'Observación', 'required');
-		// 	$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-
-		// 	if ($this->form_validation->run() == TRUE){		
+			
 		// 		$lista = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id' => $organigrama_persona_id))->row();
 		// 		$fecha1 = new DateTime($lista->fec_alta);
 		// 		$fecha2 = new DateTime($fec_baja);
@@ -103,14 +71,46 @@ class Organigrama_persona extends CI_Controller {
 		// 		//$anio = $fecha->format("%y");
 		// 		$vigencia=  $fecha->format("%a")/30;
 		// 		$this->organigramaP_model->agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia, $observacion, $fec_baja);
-		// 	}else{
-		// 		echo validation_errors();
-		// 	}
+			
 
-		// 	redirect(base_url()."Organigrama_persona/inicio");
+		// 	echo json_encode(array("status" => TRUE));
 		// }else{
 		// 	redirect(base_url());
 		// }
+
+		if($this->session->userdata("login"))
+		{
+			$id1 = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id1))->row();
+	        $usu_modificacion = $resi->persona_id;
+			$fec_modificacion = date("Y-m-d H:i:s");
+			$organigrama_persona_id = $this->input->post('organigrama_persona_id1');
+			$fec_baja = $this->input->post('fec_baja');
+			$observacion = $this->input->post('observacion');
+
+			//$this->load->helper(array('form', 'url'));
+  			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('fec_baja', 'Fecha de baja', 'required');
+			$this->form_validation->set_rules('observacion', 'Observación', 'required');
+			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+
+			if ($this->form_validation->run() == TRUE){		
+				$lista = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id' => $organigrama_persona_id))->row();
+				$fecha1 = new DateTime($lista->fec_alta);
+				$fecha2 = new DateTime($fec_baja);
+				$fecha = $fecha1->diff($fecha2);
+				//$anio = $fecha->format("%y");
+				$vigencia=  $fecha->format("%a")/30;
+				$this->organigramaP_model->agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia, $observacion, $fec_baja);
+			}else{
+				echo validation_errors();
+			}
+
+			redirect(base_url()."Organigrama_persona/inicio");
+		}else{
+			redirect(base_url());
+		}
 	}
 
 	private function _validate()
