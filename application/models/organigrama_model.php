@@ -15,7 +15,7 @@ class Organigrama_model extends CI_Model {
         return $query->result();
     }
     function get_grupo() {//obtiene los datos de la tabla tipo_documento en array result
-        $query = $this->db->query('SELECT * from tramite.organigrama WHERE activo=1');
+        $query = $this->db->query('SELECT * from tramite.organigrama WHERE activo=1 order by unidad asc');
         return $query->result();
     }
 
@@ -42,6 +42,7 @@ class Organigrama_model extends CI_Model {
         return $query->result();
     }
 
+
     function get_datos_nombre_chart() {//obtiene todos los datos del organigrama ordenado por niveles
         $query = $this->db->query('SELECT x.unidad,x.hijo,t.unidad as jefe,x.nivel,x.organigrama_id,y.persona_id,y.cargo_id,z.nombres FROM tramite.organigrama x
         LEFT JOIN
@@ -55,6 +56,16 @@ class Organigrama_model extends CI_Model {
         on t.organigrama_id=x.hijo
         WHERE x.activo=1 and y.activo=1 
         ORDER BY x.unidad asc');
+        return $query->result();
+    }
+
+    function get_datos_chart_img() {//obtiene todos los datos del organigrama ordenado por niveles
+        $query = $this->db->query('SELECT x.unidad,x.hijo,x.nivel,x.organigrama_id,x.url,x.imagen,y.organigrama_id as padre_id,y.unidad as jefe FROM tramite.organigrama x
+        LEFT JOIN
+        tramite.organigrama y
+        on x.hijo=y.organigrama_id
+        WHERE x.activo=1 and y.activo=1
+        ORDER BY y.unidad asc');
         return $query->result();
     }
 

@@ -25,7 +25,7 @@ class Organigrama extends CI_Controller
             redirect(base_url());
         }
     }
-    public function nuevo($cod_catastral = null)
+    public function nuevo()
     {
 
         if ($this->session->userdata("login")) {
@@ -70,6 +70,9 @@ class Organigrama extends CI_Controller
     public function do_upload(){
 
         if ($this->session->userdata("login")) {
+            $id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
 
         $img=strtolower($this->input->post('unidad'));        
 
@@ -83,8 +86,8 @@ class Organigrama extends CI_Controller
                 $sw = $this->input->post('opcion');
 
         if($sw==1){//opcion 1 insertar
-            $id = $this->input->post('organigrama_id');
-            $query = $this->db->query("SELECT * from tramite.organigrama WHERE organigrama_id='$id'");
+            $id_org = $this->input->post('organigrama_id');
+            $query = $this->db->query("SELECT * from tramite.organigrama WHERE organigrama_id='$id_org'");
             foreach ($query->result() as $row) {
                 $unidad = $row->unidad;
                 $nivel = $row->nivel;
@@ -95,18 +98,20 @@ class Organigrama extends CI_Controller
     
             $data = array(            
                 'nivel' => $nivel, //input 
-                'hijo' => $id, //input          
+                'hijo' => $id_org, //input          
                 'unidad' => ucwords(strtolower($this->input->post('unidad'))), //input        
                 'url' => 'public/assets/images/organigrama', //input 
                 'imagen' => $img, //input 
-                'activo' => '1',           
+                'activo' => '1',
+                'usu_creacion' => $usu_creacion,           
             );
     
             $this->db->insert('tramite.organigrama', $data);
 
         }else{//opcion 2 modificar
-            $id = $this->input->post('padre_id_e');
-            $query = $this->db->query("SELECT * from tramite.organigrama WHERE organigrama_id=$id");
+            $id_padre = $this->input->post('padre_id_e');
+            $fec_modificacion = date("Y-m-d H:i:s");
+            $query = $this->db->query("SELECT * from tramite.organigrama WHERE organigrama_id=$id_padre");
             foreach ($query->result() as $row) {
                 $unidad = $row->unidad;
                 $nivel = $row->nivel;
@@ -124,9 +129,11 @@ class Organigrama extends CI_Controller
     
                 $data = array(                
                     'nivel' => $nivel, //input 
-                    'hijo' => $id, //input          
+                    'hijo' => $id_padre, //input          
                     'unidad' => ucwords($this->input->post('unidad')), //input
-                    'imagen' => $img, //input                                                        
+                    'imagen' => $img, //input
+                    'usu_modificacion' => $usu_creacion, //input
+                    'fec_modificacion' => $fec_modificacion, //input                                                        
                 );
                 $organigrama_id=$this->input->post('organigrama_id_e');            
                 $this->db->where('organigrama_id', $organigrama_id);
@@ -205,10 +212,14 @@ class Organigrama extends CI_Controller
         }   
         
     }
-    public function delete($id = null)
+    public function delete($ida = null)
     {
         if ($this->session->userdata("login")) {
-            $activo = $this->db->query("SELECT activo from tramite.organigrama WHERE organigrama_id=$id");            
+            $id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_eliminacion = $resi->persona_id;
+            $fec_eliminacion = date("Y-m-d H:i:s");
+            $activo = $this->db->query("SELECT activo from tramite.organigrama WHERE organigrama_id=$ida");            
             foreach ($activo ->result() as $row)
             {
                 $valor=$row->activo;                    
@@ -216,10 +227,11 @@ class Organigrama extends CI_Controller
             $valor=1-$valor;
 
             $data = array(
-
                 'activo' => $valor, //input                                 
+                'usu_eliminacion' => $usu_eliminacion, //input
+                'fec_eliminacion' => $fec_eliminacion, //input
             );
-            $this->db->where('organigrama_id', $id);
+            $this->db->where('organigrama_id', $ida);
             $this->db->update('tramite.organigrama', $data);          
             redirect(base_url() . 'organigrama/nuevo/');
         } else {
@@ -245,6 +257,7 @@ class Organigrama extends CI_Controller
             $data['nivel'] = $this->organigrama_model->get_last_nivel();   
             $data['data_chart'] = $this->organigrama_model->get_datos_chart();
             $data['data_chart_nombre'] = $this->organigrama_model->get_datos_nombre_chart();
+            $data['data_chart_img'] = $this->organigrama_model->get_datos_chart_img();
             $this->load->view('charts/header');
 			$this->load->view('admin/menu');
             $this->load->view('charts/organigrama_chart', $data);
