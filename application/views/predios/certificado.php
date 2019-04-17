@@ -32,7 +32,7 @@
                                         <br/> <b>Certificacion de Datos Tecnicos No. 1245/2019</b>
                                         <br/> Matricula: 3.1.2.0001245
                                         <br/> Propietario: RUDDY HERNAN MASIAS
-                                                            
+                                                      
                                 </address>
                             </div>
                             <!-- <div class="float-right text-right">
@@ -69,6 +69,7 @@
                             <td>
                                 Distrito No: <b><?php echo $predio[0]->distrito; ?></b>
                                 <br />Predio: <b><?php echo $predio[0]->predio; ?></b>
+                                
                             </td>
                             <td>
                                 Sub Distrito No: <b>34</b>
@@ -90,7 +91,7 @@
                             <div class="text-black" style="font-size: 28pt;">CODIGO CATASTRAL:  <?php print_r($predio[0]->codcatas); ?></div>
                         </div>
                     </div>
-                    Segun pla de URBANIZACION aprobado en fecha 16/05/2018 mediante R.M. No. 338/2014 de 21/10/2014 se tiene la siguiente informacion:
+                    Segun plan de URBANIZACION aprobado en fecha 16/05/2018 mediante R.M. No. 338/2014 de 21/10/2014 se tiene la siguiente informacion:
                     <table class="d-print-table">
                         <tr>
                             <td style="width: 610px;">
