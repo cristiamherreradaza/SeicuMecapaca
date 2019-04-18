@@ -1,4 +1,4 @@
-<!-- sample modal content -->
+    <!-- sample modal content -->
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -33,7 +33,7 @@
         <!-- Start Page Content -->
         <!-- ============================================================== -->
 
-        
+        <?php echo form_open('derivaciones/guarda', array('method'=>'POST')); ?>
         <div class="row">
             <div class="col-md-12">
             
@@ -60,28 +60,14 @@
                         <hr>
                         <div class="row">
                             <div class="col-6">
+
                                 <div class="form-group">
-                                    <label>Derivar a: </label><br>
-                                    <?php //vdebug($cargo_inmediato_superior) ?>
-                                    <?php //vdebug($inmediato_superior) ?>
-                                    <?php //echo $inmediato_superior->nombres; ?>
-                                    <?php //echo $inmediato_superior->paterno; ?>
-                                    <?php //echo $inmediato_superior->materno; ?><br>
-                                    <?php //echo $cargo_inmediato_superior[0]->descripcion; ?>
-                                    <?php //vdebug($personas_derivacion, false, FALSE, TRUE); ?>
-                                    <select class="custom-select form-control" />
-                                    <?php 
-                                        //$this->db->get_where('');
-                                    ?>
-                                        <option value="1">
-                                            <?php echo $inmediato_superior->nombres; ?>
-                                            <?php echo $inmediato_superior->paterno; ?>
-                                            <?php echo $inmediato_superior->materno; ?><br>
-                                        </option>
-                                        <?php //foreach ($personas_derivacion as $key => $pd): ?>
-                                            <option value="0">Ricardo Vargas Tapia</option>
-                                            <option value="0">Juan Perez Perez</option>
-                                        <?php //endforeach ?>
+                                    <input type="hidden" name="idTramite" value="<?php echo $idTramite; ?>">
+                                    <label>Derivar a: </label>
+                                    <select class="custom-select form-control" name="destino" />
+                                        <?php foreach ($personas as $key => $p): ?>
+                                            <option value="<?php echo $p['id'] ?>"><?php echo $p['nombre']; ?> - <?php echo $p['cargo']; ?> (<?php echo $p['unidad']; ?>)</option>
+                                        <?php endforeach ?>
                                     </select>
                                 </div>
                             </div>
@@ -89,7 +75,7 @@
                             
                                 <div class="form-group">
                                     <label>Descripcion: </label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="descripcion">
                                 </div>
                                 <!-- <label>&nbsp;</label> -->
                                 <?php // echo $tramite->procedencia; ?>
@@ -98,7 +84,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="button" class="btn waves-effect waves-light btn-block btn-info" onclick="envia();">Derivar</button>
+                                <button type="submit" class="btn waves-effect waves-light btn-block btn-info">Derivar</button>
                             </div>
                         </div>
 
@@ -106,6 +92,7 @@
                 </div>
             </div>
         </div>
+    </form>
         <!-- ============================================================== -->
         <!-- End PAge Content -->
         <!-- ============================================================== -->

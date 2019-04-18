@@ -80,9 +80,6 @@ class Predios extends CI_Controller {
 			$persona_perfil = $this->db->query("SELECT * FROM persona_perfil WHERE persona_perfil_id = '$persona_perfil_id'")->row();
 			$perfil = $persona_perfil->perfil_id;
 
-
-
-
 					// $this->db->select(array('catastro.predio.fec_creacion', 'catastro.predio.codcatas', 'catastro.predio.nro_inmueble', 'catastro.zona_urbana.descripcion'));
 					// $this->db->join('catastro.zona_urbana', 'catastro.predio.zonaurb_id = catastro.zona_urbana.zonaurb_id');
 					// $this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
