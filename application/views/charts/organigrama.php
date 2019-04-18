@@ -19,6 +19,8 @@
            'Mike', 'VP'],
           [{v:'Jim', f:'Jim<div style="color:red; font-style:italic">Vice President</div>'},
            'Mike', 'VP'],
+           [{v:'Alice', f:'Alice <img src="http://files.softicons.com/download/internet-icons/user-icons-by-2shi/png/48/user1.png" height="42" width="50"> </img>'},
+           'Mike', 'VP'],
           ['Alice', 'Mike', ''],
           ['Bob', 'Jim', 'Bob Sponge'],
           ['Carol', 'Bob', '']
