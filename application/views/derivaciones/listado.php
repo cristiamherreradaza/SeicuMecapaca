@@ -56,9 +56,14 @@
                                         <td><?php echo $mt->descripcion; ?></td>
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
-                                                <a href="<?php echo base_url(); ?>derivacion/nuevo/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit">
+                                                <a href="<?php echo base_url(); ?>derivaciones/nuevo/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit">
                                                     <span class="fas fa-paper-plane" aria-hidden="true"></span>
-                                                </a> 
+                                                </a>
+
+                                                <a href="<?php echo base_url(); ?>derivaciones/nuevo/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit">
+                                                    <span class="fas fa-paper-plane" aria-hidden="true"></span>
+                                                </a>
+
                                                 <a href="#" type="button" class="btn btn-danger footable-delete">
                                                     <span class="fas fa-trash-alt" aria-hidden="true"></span>
                                                 </a>

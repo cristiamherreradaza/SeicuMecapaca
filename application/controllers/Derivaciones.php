@@ -148,7 +148,7 @@ class Derivaciones extends CI_Controller
         // vdebug($datos_organigrama_persona, false, false, true);
         $fuente = $datos_organigrama_persona[0]['organigrama_id'];
         // vdebug($fuente, false, false, true);
-        $this->db->where('tramite.derivacion.fuente', $fuente);
+        $this->db->where('tramite.derivacion.destino', $fuente);
         $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
         $query = $this->db->get('tramite.derivacion');
         // vdebug($query, true, false, true);
@@ -164,6 +164,8 @@ class Derivaciones extends CI_Controller
         $this->load->view('predios/index_js');
 
     }
+
+    
 
 
 }
