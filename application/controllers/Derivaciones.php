@@ -150,8 +150,8 @@ class Derivaciones extends CI_Controller
         // vdebug($fuente, false, false, true);
         $this->db->where('tramite.derivacion.fuente', $fuente);
         $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
-        $query = $this->db->get('tramite.derivacion')->result_array();
-        vdebug($query, true, false, true);
+        $query = $this->db->get('tramite.derivacion');
+        // vdebug($query, true, false, true);
 
         $data['mis_tramites'] = $query->result();
         $data['verifica'] = $this->rol_model->verifica();

@@ -13,7 +13,7 @@ class Derivaciones_model extends CI_Model
 
     public function get_personal($idTramite = null)
     {
-        $idTramite = 13;
+        // $idTramite = 13;
         $tramite = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
         $persona_organigrama = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id' => $tramite->organigrama_persona_id))->row();
 
