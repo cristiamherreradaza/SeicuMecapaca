@@ -60,7 +60,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-6">
-
+                            <?php //vdebug($personas, true, false, true); ?>
                                 <div class="form-group">
                                     <input type="hidden" name="idTramite" value="<?php echo $idTramite; ?>">
                                     <label>Derivar a: </label>

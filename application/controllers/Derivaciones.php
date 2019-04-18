@@ -146,7 +146,7 @@ class Derivaciones extends CI_Controller
             ))->result_array();
 
         // vdebug($datos_organigrama_persona, false, false, true);
-        $fuente = $datos_organigrama_persona[0]['organigrama_id'];
+        $fuente = $datos_organigrama_persona[0]['organigrama_persona_id'];
         // vdebug($fuente, false, false, true);
         $this->db->where('tramite.derivacion.destino', $fuente);
         $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
@@ -165,7 +165,7 @@ class Derivaciones extends CI_Controller
 
     }
 
-    
+
 
 
 }
