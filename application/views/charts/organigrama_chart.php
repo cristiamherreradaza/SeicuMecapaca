@@ -14,9 +14,12 @@
         var cant='<?php echo $nivel->nivel; ?>';
         
         data.addRows([
-          //level one 
+          //level one        
           
-          <?php foreach ($data_chart as $tp) : ?>
+          <?php foreach ($data_chart_img as $tp) : ?>
+              [{v:'<?php echo $tp->unidad; ?>', f:'<?php echo $tp->unidad; ?><p> <img src="<?php echo base_url(); ?><?php echo $tp->url; ?>/<?php echo $tp->imagen; ?>" height="42" width="50"> </img>'},
+                '<?php echo $tp->jefe; ?>', 'VP'],
+            
               ['<?php echo $tp->unidad; ?>', '<?php echo $tp->jefe; ?>', ''],  
           <?php endforeach; ?>          
           ]);

@@ -51,7 +51,7 @@ class Edificacion extends CI_Controller
             $this->load->view('bloque/validar');//footer
             //$this->load->view('admin/footer');
             $this->load->view('bloque/jtables');
-        //$this->load->view('admin/wizard_js');
+            //$this->load->view('admin/wizard_js');
         } else {
             redirect(base_url());
         }
