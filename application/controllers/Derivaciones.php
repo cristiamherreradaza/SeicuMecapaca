@@ -119,7 +119,7 @@ class Derivaciones extends CI_Controller
         $data = array(
             'tramite_id'=>$this->input->post('idTramite'),
             'organigrama_persona_id'=>$datos_organigrama_persona[0]['organigrama_persona_id'],
-            'fuente'=>$datos_organigrama_persona[0]['organigrama_id'],
+            'fuente'=>$datos_organigrama_persona[0]['organigrama_persona_id'],
             'destino'=>$this->input->post('destino'),
             'fecha'=>date("Y-m-d H:i:s"),
             'descripcion'=>$this->input->post('descripcion'),
@@ -165,7 +165,19 @@ class Derivaciones extends CI_Controller
 
     }
 
+    public function ver($idTramite = null){
 
+        $data['flujo'] = $this->db->get_where('tramite.derivacion', array('tramite_id'=>$idTramite))->result_array();
+
+        // vdebug($tramite, true, false, true);
+
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('derivaciones/ver', $data);
+        $this->load->view('admin/footer');
+        $this->load->view('predios/index_js');
+
+    }
 
 
 }
