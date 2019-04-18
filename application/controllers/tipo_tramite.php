@@ -9,6 +9,7 @@ class Tipo_tramite extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model("tramite_model");
 		$this->load->model("rol_model");
+        $this->load->helper('vayes_helper');
 	}
 
 	public function tipo_tramite(){
@@ -141,6 +142,38 @@ class Tipo_tramite extends CI_Controller {
 		//$id = $this->db->get_where('persona', array('ci' => '9112739'))->row();
 		//var_dump($id->nombres);
 		$id = $this->db->query("SELECT * FROM persona WHERE ci = '9112739'")->result();
+	}
+
+	public function listado()
+	{
+		// $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
+		$perfil_persona = $this->session->userdata('persona_perfil_id');
+		$datos_persona_perfil = $this->db->get_where('persona_perfil', array('persona_perfil_id'=>$perfil_persona))->result_array();
+		// vdebug($datos_persona_perfil, false, false, true);
+		$datos_organigrama_persona = $this->db->get_where(
+		    'tramite.organigrama_persona', 
+		    array(
+		        'persona_id'=>$datos_persona_perfil[0]['persona_id'],
+		        'activo'=>1
+		    ))->result_array();
+
+		// vdebug($datos_organigrama_persona, false, false, true);
+		$fuente = $datos_organigrama_persona[0]['organigrama_persona_id'];
+		// vdebug($datos_organigrama_persona, true, false, true);
+		$this->db->where('tramite.tramite.organigrama_persona_id', $fuente);
+		$this->db->order_by('tramite.tramite.fec_creacion', 'DESC');
+		$query = $this->db->get('tramite.tramite');
+		// vdebug($query, false, false, true);
+
+		$data['mis_tramites'] = $query->result();
+		$data['verifica'] = $this->rol_model->verifica();
+		//var_dump($usu_creacion);
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('tramites/listado', $data);
+		$this->load->view('admin/footer');
+		$this->load->view('predios/index_js');
 	}
 
 }
