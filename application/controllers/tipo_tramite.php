@@ -79,8 +79,14 @@ class Tipo_tramite extends CI_Controller {
 				$procedencia = $datos['procedencia'];
 				$referencia = $datos['referencia'];
 				$this->tramite_model->insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion);
-				redirect('Tipo_tramite');
 
+				$tramite = $this->db->query("SELECT *
+												FROM tramite.tramite
+												WHERE cite = '$cite'")->row();
+				$idTramite = $tramite->tramite_id;
+				//$this->session->set_flashdata('in', $idTramite);
+				
+				redirect('Derivaciones/nuevo/'.$idTramite);
 			}
 		}
 		else{

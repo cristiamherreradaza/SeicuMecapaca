@@ -32,6 +32,7 @@ class Derivaciones extends CI_Controller
     public function nuevo($idTramite = null)
     {
         if($this->session->userdata("login")){
+            //$ine = $this->session->flashdata('in');
 
 			//usuario que esta registrando
 			$id = $this->session->userdata("persona_perfil_id");

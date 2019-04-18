@@ -89,6 +89,8 @@
     <script src="<?php echo base_url(); ?>public/assets/plugins/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
     <script src="<?php echo base_url(); ?>public/js/mask.init.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+
+   
     
 </body>
 

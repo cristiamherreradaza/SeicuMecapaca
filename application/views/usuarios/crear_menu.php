@@ -2,7 +2,7 @@
 
  
     <!--nestable CSS -->
-    <link href="<?php echo base_url(); ?>public/assets/plugins/nestable/nestable.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>public/assets/plugins/nestable/nestable.css" rel="stylesheet" type="text/css"/>
     <!-- Custom CSS -->
     <style type="text/css">
                 label {
@@ -113,7 +113,7 @@
 
                                                      ?>
                                                         <ol class="dd-list">
-                                                            <li class="dd-item" data-id="1">
+                                                            <li id="nivel1" class="dd-item" data-id="1">
                                                                 <div class="dd-handle"><i class="<?php echo $menu2->icono ?>"></i> <?php echo $menu2->descripcion; ?>
                                                                         <label class="custom-control custom-checkbox">
                                                                             <input type="checkbox" <?php echo $var2; ?> value="<?php echo $menu2->menu_id; ?>" name="menus[<?php echo $menu2->menu_id; ?>]" class="custom-control-input">
@@ -144,7 +144,7 @@
                                                                                         }
 
                                                                                 ?>
-                                                                                <ol class="dd-list">
+                                                                                <ol id="nivel1" class="dd-list">
                                                                                     <li class="dd-item" data-id="1">
                                                                                         <div class="dd-handle"><i class="<?php echo $menu3->icono ?>"></i> <?php echo $menu3->descripcion; ?>
                                                                                                 <label class="custom-control custom-checkbox">
@@ -176,8 +176,6 @@
                             </div>
                         </div>
                     </div>
-                 
-
             </div>
     </div>
 </div>
@@ -195,42 +193,8 @@
   <!--Nestable js -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/nestable/jquery.nestable.js"></script>
     <script type="text/javascript">
-    $(document).ready(function() {
-        // Nestable
-        var updateOutput = function(e) {
-            var list = e.length ? e : $(e.target),
-                output = list.data('output');
-            if (window.JSON) {
-                output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
-            } else {
-                output.val('JSON browser support required for this demo.');
-            }
-        };
-
-        $('#nestable').nestable({
-            group: 1
-        }).on('change', updateOutput);
-
-        $('#nestable2').nestable({
-            group: 1
-        }).on('change', updateOutput);
-
-        updateOutput($('#nestable').data('output', $('#nestable-output')));
-        updateOutput($('#nestable2').data('output', $('#nestable2-output')));
-
-        $('#nestable-menu').on('click', function(e) {
-            var target = $(e.target),
-                action = target.data('action');
-            if (action === 'expand-all') {
-                $('.dd').nestable('expandAll');
-            }
-            if (action === 'collapse-all') {
-                $('.dd').nestable('collapseAll');
-            }
-        });
-
-        $('#nestable-menu').nestable();
-    });
+     
+    
     </script>
 
 
