@@ -29,7 +29,8 @@
           font-weight: bold;
         }
     </style>
-    
+
+
 
 
 <div class="page-wrapper">
@@ -53,6 +54,7 @@
                                             <ul>
                                               <li>
                                                 <div><a onclick="nivel1()" class="ti-plus"></a> Electronics
+
                                                     <input type="checkbox" id="option"><label for="option"></label>
                                                 </div>
                                                       <ul id="nivel1">
@@ -67,6 +69,42 @@
                                             </ul>
                                            
 
+                                                    <input type="checkbox" id="option1"><label for="option1"></label>
+                                                </div>
+                                                      <ul  id="nivel1">
+
+                                                          <li><label>Laptops <input type="checkbox" class="subOption1"></label></li>
+
+                                                          <li><label>TVs <input type="checkbox" class="subOption1"></label></li>
+
+                                                          <li><label>Microphones <input type="checkbox" class="subOption1"></label></li>
+
+                                                          <li>
+                                                              <div><a onclick="nivel2()" class="ti-plus"></a> Cpu
+                                                                  <input type="checkbox" id="option2"><label for="option2"></label>
+                                                              </div>
+                                                                  <ul id="nivel2">
+                                                                      <li><label>Monitores <input type="checkbox" class="subOption2"></label></li>
+
+                                                                      <li><label>Teclados <input type="checkbox" class="subOption2"></label></li>
+                                                                  </ul>
+                                                          </li>
+
+                                                      </ul>
+                                              </li>
+                                            </ul>
+                                            <ol id="nivel1" class="dd-list">
+                                                <li class="dd-item" data-id="1">
+                                                    <div class="dd-handle"><i class="<?php echo 'fas fa-clipboard-list' ?>"></i> <?php echo 'Mantenimiento'; ?>
+                                                            <label class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="subOption2">                                                                    
+                                                            </label>
+                                                    </div>
+                                                    
+                                                </li>
+                                            </ol>
+
+
 
                                           </div>
                                 </form>
@@ -80,7 +118,10 @@
 <script src="<?php echo base_url(); ?>public/assets/plugins/nestable/jquery.nestable.js"></script>
 
 <script type="text/javascript">
- 
+
+  function nivel1(){
+        $('#nivel1').toggle('slow');
+        }
 
         function nivel2(){
         $('#nivel2').toggle('slow');
@@ -92,12 +133,20 @@
 </script>
 
  <script type="text/javascript">
+
         var checkboxes = document.querySelectorAll('input.subOption'),
               checkall = document.getElementById('option');
 
         for(var i=0; i<checkboxes.length; i++) {
                 checkboxes[i].onclick = function() {
                 var checkedCount = document.querySelectorAll('input.subOption:checked').length;
+
+        var checkboxes = document.querySelectorAll('input.subOption1'),
+              checkall = document.getElementById('option1');
+
+        for(var i=0; i<checkboxes.length; i++) {
+                checkboxes[i].onclick = function() {
+                var checkedCount = document.querySelectorAll('input.subOption1:checked').length;
 
                 checkall.checked = checkedCount > 0;
                 checkall.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
@@ -111,10 +160,32 @@
         }
 
 
+
          function nivel1(){
         $('#nivel1').toggle('slow');
         }
 
 </script>
 
+</script>
+
+<script type="text/javascript">
+        var checkboxes = document.querySelectorAll('input.subOption2'),
+              checkall = document.getElementById('option2');
+
+        for(var i=0; i<checkboxes.length; i++) {
+                checkboxes[i].onclick = function() {
+                var checkedCount = document.querySelectorAll('input.subOption2:checked').length;
+
+                checkall.checked = checkedCount > 0;
+                checkall.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
+              }
+            }
+
+        checkall.onclick = function() {
+          for(var i=0; i<checkboxes.length; i++) {
+            checkboxes[i].checked = this.checked;
+          }
+        }
+</script>
 

@@ -10,7 +10,7 @@ class OrganigramaP_model extends CI_Model {
 	}
 
 	public function lista(){
-		$lista = $this->db->query("SELECT op.organigrama_persona_id, to_char(op.fec_alta, 'DD-MM-YYYY') as fec_alta, to_char(op.fec_baja, 'DD-MM-YYYY') as fec_baja, op.vigencia, p.nombres, p.paterno, p.materno, o.unidad, ca.descripcion FROM tramite.organigrama_persona as op JOIN persona as p ON op.persona_id = p.persona_id JOIN tramite.organigrama as o ON op.organigrama_id = o.organigrama_id JOIN tramite.cargo as ca ON op.cargo_id = ca.cargo_id WHERE op.activo = '1' ORDER BY op.organigrama_persona_id ASC")->result();
+		$lista = $this->db->query("SELECT op.organigrama_persona_id, to_char(op.fec_alta, 'DD-MM-YYYY') as fec_alta, to_char(op.fec_baja, 'DD-MM-YYYY') as fec_baja, op.vigencia, p.nombres, p.paterno, p.materno, o.unidad, ca.descripcion FROM tramite.organigrama_persona as op JOIN persona as p ON op.persona_id = p.persona_id JOIN tramite.organigrama as o ON op.organigrama_id = o.organigrama_id JOIN tramite.cargo as ca ON op.cargo_id = ca.cargo_id WHERE op.activo = '1' AND op.fec_baja IS NULL")->result();
 		if ($lista > 0) {
 			return $lista;
 		}
@@ -63,8 +63,9 @@ class OrganigramaP_model extends CI_Model {
 
 	public function agregarBaja($organigrama_persona_id, $usu_modificacion, $fec_modificacion, $vigencia, $observacion, $fec_baja){
 		$data = array(
+			'activo' => 0,
 			'fec_baja' => $fec_baja,
-            'usu_modificacion' => $usu_modificacion,
+            'usu_eliminacion' => $usu_modificacion,
             'vigencia' => $vigencia,
             'fec_modificacion' => $fec_modificacion,
             'observacion' => $observacion
@@ -104,8 +105,5 @@ class OrganigramaP_model extends CI_Model {
         $this->db->where('organigrama_persona_id', $organigrama_persona_id);
         return $this->db->update('tramite.organigrama_persona', $data);
 	}
-
-	
-
 
 }

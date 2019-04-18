@@ -34,13 +34,13 @@
                                         <td><?php echo $lista->descripcion; ?></td>
                                         <td><?php echo $lista->vigencia; ?> mes(es)</td>
                                         <td>
-                                            <?php if (is_null($lista->fec_baja)) {?>
+                                            
                                                 <!-- <a  href="<?php //echo site_url('organigrama_persona/baja/'.$lista->organigrama_persona_id); ?>" type="button" title="Dar de baja" class="darbaja btn btn-success footable-action"><span class="fas fa-arrow-down" aria-hidden="true">
                                                     </span></a> -->
                                                 <button class="btn btn-success" title="Dar de baja" onclick="dar_baja(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-arrow-down" aria-hidden="true"></span></button>
                                                 <button class="btn btn-warning" title="Editar" onclick="edit_book(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-pencil-alt" aria-hidden="true"></span></button>
                                                 
-                                            <?php }else{ ?>
+                                            
                                             <!-- <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('$lista->organigrama_persona_id')">
                                                     <span class="fas fa-pencil-alt" aria-hidden="true"></span>
                                             </button> -->
@@ -48,7 +48,7 @@
                                                 <span class="fas fa-trash-alt" aria-hidden="true">
                                                 </span>
                                             </a>
-                                        <?php } ?>
+                                       
                                             <!--<button class="btn btn-danger" onclick="validate(this)" value="<?php //echo $lista->organigrama_persona_id?>"><i class="icon icon-times"></i></button>
                                             </button> -->
                                         </td>

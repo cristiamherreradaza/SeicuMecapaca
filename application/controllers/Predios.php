@@ -409,6 +409,7 @@ class Predios extends CI_Controller {
 		$this->db->from('catastro.predio');
 		$this->db->where('catastro.predio.codcatas', $cod_catastral);
 		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
+		//$this->db->join('catastro.predio_ddrr', 'catastro.predio_ddrr.codcatas=catastro.predio.codcatas');
 		$data['predio'] = $this->db->get()->result();
 		// print_r($this->db->last_query());
 		// vdebug($data);
