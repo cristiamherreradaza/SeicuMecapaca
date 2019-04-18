@@ -106,11 +106,16 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                         <?php $cite = $this->db->query("SELECT *
+                                         <?php 
+                                                $año = date("Y");
+
+                                                $cite = $this->db->query("SELECT *
                                                                             FROM tramite.numero_tramite
-                                                                            WHERE gestion = '2019'
+                                                                            WHERE gestion = '$año'
                                                                             AND activo = '1'")->row();
-                                               $tcite = $this->db->query("SELECT count(*) AS id FROM tramite.tramite")->row();
+                                               $tcite = $this->db->query("SELECT count(*) AS id
+                                                                            FROM tramite.tramite
+                                                                            WHERE cite LIKE '%GAM-TOR/$año%'")->row();
                                                $numero = $tcite->id + 1 ;
                                                $numeroConCeros = str_pad($numero, 5, "0", STR_PAD_LEFT);                                                
 
