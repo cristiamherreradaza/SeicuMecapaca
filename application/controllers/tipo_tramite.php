@@ -99,13 +99,7 @@ class Tipo_tramite extends CI_Controller {
 
 	}
 
-	   public function adaptar()
-	{
-		//$id = $this->db->get_where('persona', array('ci' => '9112739'))->row();
-		//var_dump($id->nombres);
-		$id = $this->db->query("SELECT * FROM persona WHERE ci = '9112739'")->result();
-	}
-
+	 
 	public function listado()
 	{
 		// $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
