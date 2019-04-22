@@ -10,6 +10,7 @@ class Tipo_tramite extends CI_Controller {
 		$this->load->model("tramite_model");
 		$this->load->model("rol_model");
         $this->load->helper('vayes_helper');
+        $this->load->helper(array('form', 'url'));
 	}
 
 	public function tipo_tramite(){
@@ -55,46 +56,7 @@ class Tipo_tramite extends CI_Controller {
 			redirect(base_url());
         }	
 		
-	}
-
-	public function insertar()
-	{
-		if($this->session->userdata("login")){
-			$datos = $this->input->post();
-			
-			if(isset($datos))
-			{
-				//OBTENER EL ID DEL USUARIO LOGUEADO
-				$id = $this->session->userdata("persona_perfil_id");
-	            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-	            $usu_creacion = $resi->persona_id;
-
-				$organigrama_persona_id = $datos['organigrama_persona_id'];
-				$tipo_documento_id = $datos['tipo_documento_id'];
-				$tipo_correspondencia_id = $datos['tipo_correspondencia_id'];
-				$cite = $datos['cite'];
-				$fecha = $datos['fecha'];
-				$fojas = $datos['fojas'];
-				$anexos = $datos['anexos'];
-				$remitente = $datos['remitente'];
-				$procedencia = $datos['procedencia'];
-				$referencia = $datos['referencia'];
-				$this->tramite_model->insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion);
-
-				$tramite = $this->db->query("SELECT *
-												FROM tramite.tramite
-												WHERE cite = '$cite'")->row();
-				$idTramite = $tramite->tramite_id;
-				//$this->session->set_flashdata('in', $idTramite);
-				
-				redirect('Derivaciones/nuevo/'.$idTramite);
-			}
-		}
-		else{
-			redirect(base_url());
-        }	
-
-	 }
+	}	
 
 	 public function update()     
 	{   
@@ -175,6 +137,72 @@ class Tipo_tramite extends CI_Controller {
 		$this->load->view('admin/footer');
 		$this->load->view('predios/index_js');
 	}
+
+
+	public function do_upload()
+	{
+		if($this->session->userdata("login")){
+			$datos = $this->input->post();
+
+				if(isset($datos))
+			{
+				//OBTENER EL ID DEL USUARIO LOGUEADO
+				$id = $this->session->userdata("persona_perfil_id");
+	            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	            $usu_creacion = $resi->persona_id;
+
+				$organigrama_persona_id = $datos['organigrama_persona_id'];
+				$tipo_documento_id = $datos['tipo_documento_id'];
+				$tipo_correspondencia_id = $datos['tipo_correspondencia_id'];
+				$cite = $datos['cite'];
+				$fecha = $datos['fecha'];
+				$fojas = $datos['fojas'];
+				$anexos = $datos['anexos'];
+				$remitente = $datos['remitente'];
+				$procedencia = $datos['procedencia'];
+				$referencia = $datos['referencia'];
+				$adjunto = $cite;
+				$this->tramite_model->insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto);
+
+				$tramite = $this->db->query("SELECT *
+												FROM tramite.tramite
+												WHERE cite = '$cite'")->row();
+				$idTramite = $tramite->tramite_id;
+
+					$config['upload_path']      = './public/assets/images/tramites';
+	                $config['file_name']        = $adjunto;
+	                $config['allowed_types']    = 'pdf';
+	                $config['overwrite']        = TRUE;
+	                $config['max_size']         = 2048;
+
+	                $this->load->library('upload', $config);
+
+	                if ( ! $this->upload->do_upload('adjunto'))
+	                	{
+	                        $error = array('error' => $this->upload->display_errors());
+
+	                        //$this->load->view('crud/organigrama', $error);
+	                	}
+	                else
+	                	{
+	                        $data = array('upload_data' => $this->upload->data());
+	                       	redirect('Derivaciones/nuevo/'.$idTramite);
+
+	                	}
+
+				//$this->session->set_flashdata('in', $idTramite);
+							
+			}
+			
+		}
+		else{
+			redirect(base_url());
+        }	
+
+	 }
+
+
+	
 
 }
 

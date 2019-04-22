@@ -44,7 +44,7 @@
 
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
                             <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
-                            <?php echo form_open_multipart('tipo_tramite/insertar', array('method'=>'POST')); ?>
+                            <?php echo form_open_multipart('tipo_tramite/do_upload', array('method'=>'POST')); ?>
                                     <h4 class="card-title">Registro de Tramite</h4>
                                
                                     <div class="form-row">
@@ -127,16 +127,28 @@
                                             
                                         </div>
 
+                                        <div>
+                                            <input hidden type="date" name="fecha" value="<?php echo date('Y-m-d'); ?>" >
+                                            
+                                        </div>
+
                                         <div class="col-md-4 mb-3">
-                                        <div class="form-group">
-                                                <label for="codigo_catastral"> Fecha<span class="text-danger">*</span> </label>
-                                                <input type="date" class="form-control" id="fecha" name="fecha" required>
-                                                <small id="msg_error_catastral" class="form-control-feedback"></small>
+                                            <div class="form-group">
+                                                <div class="card">
+                                                    <label for="recipient-name" class="control-label">Adjuntar</label>
+                                                    <label for="input-file-now">
+                                                        <button type="button" class="btn waves-effect waves-light btn-sm btn-info">
+                                                            <i class="fas fa-exclamation"></i>
+                                                        </button>
+                                                        OJO Solo archivos pdf
+                                                    </label>
+                                                    <input type="file" id="input-file-now" class="dropify" name="adjunto" data-allowed-file-extensions="pdf" required />
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4 mb-3">
-                                        <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="codigo_catastral"> Fojas<span class="text-danger">*</span> </label>
                                                 <input type="integer" class="form-control" id="fojas" name="fojas" required pattern="[0-9]{1,40}">
                                                 <small id="msg_error_catastral" class="form-control-feedback"></small>
@@ -144,7 +156,7 @@
                                         </div>
 
                                         <div class="col-md-4 mb-3">
-                                        <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="codigo_catastral"> Anexos<span class="text-danger">*</span> </label>
                                                 <input type="integer" class="form-control" id="anexos" name="anexos" required pattern="[0-9]{1,40}">
                                                 <small id="msg_error_catastral" class="form-control-feedback"></small>

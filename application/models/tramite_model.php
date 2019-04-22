@@ -23,7 +23,7 @@ class Tramite_model extends CI_Model {
 		}
 	}
 
-	public function insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion)
+	public function insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto)
 	{	
 		
 		$array = array(
@@ -37,7 +37,8 @@ class Tramite_model extends CI_Model {
 			'remitente' =>$remitente,
 			'procedencia' =>$procedencia,
 			'referencia' =>$referencia,
-			'usu_creacion' =>$usu_creacion
+			'usu_creacion' =>$usu_creacion,
+			'adjunto' =>$adjunto
 			);
 		$this->db->insert('tramite.tramite', $array);
 	}
