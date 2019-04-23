@@ -113,7 +113,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required placeholder="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
                                         </div>
                                     </div>
 
@@ -237,7 +237,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required placeholder="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');">
 
                                         </div>
                                     </div>
@@ -356,7 +356,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" placeholder="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" required>
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="0" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" required>
                                         </div>
                                     </div>
 

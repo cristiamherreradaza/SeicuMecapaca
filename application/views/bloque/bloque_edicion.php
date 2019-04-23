@@ -120,7 +120,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" placeholder="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" >
                                             <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
                                         </div>
                                     </div>
@@ -246,7 +246,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" placeholder="0">
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" required value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" >
                                             <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
 
                                         </div>
@@ -369,7 +369,7 @@
                                             <input type="hidden" class="form-control required" id="<?php echo $i; ?>b" name="<?php echo $i; ?>b" readonly="" value="<?php 
                                                                                                                                                                     echo $grupos_subgrupos[$i]['mat_item_id'];
                                                                                                                                                                     ?>">
-                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');" placeholder="0" required>
+                                            <input type="number" class="form-control sumcontrol<?php echo $count ?>" name="<?php echo $i; ?>c" value="<?php echo $grupos_subgrupos[$i]['cantidad']; ?>" size="3" min="0" max="100" oninput = "(validity.valid) || (value = ' ');"  required>
                                             <?php $valor_dato=$grupos_subgrupos[$i]['cantidad']; $suma_total=$suma_total+$valor_dato; ?>
                                         </div>
                                     </div>
