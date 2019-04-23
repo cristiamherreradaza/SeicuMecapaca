@@ -118,7 +118,7 @@ class Derivaciones extends CI_Controller
 
         $data = array(
             'tramite_id'=>$this->input->post('idTramite'),
-            'organigrama_persona_id'=>$datos_organigrama_persona[0]['organigrama_persona_id'],
+            // 'organigrama_persona_id'=>$datos_organigrama_persona[0]['organigrama_persona_id'],
             'fuente'=>$datos_organigrama_persona[0]['organigrama_persona_id'],
             'destino'=>$this->input->post('destino'),
             'fecha'=>date("Y-m-d H:i:s"),
