@@ -42,6 +42,7 @@
                                                 AND cm.menu_id = m.menu_id
                                                 AND m.padre = '0'
                                                 AND m.nivel = '1'
+                                                AND m.activo = '1'
                                                 ORDER BY m.orden")->result();
                  ?>
                     <?php foreach ($nivel1 as $menu1) { ?>
@@ -57,6 +58,7 @@
                                                                     AND cm.menu_id = m.menu_id
                                                                     AND m.nivel = '2'
                                                                     AND m.padre = '$menu1->menu_id'
+                                                                    AND m.activo = '1'
                                                                     ORDER BY m.orden")->result();
                                 ?>
 
@@ -71,6 +73,7 @@
                                                                                         FROM menu
                                                                                         WHERE padre = $menu2->menu_id
                                                                                         AND nivel = 3
+                                                                                        AND activo = '1'
                                                                                         ORDER BY orden")->row();
                                                         if ($variable3) {
                                                     ?>
@@ -82,6 +85,7 @@
                                                                                                 AND cm.menu_id = m.menu_id
                                                                                                 AND m.nivel = '3'
                                                                                                 AND m.padre = '$menu2->menu_id'
+                                                                                                AND m.activo = '1'
                                                                                                 ORDER BY m.orden")->result();
                                                             ?>
 

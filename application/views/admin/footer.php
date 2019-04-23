@@ -2,7 +2,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © Ministerio de Obras publicas - Programa de Mejora de la Gestion Municipal
+                © Ministerio de Obras P&uacute;blicas Servicios y Vivienda - Programa de Mejora de la Gesti&oacute;n Municipal
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
