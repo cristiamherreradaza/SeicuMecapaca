@@ -149,7 +149,7 @@ class Derivaciones extends CI_Controller
         $fuente = $datos_organigrama_persona[0]['organigrama_persona_id'];
         // vdebug($fuente, false, false, true);
         $this->db->where('tramite.derivacion.destino', $fuente);
-        $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
+        $this->db->order_by('tramite.derivacion.derivacion_id', 'ASC');
         $query = $this->db->get('tramite.derivacion');
         // vdebug($query, true, false, true);
 

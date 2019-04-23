@@ -15,9 +15,10 @@
                     <div class="card-body">
                         <h4 class="card-title">ASIGNADOS</h4></h4>
                         <?php //vdebug($mis_tramites, true, false, true); ?>
-                        <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                        <table id="bandeja_entrada" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>FECHA REGISTRO</th>
                                     <th>REMITENTE</th>
                                     <th>REFERENCIA</th>
@@ -26,6 +27,7 @@
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <th>ID</th>
                                     <th>FECHA REGISTRO</th>
                                     <th>REMITENTE</th>
                                     <th>REFERENCIA</th>
@@ -33,8 +35,9 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                <?php foreach ($mis_tramites as $mt): ?>
+                                <?php foreach ($mis_tramites as $key => $mt): ?>
                                     <tr>
+                                        <td><?php echo ++$key; ?> <?php //echo $mt->derivacion_id; ?></td>
                                         <td>
                                             <?php 
                                                 $fecha_mod = explode(".", $mt->fec_creacion); 
@@ -81,4 +84,64 @@
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
-<!-- ==============================================================
+<!-- ============================================================== -->
+
+<!-- This is data table -->
+<script src="<?php echo base_url(); ?>public/assets/plugins/datatables/datatables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+
+<script type="text/javascript">
+       $(function() {
+           // $('#bandeja_entrada').DataTable();
+           $('#bandeja_entrada').DataTable({
+               "oLanguage": {
+                   "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+               },
+           });
+           $(document).ready(function() {
+               var table = $('#bandeja_entrada_a').DataTable({
+                   "columnDefs": [{
+                       "visible": false,
+                       "targets": 2
+                   }],
+                   "order": [
+                       [2, 'asc']
+                   ],
+                   "displayLength": 25,
+                   "drawCallback": function(settings) {
+                       var api = this.api();
+                       var rows = api.rows({
+                           page: 'current'
+                       }).nodes();
+                       var last = null;
+                       api.column(2, {
+                           page: 'current'
+                       }).data().each(function(group, i) {
+                           if (last !== group) {
+                               $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                               last = group;
+                           }
+                       });
+                   }
+               });
+               // Order by the grouping
+               $('#example tbody').on('click', 'tr.group', function() {
+                   var currentOrder = table.order()[0];
+                   if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                       table.order([2, 'desc']).draw();
+                   } else {
+                       table.order([2, 'asc']).draw();
+                   }
+               });
+           });
+       });
+       $('#example23').DataTable({
+           dom: 'Bfrtip',
+           buttons: [
+               'copy', 'csv', 'excel', 'pdf', 'print'
+           ]
+       });
+       $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+</script>
