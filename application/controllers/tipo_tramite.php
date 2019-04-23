@@ -183,9 +183,7 @@ class Tipo_tramite extends CI_Controller {
 	                       	redirect('Derivaciones/nuevo/'.$idTramite);
 
 	                	}
-
 				//$this->session->set_flashdata('in', $idTramite);
-							
 			}
 			
 		}
