@@ -44,7 +44,7 @@
                                         <td>
                                             <?php 
                                                 // echo $mt->fuente; 
-                                                $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$mt->organigrama_persona_id))->result_array();
+                                                $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$mt->fuente))->result_array();
                                                 $persona = $this->db->get_where('persona', array('persona_id'=>$organigrama_persona[0]['persona_id']))->result_array();
                                                 // vdebug($persona, false, false, true);
                                                 echo $persona[0]['nombres'].'&nbsp;';

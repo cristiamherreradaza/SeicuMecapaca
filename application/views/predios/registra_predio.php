@@ -678,11 +678,11 @@
                     // alert(data.message);
                     if (data.estado == 'si') {
                         // console.log('Si se esta');
-                        $("#msg_error_catastral").show();    
-                        $("#codigo_catastral").val("");    
-                        $("#msg_error_catastral").html('YA existe el codigo: '+data.codigo);    
+                        $("#msg_error_catastral").show();
+                        $("#codigo_catastral").val("");
+                        $("#msg_error_catastral").html('YA existe el codigo: '+data.codigo);
                     } else {
-                        $("#msg_error_catastral").hide();    
+                        $("#msg_error_catastral").hide();
                         // console.log('no');
                     }
 
@@ -691,7 +691,7 @@
                     // alert("error");
                 }
             });
-            
+
         });
 
         $("#btn_genera_catas").click(function(){
@@ -717,13 +717,13 @@
                     //var combos_vias = '<select class="custom-select form-control" id="" name="" required="">';
                     var checkbox_vias = '<table>';
                     var contador = 0;
-                   
+
                     datos.vias.forEach(function(element){
                         // console.log(element.sp_get_vias);
                         var aux1 = element.sp_get_vias;
                         var aux2 = element.sp_get_vias.split(",");
                         var aux3 = aux2[0].substring(1);
-                        todos.push(aux3); 
+                        todos.push(aux3);
                         // console.log(todos);
                         // console.log(contador);
                         // combos_vias += '<option value="'+aux3+'">'+element.sp_get_vias+'</option>';
@@ -823,10 +823,10 @@
           // define methods under the `methods` object
           methods: {
             oculta: function (event){
-                $("#muestra_mapa").toggle('slow');    
+                $("#muestra_mapa").toggle('slow');
             },
             llena: function (event) {
-                alert("holas");                      
+                alert("holas");
             }
         });
 */
@@ -839,10 +839,10 @@
     // define methods under the `methods` object
     methods: {
         oculta: function(event) {
-            $("#muestra_mapa").toggle('slow');    
+            $("#muestra_mapa").toggle('slow');
         },
         llena: function(event) {
-            // $("#muestra_mapa").toggle('slow');    
+            // $("#muestra_mapa").toggle('slow');
             var cod_catastral = getRndInteger(1, 9999999999);
         },
     }
@@ -888,7 +888,7 @@ function elimina_fila_tabla(fila){
 }
 
 // $('#predio_form').submit(function(e) {
-    
+
 //     swal("Excelente!", "Puedes continuar con el siguiente paso!", "success");
 //     e.preventDefault(); // don't submit multiple times
 //     this.submit(); // use the native submit method of the form element

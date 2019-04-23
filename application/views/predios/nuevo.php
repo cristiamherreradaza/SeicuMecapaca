@@ -63,7 +63,7 @@
                                             <div class="button-box">
                                                 <?php if ( $this->cart->total_items() < 100) { ?>
                                                     <button <?php echo $verifica['alta']; ?> class="btn btn-success waves-effect waves-light " type="button"  data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Agregar Propietario</button><span class="text-danger ">*</span>
-                                                <?php } ?> 
+                                                <?php } ?>
                                             </div>
                                         </div>
                                         <div class="portlet-body" style="padding-top: 30px;">
@@ -98,7 +98,7 @@
                                                         $count++;
                                                     ?>
                                                 <?php endforeach; ?>
-                                                <?php if ($count == 1): ?> 
+                                                <?php if ($count == 1): ?>
                                                     <tr><td colspan="5" style="text-align: center;">No existe propietarios</td></tr>
                                                 <?php endif; ?>
                                                 <tr>
@@ -108,7 +108,7 @@
                                                     <td></td>
                                                 </tr>
                                             </table>
-                                        </div>  
+                                        </div>
                                         <?php if ( $this->cart->total_items() < 100) { ?>
                                             <div class="alert alert-info">
                                                 <h3 class="text-info"><i class="fa fa-exclamation-circle"></i> Información</h3> Mientras el total del porcentaje de participacion no llegue al 100% no podra finalizar el registro.
@@ -213,12 +213,12 @@
                                         <?php if ( $this->cart->total_items() == 100) { ?>
                                             <button type="submit" class="btn waves-effect waves-light btn-info">Finalizar registro</button>
                                         <?php } ?>
-                                        
+
                                     </div>
                                 </div>
 
 
-                            
+
                             <?php echo form_close(); ?>
 
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
@@ -238,7 +238,7 @@
                                         <div class="modal-body">
                                             <!--<form action="<?php //echo base_url();?>persona/insertar" method="POST">-->
                                             <?php echo form_open('persona/insertar', array('method' => 'GET')); ?>
-                                            <!--<input type="hidden" id="<?php// echo $this->security->get_csrf_token_name(); ?>" name="<?php// echo $this->security->get_csrf_token_name(); ?>" value="<?php //echo $this->security->get_csrf_hash(); ?>" />-->
+                                            <!--<input type="hidden" id="<?php //echo $this->security->get_csrf_token_name(); ?>" name="<?php //echo $this->security->get_csrf_token_name(); ?>" value="<?php //echo $this->security->get_csrf_hash(); ?>" />-->
                                                 <div class="form-body">
                                                     <div class="row">
                                                         <div class="col-md-12 ">
@@ -255,7 +255,7 @@
                                                             <div class="form-group">
                                                                 <label>Nombres : <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" id="nombres1" name="nombres1"/>
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -345,7 +345,7 @@
     </div>
 </div>
 <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script> 
+<script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
     $("#ci1").focusout(function(){
         var ci = $("#ci1").val();
@@ -365,10 +365,10 @@
                 // alert(data.message);
                 if (data.estado == 'si') {
                     // console.log('Si se esta');
-                    $("#msg_error_catastral").hide();    
+                    $("#msg_error_catastral").hide();
                     $("#msg_sucess_catastral").show();
                     $("#msg_alerta_catastral").show();
-                    $("#ci").val("");    
+                    $("#ci").val("");
                     $("#msg_sucess_catastral").html('La persona existe: '+data.ci);
                     $('#nombres1').val(data.nombres);
                     $("#nombres1").prop("disabled", true);
@@ -387,7 +387,7 @@
                     $("#telefono_celular1").val(data.telefono_celular);
                     $("#telefono_celular1").prop("disabled", true);
                     $("#msg_alerta_catastral").html('Podria cambiar el porcentaje de participacion del propietario que sea menor o igual a lo indicado');
-                         
+
                 } else {
                     $("#msg_sucess_catastral").hide();
                      $("#msg_error_catastral").show();
@@ -398,11 +398,11 @@
                     $('#materno1').val('');
                     $('#fec_nacimiento1').val('');
                     $("#nombres1").prop("disabled", false);
-                   
+
                     $("#paterno1").prop("disabled", false);
-                    
+
                     $("#materno1").prop("disabled", false);
-                    
+
                     $("#fec_nacimiento1").prop("disabled", false);
                     $("#direccion1").val('');
                     $("#direccion1").prop("disabled", false);
@@ -421,7 +421,7 @@
         });
     });
 
-    function confirma(){ 
+    function confirma(){
         var ci = $('#ci1').val();
         var nombres = $('#nombres1').val();
         var paterno = $('#paterno1').val();
@@ -444,27 +444,27 @@
             data:{ci:ci,nombres:nombres,paterno:paterno,materno:materno,fec_nacimiento:fec_nacimiento,porcen_parti:porcen_parti,'<?php echo $this->security->get_csrf_token_name(); ?>' : tok, direccion:direccion, email:email, telefono_fijo:telefono_fijo, telefono_celular:telefono_celular ,cod_catastral:cod_catastral},
             success: function (data, textStatus, jqXHR){
                 if (data.estado == 'sobrepasa') {
-                    $("#msg_error_catastral").hide();    
+                    $("#msg_error_catastral").hide();
                     $("#msg_sucess_catastral").show();
                     $("#msg_alerta_catastral").hide();
                     $("#no-valido").show();
-                    $("#ci1").val(data.ci);    
+                    $("#ci1").val(data.ci);
                     $('#nombres1').val(data.nombres);
                     $('#paterno1').val(data.paterno);
                     $('#materno1').val(data.materno);
                     $('#fec_nacimiento1').val(data.fec_nacimiento);
                     $('#porcen_parti1').val(data.porcen_parti);
                     $("#no-valido").html('El porcentaje es menor de lo q se esperaba');
-                     //swal("¡BIEN!", "Se adiciono con exito a la persona", "success");                  
+                     //swal("¡BIEN!", "Se adiciono con exito a la persona", "success");
                 }else if(data.estado == 'guardado'){
                     window.location.reload();
                     //swal("¡MAL!", "Porcentaje sobrepaso el 100%", "error");
                 }else{
-                    $("#msg_error_catastral").hide();    
+                    $("#msg_error_catastral").hide();
                     $("#msg_sucess_catastral").show();
                     $("#msg_alerta_catastral").hide();
                     $("#no-valido").show();
-                    $("#ci1").val(data.ci);    
+                    $("#ci1").val(data.ci);
                     $('#nombres1').val(data.nombres);
                     $('#paterno1').val(data.paterno);
                     $('#materno1').val(data.materno);
@@ -504,7 +504,7 @@
             }
         }
         for (var j = 0; j < myMask.length; j++) {
-            if (myMask.charAt(j) == "_") { //replace "_" by a number 
+            if (myMask.charAt(j) == "_") { //replace "_" by a number
                 if (myNumbers.length == 0)
                     myOutPut = myOutPut + myMask.charAt(j);
                 else {
@@ -544,5 +544,3 @@
         });
     });
 </script>
-        
-
