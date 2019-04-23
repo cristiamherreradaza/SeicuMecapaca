@@ -46,17 +46,22 @@
                                         <!-- <td><?php //echo $mt->codcatas_anterior; ?></td> -->
                                         <td>
                                             <div class="btn-group btn-group-xs" role="group">
-                                                <a href="<?php echo base_url(); ?>derivaciones/nuevo/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit">
+                                                <a href="<?php echo base_url(); ?>derivaciones/nuevo/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit" title="Derivar">
                                                     <span class="fas fa-paper-plane" aria-hidden="true"></span>
                                                 </a>
 
-                                                <a href="<?php echo base_url(); ?>derivaciones/ver/<?php echo $mt->tramite_id; ?>" class="btn btn-primary footable-edit">
+                                                <a href="<?php echo base_url(); ?>derivaciones/ver/<?php echo $mt->tramite_id; ?>" class="btn btn-primary footable-edit" title="Ver" >
                                                     <span class="fas fa-bars" aria-hidden="true"></span>
                                                 </a>
 
-                                                <a href="#" type="button" class="btn btn-danger footable-delete">
+                                                <a href="#" type="button" class="btn btn-danger footable-delete" title="Eliminar" >
                                                     <span class="fas fa-trash-alt" aria-hidden="true"></span>
                                                 </a>
+
+                                                <a href="<?php echo site_url('pdf_controller/pdf'); ?>" class="btn btn-warning footable-edit" title="Imprimir" >
+                                                    <span class="fas fa-print" aria-hidden="true"></span>
+                                                </a>
+
                                             </div>
                                         </td>
                                     </tr>    
@@ -71,4 +76,4 @@
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
-<!-- ============================================================== -->
+<!-- ==============================================================

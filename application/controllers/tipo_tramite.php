@@ -194,8 +194,6 @@ class Tipo_tramite extends CI_Controller {
 	 }
 
 
-	
-
 }
 
 	
