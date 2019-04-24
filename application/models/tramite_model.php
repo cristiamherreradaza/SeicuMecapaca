@@ -23,7 +23,7 @@ class Tramite_model extends CI_Model {
 		}
 	}
 
-	public function insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto)
+	public function insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $correlativo, $gestion)
 	{	
 		
 		$array = array(
@@ -41,6 +41,20 @@ class Tramite_model extends CI_Model {
 			'adjunto' =>$adjunto
 			);
 		$this->db->insert('tramite.tramite', $array);
+		
+			$tramite_id = $this->db->query("SELECT *
+	                                    FROM tramite.numero_tramite
+	                                    WHERE gestion = '$gestion'
+	                                    AND activo = '1'")->row();
+			$numero_tramite_id = $tramite_id->numero_tramite_id;
+
+			$data = array(
+            'correlativo' => $correlativo
+        );
+        $this->db->where('numero_tramite_id', $numero_tramite_id);
+        $this->db->update('tramite.numero_tramite', $data);
+
+
 	}
 
 

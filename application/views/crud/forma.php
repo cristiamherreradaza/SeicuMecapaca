@@ -37,7 +37,7 @@
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                   <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                                   <table id="tabla_din1" class="table table-bordered table-striped" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -185,4 +185,27 @@
               $('#coeficiente').val(d[3]);
         }
 
+    </script>
+
+      <!-- Style switcher -->
+    <!-- ============================================================== -->
+
+    <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <!-- This is data table -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/datatables/datatables.min.js"></script>
+        <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script>
+      $('#tabla_din1').DataTable( {
+     
+        "oLanguage": {
+            "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        },
+    });
     </script>

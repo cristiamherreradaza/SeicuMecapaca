@@ -101,5 +101,28 @@ class Bloque_grupo_mat extends CI_Controller {
 		}
 	 }
 
+	 public function activo($id)
+    {
+        if ($this->session->userdata("login")) {
+
+            $consulta = $this->db->query("SELECT *
+										FROM catastro.bloque_grupo_mat
+										WHERE grupo_mat_id = $id")->row();            
+            $valor = $consulta->activo;
+            
+            $valor=1-$valor;
+
+            $data = array(
+
+                'activo' => $valor, //input                                 
+            );
+            $this->db->where('grupo_mat_id', $id);
+            $this->db->update('catastro.bloque_grupo_mat', $data);          
+            redirect(base_url() . 'bloque_grupo_mat');
+        } else {
+            redirect(base_url());
+        }
+    }
+
 }
 
