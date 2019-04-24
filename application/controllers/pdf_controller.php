@@ -21,13 +21,6 @@ class Pdf_controller extends CI_Controller {
 		$this->load->view('derivaciones/RutaPDF', $data);
 	}
 
-	public function details()
-	{
-		
-			$this->load->view('derivaciones/RutaPDF');
-		
-	}
-
 	public function pdf($idTramite = null)
 	{
 		$id = $this->session->userdata("persona_perfil_id");

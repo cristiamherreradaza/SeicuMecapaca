@@ -14,6 +14,7 @@ class Predios extends CI_Controller {
          $this->load->library('cart');
         $this->load->model("rol_model");
         $this->load->library('email');
+        $this->load->library('pdf');
     }
 
     public function principal(){
@@ -408,6 +409,10 @@ class Predios extends CI_Controller {
 		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
 		//$this->db->join('catastro.predio_ddrr', 'catastro.predio_ddrr.codcatas=catastro.predio.codcatas');
 		$data['predio'] = $this->db->get()->result();
+
+		$data['ddrr']= $this->db->query("SELECT * FROM catastro.predio_ddrr as pd WHERE pd.codcatas = '$cod_catastral'")->row();
+		$data['personas'] =$this->db->query("SELECT p.nombres, p.paterno, p.materno FROM catastro.predio_ddrr as pd JOIN catastro.predio_titular as pt ON pd.ddrr_id = pt.ddrr_id JOIN persona as p ON pt.persona_id=p.persona_id WHERE pt.activo=1 AND pd.codcatas = '$cod_catastral'")->result();
+
 		// print_r($this->db->last_query());
 		// vdebug($data);
 
@@ -420,6 +425,40 @@ class Predios extends CI_Controller {
 		else{
 			redirect(base_url());
 		}
+	}
+
+	public function pdf_certificado($cod_catastral = null)
+	{
+		$this->db->select('*');
+		$this->db->from('catastro.predio');
+		$this->db->where('catastro.predio.codcatas', $cod_catastral);
+		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
+		//$this->db->join('catastro.predio_ddrr', 'catastro.predio_ddrr.codcatas=catastro.predio.codcatas');
+		$data['predio'] = $this->db->get()->result();
+
+		$data['ddrr']= $this->db->query("SELECT * FROM catastro.predio_ddrr as pd WHERE pd.codcatas = '$cod_catastral'")->row();
+		$data['personas'] =$this->db->query("SELECT p.nombres, p.paterno, p.materno FROM catastro.predio_ddrr as pd JOIN catastro.predio_titular as pt ON pd.ddrr_id = pt.ddrr_id JOIN persona as p ON pt.persona_id=p.persona_id WHERE pt.activo=1 AND pd.codcatas = '$cod_catastral'")->result();
+		
+
+		$dompdf = new Dompdf\Dompdf();
+ 
+        $html = $this->load->view('predios/certificado_pdf', $data, true);
+ 
+        $dompdf->loadHtml($html);
+ 
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4');
+
+        $dompdf->set_option('defaultFont', 'Verdana');
+ 
+        // Render the HTML as PDF
+        $dompdf->render();
+ 
+        // Get the generated PDF file contents
+        $pdf = $dompdf->output();
+ 
+        // Output the generated PDF to Browser
+        $dompdf->stream("reporte.pdf", array("Attachment"=>1));
 	}
 
 	public function ajax_verifica_cod_catastral(){

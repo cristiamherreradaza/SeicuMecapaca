@@ -30,8 +30,17 @@
                                         La Paz, 21 de marzo de 2019
                                         <br/> Tramite No 321456,
                                         <br/> <b>Certificacion de Datos Tecnicos No. 1245/2019</b>
-                                        <br/> Matricula: 3.1.2.0001245
-                                        <br/> Propietario: RUDDY HERNAN MASIAS
+                                        <br/> Matricula: <?php echo $ddrr->nro_matricula_folio ?>
+
+                                        <br/> Propietario(s): 
+                                        <?php $cont=1 ?>
+                                        <?php foreach ($personas as $propietarios) {
+                                            if ($cont>1) {
+                                                echo ' , '; 
+                                            }
+                                            echo $propietarios->nombres; echo " ";  echo $propietarios->paterno; echo " "; echo $propietarios->materno;
+                                             $cont=$cont+1;
+                                        } ?>
                                                       
                                 </address>
                             </div>
@@ -80,8 +89,8 @@
                                 <br>Calle: <b>Innominada</b>
                             </td>
                             <td>
-                                Mazana Act: <b>125</b>
-                                <br />Organizacion <b>LOMA PAMPA</b>
+                                Manzana Act: <b>125</b>
+                                <br />Organizacion: <b>LOMA PAMPA</b>
                             </td>
                         </tr>
                     </table>
@@ -137,7 +146,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            Nota: Se aclara que la manzana S-6985 a la codificacion ANTIGUA, actualemente corresponde a la manzana 125 de acuerdo al Plano General del Area Urbana de La Paz aprobado segun ley Municipoal 0159/2016 del 02/09/2016.
+                            Nota: Se aclara que la manzana S-6985 a la codificacion ANTIGUA, actualemente corresponde a la manzana 125 de acuerdo al Plano General del Area Urbana de La Paz aprobado segun ley Municipal 0159/2016 del 02/09/2016.
                             <br />La presente certificacion no define derecho propietario
                             <br />En cuanto se certifica para fines consiguientes
                         </div>
@@ -154,6 +163,9 @@
                             <hr>
                             <div class="text-right d-print-none">
                                 <button id="print" class="btn btn-default btn-outline" type="button"> <span><i class="fa fa-print"></i> Impresion</span> </button>
+                                <a href="<?php echo base_url(); ?>Predios/pdf_certificado/<?php echo $predio[0]->codcatas; ?>" class="btn btn-warning footable-edit" title="Imprimir" >
+                                    <span class="fas fa-print" aria-hidden="true"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -164,6 +176,7 @@
         <!-- End PAge Content -->
         <!-- ============================================================== -->
     </div>
+</div>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
