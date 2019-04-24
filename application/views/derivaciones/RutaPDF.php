@@ -22,6 +22,19 @@
         </div>
        
          
+          <h3 style="text-align: center;">CITE : <?php echo $tramite->cite; ?></h3>
+          <br>
+          <div style="text-align: left; padding-left: 70px;">A &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp;  <?php echo $tramite->remitente; ?> </div>
+          <br>
+          <div style="text-align: left; padding-left: 70px;">DE &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; <?php echo $de->nombres; ?> <?php echo $de->paterno; ?> <?php echo $de->materno; ?> </div>
+          <br>
+          <div style="text-align: left; padding-left: 70px;">REF. &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; &nbsp; <?php echo $tramite->referencia; ?></div>
+          <br>
+          <div style="text-align: left; padding-left: 70px;">FECHA : &nbsp; &nbsp; &nbsp; <?php echo $tramite->fecha; ?></div>
+          <br>
+          <hr style="clear: both;">
+                    
+       
        
 
     </div>

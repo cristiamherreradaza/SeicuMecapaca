@@ -58,7 +58,7 @@
                                                     <span class="fas fa-trash-alt" aria-hidden="true"></span>
                                                 </a>
 
-                                                <a href="<?php echo site_url('pdf_controller/pdf'); ?>" class="btn btn-warning footable-edit" title="Imprimir" >
+                                                <a href="<?php echo base_url(); ?>pdf_controller/pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-warning footable-edit" title="Imprimir" >
                                                     <span class="fas fa-print" aria-hidden="true"></span>
                                                 </a>
 
