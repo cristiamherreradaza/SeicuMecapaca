@@ -93,7 +93,8 @@ class Organigrama extends CI_Controller
                 $nivel = $row->nivel;
                 $hijo = $row->hijo;
             } 
-            $nivel=$nivel+1;           
+            $nivel=$nivel+1; 
+            $img = str_replace(" ", "_", $img);          
             $img=$img.'.png';
     
             $data = array(            
