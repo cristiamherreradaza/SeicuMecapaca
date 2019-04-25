@@ -129,6 +129,14 @@ class Derivaciones extends CI_Controller
 
         $data['flujo'] = $this->db->get_where('tramite.derivacion', array('tramite_id'=>$idTramite))->result_array();
 
+        //usuario que esta registrando
+        $id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_creacion = $resi->persona_id;
+
+        $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
+
+
         // vdebug($data['flujo'], true, false, true);
 
         $this->load->view('admin/header');

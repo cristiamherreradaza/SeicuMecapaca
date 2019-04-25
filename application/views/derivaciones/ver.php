@@ -13,7 +13,25 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">ASIGNADOS</h4></h4>
+                        <!-- <h4 class="card-title">ASIGNADOS</h4></h4> -->
+                        <div class="row">
+                            <div class="col-6">
+                            <?php //vdebug($tramite, false, false, true); ?>
+                                <h2 class="mb-0">CITE: <?php echo $tramite->cite; ?></h2>
+                                <h4 class="font-light mt-0">Referencia <?php echo $tramite->referencia; ?></h4>
+                            </div>
+                            <div class="col-6 align-self-center display-8 text-info text-right">Fecha: <?php echo date("Y-m-d",strtotime($tramite->fecha)); ?></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                REMITENTE: <?php echo $tramite->remitente; ?><br />
+                                ARCHIVO: <a href="<?php echo base_url(); ?>public/assets/images/tramites/<?php echo $tramite->adjunto; ?>.pdf" target='_blank'><?php echo $tramite->adjunto; ?></a>
+                            </div>
+                            <div class="col-6">
+                                PROCEDENCIA: <?php echo $tramite->procedencia; ?>
+                            </div>
+                        </div>
                         <?php //vdebug($flujo, false, false, true); ?>
                         <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
