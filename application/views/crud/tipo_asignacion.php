@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row page-titles">
                             <div class="col-md-6 col-8 align-self-center">
-                                <h4 class="card-title">Tipo Actuacion</h4>                                
+                                <h4 class="card-title">Tipo asignacion</h4>                                
                             </div>
                         </div>
                         <p></p>                        
@@ -37,24 +37,24 @@
                                         <thead>
                                             <tr>
                                                 <th>nro</th>
-                                                <th>Descripcion</th>
+                                                <th>Tipo</th>
                                                 <th>Estado</th>                                                           
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $i=1;?>                                                
-                                            <?php foreach ($data_tcorr as $row) { $datos = $row->tipo_actuacion_id."||".
-                                            $row->descripcion;  ?>
+                                            <?php foreach ($data_tcorr as $row) { $datos = $row->tipo_asignacion_id."||".
+                                            $row->tipo;  ?>
                                             <tr>
                                                 <td><?php echo $i++; ?></td>
-                                                <td><?php echo $row->descripcion; ?></td>
+                                                <td><?php echo $row->tipo; ?></td>
                                                 <td>                                           
                                                 <?php if (($row->activo)==1):?>
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_actuacion/delete'); ?>/<?php echo $row->tipo_actuacion_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Activo</button></a>                                                          
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_asignacion/delete'); ?>/<?php echo $row->tipo_asignacion_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Activo</button></a>                                                          
                                                     <?php endif ?>
                                                     <?php if (($row->activo)==0):?>
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_actuacion/delete'); ?>/<?php echo $row->tipo_actuacion_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Inactivo</button></a>                                                          
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_asignacion/delete'); ?>/<?php echo $row->tipo_asignacion_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Inactivo</button></a>                                                          
                                                     <?php endif ?>
                                                 </td>                                                                                                              
                                                 <td>
@@ -80,10 +80,10 @@
                                 <h4 class="modal-title" id="exampleModalLabel1">Insertar nuevo</h4>
                             </div>
                             <div class="modal-body">                                
-                                    <?php echo form_open('tipo_actuacion/create', array('method'=>'POST', 'id'=>'insertar')); ?>
+                                    <?php echo form_open('tipo_asignacion/create', array('method'=>'POST', 'id'=>'insertar')); ?>
                                     <div class="form-group">
-                                        <label for="recipient-name" class="control-label">Descripcion</label>
-                                        <input type="text" class="form-control" id="descripcion" name="descripcion">
+                                        <label for="recipient-name" class="control-label">Tipo</label>
+                                        <input type="text" class="form-control" id="tipo" name="tipo">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -98,16 +98,16 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="exampleModalLabel1">Editar tipo de  tramite</h4>
+                                <h4 class="modal-title" id="exampleModalLabel1">Edicion</h4>
                             </div>
                             <div class="modal-body">                        
-                                <?php echo form_open('tipo_actuacion/update', array('method'=>'POST')); ?>                            
+                                <?php echo form_open('tipo_asignacion/update', array('method'=>'POST')); ?>                            
                                 <div class="form-group">
-                                    <input type="text" class="form-control" hidden="" id="tipo_actuacion_id_e" name="tipo_actuacion_id_e">
+                                    <input type="text" class="form-control" hidden="" id="tipo_asignacion_id_e" name="tipo_asignacion_id_e">
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Descripcion</label>
-                                    <input type="text" class="form-control" id="descripcion_e" name="descripcion_e" >
+                                    <label for="recipient-name" class="control-label">Tipo</label>
+                                    <input type="text" class="form-control" id="tipo_e" name="tipo_e" >
                                 </div>                            
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -129,7 +129,7 @@
     function agregarform(datos)
     {
        d=datos.split('||');
-       $('#tipo_actuacion_id_e').val(d[0]);
-       $('#descripcion_e').val(d[1]);
+       $('#tipo_asignacion_id_e').val(d[0]);
+       $('#tipo_e').val(d[1]);
    }
 </script>
