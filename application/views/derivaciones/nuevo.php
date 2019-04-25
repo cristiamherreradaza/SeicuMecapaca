@@ -36,13 +36,12 @@
         <?php echo form_open('derivaciones/guarda', array('method'=>'POST')); ?>
         <div class="row">
             <div class="col-md-12">
-            
+            <?php //vdebug($tramite, false, false, true); ?>
                 <div class="card">
                     <div class="card-body">
-                    
                         <div class="row">
                             <div class="col-6">
-                            <?php //vdebug($tramite); ?>
+                            <?php //vdebug($tramite, false, false, true); ?>
                                 <h2 class="mb-0">CITE: <?php echo $tramite->cite; ?></h2>
                                 <h4 class="font-light mt-0">Referencia <?php echo $tramite->referencia; ?></h4>
                             </div>
@@ -51,7 +50,8 @@
 
                         <div class="row">
                             <div class="col-6">
-                                REMITENTE: <?php echo $tramite->remitente; ?>
+                                REMITENTE: <?php echo $tramite->remitente; ?><br />
+                                ARCHIVO: <a href="<?php echo base_url(); ?>public/assets/images/tramites/<?php echo $tramite->adjunto; ?>.pdf" target='_blank'><?php echo $tramite->adjunto; ?></a>
                             </div>
                             <div class="col-6">
                                 PROCEDENCIA: <?php echo $tramite->procedencia; ?>
