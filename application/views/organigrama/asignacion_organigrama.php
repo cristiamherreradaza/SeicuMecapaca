@@ -40,6 +40,7 @@
                                                 <button class="btn btn-success" title="Dar de baja" onclick="dar_baja(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-arrow-down" aria-hidden="true"></span></button>
                                                 <button class="btn btn-warning" title="Editar" onclick="edit_book(<?php echo $lista->organigrama_persona_id;?>)"><span class="fas fa-pencil-alt" aria-hidden="true"></span></button>
                                                 
+                                                
                                             
                                             <!-- <button type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('$lista->organigrama_persona_id')">
                                                     <span class="fas fa-pencil-alt" aria-hidden="true"></span>
