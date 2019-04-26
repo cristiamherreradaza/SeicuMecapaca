@@ -83,11 +83,11 @@
                                     <h4 class="card-title">Men&uacute; Administrador</h4>
 
                                         
-                                        <div class="form-group">
+                                        <div class="form-group" id="f1">
                                             <!--<input type="text" hidden="" value="<?php echo $credencial_id; ?>" name="credencial">-->
                                         </div>
                                         <button type="submit" class="btn btn-primary">Guardar</button>
-                                              <div >
+                                              <li  ></li>
                                                   <br>
                                                   <input type="checkbox" name="ch1"> Opcion 1 
                                                   <br> 
