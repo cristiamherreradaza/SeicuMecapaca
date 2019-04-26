@@ -20,6 +20,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>FECHA REGISTRO</th>
+                                    <th>CITE</th>
                                     <th>REMITENTE</th>
                                     <th>REFERENCIA</th>
                                     <th>ACCIONES</th>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>FECHA REGISTRO</th>
+                                    <th>CITE</th>
                                     <th>REMITENTE</th>
                                     <th>REFERENCIA</th>
                                     <th>ACCIONES</th>
@@ -44,6 +46,7 @@
                                                 echo $fecha_mod[0]; 
                                             ?>
                                         </td>
+                                        <td><?php echo $mt->cite; ?></td>
                                         <td>
                                             <?php 
                                                 // echo $mt->fuente; 

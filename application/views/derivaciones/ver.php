@@ -37,6 +37,7 @@
                             <thead>
                                 <tr>
                                     <th>FECHA</th>
+                                    <th>CITE</th>
                                     <th>ORIGEN</th>
                                     <th>DESTINO</th>
                                     <th>DESCRIPCION</th>
@@ -45,6 +46,7 @@
                             <tfoot>
                                 <tr>
                                     <th>FECHA</th>
+                                    <th>CITE</th>
                                     <th>ORIGEN</th>
                                     <th>DESTINO</th>
                                     <th>DESCRIPCION</th>
@@ -59,6 +61,7 @@
                                                 echo $fecha_mod[0]; 
                                             ?>
                                         </td>
+                                        <td><?php echo $f['cite']; ?></td>
                                         <td>
                                             <?php 
                                                 // echo $f->fuente; 

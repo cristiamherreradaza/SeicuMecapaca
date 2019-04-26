@@ -20,7 +20,6 @@ class Derivaciones extends CI_Controller
 
     public function principal()
     {
-
         $this->load->view('admin/header');
         $this->load->view('admin/menu');
         $this->load->view('derivaciones/nuevo');
@@ -41,7 +40,10 @@ class Derivaciones extends CI_Controller
 			//usuario que esta registrando
 			$id = $this->session->userdata("persona_perfil_id");
 	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-	        $usu_creacion = $resi->persona_id;
+            $usu_creacion = $resi->persona_id;
+            $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('persona_id'=>$usu_creacion, 'activo'=>1))->result_array();
+            $data['organigrama_id']=$organigrama_persona[0]['organigrama_id'];
+            // vdebug($data['organigrama_id'], true, false, true);
 
             $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
             $data['personas'] = $this->derivaciones_model->personal();
@@ -56,6 +58,37 @@ class Derivaciones extends CI_Controller
 
     public function guarda(){
 
+        if($this->input->post('boton')=='cite'){
+
+            $cite = $this->db->get_where('tramite.cite', array('organigrama_id'=>$this->input->post('organigrama_id')))->result_array();
+            $correlativo = $cite[0]['correlativo']+1;
+            $this->db->where('cite_id', $cite[0]['cite_id']);
+            $this->db->update('tramite.cite', array('correlativo'=>$correlativo));
+            // $this->db->select_max('correlativo');
+            // $this->db->where('organigrama_id', $this->input->post('organigrama_id'));
+            
+            $cite_generado = $cite[0]['tipo'].'/'.$cite[0]['gestion'].'-0000'.$correlativo;
+            // vdebug($cite_generado, true, false, true);
+            /*$max_correlativo = $this->db->get('tramite.cite')->result_array();
+            if ($max_correlativo[0]['correlativo'] == NULL) {
+                $correlativo = 1;
+            } else {
+                $correlativo = $max_correlativo[0]['correlativo']+1;
+                // echo 'no';
+            }
+            $data = array(
+                'organigrama_id'=>$this->input->post('organigrama_id'),
+                'tipo'=>'Nota Interna',
+                'gestion'=>'2019',
+                'correlativo'=>$correlativo,
+                'activo'=>1,
+            );
+            $this->db->insert('tramite.cite', $data);
+            $id_cite = $this->db->insert_id();*/
+        }else{
+            $cite_generado = NULL;
+        }
+        
         $perfil_persona = $this->session->userdata('persona_perfil_id');
         $datos_persona_perfil = $this->db->get_where('persona_perfil', array('persona_perfil_id'=>$perfil_persona))->result_array();
         $idTramite = $this->input->post('idTramite');
@@ -69,7 +102,6 @@ class Derivaciones extends CI_Controller
         } else {
             $estado = 1;
         }
-        // vdebug($query[0]['derivacion_id'], true, false, true);
 
         $datos_organigrama_persona = $this->db->get_where(
             'tramite.organigrama_persona', 
@@ -84,6 +116,7 @@ class Derivaciones extends CI_Controller
             'fuente'=>$datos_organigrama_persona[0]['organigrama_persona_id'],
             'destino'=>$this->input->post('destino'),
             'estado'=>$estado,
+            'cite'=>$cite_generado,
             'fecha'=>date("Y-m-d H:i:s"),
             'descripcion'=>$this->input->post('descripcion'),
         );
@@ -109,7 +142,7 @@ class Derivaciones extends CI_Controller
         // vdebug($fuente, false, false, true);
         $this->db->where('tramite.derivacion.destino', $fuente);
         $this->db->where('tramite.derivacion.estado', 1);
-        $this->db->order_by('tramite.derivacion.derivacion_id', 'ASC');
+        $this->db->order_by('tramite.derivacion.derivacion_id', 'DESC');
         $query = $this->db->get('tramite.derivacion');
         // vdebug($query, true, false, true);
 
@@ -135,9 +168,6 @@ class Derivaciones extends CI_Controller
         $usu_creacion = $resi->persona_id;
 
         $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
-
-
-        // vdebug($data['flujo'], true, false, true);
 
         $this->load->view('admin/header');
         $this->load->view('admin/menu');

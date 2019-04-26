@@ -58,11 +58,13 @@
                             </div>
                         </div>
                         <hr>
+
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-4">
                             <?php //vdebug($personas, true, false, true); ?>
                                 <div class="form-group">
                                     <input type="hidden" name="idTramite" value="<?php echo $idTramite; ?>">
+                                    <input type="hidden" name="organigrama_id" value="<?php echo $organigrama_id; ?>">
                                     <label>Derivar a: </label>
                                     <select class="custom-select form-control" name="destino" />
                                         <?php foreach ($personas as $key => $p): ?>
@@ -71,8 +73,23 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
-                            
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Archivo</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Subir</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label>Descripcion: </label>
                                     <input type="text" class="form-control" name="descripcion">
@@ -83,8 +100,11 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn waves-effect waves-light btn-block btn-info">Derivar</button>
+                            <div class="col-md-6">
+                                <button type="submit" name="boton" value="nocite" class="btn waves-effect waves-light btn-block btn-info">Derivar</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" name="boton" value="cite" class="btn waves-effect waves-light btn-block btn-success">Derivar con Cite</button>
                             </div>
                         </div>
 
