@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="row page-titles">
                             <div class="col-md-6 col-8 align-self-center">
-                                <h4 class="card-title">Datos Tipo de Tramite</h4>                                
+                                <h4 class="card-title">Tipo asignacion</h4>                                
                             </div>
                         </div>
                         <p></p>                        
@@ -31,30 +31,30 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Documentos Registrados</h4>                                        
+                                <h4 class="card-title">Datos Registrados</h4>                                        
                                 <div class="table-responsive m-t-40">
-                                    <table id="tabla_din1" class="table table-bordered table-striped">
+                                    <table id="documento_table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>nro</th>
-                                                <th>correspondencia</th>
+                                                <th>Tipo</th>
                                                 <th>Estado</th>                                                           
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php $i=1;?>                                                
-                                            <?php foreach ($data_tcorr as $row) { $datos = $row->tipo_correspondencia_id."||".
-                                            $row->correspondencia; ?>
+                                            <?php foreach ($data_tcorr as $row) { $datos = $row->tipo_asignacion_id."||".
+                                            $row->tipo;  ?>
                                             <tr>
                                                 <td><?php echo $i++; ?></td>
-                                                <td><?php echo $row->correspondencia; ?></td>
+                                                <td><?php echo $row->tipo; ?></td>
                                                 <td>                                           
                                                 <?php if (($row->activo)==1):?>
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_tramite_doc/delete'); ?>/<?php echo $row->tipo_correspondencia_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Activo</button></a>                                                          
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_asignacion/delete'); ?>/<?php echo $row->tipo_asignacion_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Activo</button></a>                                                          
                                                     <?php endif ?>
                                                     <?php if (($row->activo)==0):?>
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_tramite_doc/delete'); ?>/<?php echo $row->tipo_correspondencia_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Inactivo</button></a>                                                          
+                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('tipo_asignacion/delete'); ?>/<?php echo $row->tipo_asignacion_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Inactivo</button></a>                                                          
                                                     <?php endif ?>
                                                 </td>                                                                                                              
                                                 <td>
@@ -77,13 +77,13 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="exampleModalLabel1">Insertar nuevo tipo de  tramite</h4>
+                                <h4 class="modal-title" id="exampleModalLabel1">Insertar nuevo</h4>
                             </div>
                             <div class="modal-body">                                
-                                    <?php echo form_open('tipo_tramite_doc/create', array('method'=>'POST', 'id'=>'insertar')); ?>
+                                    <?php echo form_open('tipo_asignacion/create', array('method'=>'POST', 'id'=>'insertar')); ?>
                                     <div class="form-group">
-                                        <label for="recipient-name" class="control-label">Correspondencia</label>
-                                        <input type="text" class="form-control" id="correspondencia" name="correspondencia">
+                                        <label for="recipient-name" class="control-label">Tipo</label>
+                                        <input type="text" class="form-control" id="tipo" name="tipo">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -98,16 +98,16 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title" id="exampleModalLabel1">Editar tipo de  tramite</h4>
+                                <h4 class="modal-title" id="exampleModalLabel1">Edicion</h4>
                             </div>
                             <div class="modal-body">                        
-                                <?php echo form_open('tipo_tramite_doc/update', array('method'=>'POST')); ?>                            
+                                <?php echo form_open('tipo_asignacion/update', array('method'=>'POST')); ?>                            
                                 <div class="form-group">
-                                    <input type="text" class="form-control" hidden="" id="tipo_correspondencia_e" name="tipo_correspondencia_e">
+                                    <input type="text" class="form-control" hidden="" id="tipo_asignacion_id_e" name="tipo_asignacion_id_e">
                                 </div>
                                 <div class="form-group">
-                                    <label for="recipient-name" class="control-label">Documento</label>
-                                    <input type="text" class="form-control" id="correspondencia_e" name="correspondencia_e" >
+                                    <label for="recipient-name" class="control-label">Tipo</label>
+                                    <input type="text" class="form-control" id="tipo_e" name="tipo_e" >
                                 </div>                            
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -129,29 +129,7 @@
     function agregarform(datos)
     {
        d=datos.split('||');
-       $('#tipo_correspondencia_e').val(d[0]);
-       $('#correspondencia_e').val(d[1]);
+       $('#tipo_asignacion_id_e').val(d[0]);
+       $('#tipo_e').val(d[1]);
    }
 </script>
-
-<!-- Style switcher -->
-    <!-- ============================================================== -->
-    <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-    <!-- This is data table -->
-    <script src="<?php echo base_url(); ?>public/assets/plugins/datatables/datatables.min.js"></script>
-        <!-- start - This is for export functionality only -->
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-    <script>
-      $('#tabla_din1').DataTable( {
-     
-        "oLanguage": {
-            "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-        },
-    });
-    </script>

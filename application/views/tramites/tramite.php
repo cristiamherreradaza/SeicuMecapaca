@@ -113,14 +113,26 @@
                                                                             FROM tramite.numero_tramite
                                                                             WHERE gestion = '$año'
                                                                             AND activo = '1'")->row();
-                                               $tcite = $this->db->query("SELECT count(*) AS id
-                                                                            FROM tramite.tramite
-                                                                            WHERE cite LIKE '%GAM-TOR/$año%'")->row();
-                                               $numero = $tcite->id + 1 ;
+                                               
+                                               $numero = $cite->correlativo + 1 ;
                                                $numeroConCeros = str_pad($numero, 5, "0", STR_PAD_LEFT);                                                
 
-                                        ?>  
+                                        ?> 
 
+                                        <div>
+                                            <input hidden type="integer" name="cite_sin" value="<?php echo $cite->tipo ?><?php echo $cite->gestion ?>-<?php echo $numeroConCeros ?>" >
+                                            
+                                        </div>
+                                        
+                                        <div>
+                                            <input hidden type="integer" name="gestion" value="<?php echo $año; ?>" >
+                                            
+                                        </div>
+
+                                        <div>
+                                            <input hidden type="integer" name="correlativo" value="<?php echo $numero; ?>" >
+                                            
+                                        </div>
 
                                         <div>
                                             <input hidden type="text" name="cite" value="<?php echo $cite->tipo ?>/<?php echo $cite->gestion ?>-<?php echo $numeroConCeros ?>" >

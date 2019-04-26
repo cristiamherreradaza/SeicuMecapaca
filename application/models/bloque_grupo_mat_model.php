@@ -13,7 +13,7 @@ class Bloque_grupo_mat_model extends CI_Model {
 
 	public function index()
 	{
-		$lista = $this->db->query("SELECT * FROM catastro.bloque_grupo_mat  WHERE activo = '1' ORDER BY grupo_mat_id ASC")->result();
+		$lista = $this->db->query("SELECT * FROM catastro.bloque_grupo_mat ORDER BY grupo_mat_id ASC")->result();
 
 		if ($lista > 0) {
 			return $lista;

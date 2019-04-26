@@ -16,7 +16,6 @@ class Predio_via extends CI_Controller {
 		
 		$lista['verifica'] = $this->rol_model->verifica();
 		$lista['predio_via'] = $this->Predio_via_model->index();
-		
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('crud/predio_via', $lista);

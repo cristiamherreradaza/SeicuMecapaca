@@ -11,7 +11,7 @@ class Predios extends CI_Controller {
         $this->load->model("Ddrr_model");
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
-         $this->load->library('cart');
+        $this->load->library('cart');
         $this->load->model("rol_model");
         $this->load->library('email');
         $this->load->library('pdf');
@@ -412,6 +412,8 @@ class Predios extends CI_Controller {
 
 		$data['ddrr']= $this->db->query("SELECT * FROM catastro.predio_ddrr as pd WHERE pd.codcatas = '$cod_catastral'")->row();
 		$data['personas'] =$this->db->query("SELECT p.nombres, p.paterno, p.materno FROM catastro.predio_ddrr as pd JOIN catastro.predio_titular as pt ON pd.ddrr_id = pt.ddrr_id JOIN persona as p ON pt.persona_id=p.persona_id WHERE pt.activo=1 AND pd.codcatas = '$cod_catastral'")->result();
+
+		$data['bloques'] = $this->db->query("SELECT y.bloque_id,y.codcatas,y.nro_bloque,y.nom_bloque,y.estado_fisico,y.altura,y.anio_cons,y.anio_remo,y.porcentaje_remo,y.destino_bloque_id,z.descripcion as desc_bloque_dest,y.uso_bloque_id,x.descripcion as desc_bloque_uso FROM catastro.bloque as y LEFT JOIN catastro.uso_bloque as x on x.uso_bloque_id=y.uso_bloque_id LEFT JOIN catastro.destino_bloque as z on z.destino_bloque_id=y.destino_bloque_id WHERE y.activo=1 and x.activo=1 and z.activo=1 and y.codcatas='$cod_catastral' order by y.nro_bloque asc")->result();
 
 		// print_r($this->db->last_query());
 		// vdebug($data);

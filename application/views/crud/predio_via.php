@@ -1,4 +1,7 @@
-<link href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css" rel="stylesheet">
+<!--alerts CSS -->
+<link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+
+
 <style type="text/css">
     #izquierda{
         padding-left: 10px;
@@ -32,12 +35,15 @@
                     <div class="card-body">
                         ADMINISTRACI&Oacute;N DE V&Iacute;A <?php $i=1; //echo $data['title']; ?>
                         <div class="card-body wizard-content">
+
                             <div class="col-lg-2 col-md-4">
+
+
                                 <button <?php echo $verifica['alta']; ?> type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nueva V&iacute;a</button>
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped" cellspacing="0" width="100%">
+                                    <table id="tabla_din1" class="table table-bordered table-striped" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -215,11 +221,28 @@
 
         </script>
 
-         <!-- Sweet-Alert  -->
-        <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
-        <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
-        <!-- ============================================================== -->
-        <!-- Style switcher -->
-        <!-- ============================================================== -->
-        <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+   
+    <!-- ============================================================== -->
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
+
+    <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <!-- This is data table -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/datatables/datatables.min.js"></script>
+        <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script>
+      $('#tabla_din1').DataTable( {
+     
+        "oLanguage": {
+            "sUrl": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+        },
+    });
+    </script>
    

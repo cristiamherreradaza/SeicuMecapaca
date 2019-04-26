@@ -37,9 +37,9 @@
                                         </thead>
                                         <tbody>
                                             <?php $i=1;?>
-                                            <?php foreach ($data_org as $row) { 
-                                               $datos = $row->organigrama_id."||".
-                                               $row->padre_id."||".                                                         
+                                            <?php foreach ($data_org as $row) {
+    $datos = $row->organigrama_id."||".
+                                               $row->padre_id."||".
                                                $row->unidad; ?>
                                                <tr>
                                                 <td><?php echo $i++; ?></td>
@@ -47,24 +47,79 @@
                                                 <td><?php echo $row->unidad; ?></td>    
                                                 <td>                                           
                                                 <?php if (($row->activo)==1):?>
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/delete'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Activo</button></a>                                                          
+                                                        <a <?php echo $verifica['baja']; ?>="<?php echo site_url('organigrama/delete'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-success"><span class="fas fa-arrow-alt-circle-up" aria-hidden="true"></span> Activo</button></a>                                                          
                                                     <?php endif ?>
                                                     <?php if (($row->activo)==0):?>
-                                                        <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/delete'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Inactivo</button></a>                                                          
+                                                        <a <?php echo $verifica['baja']; ?>="<?php echo site_url('organigrama/delete'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-arrow-alt-circle-down" aria-hidden="true"></span> Inactivo</button></a>                                                          
                                                     <?php endif ?>
                                                 </td>                     
                                                 <td>
-                                                    <a <?php echo $verifica['baja'];?>="<?php echo site_url('organigrama/edit'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>                                                  
+                                                    <a <?php echo $verifica['baja']; ?>="<?php echo site_url('organigrama/edit'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>                                                  
+                                                    <button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-info" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
+                                                            <span class="fas fa-barcode" aria-hidden="true"> 
+                                                            </span> CITE
+                                                    </button>
+                                                    
+                                                    <a <?php echo $verifica['baja']; ?>="<?php echo site_url('organigrama/cite'); ?>/<?php echo $row->organigrama_id; ?>"><button type="button" class="btn btn-info"><span class="fas fa-barcode" aria-hidden="true"></span> VER CITE</button></a>                                                  
                                                 </td>
+                                                
                                             </tr>
-                                            <?php 
-                                        } ?>
+                                            <?php
+} ?>
                                     </tbody>
                                 </table>
                             </div>                                        
                         </div>
                     </div>
                 </div>
+
+            <div class="modal fade" id="modalEdicion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel1">CITE</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--<form action="<?php echo base_url();?>nivel/update" method="POST">-->
+                        <?php echo form_open('organigrama/cite', array('method'=>'POST')); ?>
+                            <div class="form-group">
+                                <input type="text" hidden="" id="organigrama_id_e" name="organigrama_id_e">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Unidad</label>
+                                <input type="text" class="form-control" id="unidad_e" name="unidad_e" readonly>
+                            </div>
+                            <div class="form-group">
+                            <label for="recipient-name" class="control-label">Tipo</label>
+                            <input type="text" class="form-control" id="tipo" name="tipo">
+                                                                          
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Gestion</label>
+                                <input type="text" class="form-control" id="gestion" name="gestion" >
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Observaciones</label>
+                                <input type="text" class="form-control" id="observaciones" name="observaciones">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Correlativo</label>
+                                <input type="number" class="form-control" id="correlativo" name="correlativo" min=1>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+
                 <div class="modal fade" id="modal_insertar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -105,10 +160,11 @@
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
                             </form>
-                        </div>
+                        </div><!--modal-body-->
                     </div>
                 </div>
-            </div>
+            </div><!--modal insertar-->
+			
         </div>
     </div>
 </div>

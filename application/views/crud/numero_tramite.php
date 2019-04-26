@@ -1,3 +1,5 @@
+<!--alerts CSS -->
+<link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 
 <style type="text/css">
     #izquierda{
@@ -30,48 +32,68 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        ADMINISTRACI&Oacute;N DE LA UBICACI&Oacute;N <?php $i=1; //echo $data['title']; ?>
+                        ADMINISTRACI&Oacute;N N&Uacute;MERO TRAMITE <?php $i=1; //echo $data['title']; ?>
                         <div class="card-body wizard-content">
+
                             <div class="col-lg-2 col-md-4">
-                                <button <?php echo $verifica['alta']; ?> type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nueva Ubicaci&oacute;n</button>
+
+                                
+                                <button <?php echo $verifica['alta']; ?> type="button" class="btn btn-block btn-lg btn-success" data-toggle="modal" data-target="#Modal_insert">Nuevo N&uacute;mero Tramite</button>
                             </div><div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                   <table id="tabla_din1" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                                    <table id="tabla_din1" class="table table-bordered table-striped" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Descripci&oacute;n</th>
-                                                <th>Alias</th>
-                                                <th>Coeficiente</th>
+                                                <th>Tipo</th>
+                                                <th>Gesti&iacute;n</th>
+                                                <th>Correlativo</th>
+                                                <th>Observaciones</th>
+                                                <th>Estado</th>
                                                 <th>Acci&oacute;n</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($ubicacion as $lis){
-                                                $datos = $lis->ubicacion_id."||".
-                                                         $lis->descripcion."||".
-                                                         $lis->alias."||".
-                                                         $lis->coeficiente;
-                                                
-
+                                            <?php foreach($numero_tramite as $lis){
+                                                $datos = $lis->numero_tramite_id."||".
+                                                         $lis->tipo."||".
+                                                         $lis->gestion."||".
+                                                         $lis->correlativo."||".
+                                                         $lis->observaciones;
                                             ?>
                                             <tr>
                                                 <td><?php echo $i++;?></td>
-                                                <td><?php echo $lis->descripcion;?></td>
-                                                <td><?php echo $lis->alias;?></td>
-                                                <td><?php echo $lis->coeficiente;?></td>
-                                                
+                                                <td><?php echo $lis->tipo;?></td>
+                                                <td><?php echo $lis->gestion;?></td>
+                                                <td><?php echo $lis->correlativo;?></td>
+                                                <td><?php echo $lis->observaciones;?></td>
                                                 <td>
+                                                    <?php if ($lis->activo == '1') {
 
+                                                        $var = '1';
+                                                        $color = 'success';
+                                                        $mensaje = 'Activo';
+                                                    } 
+                                                    else
+                                                    {
+                                                        $var = '0';
+                                                        $color = 'danger';
+                                                        $mensaje = 'Inactivo';
+                                                    }
+
+                                                    ?>
+                                                    <a <?php echo $verifica['baja'];?>="<?= base_url('numero_tramite/activo/'. $lis->numero_tramite_id); ?>" type="button" class="btn btn-<?php echo $color ?>"><?php echo $mensaje ?>
+                                                        
+                                                    </a>  
+
+                                                </td>
+                                                <td>
                                                     <button <?php echo $verifica['modificacion']; ?> type="button" class="btn btn-warning footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
                                                             <span class="fas fa-pencil-alt" aria-hidden="true">
                                                             </span>
                                                     </button> 
-                                                    <a <?php echo $verifica['baja'];?>="<?= base_url('ubicacion/eliminar/'. $lis->ubicacion_id); ?>" type="button" class="btn btn-danger footable-delete">
-                                                        <span class="fas fa-trash-alt" aria-hidden="true">
-                                                        </span>
-                                                    </a>
+                                                    
                                                     
                                                 </td>
                                             </tr>
@@ -98,31 +120,38 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Editar Ubicaci&oacute;n</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Editar N&uacute;mero Tramite</h4>
                     </div>
                     <div class="modal-body">
-                        <!--<form action="<?php echo base_url();?>ubicacion/update" method="POST">-->
-                        <?php echo form_open('ubicacion/update', array('method'=>'POST')); ?>
-                            <div class="form-group">
-                                <input type="text" hidden="" id="ubicacion_id" name="ubicacion_id">
-                            </div>
+                        <!--<form action="<?php echo base_url();?>zona_urbana/update" method="POST">-->
+                        <?php echo form_open('numero_tramite/update', array('method'=>'POST')); ?>
 
                             
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
-                                <input type="text" class="form-control" id="descripcion" name="descripcion" id="descripcion" value="">
+                                <input type="text" hidden="" id="numero_tramite_id" name="numero_tramite_id">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Tipo</label>
+                                <input type="text" class="form-control" id="tipo" name="tipo" value="<?php echo $lis->tipo;?>">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Alias</label>
-                                <input type="text" class="form-control" id="alias" name="alias" id="alias" value="">
+                                <label for="recipient-name" class="control-label">Gesti&oacute;n</label>
+                                <input type="text" class="form-control" id="gestion" name="gestion" value="<?php echo $lis->gestion;?>">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Coeficiente</label>
-                                <input type="integer" class="form-control" id="coeficiente" name="coeficiente" id="coeficiente" value="">
+                                <label for="recipient-name" class="control-label">Correlativo</label>
+                                <input type="text" class="form-control" id="correlativo" name="correlativo" value="<?php echo $lis->correlativo;?>">
                             </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Observaciones</label>
+                                <input type="text" class="form-control" id="observaciones" name="observaciones" value="<?php echo $lis->observaciones;?>">
+                            </div>
+                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
+
                             </div>
                         </form>
                     </div>
@@ -135,26 +164,29 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="exampleModalLabel1">Insertar Nueva Ubicaci&oacute;n</h4>
+                        <h4 class="modal-title" id="exampleModalLabel1">Insertar Numero Tramite</h4>
                     </div>
-                    <?php 
-                        $edirol = $this->uri->segment(3);
-                    ?>
                     <div class="modal-body">
-                        <!--<form action="<?php echo base_url();?>ubicacion/insertar" method="POST">-->
-                        <?php echo form_open('ubicacion/insertar', array('method'=>'POST')); ?>
+                        <!--<form action="<?php echo base_url();?>zona_urbana/insertar" method="POST">-->
+                        <?php echo form_open('numero_tramite/insertar', array('method'=>'POST')); ?>
+
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Descripci&oacute;n</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="descripcion">
+                                <label for="recipient-name" class="control-label">Tipo</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="tipo">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Alias</label>
-                                <input type="text" class="form-control" id="recipient-name1" name="alias" value="">
+                                <label for="recipient-name" class="control-label">Gesti&oacute;n</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="gestion">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="control-label">Coeficiente</label>
-                                <input type="integer" class="form-control" id="recipient-name1" name="coeficiente">
+                                <label for="recipient-name" class="control-label">Correlativo</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="correlativo">
                             </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Observaciones</label>
+                                <input type="text" class="form-control" id="recipient-name1" name="observaciones">
+                            </div>
+                          
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
@@ -184,24 +216,29 @@
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>public/assets/plugins/edit/ubicacionscript.js"></script>
+        <script src="<?php echo base_url(); ?>public/assets/plugins/edit/ubicacionscript.js"></script>
 
     <script>
         function agregarform(datos)
         {
              d=datos.split('||');
-              $('#ubicacion_id').val(d[0]);
-              $('#descripcion').val(d[1]);
-              $('#alias').val(d[2]);
-              $('#coeficiente').val(d[3]);
+              $('#numero_tramite_id').val(d[0]);
+              $('#tipo').val(d[1]);
+              $('#gestion').val(d[2]);
+              $('#correlativo').val(d[3]);
+              $('#observaciones').val(d[4]);
         }
 
     </script>
 
-      <!-- Style switcher -->
+     <!-- Sweet-Alert  -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
     <!-- ============================================================== -->
-    <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <!-- Style switcher -->
+    <!-- ============================================================== -->
 
+    <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
     <!-- This is data table -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/datatables/datatables.min.js"></script>
         <!-- start - This is for export functionality only -->
@@ -220,3 +257,4 @@
         },
     });
     </script>
+   

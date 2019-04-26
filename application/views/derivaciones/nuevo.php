@@ -36,33 +36,35 @@
         <?php echo form_open('derivaciones/guarda', array('method'=>'POST')); ?>
         <div class="row">
             <div class="col-md-12">
-            
+            <?php //vdebug($tramite, false, false, true); ?>
                 <div class="card">
                     <div class="card-body">
-                    
                         <div class="row">
                             <div class="col-6">
-                            <?php //vdebug($tramite); ?>
+                            <?php //vdebug($tramite, false, false, true); ?>
                                 <h2 class="mb-0">CITE: <?php echo $tramite->cite; ?></h2>
                                 <h4 class="font-light mt-0">Referencia <?php echo $tramite->referencia; ?></h4>
                             </div>
-                            <div class="col-6 align-self-center display-8 text-info text-right">Fecha: <?php echo $tramite->fecha; ?></div>
+                            <div class="col-6 align-self-center display-8 text-info text-right">Fecha: <?php echo date("Y-m-d",strtotime($tramite->fecha)); ?></div>
                         </div>
 
                         <div class="row">
                             <div class="col-6">
-                                REMITENTE: <?php echo $tramite->remitente; ?>
+                                REMITENTE: <?php echo $tramite->remitente; ?><br />
+                                ARCHIVO: <a href="<?php echo base_url(); ?>public/assets/images/tramites/<?php echo $tramite->adjunto; ?>.pdf" target='_blank'><?php echo $tramite->adjunto; ?></a>
                             </div>
                             <div class="col-6">
                                 PROCEDENCIA: <?php echo $tramite->procedencia; ?>
                             </div>
                         </div>
                         <hr>
+
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-4">
                             <?php //vdebug($personas, true, false, true); ?>
                                 <div class="form-group">
                                     <input type="hidden" name="idTramite" value="<?php echo $idTramite; ?>">
+                                    <input type="hidden" name="organigrama_id" value="<?php echo $organigrama_id; ?>">
                                     <label>Derivar a: </label>
                                     <select class="custom-select form-control" name="destino" />
                                         <?php foreach ($personas as $key => $p): ?>
@@ -71,8 +73,23 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
-                            
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Archivo</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Subir</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                            <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
                                 <div class="form-group">
                                     <label>Descripcion: </label>
                                     <input type="text" class="form-control" name="descripcion">
@@ -83,8 +100,11 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn waves-effect waves-light btn-block btn-info">Derivar</button>
+                            <div class="col-md-6">
+                                <button type="submit" name="boton" value="nocite" class="btn waves-effect waves-light btn-block btn-info">Derivar</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" name="boton" value="cite" class="btn waves-effect waves-light btn-block btn-success">Derivar con Cite</button>
                             </div>
                         </div>
 

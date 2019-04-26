@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>public/assets/images/favicon.png">
-    <title>MOP</title>
+    <title>SEICU - LIBRE</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -303,7 +303,7 @@
                                                         $dato = $resi->persona_id;
                                                         $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
                                                  ?>
-                                                <h4> <?php echo strtoupper($res->nombres);?> <?php echo strtoupper($res->paterno);?></h4>
+                                                <h4> <?php echo $res->nombres;?> <?php echo $res->paterno;?></h4>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -343,7 +343,7 @@
                                 <p class="card-text">Nombre: <?php echo strtoupper($res->nombres);?> <?php echo strtoupper($res->paterno);?> <?php echo strtoupper($res->materno);?>
                                                         </p>
                                 <p class="card-text">Carnet de Identidad: <?=$res->ci?></p>
-                                <p class="card-text">Fecha de Nacimiento: <?=$res->fec_nacimiento?></p>
+                                <p class="card-text">Fecha de Nacimiento: <?= date("Y-m-d",strtotime($res->fec_nacimiento));?></p>
                                 
                             </div>
                     </div>
@@ -389,7 +389,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">Fecha de Nacimiento</label>
-                                <input type="text" class="form-control" id="fec_nacimiento" name="fec_nacimiento" value="<?php echo $res->fec_nacimiento;?>">
+                                <input type="text" class="form-control" id="fec_nacimiento" name="fec_nacimiento" value="<?php echo date("Y-m-d",strtotime($res->fec_nacimiento));?>">
                             </div>
 
                              <div class="modal-footer">
