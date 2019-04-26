@@ -1,4 +1,35 @@
-<link href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reporte</title>
+    <link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+
+    <link href="<?php echo base_url(); ?>public/css/style.css" rel="stylesheet">
+    
+    <!-- You can change the theme colors from here -->
+    <link href="<?php echo base_url(); ?>public/css/colors/blue-dark.css" id="theme" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>public/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>public/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+
+    <link href="<?php echo base_url(); ?>public/assets/plugins/wizard/steps.css" rel="stylesheet">
+
+</head>
+<body>
+  <div>
+        <!-- <div>
+          <p>
+          	<img src="<?php echo base_url().'public/assets/images/logo.png' ;?>" style=" float: left; height: 80px; width: 130px;">
+            <img src="<?php echo base_url().'public/assets/images/pmgm.jpg' ;?>"  style=" float: right; height: 80px; width: 130px;">
+            
+<center>            <h5 style="padding-top: 10px;">ESTADO PLURINACIONAL DE BOLIVIA <br>MINISTERIO DE OBRAS PUBLICAS, SERVICIOS Y VIVIENDA <br>VICEMINSTERIO DE VIVIENDA Y URBANISMO </h5></center>					
+          </p>
+        </div> -->         
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Container fluid  -->
@@ -38,18 +69,14 @@
 
                         <div class="row page-titles">
                             <div class="col-md-6 col-8 align-self-center">
-                                <h3 class="text-themecolor mb-0 mt-0">Registro Bloque Nro: <?php echo $nro_bloque; ?></h3>
+                                <h3 class="text-themecolor mb-0 mt-0">Registro Bloque Nro: </h3>
 
-                            </div>
-                            <div class="col-md-6 col-4 align-self-center">
-                                <button class="btn float-right hidden-sm-down btn-success">Cod. Catastral: <?php echo $cod_catastral; ?>
-                                </button>
                             </div>
                         </div>
                         <?php echo form_open('Edificacion/create', array('method' => 'POST')); ?>
 
-                        <input type="hidden" class="form-control required" id="cod_catastral" name="cod_catastral" readonly="" value="<?php echo $cod_catastral; ?>">
-                        <input type="hidden" class="form-control required" id="nro_bloque" name="nro_bloque" readonly="" value="<?php echo $nro_bloque; ?>">
+                        <input type="hidden" class="form-control required" id="cod_catastral" name="cod_catastral" readonly="" value="">
+                        <input type="hidden" class="form-control required" id="nro_bloque" name="nro_bloque" readonly="" value="">
                         <h4>Caracteristicas de la construccion</h4>
 
 
@@ -93,6 +120,7 @@
                                     </div>
                                     <?php 
                                 } else { ?>
+
                                     <?php 
                                 } ?>
                                     <div class="row" style="background-color:Ivory;">
@@ -489,187 +517,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h6 class="card-subtitle">Superficie de la Planta</h6>
-                                <!--modal-->
-
-                                <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Registro de niveles</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
-                                            </div>
-                                            <div class="modal-body">                                                                                                
-                                                    
-                                                    <div class="row" >
-                                                        <div class="col-md-8">
-                                                            <div class="form-group">
-                                                                <label for="location1">Tipo de planta :<span class="text-danger"> *</span></label>
-                                                                <select class="custom-select form-control" id="tipo_planta_id" name="tipo_planta_id">
-                                                                    <option value="">Seleccione Tipo de planta</option>
-                                                                    <?php foreach ($tipo_planta as $tp) : ?>
-                                                                    <option value="<?php echo $tp->tipo_planta_id; ?>"><?php echo $tp->descripcion; ?></option>
-                                                                    <?php endforeach; ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" >
-                                                        <div class="col-md-8">
-                                                            <div class="form-group">
-                                                                <label for="wfirstName2">Nivel : <span class="text-danger"> * <small></small></span> </label>
-                                                                <input type="number" class="form-control" step='1' id="nivel" name="nivel" placeholder="0">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" >
-                                                        <div class="col-md-8">
-                                                            <div class="form-group">
-                                                                <label for="wfirstName2">Altura : <span class="text-danger"> * <small>metros</small></span> </label>
-                                                                <input type="number" class="form-control" step='0.100' id="altura_p" name="altura_p" placeholder="0.00">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" >
-                                                        <div class="col-md-8">
-                                                            <div class="form-group">
-                                                                <label for="wfirstName2">Superficie : <span class="text-danger"> * <small>metros</small></span> </label>
-                                                                <input type="number" class="form-control" step='0.100' id="superficie" name="superficie" placeholder="0.00">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                              
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Cerrar</button>
-                                                <button type="button" class="btn btn-success waves-effect waves-light" id="bt_add" >Agregar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--fin modal-->
-
-
-
-
-                                <div class="row" >
-                                    <div class="col-md-12">                                        
-                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#responsive-modal">Adicionar Niveles</button><span class="text-danger"> * requerido<small></small></span>
-
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table id="detalles" class="table table-hover no-wrap">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Planta</th>
-                                                        <th>Nivel</th>
-                                                        <th>Sup </th>
-                                                        <th>altura</th>
-                                                        <th>Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
                             </div>
-                            <!--fin col-lg-5-->
-                        </div>
-                        <!--fin column-->
-                        <div class="col-md-12" align="right">
-                            <button type="submit" class="btn btn-info" value="save" id="guardar">Guardar</button>
-                            <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral ?>" align="right">Cancelar</a>
                         </div>
                         </form>
                     </div>
-                    <!--</form>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#bt_add').click(function() {
-            agregar();
-            $('#responsive-modal').modal('hide');
-        });     
-    });
-    var cont_n = 0;
-    estado = 0;
-    total = 0;
-    
-    subtotal = [];
-    $("#guardar").hide();
+                    
+       
+       
 
-    function agregar() {
-        tipo_planta_id = $("#tipo_planta_id").val();
-        tipo_planta = $("#tipo_planta_id option:selected").text();
-        idnivel = $("#nivel").val();
-        nivel = $("#nivel option:selected").text();
-        superficie = $("#superficie").val();
-        altura = $("#altura_p").val();
-
-        if (tipo_planta_id != "" && idnivel != "" && superficie != "" && altura != "") {
-            total = total+1;
-            var fila = '<tr class="selected" id="fila' + cont_n + '"><td><input type="hidden" name="id_tipo_planta[]" value="' + tipo_planta_id + '">' + tipo_planta + '</td><td><input type="hidden" name="niveles[]" value="' + idnivel + '">' + idnivel + '</td><td><input type="hidden" name="superficies[]" value="' + superficie + '">' + superficie + '</td><td><input type="hidden" name="alturas[]" value="' + altura + '">' + altura +'</td><td><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></td></tr>';
-            cont_n++;
-            limpiar();
-            evaluar();
-            $('#detalles').append(fila);
-        } else {
-            alert("los campos estan vacios");
-        }
-    }
-
-    function limpiar() {
-        $("#tipo_planta_id").val(""); //id
-        $("#nivel").val("0");
-        $("#superficie").val("0.00");
-        $("#altura_p").val("0.00");
-    }
-
-    function evaluar() {
-        if (total > 0) {
-            $("#guardar").show();
-        } else {
-            $("#guardar").hide();
-        }
-    }
-
-    function eliminar(index) {
-        total = total - 1;
-        $("#fila" + index).remove();
-        evaluar();
-    }
-</script>
-
-<script>
-$(document).ready(function() {
-
-$('input[type=number][max]:not([max=""])').on('input', function(ev) {
-  var $this = $(this);
-  var maxlength = $this.attr('max').length;
-  var value = $this.val();
-  if (value && value.length >= maxlength) {
-    $this.val(value.substr(0, maxlength));
-  } 
-});
-});
-</script>
-
-
-<!-- ============================================================== -->
-<!-- End Container fluid  -->
-<!-- ============================================================== --> 
+    </div>
+</body>
+</html>
+        </div>

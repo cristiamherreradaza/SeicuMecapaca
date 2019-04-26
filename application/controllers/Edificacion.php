@@ -13,6 +13,7 @@ class Edificacion extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
         $this->load->model("rol_model");
+        $this->load->library('pdf');
     }
 
     public function index()
@@ -359,4 +360,44 @@ class Edificacion extends CI_Controller
             redirect(base_url());
         }
     }
+
+    public function pdf(){
+        $anio_act=date("Y");//obtiene el anio actual
+        $data['result_array'] = $this->Edificacion_model->getAllData();
+        //$data['bloques'] = $this->Edificacion_model->get_Bloque($cod);
+        $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
+        $data['grupos'] = $this->Edificacion_model->get_grupos();
+        $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque();
+        $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
+        $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
+        $data['anio_actual'] = $anio_act;
+        $dompdf = new Dompdf\Dompdf();
+        $html = $this->load->view('bloque/ficha_tecnica', $data, true);
+        //
+        $dompdf->set_option('enable_html5_parser', TRUE);
+        $dompdf->loadHtml($html);
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4');
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Get the generated PDF file contents
+        $pdf = $dompdf->output();
+        // Output the generated PDF to Browser
+        $dompdf->stream("Ficha.pdf", array("Attachment"=>1));
+    }
+
+    public function prueba_pdf(){
+        $anio_act=date("Y");//obtiene el anio actual
+        $data['result_array'] = $this->Edificacion_model->getAllData();
+        //$data['bloques'] = $this->Edificacion_model->get_Bloque($cod);
+        $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
+        $data['grupos'] = $this->Edificacion_model->get_grupos();
+        $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque();
+        $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
+        $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
+        $data['anio_actual'] = $anio_act;
+        $this->load->view('bloque/ficha_tecnica', $data);
+    }
+
 }
+     
