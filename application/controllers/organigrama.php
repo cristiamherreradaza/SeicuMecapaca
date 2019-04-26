@@ -268,4 +268,24 @@ class Organigrama extends CI_Controller
             redirect(base_url());
         }
     }
+
+    public function cite()//crear cite
+    {
+        if ($this->session->userdata("login")) {
+            $id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
+            $data = array(
+            'organigrama_id' => $this->input->post('organigrama_id_e'), //input
+            'tipo' => $this->input->post('tipo'),
+            'gestion' => $this->input->post('gestion'),
+            'correlativo' => $this->input->post('correlativo'),
+            'observaciones' => $this->input->post('observaciones'),
+        );
+            $this->db->insert('tramite.cite', $data);
+            redirect(base_url() . 'organigrama/nuevo/');
+        } else {
+            redirect(base_url());
+        }
+    }
 }

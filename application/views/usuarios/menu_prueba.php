@@ -79,7 +79,7 @@
                                   ?>
 
 
-                                <?php echo form_open('usuario/update', array('method'=>'POST')); ?>
+                                <?php echo form_open('usuario/update', array('method'=>'POST', 'name'=>'f1')); ?>
                                     <h4 class="card-title">Men&uacute; Administrador</h4>
 
                                         
@@ -87,10 +87,29 @@
                                             <!--<input type="text" hidden="" value="<?php echo $credencial_id; ?>" name="credencial">-->
                                         </div>
                                         <button type="submit" class="btn btn-primary">Guardar</button>
+                                              <div >
+                                                  <br>
+                                                  <input type="checkbox" name="ch1"> Opcion 1 
+                                                  <br> 
+                                                  <input type="checkbox" name="ch2"> Opcion 2 
+                                                  <br> 
+                                                  <input type="checkbox" name="ch3"> Opcion 3 
+                                                  <br> 
+                                                  <input type="checkbox" name="ch4"> Opcion 4 
+                                                 
+                                                  <br> 
+                                                  <input type="submit"> 
+                                                  <br> 
+                                                  <br> 
+                                                  <a href="javascript:seleccionar_todo()">Marcar todos</a>
+                                                  <a href="javascript:deseleccionar_todo()">Marcar ninguno</a> 
+                                              </div>
 
 
 
-                                            <!-- CABECERA DEL PRIMER MENU -->
+
+
+                                            <!-- CABECERA DEL PRIMER MENU 
 
                                             <li class="dd-item" >
                                                 <div class="dd-handle"><a onclick="nivel2()" class="<?php echo 'fas fa-clipboard-list' ?>"></a> <?php echo 'Inicio'; ?>
@@ -120,11 +139,12 @@
                                                                   </ul>
                                                         </li>
                                                     </ul>
-                                            </li>   
+                                            </li>   -->
 
                                             <!-- CABECERA DEL SEGUNDO MENU -->
-                                            <?php foreach ($nivel1 as $menu1) { ?>
 
+                                            <?php foreach ($nivel1 as $menu1) { ?>
+                                  <!--
                                             <li class="dd-item" >
                                                 <div class="dd-handle"><a onclick="nivel2_2()" class="<?php echo $menu1->icono ?>"></a> <?php echo $menu1->descripcion ?>  
                                                     <input type="checkbox" id="option_2" class="derecha"><label for="option_2"></label>
@@ -172,6 +192,8 @@
                                                     </ul>
                                                     <?php } ?> 
                                             </li>
+
+                                      -->
                                             <?php } ?>  
                                               
                                    </form>
@@ -242,5 +264,19 @@
         function nivel3_2(){
         $('#nivel3_2').toggle('slow');
         }
+</script>
+
+<script type="text/javascript">
+       function seleccionar_todo(){ 
+   for (i=0;i<document.f1.elements.length;i++) 
+      if(document.f1.elements[i].type == "checkbox")  
+         document.f1.elements[i].checked=1 
+} 
+
+function deseleccionar_todo(){ 
+   for (i=0;i<document.f1.elements.length;i++) 
+      if(document.f1.elements[i].type == "checkbox")  
+         document.f1.elements[i].checked=0 
+}
 </script>
 
