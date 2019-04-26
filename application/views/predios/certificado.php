@@ -130,9 +130,7 @@
                                         200.00 m
                                     </div>
                                 </div>
-
                                 <P>&nbsp;</P>
-
                                 <div class="text-black" style="font-size: 18pt; text-decoration: underline;">LIMITES COLINDANTES</div>
                                 <div class="row">
                                     <div class="col-md-6">Norte</div>
@@ -141,6 +139,48 @@
                             </td>
                         </tr>
                     </table>
+
+                    <div class="row" ">
+                        <div class="col-md-5">
+                        
+                        <div class="text-black" style="font-size: 18pt; text-decoration: underline;">DATOS DE BLOQUES
+                        </div>            
+
+
+                    <table class="table table-responsive ">
+                                                <thead>
+                                                    <tr>
+                                                       
+                                                        <th><small><i><b>Nro</i></small></th>
+                                                        <th> <small><i><b> Nombre</i></small></th>
+                                                        <th><small><i><b> Estado fisico</i></small></th>
+                                                        <th><small><i><b> Año construccion</i></small></th>                                                     
+                                                        <th><small><i><b> Destino</i></small></th>
+                                                        <th><small><i><b> Uso</i></small></th>                                                       
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($bloques as $row) { ?>
+                                                    <tr>
+                                                     
+                                                        <td><small><i><?php echo $row->nro_bloque; ?></i></small></td>
+                                                        <td><small><i><?php echo $row->nom_bloque; ?></i></small></td>
+                                                        <td><small><i><?php echo $row->estado_fisico; ?></i></small></td>
+                                                        <td><small><i><?php echo $row->anio_cons; ?></i></small></td>                                                       
+                                                        <td><small><i><?php echo $row->desc_bloque_dest; ?></i></small></td>
+                                                        <td><small><i><?php echo $row->desc_bloque_uso; ?></i></small> </td>                                                        
+                                                    </tr>
+                                                    <?php 
+                                                } ?>
+                                                </tbody>
+                                            </table>
+                           
+                        </div>
+                    </div>
+                            
+
+
+               
 
                     <hr>
 

@@ -359,4 +359,39 @@ class Edificacion extends CI_Controller
             redirect(base_url());
         }
     }
+
+    public function ficha_tecnica_pdf()
+    {
+        if ($this->session->userdata("login")) {
+
+            //$credencial_id = $this->session->userdata("persona_perfil_id");
+            //$acceso_inicio = date("Y-m-d H:i:s");
+
+            //$ip = $this->logacceso_model->ip_publico();
+            //$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
+            //$cod='123456789';
+
+            $anio_act=date("Y");//obtiene el anio actual
+
+            $total_bloq = 4;
+            $data['result_array'] = $this->Edificacion_model->getAllData();
+            //$data['bloques'] = $this->Edificacion_model->get_Bloque($cod);
+            $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
+            $data['grupos'] = $this->Edificacion_model->get_grupos();
+            $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque();
+            $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
+            $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
+            
+            $data['nro_bloque'] = $total_bloq;
+            $data['anio_actual'] = $anio_act;
+            //$this->load->view('bloque/header_ficha_tecnica');            
+            $this->load->view('bloque/ficha_tecnica_pdf', $data);
+            //$this->load->view('bloque/jtables');
+            //$this->load->view('bloque/footer_ficha_tecnica');
+            //$this->load->view('admin/wizard_js');
+        //$this->load->view('admin/footer');
+        } else {
+            redirect(base_url());
+        }
+    }
 }
