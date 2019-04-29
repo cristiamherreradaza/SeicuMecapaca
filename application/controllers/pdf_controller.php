@@ -72,6 +72,7 @@ class Pdf_controller extends CI_Controller {
         
         // Load HTML content
         $dompdf->loadHtml($html);
+        $dompdf->set_option('isRemoteEnabled', TRUE);
         
         // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4');
@@ -80,7 +81,7 @@ class Pdf_controller extends CI_Controller {
         $dompdf->render();
         
         // Output the generated PDF (1 = download and 0 = preview)
-        $dompdf->stream("welcome.pdf", array("Attachment"=>0));
+        $dompdf->stream("Hoja de ruta.pdf", array("Attachment"=>0));
 	}
 
 	public function prueba_ruta_pdf($idTramite = null){

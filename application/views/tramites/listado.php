@@ -62,9 +62,9 @@
                                                 <a href="<?php echo base_url(); ?>pdf_controller/pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-warning footable-edit" title="Imprimir" >
                                                     <span class="fas fa-print" aria-hidden="true"></span>
                                                 </a>
-                                                <!-- <a href="<?php //echo base_url(); ?>pdf_controller/prueba_ruta_pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit" title="Hoja de ruta" >
+                                                <a href="<?php echo base_url(); ?>pdf_controller/ruta_pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit" title="Hoja de ruta" target="_blank">
                                                     <span class="fas fa-print" aria-hidden="true"></span>
-                                                </a> -->
+                                                </a>
 
                                             </div>
                                         </td>
