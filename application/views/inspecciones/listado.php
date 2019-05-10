@@ -14,60 +14,55 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">ASIGNADOS</h4></h4>
+
+                        <h4 class="card-title">INSPECCIONES ASIGNADAS</h4></h4>
+
                         <?php //vdebug($mis_tramites, true, false, true); ?>
                         <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>FECHA</th>
-                                    <th>CITE</th>
-                                    <th>REFERENCIA</th>
-                                    <th>ACCIONES</th>
+
+
+                                    <th>TRAMITE</th>
+                                    <th>PERSONA</th>
+                                    <th>TIPO_ASIGNACION</th>
+                                    <th>INICIO</th>
+                                    <th>FIN</th>
+                                    <th>ACCION</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>FECHA</th>
-                                    <th>CITE</th>
-                                    <th>REFERENCIA</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </tfoot>
                             <tbody>
-                                <?php foreach ($mis_tramites as $mt): ?>
+                                <?php foreach ($asignacion as $asig): ?>
                                     <tr>
+                                        <?php $tra = $this->db->query("SELECT tt.correspondencia
+                                                                        FROM tramite.tramite t, tramite.tipo_tramite tt
+                                                                        WHERE t.tramite_id = $asig->tramite_id 
+                                                                        AND t.tipo_correspondencia_id = tt.tipo_correspondencia_id")->row();
+                                            $tra1 = $tra->correspondencia;
+                                          ?>
+                                        <td><?php echo $tra1; ?></td>
+                                        <?php $var = $this->db->query("SELECT *
+                                                                        FROM persona 
+                                                                        WHERE persona_id = $asig->persona_id ")->row();
+                                                $nombres = $var->nombres;
+                                                $paterno = $var->paterno;
+                                          ?>
+                                        <td><?php echo $nombres; ?> <?php echo $paterno; ?></td>
+                                        <?php $var1 = $this->db->query("SELECT *
+                                                                        FROM inspeccion.tipo_asignacion 
+                                                                        WHERE tipo_asignacion_id = $asig->tipo_asignacion_id ")->row();
+                                            $tipo = $var1->tipo;
+                                          ?>
+                                        <td><?php echo $tipo; ?></td>
+                                        <td><?php echo $asig->inicio; ?></td>
+                                        <td><?php echo $asig->fin; ?></td>
                                         <td>
-                                            <?php 
-                                                $fecha_mod = explode(".", $mt->fec_creacion); 
-                                                echo $fecha_mod[0]; 
-                                            ?>
-                                        </td>
-                                        <td><?php echo $mt->cite; ?></td>
-                                        <td><?php echo $mt->referencia; ?></td>
-                                        <!-- <td><?php //echo $mt->codcatas_anterior; ?></td> -->
-                                        <td>
-                                            <div class="btn-group btn-group-xs" role="group">
-                                                <a href="<?php echo base_url(); ?>derivaciones/nuevo/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit" title="Derivar">
+                                            <a href="<?php echo base_url(); ?>inspeccion/nuevo/<?php echo $asig->asignacion_id; ?>" class="btn btn-success footable-edit">
                                                     <span class="fas fa-paper-plane" aria-hidden="true"></span>
-                                                </a>
-
-                                                <a href="<?php echo base_url(); ?>derivaciones/ver/<?php echo $mt->tramite_id; ?>" class="btn btn-primary footable-edit" title="Ver" >
-                                                    <span class="fas fa-bars" aria-hidden="true"></span>
-                                                </a>
-
-                                                <a href="#" type="button" class="btn btn-danger footable-delete" title="Eliminar" >
-                                                    <span class="fas fa-trash-alt" aria-hidden="true"></span>
-                                                </a>
-
-                                                <a href="<?php echo base_url(); ?>pdf_controller/pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-warning footable-edit" title="Imprimir" >
-                                                    <span class="fas fa-print" aria-hidden="true"></span>
-                                                </a>
-                                                <a href="<?php echo base_url(); ?>pdf_controller/ruta_pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit" title="Hoja de ruta" target="_blank">
-                                                    <span class="fas fa-print" aria-hidden="true"></span>
-                                                </a>
-
-                                            </div>
+                                            </a>
+                                            
                                         </td>
+
                                     </tr>    
                                 <?php endforeach; ?>
                             </tbody>

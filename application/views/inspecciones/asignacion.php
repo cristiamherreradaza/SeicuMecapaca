@@ -105,7 +105,7 @@
                                 <form role="form">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="control-label">Category Name</label>
+                                            <label class="control-label">Tramite</label>
                                             <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
                                         </div>
                                         <div class="col-md-6">
@@ -119,6 +119,19 @@
                                                 <option value="inverse">Inverse</option>
                                             </select>
                                         </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label"></label>
+                                            <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">Category Name</label>
+                                            <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">Category Name</label>
+                                            <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name" />
+                                        </div>
+                                        
                                     </div>
                                 </form>
                             </div>
