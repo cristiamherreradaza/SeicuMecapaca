@@ -39,12 +39,14 @@
     <script src="<?php echo base_url(); ?>public/assets/plugins/moment/moment.js"></script>
     <script src='<?php echo base_url(); ?>public/assets/plugins/calendar/dist/fullcalendar.min.js'></script>
     <script src="<?php echo base_url(); ?>public/assets/plugins/calendar/dist/cal-init.js"></script>
-    <!--<script src="<?php echo base_url(); ?>public/assets/plugins/calendar/dist/locale/es.js"></script>-->
-    <script type="text/javascript">
+    <script src="<?php echo base_url(); ?>public/assets/plugins/calendar/dist/locale/es.js"></script>
+
+<!--     <script type="text/javascript">
         var calendar = new FullCalendar.Calendar(calendarEl, {
               locale: 'es'
             });
     </script>
+ -->    
         <!-- ============================================================== -->
 
     <!-- ============================================================== -->
@@ -102,14 +104,10 @@
         });
     });
     </script>
-    
-    
      
     <script src="<?php echo base_url(); ?>public/assets/plugins/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
     <script src="<?php echo base_url(); ?>public/js/mask.init.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
-
-   
     
 </body>
 
