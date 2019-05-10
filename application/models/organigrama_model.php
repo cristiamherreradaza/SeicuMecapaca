@@ -7,10 +7,18 @@ class Organigrama_model extends CI_Model {
         $this->load->database();
     }   
     function get_data() {//obtiene los datos de la tabla tipo_documento en array result
-        $query = $this->db->query('SELECT x.unidad,x.hijo,x.activo,x.organigrama_id,y.organigrama_id as padre_id,y.unidad as jefe FROM tramite.organigrama x
+        /*$query = $this->db->query('SELECT x.unidad,x.hijo,x.activo,x.organigrama_id,y.organigrama_id as padre_id,y.unidad as jefe FROM tramite.organigrama x
         LEFT JOIN
         tramite.organigrama y
         on x.hijo=y.organigrama_id
+        ORDER BY y.unidad asc');*/
+        $query = $this->db->query('SELECT x.unidad,x.hijo,x.activo,x.organigrama_id,y.organigrama_id as padre_id,y.unidad as jefe,t.tipo,t.cite_id,t.gestion,t.correlativo,t.observaciones FROM tramite.organigrama x
+        LEFT JOIN
+        tramite.organigrama y
+        on x.hijo=y.organigrama_id
+				LEFT JOIN
+				tramite.cite t
+				on x.organigrama_id=t.organigrama_id
         ORDER BY y.unidad asc');
         return $query->result();
     }

@@ -27,15 +27,13 @@ class Organigrama extends CI_Controller
     }
     public function nuevo()
     {
-
         if ($this->session->userdata("login")) {
             $data['data_org'] = $this->organigrama_model->get_data();
             $data['data_grupo'] = $this->organigrama_model->get_grupo();
             $data['verifica'] = $this->rol_model->verifica();           
             $this->load->view('admin/header');
 			$this->load->view('admin/menu');
-            $this->load->view('crud/organigrama', $data);
-           
+            $this->load->view('crud/organigrama', $data);           
 			$this->load->view('organigrama/footer_js');            
         } else {
             redirect(base_url());
