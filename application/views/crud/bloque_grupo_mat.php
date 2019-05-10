@@ -1,5 +1,7 @@
 <!--alerts CSS -->
 <link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+ <!-- Calendar CSS -->
+<link href="<?php echo base_url(); ?>public/assets/plugins/calendar/dist/fullcalendar.css" rel="stylesheet" />
 
 <style type="text/css">
     #izquierda{

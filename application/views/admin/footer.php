@@ -20,6 +20,7 @@
     <!-- ============================================================== -->
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/calendar/jquery-ui.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/plugins/bootstrap/js/popper.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
@@ -33,6 +34,19 @@
     <!--Custom JavaScript -->
     <script src="<?php echo base_url(); ?>public/js/custom.js"></script>
 
+    <!-- Calendar JavaScript -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/calendar/jquery-ui.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/moment/moment.js"></script>
+    <script src='<?php echo base_url(); ?>public/assets/plugins/calendar/dist/fullcalendar.min.js'></script>
+    <script src="<?php echo base_url(); ?>public/assets/plugins/calendar/dist/cal-init.js"></script>
+    <!--<script src="<?php echo base_url(); ?>public/assets/plugins/calendar/dist/locale/es.js"></script>-->
+    <script type="text/javascript">
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+              locale: 'es'
+            });
+    </script>
+        <!-- ============================================================== -->
+
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
@@ -41,6 +55,11 @@
 
     <script src="<?php echo base_url(); ?>public/assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>public/assets/plugins/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+
+
+     <!-- Style switcher -->
+    <!-- ============================================================== -->
+    <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
     
     <script>
     jQuery(document).ready(function() {
