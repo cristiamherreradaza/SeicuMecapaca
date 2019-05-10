@@ -120,4 +120,20 @@ class Prueba extends CI_Controller {
         $this->load->view('usuarios/menu_prueba');
         $this->load->view('admin/footer');
     }
+
+    public function prueba6()
+    {
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/principal');
+        $this->load->view('admin/footer');
+    }
+
+    public function asignacion()
+    {
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('inspecciones/asignacion');
+        $this->load->view('admin/footer');
+    }
 }

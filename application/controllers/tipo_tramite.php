@@ -28,7 +28,7 @@ class Tipo_tramite extends CI_Controller {
                                             AND persona_id = '$res->persona_id'
                                             ")->row();
 		            if ($consulta) {
-		            	 $ids['idss'] = $consulta->organigrama_persona_id;
+		            	$ids['idss'] = $consulta->organigrama_persona_id;
 		            	$this->load->view('admin/header');
 				        $this->load->view('admin/menu');
 				        $this->load->view('tramites/tramite', $ids);

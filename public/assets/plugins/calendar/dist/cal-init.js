@@ -130,7 +130,7 @@
         var form = '';
         var today = new Date($.now());
 
-        var defaultEvents =  [{
+        /*var defaultEvents =  [{
                 title: 'Released Ample Admin!',
                 start: new Date($.now() + 506800000),
                 className: 'bg-info'
@@ -168,13 +168,14 @@
                 start: new Date($.now() + 348000000),
                 className: 'bg-success'
             }];
-
+*/
         var $this = this;
         $this.$calendarObj = $this.$calendar.fullCalendar({
             slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
             minTime: '08:00:00',
             maxTime: '19:00:00',  
             defaultView: 'month',  
+            locale: 'es',
             handleWindowResize: true,   
              
             header: {
@@ -182,8 +183,8 @@
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
-            events: defaultEvents,
-            editable: true,
+            // events: defaultEvents,
+            editable: false,
             droppable: true, // this allows things to be dropped onto the calendar !!!
             eventLimit: true, // allow "more" link when too many events
             selectable: true,

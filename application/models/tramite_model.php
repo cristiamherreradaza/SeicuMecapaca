@@ -25,7 +25,7 @@ class Tramite_model extends CI_Model {
 
 	public function insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $correlativo, $gestion)
 	{	
-		
+		$this->load->helper('vayes_helper');
 		$array = array(
 			'organigrama_persona_id' =>$organigrama_persona_id,
 			'tipo_documento_id' =>$tipo_documento_id,
@@ -51,8 +51,40 @@ class Tramite_model extends CI_Model {
 			$data = array(
             'correlativo' => $correlativo
         );
-        $this->db->where('numero_tramite_id', $numero_tramite_id);
-        $this->db->update('tramite.numero_tramite', $data);
+		$id_tramite = $this->db->insert_id();
+		$this->db->where('numero_tramite_id', $numero_tramite_id);
+		$this->db->update('tramite.numero_tramite', $data);
+
+
+		$tramite = $this->db->get_where('tramite.tramite', array('tramite_id'=>$id_tramite))->row();
+		if($tramite->tipo_correspondencia_id == 14){
+			$this->db->where('perfil_id', 5);
+			$inspectores = $this->db->get('persona_perfil')->result();
+			$array_inspectores = array();
+			foreach ($inspectores as $i) {
+				array_push($array_inspectores, $i->persona_id);
+			}
+			$azar = array_rand($array_inspectores, 1);
+			$elegido = $array_inspectores[$azar];
+			$dia_siguiente = date('Y-m-d', strtotime(' +1 day'));
+
+			$data = array(
+				'tramite_id'=>$id_tramite,
+				'persona_id'=>$elegido,
+				'tipo_asignacion_id'=>1,
+				'inicio'=>$dia_siguiente.' 08:30:00',
+				'fin'=>$dia_siguiente.' 12:30:00',
+				'activo'=>1,
+			);
+			$this->db->insert('inspeccion.asignacion', $data);
+
+		}
+		
+/*		vdebug($dia_siguiente, false, false, true);
+		vdebug($array_inspectores, false, false, true);
+		vdebug($elegido, true, false, true);
+*/
+       
 
 
 	}
