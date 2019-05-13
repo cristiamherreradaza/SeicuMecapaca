@@ -19,7 +19,7 @@
                         <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
-                                    <th>asignacion</th>
+                                    
                                     <th>actuacion</th>
                                     <th>infraccion</th>
                                     <th>inspeccion</th>
@@ -32,14 +32,18 @@
                             <tbody>
                                 <?php foreach ($lista as $mt): ?>
                                     <tr>
-                                        <td><?php echo $mt->asignacion_id; ?></td>
+                                       
                                         <td><?php echo $mt->actuacion; ?></td>
                                         <td><?php echo $mt->infraccion; ?></td>
                                         <td>
                                         <a href="<?php echo base_url().'public/assets/files/inspeccion/'.$mt->acta_inspeccion; ?>"  title="ver" target="blank">
-                                                    <i class="fas fa-file-pdf" aria-hidden="true" style-color="red"></i><?php echo $mt->acta_inspeccion; ?>
+                                                    <i class="fas fa-file-pdf" aria-hidden="true" style-color="red"></i> visualizar
                                                 </a>
-                                        <td><?php echo $mt->acta_notificacion; ?></td>
+                                        <td>
+                                        <a href="<?php echo base_url().'public/assets/files/inspeccion/'.$mt->acta_notificacion; ?>"  title="ver" target="blank">
+                                                    <i class="fas fa-file-pdf" aria-hidden="true" style-color="red"></i> visualizar
+                                                </a>
+                                        </td>
                                         <td>                                        
                                         <?php 
                                          $bool=$mt->vobo;

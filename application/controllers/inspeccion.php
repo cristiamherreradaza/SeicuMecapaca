@@ -143,7 +143,9 @@ class Inspeccion extends CI_Controller {
 	}
 
 
-	public function do_upload()
+
+
+	 public function do_upload()
 	{
 		if($this->session->userdata("login")){
 			$datos = $this->input->post();
@@ -192,10 +194,21 @@ class Inspeccion extends CI_Controller {
 	                	}
 	                else
 	                	{
+							$data = array('upload_data' => $this->upload->data());
+							$config['file_name']        = $asignacion_id.'2';
+							$this->upload->initialize($config); 
+							$this->load->library('upload', $config);
+							if ( ! $this->upload->do_upload('notificacion'))
+	                	{
+	                        $error = array('error' => $this->upload->display_errors());	                        
+	                	}
+	                else
+	                	{
 	                        $data = array('upload_data' => $this->upload->data());
-	                       	redirect('inspeccion/nuevo/');
-
+							redirect('inspeccion/listado/');
                         }
+	                
+            	}
                     
                 ///
                 redirect(base_url().'inspeccion/listado/');                  
@@ -209,7 +222,6 @@ class Inspeccion extends CI_Controller {
 
 	 }
 
-
-}
+	}
 
 	
