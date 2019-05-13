@@ -58,19 +58,32 @@ class Tramite_model extends CI_Model {
 
 		$tramite = $this->db->get_where('tramite.tramite', array('tramite_id'=>$id_tramite))->row();
 		if($tramite->tipo_correspondencia_id == 14){
-			$this->db->where('perfil_id', 5);
-			$inspectores = $this->db->get('persona_perfil')->result();
-			$array_inspectores = array();
-			foreach ($inspectores as $i) {
-				array_push($array_inspectores, $i->persona_id);
-			}
-			$azar = array_rand($array_inspectores, 1);
-			$elegido = $array_inspectores[$azar];
+			// $this->db->where('perfil_id', 5);
+			// $inspectores = $this->db->get('persona_perfil')->result();
+			// $array_inspectores = array();
+			// foreach ($inspectores as $i) {
+			// 	array_push($array_inspectores, $i->persona_id);
+			// }
+			// $azar = array_rand($array_inspectores, 1);
+			// $elegido = $array_inspectores[$azar];
+			$this->db->select('persona_id, COUNT(persona_id) as total');
+			$this->db->group_by('persona_id'); 
+			$this->db->order_by('total', 'asc'); 
+			$cantidad_asignaciones = $this->db->get('inspeccion.asignacion', 1)->result();
+			// vdebug($cantidad_asignaciones, true, false, true);
+			// $array_inspectores = array();
+			// foreach ($cantidad_asignaciones as $ca) {
+			// 	array_push($array_inspectores, $ca->total);
+			// 	$minimo = min($array_inspectores);
+			// }
+			// $elegido = $this->get_where('')
+			// vdebug($cantidad_asignaciones[0]->persona_id, true, false, true);
+
 			$dia_siguiente = date('Y-m-d', strtotime(' +1 day'));
 
 			$data = array(
 				'tramite_id'=>$id_tramite,
-				'persona_id'=>$elegido,
+				'persona_id'=>$cantidad_asignaciones[0]->persona_id,
 				'tipo_asignacion_id'=>1,
 				'inicio'=>$dia_siguiente.' 08:30:00',
 				'fin'=>$dia_siguiente.' 12:30:00',
