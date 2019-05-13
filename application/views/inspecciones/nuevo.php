@@ -120,7 +120,7 @@
                                         <div class="col-md-4 mb-3">
                                             <div class="form-group">
                                             <label  >VoBo</label>
-                                            <input type="checkbox"  id="vobo" value="check">
+                                            <input type="checkbox"  id="vobo"  name="vobo">
                                         
                                             </div>
                                         </div>                                                                  
