@@ -109,7 +109,7 @@ class Inspeccion extends CI_Controller {
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
-		$this->load->view('inspecciones/lista', $data);
+		$this->load->view('inspecciones/lista_admin', $data);
 		$this->load->view('admin/footer');
 		$this->load->view('predios/index_js');
 	}
