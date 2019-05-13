@@ -45,7 +45,7 @@
                             <!-- <form action="#" class="validation-wizard wizard-circle"> -->
                             <?php // echo form_open('predios/guarda', array('method'=>'POST', 'enctype'=>"multipart/form-data")); ?>
                             <?php echo form_open_multipart('inspeccion/do_upload', array('method'=>'POST')); ?>
-                                    <h4 class="card-title">Registro de Tramite</h4>
+                                    <h4 class="card-title">Inspeccion</h4>
                                
                                     <div class="form-row">
                                     <input type="hidden" class="form-control" id="asignacion_id" name="asignacion_id" value="<?php echo $asignacion_id; ?>">
