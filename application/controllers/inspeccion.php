@@ -109,7 +109,7 @@ class Inspeccion extends CI_Controller {
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
-		$this->load->view('inspecciones/lista', $data);
+		$this->load->view('inspecciones/lista_admin', $data);
 		$this->load->view('admin/footer');
 		$this->load->view('predios/index_js');
 	}
@@ -143,7 +143,9 @@ class Inspeccion extends CI_Controller {
 	}
 
 
-	public function do_upload()
+
+
+	 public function do_upload()
 	{
 		if($this->session->userdata("login")){
 			$datos = $this->input->post();
@@ -171,7 +173,7 @@ class Inspeccion extends CI_Controller {
                     'tipo_infraccion_id' =>$this->input->post('tipo_infraccion_id'), //input        
                     'acta_inspeccion' => $asignacion_id.'1'.'.pdf', //input 
                     'acta_notificacion' => $asignacion_id.'2'.'.pdf', //input 
-                    'vobo' => 1,                          
+                    'vobo' => $bool,                          
                 );
                        
                 $this->db->insert('inspeccion.inspeccion', $data);				
@@ -192,10 +194,21 @@ class Inspeccion extends CI_Controller {
 	                	}
 	                else
 	                	{
+							$data = array('upload_data' => $this->upload->data());
+							$config['file_name']        = $asignacion_id.'2';
+							$this->upload->initialize($config); 
+							$this->load->library('upload', $config);
+							if ( ! $this->upload->do_upload('notificacion'))
+	                	{
+	                        $error = array('error' => $this->upload->display_errors());	                        
+	                	}
+	                else
+	                	{
 	                        $data = array('upload_data' => $this->upload->data());
-	                       	redirect('inspeccion/nuevo/');
-
+							redirect('inspeccion/listado/');
                         }
+	                
+            	}
                     
                 ///
                 redirect(base_url().'inspeccion/listado/');                  
@@ -209,7 +222,6 @@ class Inspeccion extends CI_Controller {
 
 	 }
 
-
-}
+	}
 
 	

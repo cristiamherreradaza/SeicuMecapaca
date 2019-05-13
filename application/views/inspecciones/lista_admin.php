@@ -18,8 +18,8 @@
                         <?php //vdebug($mis_tramites, true, false, true); ?>
                         <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
-                                <tr>
-                                    
+                                <tr> 
+                                    <th>INSPECTOR</th>                                   
                                     <th>ACTUACION</th>
                                     <th>INFRACCION</th>
                                     <th>INSPECCION</th>
@@ -32,7 +32,7 @@
                             <tbody>
                                 <?php foreach ($lista as $mt): ?>
                                     <tr>
-                                       
+                                        <td><?php echo $mt->nombres.' '.$mt->paterno.' '.$mt->materno; ?></td>
                                         <td><?php echo $mt->actuacion; ?></td>
                                         <td><?php echo $mt->infraccion; ?></td>
                                         <td>
