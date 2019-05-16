@@ -156,7 +156,7 @@ class Inspeccion extends CI_Controller {
 				$id = $this->session->userdata("persona_perfil_id");
 	            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
                 $usu_creacion = $resi->persona_id;
-                $vobo=$this->input->post('vobo');
+                $vobo=$this->input->post('vobo')?1:0;
                 $inspeccion=$this->input->post('inspeccion');
                 $notificacion=$this->input->post('notificacion');  
                 $asignacion_id=$this->input->post('asignacion_id');  
@@ -173,7 +173,7 @@ class Inspeccion extends CI_Controller {
                     'tipo_infraccion_id' =>$this->input->post('tipo_infraccion_id'), //input        
                     'acta_inspeccion' => $asignacion_id.'1'.'.pdf', //input 
                     'acta_notificacion' => $asignacion_id.'2'.'.pdf', //input 
-                    'vobo' => $bool,                          
+                    'vobo' => $vobo,                          
                 );
                        
                 $this->db->insert('inspeccion.inspeccion', $data);				
