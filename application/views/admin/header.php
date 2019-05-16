@@ -9,12 +9,14 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>public/assets/images/favicon.png">
+
+    <link href="<?php echo base_url(); ?>public/assets/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>public/assets/fullcalendar/fullcalendar.print.min.css" rel="stylesheet" media="print" />
     <title>SEICU - LIBRE</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Calendar CSS -->
-    <link href="<?php echo base_url(); ?>public/assets/plugins/calendar/dist/fullcalendar.css" rel="stylesheet" />
+   
 
     <link href="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
@@ -30,6 +32,8 @@
     <link href="<?php echo base_url(); ?>public/assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>public/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
+    <!-- <script src="<?php //echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script> -->
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

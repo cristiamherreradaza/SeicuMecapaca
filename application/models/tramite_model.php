@@ -70,6 +70,7 @@ class Tramite_model extends CI_Model {
 			$this->db->group_by('persona_id'); 
 			$this->db->order_by('total', 'asc'); 
 			$cantidad_asignaciones = $this->db->get('inspeccion.asignacion', 1)->result();
+			// if($cantidad_asignaciones)
 			// vdebug($cantidad_asignaciones, true, false, true);
 			// $array_inspectores = array();
 			// foreach ($cantidad_asignaciones as $ca) {

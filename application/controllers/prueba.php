@@ -6,8 +6,10 @@ class Prueba extends CI_Controller {
 	public function __construct() {
         parent:: __construct();
         $this->load->model("AllBloque_model");
-       $this->load->model("inspecciones/inspeccion_model");
-       $this->load->model("rol_model");
+        //Cargamos la librería JSON-PHP
+       
+        $this->load->model("inspecciones/inspeccion_model");
+        $this->load->model("rol_model");
     }
 	
 	public function prueba()	
@@ -138,6 +140,23 @@ class Prueba extends CI_Controller {
         $this->load->view('inspecciones/asignacion');
         $this->load->view('admin/footer');
     }
+
+     public function calendario()
+    {
+        $id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_creacion = $resi->persona_id;
+
+        $lista = $this->db->query("SELECT ins.tipo_asignacion_id as title, ins.inicio as start, ins.fin as end  
+                                    FROM inspeccion.asignacion ins, public.persona_perfil pub, public.perfil per
+                                    WHERE ins.persona_id = $usu_creacion 
+                                    AND pub.persona_id = $usu_creacion
+                                    AND pub.perfil_id = per.perfil_id
+                                    AND per.perfil = 'Inspector'
+                                    ORDER BY inicio ASC")->result();
+         echo json_encode($lista);
+
+    }    
 
     public function listado(){
 
