@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">ASIGNADOS</h4></h4>
+                        <h4 class="card-title">INSPECCIONES</h4></h4>
                         <?php //vdebug($mis_tramites, true, false, true); ?>
                         <table id="tabla_din" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
