@@ -27,7 +27,7 @@ class Asignacion extends CI_Controller {
 	public function guarda_edicion()
 	{
 		// vdebug($this->input->post(), false, false, true);
-		if($this->input->post('asignacion_id') == 't'){
+		if($this->input->post('turno') == 't'){
 			$hora_inicio = ' 14:30:00';
 			$hora_final = ' 18:30:00';
 		}else{
