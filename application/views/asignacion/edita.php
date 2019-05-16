@@ -73,7 +73,7 @@
                                         </div>
 
                                         <div class="col-md-3 mb-3">
-                                            <label for="validationCustomUsername">Reasignar</label>
+                                            <label for="validationCustomUsername"><?= $asignacion->inicio ?></label>
 
                                             <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
                                          

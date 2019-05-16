@@ -27,7 +27,7 @@ class Asignacion extends CI_Controller {
 	public function guarda_edicion()
 	{
 		// vdebug($this->input->post(), false, false, true);
-		if($this->post->input('asignacion_id') == 't'){
+		if($this->input->post('asignacion_id') == 't'){
 			$hora_inicio = ' 14:30:00';
 			$hora_final = ' 18:30:00';
 		}else{
@@ -39,9 +39,11 @@ class Asignacion extends CI_Controller {
 		$nueva_fecha_fin = $this->input->post('fecha_inicio').$hora_final;
 		$this->db->set('inicio', $nueva_fecha_inicio);
 		$this->db->set('fin', $nueva_fecha_fin);
+		$this->db->set('tipo_asignacion_id', 2);
 		$this->db->set('persona_id', $this->input->post('persona_id'));
-		$this->db->where('asignacion_id', $this->post->input('asignacion_id'));
+		$this->db->where('asignacion_id', $this->input->post('asignacion_id'));
 		$this->db->update('inspeccion.asignacion');
+		redirect(base_url('Inspeccion/lista_asign'));
 
 	}
 
