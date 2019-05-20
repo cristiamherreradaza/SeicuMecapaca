@@ -49,10 +49,6 @@ class Inspeccion extends CI_Controller {
         }	
 		
 	}
-
-
-	
-
 	 public function update()     
 	{   
 		if($this->session->userdata("login")){
@@ -65,7 +61,6 @@ class Inspeccion extends CI_Controller {
 		    $zonaurb_id = $this->input->post('zonaurb_id');
 		    $descripcion = $this->input->post('descripcion');
 		   // var_dump($zonaurb_id);
-
 		    $actualizar = $this->zona_urbana_model->actualizar($zonaurb_id, $descripcion, $usu_modificacion, $fec_modificacion);
 		  	redirect('Zona_urbana');
 		}
