@@ -21,6 +21,7 @@
                                 <tr>
                                     <th>Persona</th>
                                     <th>Asignaciones</th>
+                                    <th>Visualizar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,7 +36,11 @@
                                             <?php echo $datos_persona->paterno; ?>
                                             <?php echo $datos_persona->materno; ?>
                                         </td>
-                                        <td><?php echo $a->total; ?></td>
+                                        <td><?php echo $a->total; ?> </td>
+                                        <td>
+                                        <a href="<?php echo base_url(); ?>Inspeccion/lista_asign_id/<?php echo $a->persona_id; ?>" class="btn btn-info footable-edit">
+                                                    <span class="fas fa-search" aria-hidden="true"></span>
+                                            </a>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
