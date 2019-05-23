@@ -161,6 +161,30 @@ class Inspeccion extends CI_Controller {
 	}
 	}
 
+	public function lista_asign_id($idp=null)
+	{
+		if($this->session->userdata("login")){
+		// $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
+        $id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $dato = $resi->persona_id;
+		$res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
+		//$id_user=$resi[0]['persona_id'];
+		//$data['lista'] = $this->inspecciones_model->get_lista(); 
+		$data['lista'] = $this->inspecciones_model->get_lista_asign_id($idp); 
+		$data['verifica'] = $this->rol_model->verifica();   
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('inspecciones/lista_asign', $data);
+		$this->load->view('inspecciones/footer');
+		$this->load->view('predios/index_js');
+		}
+		else{
+			redirect(base_url());
+		}
+	}
+
 
 
 

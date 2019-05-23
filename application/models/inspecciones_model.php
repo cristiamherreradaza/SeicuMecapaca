@@ -58,6 +58,19 @@ class Inspecciones_model extends CI_Model {
 		');
 		return $query->result();
 	}
+
+	function get_lista_asign_id($id) {
+		$query = $this->db->query("SELECT a.*,i.*,p.*,t.* FROM inspeccion.asignacion a
+		LEFT JOIN inspeccion.tipo_asignacion i
+		on a.tipo_asignacion_id=i.tipo_asignacion_id
+		LEFT JOIN persona p
+		on a.persona_id=p.persona_id
+		LEFT JOIN tramite.tramite t
+		on a.tramite_id=t.tramite_id
+		WHERE a.activo=1 and a.persona_id=$id
+		");
+		return $query->result();
+	}
 		    
 
 
