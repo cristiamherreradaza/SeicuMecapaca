@@ -23,13 +23,13 @@ class Tramite_model extends CI_Model {
 		}
 	}
 
-	public function insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $correlativo, $gestion)
+	public function insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_tramite_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $correlativo, $gestion)
 	{	
 		$this->load->helper('vayes_helper');
 		$array = array(
 			'organigrama_persona_id' =>$organigrama_persona_id,
 			'tipo_documento_id' =>$tipo_documento_id,
-			'tipo_correspondencia_id' =>$tipo_correspondencia_id,
+			'tipo_tramite_id' =>$tipo_tramite_id,
 			'cite' =>$cite,
 			'fecha' =>$fecha,
 			'fojas' =>$fojas,
@@ -57,7 +57,7 @@ class Tramite_model extends CI_Model {
 
 
 		$tramite = $this->db->get_where('tramite.tramite', array('tramite_id'=>$id_tramite))->row();
-		if($tramite->tipo_correspondencia_id == 14){
+		if($tramite->tipo_tramite_id == 14){
 			// $this->db->where('perfil_id', 5);
 			// $inspectores = $this->db->get('persona_perfil')->result();
 			// $array_inspectores = array();

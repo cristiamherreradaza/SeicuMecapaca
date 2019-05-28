@@ -87,16 +87,16 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <label for="validationCustomUsername">Tipo de Correspondencia</label>
+                                            <label for="validationCustomUsername">Tipo de Tramite</label>
 
                                             <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
-                                            <?php $lista2 = $this->db->query("SELECT * FROM tramite.tipo_tramite  WHERE activo = '1' ORDER BY tipo_correspondencia_id ASC")->result();
+                                            <?php $lista2 = $this->db->query("SELECT * FROM tramite.tipo_tramite  WHERE activo = '1' ORDER BY tipo_tramite_id ASC")->result();
                                             ?> 
                                             <div class="input-group">
-                                                <select class="custom-select form-control" id="tipo_correspondencia_id" name="tipo_correspondencia_id" required />
+                                                <select class="custom-select form-control" id="tipo_tramite_id" name="tipo_tramite_id" required />
                                                 <option value="">Seleccione tipo</option>
                                                 <?php foreach ($lista2 as $tc): ?>
-                                                    <option value="<?php echo $tc->tipo_correspondencia_id; ?>"><?php echo $tc->correspondencia; ?></option>
+                                                    <option value="<?php echo $tc->tipo_tramite_id; ?>"><?php echo $tc->tramite; ?></option>
                                                 <?php endforeach; ?>
                                             </select>  
                                                 <div class="invalid-feedback">

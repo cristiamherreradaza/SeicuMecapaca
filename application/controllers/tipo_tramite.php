@@ -147,7 +147,7 @@ class Tipo_tramite extends CI_Controller {
 
 				$organigrama_persona_id = $datos['organigrama_persona_id'];
 				$tipo_documento_id = $datos['tipo_documento_id'];
-				$tipo_correspondencia_id = $datos['tipo_correspondencia_id'];
+				$tipo_tramite_id = $datos['tipo_tramite_id'];
 				$cite = $datos['cite'];
 				$fecha = $datos['fecha'];
 				$fojas = $datos['fojas'];
@@ -158,7 +158,7 @@ class Tipo_tramite extends CI_Controller {
 				$adjunto = $datos['cite_sin'];
 				$correlativo = $datos['correlativo'];
 				$gestion = $datos['gestion'];
-				$this->tramite_model->insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_correspondencia_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $correlativo, $gestion);
+				$this->tramite_model->insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_tramite_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $correlativo, $gestion);
 
 				$tramite = $this->db->query("SELECT *
 												FROM tramite.tramite
