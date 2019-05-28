@@ -20,7 +20,7 @@ class Ddrr extends CI_Controller {
         $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
         $usu_creacion = $resi->persona_id;
 
-		$codcatas = $this->input->post('cod_catastral');
+		$predio_id = $this->input->post('predio_id');
 		$nro_matricula_folio = $this->input->post('nro_matricula_folio');
 		$nro_folio = $this->input->post('nro_folio');
 		$fecha_folio = $this->input->post('fecha_folio');
@@ -36,7 +36,7 @@ class Ddrr extends CI_Controller {
 		
 		
 		$datos= $this->cart->contents();
-		$this->ddrr_model->insertarDDRR($codcatas, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_creacion);
+		$this->ddrr_model->insertarDDRR($predio_id, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_creacion);
 		$this->cart->destroy();
 		redirect('predios/index');
 		
@@ -52,7 +52,7 @@ class Ddrr extends CI_Controller {
         $fec_modificacion = date("Y-m-d H:i:s");
 
 		$ddrr_id = $this->input->post('ddrr_id');
-		$codcatas = $this->input->post('cod_catastral');
+		$predio_id = $this->input->post('cod_catastral');
 		$nro_matricula_folio = $this->input->post('nro_matricula_folio');
 		$nro_folio = $this->input->post('nro_folio');
 		$fecha_folio = $this->input->post('fecha_folio');
@@ -68,7 +68,7 @@ class Ddrr extends CI_Controller {
 		
 		$datos= $this->cart->contents();		
 		
-		$this->ddrr_model->modificar_ddrr($ddrr_id, $codcatas, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_modificacion, $fec_modificacion);
+		$this->ddrr_model->modificar_ddrr($ddrr_id, $predio_id, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_modificacion, $fec_modificacion);
 		$this->cart->destroy();
 		redirect('predios/index');
 		

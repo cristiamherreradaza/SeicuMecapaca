@@ -119,7 +119,7 @@
                                         <div class="row" style="background-color: #f6f6f6;">
                                             <div class="col-md-0">
                                                 <div class="form-group">
-                                                    <input type="hidden" class="form-control" name="cod_catastral" value="<?php echo $cod_catastral ?>" required />
+                                                    <input type="hidden" class="form-control" name="predio_id" value="<?php echo $cod_catastral ?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">

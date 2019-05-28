@@ -433,13 +433,13 @@ class Predios extends CI_Controller {
 	{
 		$this->db->select('*');
 		$this->db->from('catastro.predio');
-		$this->db->where('catastro.predio.codcatas', $cod_catastral);
-		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
+		$this->db->where('catastro.predio.predio_id', $cod_catastral);
+		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.predio_id=catastro.predio.predio_id');
 		//$this->db->join('catastro.predio_ddrr', 'catastro.predio_ddrr.codcatas=catastro.predio.codcatas');
 		$data['predio'] = $this->db->get()->result();
 
-		$data['ddrr']= $this->db->query("SELECT * FROM catastro.predio_ddrr as pd WHERE pd.codcatas = '$cod_catastral'")->row();
-		$data['personas'] =$this->db->query("SELECT p.nombres, p.paterno, p.materno FROM catastro.predio_ddrr as pd JOIN catastro.predio_titular as pt ON pd.ddrr_id = pt.ddrr_id JOIN persona as p ON pt.persona_id=p.persona_id WHERE pt.activo=1 AND pd.codcatas = '$cod_catastral'")->result();
+		$data['ddrr']= $this->db->query("SELECT * FROM catastro.predio_ddrr as pd WHERE pd.predio_id = '$cod_catastral'")->row();
+		$data['personas'] =$this->db->query("SELECT p.nombres, p.paterno, p.materno FROM catastro.predio_ddrr as pd JOIN catastro.predio_titular as pt ON pd.ddrr_id = pt.ddrr_id JOIN persona as p ON pt.persona_id=p.persona_id WHERE pt.activo=1 AND pd.predio_id = '$cod_catastral'")->result();
 		
 
 		$dompdf = new Dompdf\Dompdf();
@@ -467,7 +467,7 @@ class Predios extends CI_Controller {
 		if($this->session->userdata("login")){
 			$cod_catastral = $this->input->get("param1");
 			// $this->db->where()
-			$this->db->where('codcatas', $cod_catastral);
+			$this->db->where('predio_id', $cod_catastral);
 			$verifica_cod = $this->db->get('catastro.predio');
 			// print_r($cod_catastral);
 			// print_r($verifica_cod->result());die;
@@ -531,7 +531,7 @@ class Predios extends CI_Controller {
 			$query = $this->db->get('catastro.zona_urbana');
 			$data['dc_zona_urbana'] = $query->result();
 
-			$this->db->select('via_id, codcatas');
+			$this->db->select('via_id, predio_id');
 			$query = $this->db->get('catastro.predio_via');
 			$data['dc_predio_via'] = $query->result();
 

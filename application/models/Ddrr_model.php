@@ -9,10 +9,10 @@ class Ddrr_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function insertarDDRR($codcatas, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_creacion)
+	public function insertarDDRR($predio_id, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_creacion)
 	{
 		$array = array(
-			'codcatas' => $codcatas,
+			'predio_id' => $predio_id,
 			'nro_matricula_folio' => $nro_matricula_folio,
 			'nro_folio' => $nro_folio,
 			'fecha_folio' => $fecha_folio,
@@ -40,7 +40,7 @@ class Ddrr_model extends CI_Model {
 			);
 			$this->db->insert('catastro.predio_titular', $array);
 		}
-		$query = $this->db->query("UPDATE catastro.predio SET activo = 3 WHERE codcatas='$codcatas'");
+		$query = $this->db->query("UPDATE catastro.predio SET activo = 3 WHERE predio_id='predio_id'");
 	}
 
 	
@@ -49,7 +49,7 @@ class Ddrr_model extends CI_Model {
 	public function datos_editar($cod_catastral)
 	{
 		$this->cart->destroy();
-		$data = $this->db->query("SELECT * FROM catastro.predio_ddrr WHERE codcatas = '$cod_catastral'")->row();
+		$data = $this->db->query("SELECT * FROM catastro.predio_ddrr WHERE predio_id = '$cod_catastral'")->row();
 		$ddrr_id = $data->ddrr_id;
 
 		$carrito = $this->db->query("SELECT p.*, pd.porcen_parti, pd.titular_id FROM catastro.predio_titular as pd INNER JOIN persona as p ON pd.persona_id = p.persona_id where pd.ddrr_id = '$ddrr_id' and pd.activo = 1")->result();
@@ -67,10 +67,10 @@ class Ddrr_model extends CI_Model {
 		return $data;
 	}
 
-	public function modificar_ddrr($ddrr_id, $codcatas, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_modificacion, $fec_modificacion)
+	public function modificar_ddrr($ddrr_id, $predio_id, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_modificacion, $fec_modificacion)
 	{
 		$array = array(
-			'codcatas' => $codcatas,
+			'predio_id' => $predio_id,
 			'nro_matricula_folio' => $nro_matricula_folio,
 			'nro_folio' => $nro_folio,
 			'fecha_folio' => $fecha_folio,
