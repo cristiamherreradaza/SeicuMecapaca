@@ -165,26 +165,26 @@ class Tipo_tramite extends CI_Controller {
 												WHERE cite = '$cite'")->row();
 				$idTramite = $tramite->tramite_id;
 
-					$config['upload_path']      = './public/assets/images/tramites';
-	                $config['file_name']        = $adjunto;
-	                $config['allowed_types']    = 'pdf';
-	                $config['overwrite']        = TRUE;
-	                $config['max_size']         = 2048;
+				$config['upload_path']      = './public/assets/images/tramites';
+				$config['file_name']        = $adjunto;
+				$config['allowed_types']    = 'pdf';
+				$config['overwrite']        = TRUE;
+				$config['max_size']         = 2048;
 
-	                $this->load->library('upload', $config);
+				$this->load->library('upload', $config);
 
-	                if ( ! $this->upload->do_upload('adjunto'))
-	                	{
-	                        $error = array('error' => $this->upload->display_errors());
+				if ( ! $this->upload->do_upload('adjunto'))
+					{
+						$error = array('error' => $this->upload->display_errors());
 
-	                        //$this->load->view('crud/organigrama', $error);
-	                	}
-	                else
-	                	{
-	                        $data = array('upload_data' => $this->upload->data());
-	                       	redirect('Derivaciones/nuevo/'.$idTramite);
+						//$this->load->view('crud/organigrama', $error);
+					}
+				else
+					{
+						$data = array('upload_data' => $this->upload->data());
+						redirect('Derivaciones/nuevo/'.$idTramite);
 
-	                	}
+					}
 
 				//$this->session->set_flashdata('in', $idTramite);
 							
@@ -195,7 +195,7 @@ class Tipo_tramite extends CI_Controller {
 			redirect(base_url());
         }	
 
-	 }
+	}
 
 	public function muestra_asignaciones(){
 		{
@@ -213,6 +213,8 @@ class Tipo_tramite extends CI_Controller {
 			$this->db->group_by('persona_id'); 
 			$this->db->order_by('total', 'desc'); 
 			$data['asignados'] = $this->db->get('inspeccion.asignacion')->result();
+
+			vdebug($data['asignados'], true, false, true);
 	
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

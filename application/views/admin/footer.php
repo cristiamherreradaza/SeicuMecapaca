@@ -97,9 +97,9 @@
     <script src="<?php echo base_url(); ?>public/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
 
     <script src="<?php echo base_url(); ?>public/assets/fullcalendar/lib/moment.min.js"></script>
-        <!--<script src="<?php echo base_url(); ?>public/assets/fullcalendar/lib/jquery.min.js"></script>-->
-        <script src="<?php echo base_url(); ?>public/assets/fullcalendar/fullcalendar.min.js"></script>
-        <script src="<?php echo base_url(); ?>public/assets/fullcalendar/locale/es.js"></script>
+    <!--<script src="<?php echo base_url(); ?>public/assets/fullcalendar/lib/jquery.min.js"></script>-->
+    <script src="<?php echo base_url(); ?>public/assets/fullcalendar/fullcalendar.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/fullcalendar/locale/es.js"></script>
                 
 </body>
 

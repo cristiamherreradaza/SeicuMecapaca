@@ -20,77 +20,73 @@
                             <?php //vdebug($asignacion, false, false, true); ?>
                             <?php echo form_open_multipart('asignacion/guarda_edicion', array('method'=>'POST')); ?>
                                     <h4 class="card-title">Inspeccion</h4>
-                               
                                     <div class="form-row">
                                     <input type="hidden" class="form-control" id="asignacion_id" name="asignacion_id" value="<?php echo $asignacion->asignacion_id; ?>">
 
-                                       <div class="col-md-3 mb-3">
-                                           <label for="validationCustom02">
-                                               <?php 
-                                                   $persona = $this->db->get_where("persona", array('persona_id'=>$asignacion->persona_id))->row(); 
-                                                   // vdebug($tramite, false, false, true);
-                                                   echo $persona->nombres.' ';
-                                                   echo $persona->paterno.' ';
-                                                   echo $persona->materno.' ';
-                                               ?>  
-                                           </label>
-                                           <div class="input-group">
-                                                                                                                                        
-                                               <select name="persona_id" class="form-control">
-                                                    <?php foreach ($inspectores as $i): ?>
-                                                       <option value="<?= $i->persona_id; ?>">
-                                                        <?= $i->nombres ?> 
-                                                        <?= $i->paterno ?> 
-                                                        <?= $i->materno ?> 
-                                                        </option>
-                                                    <?php endforeach ?>
-                                               </select>
-                                           </div>
-                                       </div>
-
-                                        <div class="col-md-3 mb-3">
-                                            <label for="validationCustom02">Tramite</label>
-                                            <div class="input-group">
-                                                <?php 
-                                                    $tramite = $this->db->get_where("tramite.tramite", array('tramite_id'=>$asignacion->tramite_id))->row(); 
-                                                    // vdebug($tramite, false, false, true);
-                                                    echo $tramite->cite;
-                                                ?>                                                                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3 mb-3">
-                                            <label for="validationCustomUsername">Tipo Documento</label>
-
-                                            <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
-                                         
-                                            <div class="input-group">
-                                                <?php 
-                                                    $tipo_asignacion = $this->db->get_where("inspeccion.tipo_asignacion", array('tipo_asignacion_id'=>$asignacion->tipo_asignacion_id))->row(); 
-                                                    // vdebug($tramite, false, false, true);
-                                                    echo $tipo_asignacion->tipo;
-                                                ?>                                                                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-3 mb-3">
-                                            <label for="validationCustomUsername"><?= $asignacion->inicio ?></label>
-
-                                            <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
-                                         
-                                            <div class="input-group">
-                                                <input type="date" name="fecha_inicio" class="form-control">
-                                                <select name="turno">
-                                                    <option value="m">Ma&ntilde;ana</option>
-                                                    <option value="t">Tarde</option>
-                                                </select>
-                                            </div>
-
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationCustom02">
+                                            <?php 
+                                                $persona = $this->db->get_where("persona", array('persona_id'=>$asignacion->persona_id))->row(); 
+                                                // vdebug($tramite, false, false, true);
+                                                echo $persona->nombres.' ';
+                                                echo $persona->paterno.' ';
+                                                echo $persona->materno.' ';
+                                            ?>  
+                                        </label>
+                                        <div class="input-group">
+                                                                                                                                    
+                                            <select name="persona_id" class="form-control">
+                                                <?php foreach ($inspectores as $i): ?>
+                                                    <option value="<?= $i->persona_id; ?>">
+                                                    <?= $i->nombres ?> 
+                                                    <?= $i->paterno ?> 
+                                                    <?= $i->materno ?> 
+                                                    </option>
+                                                <?php endforeach ?>
+                                            </select>
                                         </div>
                                     </div>
-                                    
 
-                                  
-                                    
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationCustom02">Tramite</label>
+                                        <div class="input-group">
+                                            <?php 
+                                                $tramite = $this->db->get_where("tramite.tramite", array('tramite_id'=>$asignacion->tramite_id))->row(); 
+                                                // vdebug($tramite, false, false, true);
+                                                echo $tramite->cite;
+                                            ?>                                                                                            </div>
+                                    </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationCustomUsername">Tipo Documento</label>
+
+                                        <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
+                                        
+                                        <div class="input-group">
+                                            <?php 
+                                                $tipo_asignacion = $this->db->get_where("inspeccion.tipo_asignacion", array('tipo_asignacion_id'=>$asignacion->tipo_asignacion_id))->row(); 
+                                                // vdebug($tramite, false, false, true);
+                                                echo $tipo_asignacion->tipo;
+                                            ?>                                                                                            </div>
+
+                                    </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationCustomUsername"><?= $asignacion->inicio ?></label>
+
+                                        <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
+                                        
+                                        <div class="input-group">
+                                            <input type="date" name="fecha_inicio" class="form-control">
+                                            <select name="turno">
+                                                <option value="m">Ma&ntilde;ana</option>
+                                                <option value="t">Tarde</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    </div>
+
                                     <button class="btn btn-primary" type="submit">Guardar</button>
 
                                 </form>
@@ -131,6 +127,7 @@
     <!-- ============================================================== -->
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
+    
     <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap&libraries=drawing" async defer></script>
 

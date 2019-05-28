@@ -98,11 +98,8 @@ class Tramite_model extends CI_Model {
 		vdebug($array_inspectores, false, false, true);
 		vdebug($elegido, true, false, true);
 */
-       
-
 
 	}
-
 
 	public function login($usuario, $contrasenia)
 	{
