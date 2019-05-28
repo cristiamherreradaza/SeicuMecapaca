@@ -347,6 +347,7 @@
 <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
+
     $("#ci1").focusout(function(){
         var ci = $("#ci1").val();
         var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';

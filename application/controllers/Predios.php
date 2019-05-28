@@ -6,6 +6,7 @@ class Predios extends CI_Controller {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('tipopredio_model');
+        $this->load->model('predio_model');
         $this->load->model("logacceso_model");
         $this->load->model("persona_model");
         $this->load->model("Ddrr_model");
@@ -127,10 +128,10 @@ class Predios extends CI_Controller {
 				$query = $this->db->get('catastro.zona_urbana');
 				$data['dc_zona_urbana'] = $query->result();
 
-				$this->db->select('via_id, codcatas');
-				$this->db->where('activo', 1);
-				$query = $this->db->get('catastro.predio_via');
-				$data['dc_predio_via'] = $query->result();
+				// $this->db->select('via_id, codcatas');
+				// $this->db->where('activo', 1);
+				// $query = $this->db->get('catastro.predio_via');
+				// $data['dc_predio_via'] = $query->result();
 
 				$this->db->select('ubicacion_id, descripcion');
 				$this->db->order_by('descripcion', 'ASC');
@@ -216,6 +217,7 @@ class Predios extends CI_Controller {
 	}
 
 	public function guarda(){
+
 		if($this->session->userdata("login")){
 
 			//usuario que esta registrando
@@ -235,7 +237,9 @@ class Predios extends CI_Controller {
 			$this->load->view('predios/guarda', $data);
 
 			$latitud_longitud = $this->input->post('latitud').', '.$this->input->post('longitud');
+
 			$data = array(
+
 				'codcatas'=>$this->input->post('codigo_catastral'),
 				'codcatas_anterior'=>$this->input->post('codigo_catastral_anterior'),
 				'nro_inmueble'=>$this->input->post('nro_inmueble'),
@@ -261,14 +265,19 @@ class Predios extends CI_Controller {
 				'clase_predio_id'=>$this->input->post('clase_predio_id'),
 				'uso_suelo_id'=>$this->input->post('uso_suelo_id'),
 				'matriz_ph'=>$this->input->post('matriz_ph'),
+				'foto_plano'=>$_FILES['foto_plano'],
+				'foto_fachada'=>$_FILES['foto_fachada'],
+				// 'matriz_ph'=>$this->input->post('matriz_ph'),
 				// 'edificio_id'=>$this->input->post('edificio_id'),
 				'edificio_id'=>2,
 				'usu_creacion' =>$usu_creacion
 			);
-			$this->db->insert('catastro.predio', $data);
+			
+			$this->predio_model->guarda_predio($data);
+
 			// fin guardamos datos del predio
 
-			// guardamos
+			// guardamos las fotos
 			$foto_plano = $_FILES['foto_plano']['tmp_name'];
 			$contenido_foto_plano = file_get_contents($foto_plano);
 			$contenido_tranformado_plano = pg_escape_bytea($contenido_foto_plano);
@@ -365,6 +374,7 @@ class Predios extends CI_Controller {
 	}
 
 	public function nuevo($cod_catastral = null){
+		
 		if($this->session->userdata("login")){
 
 		$data = $this->datos_combo();
@@ -531,9 +541,9 @@ class Predios extends CI_Controller {
 			$query = $this->db->get('catastro.zona_urbana');
 			$data['dc_zona_urbana'] = $query->result();
 
-			$this->db->select('via_id, codcatas');
-			$query = $this->db->get('catastro.predio_via');
-			$data['dc_predio_via'] = $query->result();
+			// $this->db->select('via_id, codcatas');
+			// $query = $this->db->get('catastro.predio_via');
+			// $data['dc_predio_via'] = $query->result();
 
 			$this->db->select('ubicacion_id, descripcion');
 			$query = $this->db->get('catastro.ubicacion');

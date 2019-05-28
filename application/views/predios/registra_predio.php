@@ -50,7 +50,7 @@
                             <div id="muestra_mapa" style="display: none;">
                                 <div id="map" style="width: 100%; height: 650px;"></div>
                                 <div style="width: 100%;">
-                                    <button class="btn btn-block btn-warning" type="button" id="btn_finalizado">FINALIZADO</button>
+                                    <button class="btn btn-block btn-warning" type="button" id="btn_finalizado">GENERA CODIGO CATASTRAL</button>
                                 </div>
                             </div>
 
@@ -92,7 +92,7 @@
                                                 <label for="codigo_catastral"> Ingrese la Geometria : <span class="text-danger">*</span> </label>
                                                 <textarea rows="4" class="form-control" id="cod_referencial" autofocus ></textarea>
                                                 <div style="width: 100%;">
-                                                    <button class="btn btn-block btn-warning" type="button" id="btn_genera_catas">FINALIZADO</button>
+                                                    <button class="btn btn-block btn-warning" type="button" id="btn_genera_catas">GENERA CODIGO CATASTRAL</button>
                                                 </div>
                                                 <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                             </div>
