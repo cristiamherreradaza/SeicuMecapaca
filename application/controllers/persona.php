@@ -300,8 +300,15 @@ class Persona extends CI_Controller {
 			$arraySEGIPN1 = $arraySEGIPN0['ConsultaDatoPersonaEnJsonResult'];
 			$arraySEGIPN2 = $arraySEGIPN1['DatosPersonaEnFormatoJson'];
 			$datos_persona = json_decode($arraySEGIPN2, true);
-			$respuesta = array('ci'=>$ci, 'nombres' => $datos_persona['Nombres'], 'paterno' => $datos_persona['PrimerApellido'], 'materno' => $datos_persona['SegundoApellido'], 'fec_nacimiento'=>$datos_persona['FechaNacimiento'], 'estado'=>'si');
-			echo json_encode($respuesta);	
+			$caso = $arraySEGIPN1['CodigoRespuesta'];
+			if ($caso == 2) {
+				$respuesta = array('ci'=>$ci, 'nombres' =>$datos_persona['Nombres'], 'paterno' =>$datos_persona['PrimerApellido'], 'materno' =>$datos_persona['SegundoApellido'], 'fec_nacimiento'=>$datos_persona['FechaNacimiento'], 'estado'=>'segip');
+				echo json_encode($respuesta);
+			}else{
+				$respuesta = array('ci'=>$ci, 'estado'=>'no');
+				echo json_encode($respuesta);
+			}
+				
 		}	
 	}
 
