@@ -277,7 +277,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Fecha de nacimiento : <span class="text-danger">*</span></label>
-                                                                <input type="date" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" />
+                                                                <input type="text" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" />
                                                             </div>
                                                         </div>
                                                     </div>
