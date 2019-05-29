@@ -403,7 +403,14 @@
                     $("#materno1").prop("disabled", true);
                     $('#fec_nacimiento1').val(data.fec_nacimiento);
                     $("#fec_nacimiento1").prop("disabled", true);
-                    
+                    $("#direccion1").val('');
+                    $("#direccion1").prop("disabled", false);
+                    $("#email1").val('');
+                    $("#email1").prop("disabled", false);
+                    $("#telefono_fijo1").val('');
+                    $("#telefono_fijo1").prop("disabled", false);
+                    $("#telefono_celular1").val('');
+                    $("#telefono_celular1").prop("disabled", false);
                     $("#msg_alerta_catastral").html('Podria cambiar el porcentaje de participacion del propietario que sea menor o igual a lo indicado');
                     }else{
                     $("#msg_sucess_catastral").hide();
