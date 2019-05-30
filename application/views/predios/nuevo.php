@@ -119,7 +119,7 @@
                                         <div class="row" style="background-color: #f6f6f6;">
                                             <div class="col-md-0">
                                                 <div class="form-group">
-                                                    <input type="hidden" class="form-control" name="cod_catastral" value="<?php echo $cod_catastral ?>" required />
+                                                    <input type="hidden" class="form-control" name="predio_id" value="<?php echo $cod_catastral ?>" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -277,7 +277,7 @@
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label>Fecha de nacimiento : <span class="text-danger">*</span></label>
-                                                                <input type="date" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" />
+                                                                <input type="text" class="form-control  date-inputmask" name="fec_nacimiento1" id="fec_nacimiento1" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -364,12 +364,12 @@
                 // csrfName = data.csrfName;
                 // csrfHash = data.csrfHash;
                 // alert(data.message);
-                if (data.estado == 'si') {
+                if (data.estado == 'si' ) {
                     // console.log('Si se esta');
                     $("#msg_error_catastral").hide();
                     $("#msg_sucess_catastral").show();
                     $("#msg_alerta_catastral").show();
-                    $("#ci").val("");
+                    $("#ci").val(data.ci);
                     $("#msg_sucess_catastral").html('La persona existe: '+data.ci);
                     $('#nombres1').val(data.nombres);
                     $("#nombres1").prop("disabled", true);
@@ -390,10 +390,34 @@
                     $("#msg_alerta_catastral").html('Podria cambiar el porcentaje de participacion del propietario que sea menor o igual a lo indicado');
 
                 } else {
+                    if (data.estado == 'segip') {
+                        $("#msg_error_catastral").hide();
+                    $("#msg_sucess_catastral").show();
+                    $("#msg_alerta_catastral").show();
+                        $("#ci").val(data.ci);
+                    $("#msg_sucess_catastral").html('Esta registrado en el segip la persona con carnet de identidad Numero: '+data.ci);
+                    $('#nombres1').val(data.nombres);
+                    $("#nombres1").prop("disabled", true);
+                    $('#paterno1').val(data.paterno);
+                    $("#paterno1").prop("disabled", true);
+                    $('#materno1').val(data.materno);
+                    $("#materno1").prop("disabled", true);
+                    $('#fec_nacimiento1').val(data.fec_nacimiento);
+                    $("#fec_nacimiento1").prop("disabled", true);
+                    $("#direccion1").val('');
+                    $("#direccion1").prop("disabled", false);
+                    $("#email1").val('');
+                    $("#email1").prop("disabled", false);
+                    $("#telefono_fijo1").val('');
+                    $("#telefono_fijo1").prop("disabled", false);
+                    $("#telefono_celular1").val('');
+                    $("#telefono_celular1").prop("disabled", false);
+                    $("#msg_alerta_catastral").html('Podria cambiar el porcentaje de participacion del propietario que sea menor o igual a lo indicado');
+                    }else{
                     $("#msg_sucess_catastral").hide();
                      $("#msg_error_catastral").show();
                      $("#msg_alerta_catastral").hide();
-                    $("#msg_error_catastral").html('La persona no existe: '+data.ci);
+                    $("#msg_error_catastral").html('La persona no existe ni en la base de datos ni en el segip: '+data.ci);
                     $('#nombres1').val('');
                     $('#paterno1').val('');
                     $('#materno1').val('');
@@ -413,6 +437,7 @@
                     $("#telefono_fijo1").prop("disabled", false);
                     $("#telefono_celular1").val('');
                     $("#telefono_celular1").prop("disabled", false);
+                }
 
                 }
             },

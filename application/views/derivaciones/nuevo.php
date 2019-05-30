@@ -33,7 +33,7 @@
         <!-- Start Page Content -->
         <!-- ============================================================== -->
 
-        <?php echo form_open('derivaciones/guarda', array('method'=>'POST')); ?>
+        <?php echo form_open_multipart('derivaciones/guarda', array('method'=>'POST')); ?>
         <div class="row">
             <div class="col-md-12">
             <?php //vdebug($tramite, false, false, true); ?>
@@ -82,7 +82,8 @@
                                             <span class="input-group-text">Subir</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="adjunto">
+                                           
                                             <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
                                         </div>
                                     </div>

@@ -269,10 +269,47 @@ class Persona extends CI_Controller {
 		if ($verifica_cod) {
 			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fecha, 'persona_id'=>$verifica_cod->persona_id, 'direccion' =>$verifica_cod->direccion, 'email'=>$verifica_cod->email, 'telefono_fijo'=>$verifica_cod->telefono_fijo, 'telefono_celular'=>$verifica_cod->telefono_celular, 'estado'=>'si');
 			echo json_encode($respuesta);
-		} else {
-			$respuesta = array('ci'=>$ci, 'estado'=>'no');
-			echo json_encode($respuesta);
-		}		
+		}else{
+			$TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhNzAzYTlhZjcxZDY0NDMzOWJiNDM3ODEyYjIwODY0MyJ9.KAXS_8G3BznwFBR0dLZHfVQc2LkZI5fiTK6TN-meAZ4';
+			//configura la solicitud, también se puede usar CURLOPT_URL
+			
+			//echo "<br>--->".$paramnumero;
+			//echo "<br>--->".$paramfecha;
+			// antiguo URL
+			$CURL = curl_init('https://ws.agetic.gob.bo/segip/v2/personas/'.$ci);
+			// nuevo URL
+			//$CURL = curl_init('https://ws.agetic.gob.bo/segip/v3/personas/'.$paramnumero.'?fechaNacimiento='.$paramfecha);
+			// Devuelve los datos / resultados como una cadena en lugar de datos sin procesar
+			curl_setopt($CURL, CURLOPT_RETURNTRANSFER, true);
+			// Una buena práctica para que la gente sepa quién está accediendo a sus servidores. Ver https://en.wikipedia.org/wiki/User_agent
+			//curl_setopt($CURL, CURLOPT_USERAGENT, 'YourScript/0.1 (contact@email)');
+			// Establezca sus encabezados de autenticación
+			curl_setopt($CURL, CURLOPT_HTTPHEADER, array(
+			    'Content-Type: application/json',
+			    'Authorization: Bearer '.$TOKEN
+			));
+			
+			// Obtener datos / resultados codificados Ver CURLOPT_RETURNTRANSFER
+			$dataSEGIP = curl_exec($CURL);
+			// Obtener información sobre la solicitud
+			$infoSEGIP = curl_getinfo($CURL);
+			// Cierre el recurso curl para liberar recursos del sistema
+			curl_close($CURL);
+
+			$arraySEGIPN0 = json_decode($dataSEGIP, true);
+			$arraySEGIPN1 = $arraySEGIPN0['ConsultaDatoPersonaEnJsonResult'];
+			$arraySEGIPN2 = $arraySEGIPN1['DatosPersonaEnFormatoJson'];
+			$datos_persona = json_decode($arraySEGIPN2, true);
+			$caso = $arraySEGIPN1['CodigoRespuesta'];
+			if ($caso == 2) {
+				$respuesta = array('ci'=>$ci, 'nombres' =>$datos_persona['Nombres'], 'paterno' =>$datos_persona['PrimerApellido'], 'materno' =>$datos_persona['SegundoApellido'], 'fec_nacimiento'=>$datos_persona['FechaNacimiento'], 'estado'=>'segip');
+				echo json_encode($respuesta);
+			}else{
+				$respuesta = array('ci'=>$ci, 'estado'=>'no');
+				echo json_encode($respuesta);
+			}
+				
+		}	
 	}
 
 	 public function update()     

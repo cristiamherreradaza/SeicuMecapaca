@@ -41,7 +41,7 @@ class Persona_model extends CI_Model {
 	}
 
 	public function buscaci( $ci ){
-		$con = $this->db->query("SELECT to_char(fec_nacimiento, 'YYYY-MM-DD') as fecha, * FROM persona WHERE ci = '".$ci."'");
+		$con = $this->db->query("SELECT to_char(fec_nacimiento, 'DD-MM-YYYY') as fecha, * FROM persona WHERE ci = '".$ci."'");
 	    if($con)
 	        return $con->row();
 	    else
