@@ -22,7 +22,7 @@
 
                     <?php foreach ($datos_bloque as $row) { 
                         $bloque_id= $row->bloque_id;
-                        $codcatas = $row->codcatas;
+                        $predio_id = $row->predio_id;
                         $nro_bloque = $row->nro_bloque;
                         $nom_bloque = $row->nom_bloque;
                         $estado_fisico = $row->estado_fisico;
@@ -54,6 +54,7 @@
                         <input type="hidden" class="form-control required" id="cod_catastral" name="cod_catastral" readonly="" value="<?php echo $cod_catastral; ?>">
                         <input type="hidden" class="form-control required" id="nro_bloque" name="nro_bloque" readonly="" value="<?php echo $nro_bloque; ?>">
                         <input type="hidden" class="form-control required" id="nro_bloque" name="bloque_id" readonly="" value="<?php echo $bloque_id; ?>">
+                        <input type="hidden" class="form-control required" id="predio_id" name="predio_id" readonly="" value="<?php echo $predio_id; ?>">
                         <h4>Caracteristicas de la construccion</h4>
 
 
@@ -623,15 +624,22 @@
                                 </div>
 
 
+                                <div class="col-md-12" align="right">
+                            
+                                </div>
+
+                                <div class="col-md-12" align="right">
+                                <button type="submit" class="btn btn-info" value="save" id="guardar">Guardar</button>
+                                <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $predio_id ?>" align="right">Cancelar</a>
+                                </div>
+
+
 
                             </div>
                             <!--fin col-lg-5-->
                         </div>
                         <!--fin column-->
-                        <div class="col-md-12" align="right">
-                            <button type="submit" class="btn btn-info" value="save" id="guardar">Guardar</button>
-                            <a class="btn btn-danger" href="<?php echo site_url('edificacion/nuevo'); ?>/<?php echo $cod_catastral ?>" align="right">Cancelar</a>
-                        </div>
+                        
                         
                         </form>
                     </div>

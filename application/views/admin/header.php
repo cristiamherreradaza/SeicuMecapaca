@@ -23,7 +23,7 @@
 
     <link href="<?php echo base_url(); ?>public/css/style.css" rel="stylesheet">
 
-    <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/colors/blue.css" id="theme" rel="stylesheet">
     
     <!-- You can change the theme colors from here -->
     <link href="<?php echo base_url(); ?>public/css/colors/blue-dark.css" id="theme" rel="stylesheet">

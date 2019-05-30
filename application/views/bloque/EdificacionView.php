@@ -52,7 +52,7 @@
                             <p></p>
                          <!-- Step 1 -->
                          <h2></h2>
-                         <a  class=" btn btn-success" <?php echo $verifica['alta1'];?>="<?php echo site_url('edificacion/adicionar'); ?>/<?php echo $cod_catastral; ?>" align="right"><i class="mdi mdi-plus"></i> Agregar Bloque</a>
+                         <a  class=" btn btn-success" href="<?php echo site_url('edificacion/adicionar'); ?>/<?php echo $predio_id; ?>" align="right"><i class="mdi mdi-plus"></i> Agregar Bloque</a>
 
                                 <div class="card">
                                     <div class="card-body">
@@ -76,7 +76,7 @@
                                                 <tbody>
                                                     <?php foreach ($bloques as $row) { ?>
                                                     <tr>
-                                                        <td scope="row"><?php echo $row->codcatas; ?></td>
+                                                        <td scope="row"><?php echo $cod_catastral; ?></td>
                                                         <td><?php echo $row->nro_bloque; ?></td>
                                                         <td><?php echo $row->nom_bloque; ?></td>
                                                         <td><?php echo $row->estado_fisico; ?></td>
@@ -85,8 +85,8 @@
                                                         <td><?php echo $row->desc_bloque_dest; ?></td>
                                                         <td><?php echo $row->desc_bloque_uso; ?> </td>
                                                         <td>
-                                                            <a <?php echo $verifica['modificacion1'];?>="<?php echo site_url('edificacion/update'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->codcatas; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>
-                                                            <a <?php echo $verifica['baja'];?>="<?php echo site_url('edificacion/delete'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->codcatas; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
+                                                            <a <?php echo $verifica['modificacion1'];?>="<?php echo site_url('edificacion/update'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->predio_id; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>
+                                                            <a <?php echo $verifica['baja'];?>="<?php echo site_url('edificacion/delete'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->predio_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
                                                         </td>
                                                     </tr>
                                                     <?php 
@@ -95,7 +95,7 @@
                                             </table>
                                         </div>
                                         <div align="right">
-                                            <a class="btn btn-success" href="<?php echo site_url('Edificacion/next'); ?>/<?php echo $cod_catastral ?>" align="right">Siguiente</a>
+                                            <a class="btn btn-success" href="<?php echo site_url('Edificacion/next'); ?>/<?php echo $predio_id ?>" align="right">Siguiente</a>
                                         </div>
                                     </div>
                                 </div>

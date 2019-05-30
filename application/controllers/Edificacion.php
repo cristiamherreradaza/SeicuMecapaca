@@ -27,7 +27,7 @@ class Edificacion extends CI_Controller
 
 
 
-    public function nuevo($cod_catastral = null)
+    public function nuevo($predio_id = null)
     {
         if ($this->session->userdata("login")) {
             //
@@ -39,13 +39,15 @@ class Edificacion extends CI_Controller
             //$cod='123456789';
             $data['verifica'] = $this->rol_model->verifica();
             $data['result_array'] = $this->Edificacion_model->getAllData();
-            $data['bloques'] = $this->Edificacion_model->get_Bloque($cod_catastral);
+            $data['bloques'] = $this->Edificacion_model->get_Bloque($predio_id);
             $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
             $data['grupos'] = $this->Edificacion_model->get_grupos();
             $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque();
             $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
             $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
-            $data['cod_catastral'] = $cod_catastral;
+            $data['cod_catastral'] = $this->Edificacion_model->get_cod_catastral($predio_id);
+            //$data['cod_catastral'] = 12;
+            $data['predio_id'] = $predio_id;
             $this->load->view('admin/header');
             $this->load->view('admin/menu');
             $this->load->view('bloque/edificacionView', $data);
@@ -58,7 +60,7 @@ class Edificacion extends CI_Controller
         }
     }
 
-    public function adicionar($cod_catastral = null)
+    public function adicionar($predio_id = null)
     {
         if ($this->session->userdata("login")) {
 
@@ -71,7 +73,7 @@ class Edificacion extends CI_Controller
 
             $anio_act=date("Y");//obtiene el anio actual
 
-            $cant_bloque = $this->db->query("SELECT count(nro_bloque) as total FROM catastro.bloque where activo=1 and codcatas='$cod_catastral'");
+            $cant_bloque = $this->db->query("SELECT count(nro_bloque) as total FROM catastro.bloque where activo=1 and predio_id='$predio_id'");
             foreach ($cant_bloque->result() as $nro) {
                 $total_bloq = $nro->total;
             }
@@ -83,9 +85,11 @@ class Edificacion extends CI_Controller
             $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque();
             $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
             $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
-            $data['cod_catastral'] = $cod_catastral;
+            $data['cod_catastral'] = $this->Edificacion_model->get_cod_catastral($predio_id);
+            //$data['cod_catastral'] = 12;
             $data['nro_bloque'] = $total_bloq;
             $data['anio_actual'] = $anio_act;
+            $data['predio_id'] = $predio_id;
             $this->load->view('admin/header');
             $this->load->view('admin/menu');
             $this->load->view('bloque/bloque_nuevo', $data);
@@ -113,7 +117,8 @@ class Edificacion extends CI_Controller
 
             $data = array(
 
-            'codcatas' => $this->input->post('cod_catastral'), //input
+            //'codcatas' => $this->input->post('cod_catastral'), //input
+            'predio_id' => $this->input->post('predio_id'), //input
             'nro_bloque' => $this->input->post('nro_bloque'), //crear
             'nom_bloque' => $this->input->post('nom_bloque'),
             'estado_fisico' => $this->input->post('estado_fisico'),
@@ -132,8 +137,9 @@ class Edificacion extends CI_Controller
 
             //captura el bloque_id del nro de bloque guardado
             $nro_bloq = $this->input->post('nro_bloque');
-            $codcatas = $this->input->post('cod_catastral'); //input
-            $query = $this->db->query("SELECT bloque_id FROM catastro.bloque WHERE codcatas='$codcatas' and nro_bloque='$nro_bloq'");
+            //$codcatas = $this->input->post('cod_catastral'); //input
+            $predio_id = $this->input->post('predio_id'); //input
+            $query = $this->db->query("SELECT bloque_id FROM catastro.bloque WHERE predio_id='$predio_id' and nro_bloque='$nro_bloq'");
             foreach ($query->result() as $row) {
                 $bloque_id_form = $row->bloque_id;
             }
@@ -173,23 +179,23 @@ class Edificacion extends CI_Controller
                 $this->db->insert('catastro.bloque_elemento_cons', $bloque_elem_cons);
             }
             // fin guardamos los servicios
-            redirect(base_url() . 'Edificacion/nuevo/' . $this->input->post('cod_catastral'));
+            redirect(base_url() . 'Edificacion/nuevo/' . $this->input->post('predio_id'));
         } else {
             redirect(base_url());
         }
     }
 
-    public function next($cod_catastral = null)
+    public function next($predio_id = null)
     {
         if ($this->session->userdata("login")) {
-            $query = $this->db->query("UPDATE catastro.predio SET activo = 2 WHERE codcatas='$cod_catastral'");
-            redirect(base_url() . 'predios/nuevo/' . $cod_catastral);
+            $query = $this->db->query("UPDATE catastro.predio SET activo = 2 WHERE predio_id='$predio_id'");
+            redirect(base_url() . 'predios/nuevo/' . $predio_id);
         } else {
             redirect(base_url());
         }
-    }
+    }    
 
-    public function update($id = null, $cod_catastral = null)
+    public function update($id = null, $predio_id = null)
     {
         if ($this->session->userdata("login")) {
             $data['datos_bloque'] = $this->Edificacion_model->get_datos_bloque($id);
@@ -202,7 +208,7 @@ class Edificacion extends CI_Controller
             $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque();
             $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
             $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
-            $data['cod_catastral'] = $cod_catastral;
+            $data['cod_catastral'] = $this->Edificacion_model->get_cod_catastral($predio_id);            
             $this->load->view('admin/header');
             $this->load->view('admin/menu');
             $this->load->view('bloque/bloque_edicion', $data);
@@ -213,7 +219,7 @@ class Edificacion extends CI_Controller
             redirect(base_url());
         }
     }
-    public function delete($id = null, $cod_catastral = null)
+    public function delete($id = null, $predio_id = null)
     {
         if ($this->session->userdata("login")) {
             $id_us = $this->session->userdata("persona_perfil_id");
@@ -250,7 +256,7 @@ class Edificacion extends CI_Controller
             $query = $this->db->query("UPDATE catastro.bloque_piso SET activo = 0  WHERE bloque_id='$id'");*/
 
 
-            redirect(base_url() . 'Edificacion/nuevo/' . $cod_catastral);
+            redirect(base_url() . 'Edificacion/nuevo/' . $predio_id);
         } else {
             redirect(base_url());
         }
@@ -355,7 +361,7 @@ class Edificacion extends CI_Controller
             }
         
             // fin guardamos los servicios
-            redirect(base_url() . 'Edificacion/nuevo/' . $this->input->post('cod_catastral'));
+            redirect(base_url() . 'Edificacion/nuevo/' . $this->input->post('predio_id'));
         } else {
             redirect(base_url());
         }
@@ -426,7 +432,7 @@ class Edificacion extends CI_Controller
             $data['nro_bloque'] = $total_bloq;
             $data['anio_actual'] = $anio_act;
             //$this->load->view('bloque/header_ficha_tecnica');            
-            $this->load->view('bloque/ficha_tecnica_pdf', $data);
+            $this->load->view('bloque/ficha_tecnica_pdf', $data);            
             //$this->load->view('bloque/jtables');
             //$this->load->view('bloque/footer_ficha_tecnica');
             //$this->load->view('admin/wizard_js');
