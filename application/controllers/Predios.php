@@ -238,7 +238,7 @@ class Predios extends CI_Controller {
 
 			$latitud_longitud = $this->input->post('latitud').', '.$this->input->post('longitud');
 
-			$data = array(
+			$datos_predio = array(
 
 				'codcatas'=>$this->input->post('codigo_catastral'),
 				'codcatas_anterior'=>$this->input->post('codigo_catastral_anterior'),
@@ -249,7 +249,7 @@ class Predios extends CI_Controller {
 				'latlong'=>$this->input->post('latlong'),
 				// 'latlong'=>$latitud_longitud,
 				'zona_econo'=>$this->input->post('zona_econo'),
-				'via_id'=>1,
+				// 'via_id'=>1,
 				'zonaurb_id'=>$this->input->post('zonaurb_id'),
 				'nro_puerta'=>$this->input->post('nro_puerta'),
 				'superficie_geo'=>$this->input->post('superficie_geo'),
@@ -265,71 +265,21 @@ class Predios extends CI_Controller {
 				'clase_predio_id'=>$this->input->post('clase_predio_id'),
 				'uso_suelo_id'=>$this->input->post('uso_suelo_id'),
 				'matriz_ph'=>$this->input->post('matriz_ph'),
-				'foto_plano'=>$_FILES['foto_plano'],
-				'foto_fachada'=>$_FILES['foto_fachada'],
 				// 'matriz_ph'=>$this->input->post('matriz_ph'),
 				// 'edificio_id'=>$this->input->post('edificio_id'),
 				'edificio_id'=>2,
 				'usu_creacion' =>$usu_creacion
 			);
-			
-			$this->predio_model->guarda_predio($data);
 
-			// fin guardamos datos del predio
-
-			// guardamos las fotos
-			$foto_plano = $_FILES['foto_plano']['tmp_name'];
-			$contenido_foto_plano = file_get_contents($foto_plano);
-			$contenido_tranformado_plano = pg_escape_bytea($contenido_foto_plano);
-
-			$foto_fachada = $_FILES['foto_fachada']['tmp_name'];
-			$contenido_foto_fachada = file_get_contents($foto_fachada);
-			$contenido_tranformado_fachada = pg_escape_bytea($contenido_foto_fachada);
-
-			$data_foto = array(
-				'codcatas'=>$this->input->post('codigo_catastral'),
-				'foto_fachada'=>$contenido_tranformado_fachada,
-				'foto_plano_ubi'=>$contenido_tranformado_plano,
-				'activo'=>'1',
+			$fotos = array(
+				'foto_plano'=>$_FILES['foto_plano'],
+				'foto_fachada'=>$_FILES['foto_fachada'],
 			);
 
-			$this->db->insert('catastro.predio_foto', $data_foto);
-			// fin guarda las fotografias
-
-			// guardamos los servicios
-			foreach ($this->input->post('servicios') as $key => $s) {
-				$data_servicios = array(
-					'servicio_id'=>$s,
-					'codcatas'=>$this->input->post('codigo_catastral'),
-					'activo'=>1
-				);
-
-				$this->db->insert('catastro.predio_servicios', $data_servicios);
-			}
-			// fin guardamos los servicios
-
-			// guardamos las calles
+			$servicios = $this->input->post('servicios');
 			$calles = $this->input->post('calles_colindantes');
-			$calles_array = explode(",", $calles);
-			foreach($calles_array as $ca){
-				if($ca == $this->input->post('calle_principal')){
-					$tipo_calle = 1;
-				}else{
-					$tipo_calle = 0;
-				}
-				$data_calles = array(
-					'codcatas'=>$this->input->post('codigo_catastral'),
-					'objectid_via'=>1,
-					'matvia_id'=>1,
-					'activo'=>1,
-					'gvia_id'=>$ca,
-					'gvia_tipo'=>$tipo_calle,
-				);
-				$this->db->insert('catastro.predio_via', $data_calles);
-			 	// echo $ca.'<br />';
-			}
-			 // vdebug($calles_array);
-			// fin guardamos las calles
+
+			$this->predio_model->guarda_predio($datos_predio, $fotos, $servicios, $calles);
 
 			// editamos la calle principal
 			// $this->db->set('gvia_tipo', 1);

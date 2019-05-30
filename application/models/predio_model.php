@@ -10,37 +10,83 @@ class Predio_model extends CI_Model {
         // $this->load->model("persona_model");
     }
 
-    public function guarda_predio($data = null){
+    public function guarda_predio($datos_predio = null, $fotos = null, $servicios = null, $calles = null){
 
-        $direccion_archivos = '/public/assets/files/predios';
-        $target_file = $data["foto_plano"]["name"];
-        $tipo_archivo = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        $nombre_archivo = date("dmYHis") . md5($target_file) . '.' . $tipo_archivo;
-        vdebug($nombre_archivo, false, false, true);   
-        vdebug($tipo_archivo, false, false, true);   
-        vdebug($data, false, false, true);   
-        vdebug($data['foto_plano']['name'], true, false, true);   
-        $this->db->insert('catastro.predio', $data);
+        // vdebug($calles, true, false, true);   
+        $this->db->insert('catastro.predio', $datos_predio);
         $id_cod_catastral = $this->db->insert_id();
 
-        // guardamos las fotos
-        $foto_plano = $_FILES['foto_plano']['tmp_name'];
-        $contenido_foto_plano = file_get_contents($foto_plano);
-        $contenido_tranformado_plano = pg_escape_bytea($contenido_foto_plano);
-
-        $foto_fachada = $_FILES['foto_fachada']['tmp_name'];
-        $contenido_foto_fachada = file_get_contents($foto_fachada);
-        $contenido_tranformado_fachada = pg_escape_bytea($contenido_foto_fachada);
-
-        $data_foto = array(
-            'codcatas'=>$this->input->post('codigo_catastral'),
-            'foto_fachada'=>$contenido_tranformado_fachada,
-            'foto_plano_ubi'=>$contenido_tranformado_plano,
-            'activo'=>'1',
+        $direccion_archivos = './public/assets/files/predios/';
+        $fotos_predio = array(
+            'predio_id'=>$id_cod_catastral,
         );
 
-        $this->db->insert('catastro.predio_foto', $data_foto);
-        // fin guarda las fotografias
+        // guardamos la imagen del plano
+        $target_file_plano = $fotos["foto_plano"]["name"];
+        $ruta_temporal_plano = $fotos["foto_plano"]["tmp_name"];
+        $tipo_archivo_plano = strtolower(pathinfo($target_file_plano,PATHINFO_EXTENSION));
+        $nombre_archivo_plano = date("dmYHis") . md5($target_file_plano) . '.' . $tipo_archivo_plano;
+        $nueva_ruta_plano = $direccion_archivos.$nombre_archivo_plano;
+        if (move_uploaded_file($ruta_temporal_plano, $nueva_ruta_plano)) {
+            // array_push($fotos_predio, 'foto_plano_ubi', $nueva_ruta_plano);        
+            $fotos_predio['foto_plano_ubi'] = $nombre_archivo_plano;
+        }else{
+            $fotos_predio['foto_plano_ubi'] = 'N/T';
+            // array_push($fotos_predio, array('foto_plano_ubi' => 'N/T'));        
+        }
+        // fin guardamos la imagen del plano
+
+        // guardamos la imagen del plano
+        $target_file_fachada = $fotos["foto_fachada"]["name"];
+        $ruta_temporal_fachada = $fotos["foto_fachada"]["tmp_name"];
+        $tipo_archivo_fachada = strtolower(pathinfo($target_file_fachada, PATHINFO_EXTENSION));
+        $nombre_archivo_fachada = date("dmYHis") . md5($target_file_fachada) . '.' . $tipo_archivo_fachada;
+        $nueva_ruta_fachada = $direccion_archivos . $nombre_archivo_fachada;
+        if (move_uploaded_file($ruta_temporal_fachada, $nueva_ruta_fachada)) {
+            $fotos_predio['foto_fachada'] = $nombre_archivo_fachada;
+        } else {
+            $fotos_predio['foto_fachada'] = 'N/T';
+        }
+        $fotos_predio['activo'] = 1;
+        $this->db->insert('catastro.predio_foto', $fotos_predio);
+        // fin guardamos la imagen del plano
+
+        // guardamos los servicios
+        foreach ($servicios as $key => $s) {
+            $data_servicios = array(
+                'predio_id'=>$id_cod_catastral,
+                'servicio_id' => $s,
+                'activo' => 1
+            );
+
+            $this->db->insert('catastro.predio_servicios', $data_servicios);
+        }
+        // fin guardamos los servicios
+
+        // guardamos las calles
+        if ($calles) {
+            $calles_array = explode(",", $calles);
+            foreach ($calles_array as $ca) {
+                if ($ca == $this->input->post('calle_principal')) {
+                    $tipo_calle = 1;
+                } else {
+                    $tipo_calle = 0;
+                }
+                $data_calles = array(
+                    'predio_id' => $id_cod_catastral,
+                    'objectid_via' => 1,
+                    'matvia_id' => 1,
+                    'activo' => 1,
+                    'gvia_id' => $ca,
+                    'gvia_tipo' => $tipo_calle,
+                );
+                $this->db->insert('catastro.predio_via', $data_calles);
+            }
+        } 
+        // vdebug($calles_array);
+        // fin guardamos las calles
+
+        vdebug($calles, true, false, true);   
 
     }
 
