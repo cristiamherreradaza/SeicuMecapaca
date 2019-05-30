@@ -334,14 +334,14 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="frente">Frente : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="frente" name="frente"/d>
+                                                <input type="number" class="form-control" step='0.01' value="0.00" id="frente" name="frente" />
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="fondo">Fondo : <span class="text-danger">*</span></label>
-                                                <input type="number" class="form-control" step='0.01' value="0.00" id="fondo" name="fondo"/d>
+                                                <input type="number" class="form-control" step='0.01' value="0.00" id="fondo" name="fondo" />
                                             </div>
                                         </div>
 
