@@ -76,6 +76,18 @@
 
                             <div class="col-4">
                                 <div class="form-group">
+                                    <div class="input-group input-file" name="Fichier1">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success btn-choose" type="button">Choose</button>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder='Escoger Archivo' name="adjunto" />
+                                        <span class="input-group-btn">
+                                             <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label>Archivo</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -128,3 +140,34 @@
             window.location = "http://localhost/CodeigniterPMGM/derivaciones/listado";
         }
     </script>
+     <script type="text/javascript">
+         function bs_input_file() {
+    $(".input-file").before(
+        function() {
+            if ( ! $(this).prev().hasClass('input-ghost') ) {
+                var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+                element.attr("name",$(this).attr("name"));
+                element.change(function(){
+                    element.next(element).find('input').val((element.val()).split('\\').pop());
+                });
+                $(this).find("button.btn-choose").click(function(){
+                    element.click();
+                });
+                $(this).find("button.btn-reset").click(function(){
+                    element.val(null);
+                    $(this).parents(".input-file").find('input').val('');
+                });
+                $(this).find('input').css("cursor","pointer");
+                $(this).find('input').mousedown(function() {
+                    $(this).parents('.input-file').prev().click();
+                    return false;
+                });
+                return element;
+            }
+        }
+    );
+}
+$(function() {
+    bs_input_file();
+});
+     </script>

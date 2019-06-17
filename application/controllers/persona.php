@@ -91,7 +91,8 @@ class Persona extends CI_Controller {
          	if($porcen_parti <= $porcentajeR){
 				if($this->persona_model->existeci($ci))
 				{
-					$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo,$telefono_celular);
+					$tipo_persona_id=1;
+					$this->persona_model->insertarUsuarioPredio($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo,$telefono_celular, $tipo_persona_id);
 				}
 				$consulta = $this->persona_model->consulta($ci);
 				$dato = array(
@@ -185,7 +186,8 @@ class Persona extends CI_Controller {
 			if($porcen_parti <= $porcentajeR){
 				if($this->persona_model->existeci($ci))
 				{ 
-					$this->persona_model->insertarUsuario($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo,$telefono_celular);
+					$tipo_persona_id=1;
+					$this->persona_model->insertarUsuarioPredio($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo,$telefono_celular, $tipo_persona_id);
 				}
 				$consulta = $this->persona_model->consulta($ci);
 				$dato = array(

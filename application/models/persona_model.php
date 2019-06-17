@@ -24,6 +24,28 @@ class Persona_model extends CI_Model {
 		$this->db->insert('persona', $array);
 	}
 
+	public function insertarUsuarioPredio($nombres, $paterno, $materno, $ci, $fec_nacimiento, $usu_creacion, $direccion, $email, $telefono_fijo, $telefono_celular, $tipo_persona_id){	
+		$array = array(
+			'nombres' =>$nombres,
+			'paterno' =>$paterno,
+			'materno' =>$materno,
+			'ci' =>$ci,
+			'fec_nacimiento' =>$fec_nacimiento,
+			'usu_creacion' =>$usu_creacion,
+			'direccion' => $direccion,
+			'email' => $email,
+			'telefono_fijo' => $telefono_fijo,
+			'telefono_celular' => $telefono_celular
+			);
+		$this->db->insert('persona', $array);
+        $persona_id = $this->db->insert_id();
+		$array1 = array(
+			'persona_id' => $persona_id,
+			'tipo_persona_id' => $tipo_persona_id
+		);
+		$this->db->insert('persona_tipo_persona', $array1);
+	}
+
 	public function existeci($ci){
 		$this->db->where('ci',$ci);
 		$reg = $this->db->get('persona');
