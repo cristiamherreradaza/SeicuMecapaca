@@ -11,6 +11,15 @@ class Prueba extends CI_Controller {
         $this->load->model("inspecciones/inspeccion_model");
         $this->load->model("rol_model");
     }
+
+    public function principal()    
+    {   
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('admin/principal');
+        $this->load->view('admin/footer');
+       
+    }
 	
 	public function prueba()	
 	{	

@@ -100,7 +100,18 @@
     <!--<script src="<?php echo base_url(); ?>public/assets/fullcalendar/lib/jquery.min.js"></script>-->
     <script src="<?php echo base_url(); ?>public/assets/fullcalendar/fullcalendar.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/fullcalendar/locale/es.js"></script>
-                
+    <script type="text/javascript">
+
+    window.onload = function(){killerSession();}
+ 
+    function killerSession(){
+    setTimeout("window.open('<?php echo base_url(); ?>login/logout','_top');",7000000);
+    }
+    
+    </script>
+
+  
 </body>
 
 </html>
+

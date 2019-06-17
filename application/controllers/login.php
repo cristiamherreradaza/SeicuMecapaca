@@ -6,6 +6,11 @@ class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		 // load Session Library
+        $this->load->library('session');
+         
+        // load url helper
+        $this->load->helper('url');
 		$this->load->model("usuario_model");
 		$this->load->model("logacceso_model");
 	}
@@ -55,7 +60,7 @@ class Login extends CI_Controller {
 				'login' => TRUE
 			);
 			$this->session->set_userdata($data);
-			redirect(base_url()."Predios/principal");
+			redirect(base_url()."Predios/index");
 		
 		}
 		
@@ -76,7 +81,6 @@ class Login extends CI_Controller {
 	public function algo()
 	{
 		$this->logacceso_model->inactividad();
-		
 	}
 
 }

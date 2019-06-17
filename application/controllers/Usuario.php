@@ -200,7 +200,6 @@ class Usuario extends CI_Controller {
 				//$descripcion = $datos['descripcion'];
 				//$this->zona_urbana_model->insertar_zona($descripcion, $usu_creacion);
 				//redirect('Zona_urbana');
-
 			}
 		}
 		else{
@@ -238,8 +237,7 @@ class Usuario extends CI_Controller {
 						);
 
 						$this->db->insert('public.credencial_menu', $menu);
-			        	
-						
+			        							
 					 }
 					 
 					redirect('usuario/listar');
@@ -269,10 +267,14 @@ class Usuario extends CI_Controller {
             $this->db->where('credencial_id', $id);
             $this->db->update('public.credencial', $data);          
             redirect(base_url() . 'usuario/listar/');
-        } else {
+        } 
+        else 
+        {
             redirect(base_url());
         }
     }
 }
+
+
 
 	

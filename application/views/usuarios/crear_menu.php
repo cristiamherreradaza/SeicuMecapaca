@@ -39,7 +39,6 @@
 <!-- vertical wizard -->
                 <div class="row">
                     <?php
-                 
                     $nivel1 = $this->db->query("SELECT *
                                                 FROM menu
                                                 WHERE padre = '0'
@@ -47,7 +46,6 @@
                                                 ORDER BY orden")->result();
                     
                  ?>
-                    
                 <div class="col-lg-4 col-md-12">
                     <div class="card">
                         <div class="card-body">
@@ -60,21 +58,18 @@
                                      
                                     <div class="myadmin-dd dd" id="nestable">
                                         <?php foreach ($nivel1 as $menu1) { 
-
                                             $compara =  $this->db->query("SELECT *
                                                                             FROM credencial_menu
                                                                             WHERE menu_id = '$menu1->menu_id'
                                                                             AND credencial_id = '$credencial_id'
                                                                             ORDER BY credencial_menu_id")->row();
-
                                             if ($compara) {
-                                                       $var = 'checked';
-                                                    } 
-                                                    else
-                                                    {
-                                                       $var = '';
-                                                    }
-
+                                                               $var = 'checked';
+                                                          } 
+                                                          else
+                                                          {
+                                                               $var = '';
+                                                          }
                                             ?>
                                         <ol class="dd-list">
                                             <li class="dd-item" data-id="1">
@@ -83,8 +78,6 @@
                                                             <input type="checkbox" <?php echo $var; ?> value="<?php echo $menu1->menu_id ?>" name="menus[<?php echo $menu1->menu_id; ?>]" class="custom-control-input">
                                                                 <span class="custom-control-label"></span>
                                                         </label>
-                                                    
-                                                    
                                                 </div>
                                                  <?php
                      

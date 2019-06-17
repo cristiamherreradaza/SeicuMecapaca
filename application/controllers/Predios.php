@@ -18,7 +18,7 @@ class Predios extends CI_Controller {
         $this->load->library('pdf');
     }
 
-    public function principal(){
+    public function index(){
 
 
 		if($this->session->userdata("login"))
@@ -58,7 +58,7 @@ class Predios extends CI_Controller {
 		}
 	}
 
-	public function index(){
+	public function principal(){
 
 
 		if($this->session->userdata("login"))

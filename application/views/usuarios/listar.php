@@ -94,6 +94,10 @@
                                                     <a <?php echo $verifica['baja'];?>="<?= base_url('usuario/asignar/'. $lis->credencial_id); ?>" type="button" class="btn btn-info button">
                                                         <span disabled class="fas fa-tasks" aria-hidden="true">
                                                         </span>
+                                                    </a>
+                                                     <a <?php echo $verifica['baja'];?>="<?= base_url('usuario/asignar/'. $lis->credencial_id); ?>" type="button" class="btn btn-info button">
+                                                        <span disabled class="fas fa-pencil-alt" aria-hidden="true">
+                                                        </span>
                                                     </a>                                                    
                                                 </td>
                                             </tr>
