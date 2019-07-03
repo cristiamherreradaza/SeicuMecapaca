@@ -59,7 +59,6 @@
                             <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
 
                             <div class="row">
-
                                 <div class="col-md-4">
                                     <button class="btn btn-block btn-info" type="button"><span class="btn-label">1</span> REGISTRO DEL PREDIO</button>
                                 </div>
@@ -99,8 +98,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="row" style="background-color: #f6f6f6;">
-
+                                    <div class="row bg-light-info" style="background-color: #f6f6f6;">
+                
                                         <div class="col-md-2">
                                         <div class="form-group">
                                                 <label for="codigo_catastral"> Cod Catastral : <span class="text-danger">*</span> </label>
@@ -344,7 +343,7 @@
                                                 <input type="number" class="form-control" step='0.01' value="0.00" id="fondo" name="fondo" />
                                             </div>
                                         </div>
-
+                                        
                                         <div class="col-md-2" style="background-color: #f6f6f6;">
                                             <div class="form-group">
                                             <?php //echo vdebug($dc_tipos_predio); ?>

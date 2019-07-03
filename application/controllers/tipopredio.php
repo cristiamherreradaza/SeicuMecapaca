@@ -63,7 +63,7 @@ class Tipopredio extends CI_Controller {
 			redirect(base_url());
 		}
 
-	 }
+	}
 
 	 public function update()     
 	{   

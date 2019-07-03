@@ -86,7 +86,19 @@ class Predio_model extends CI_Model {
         // vdebug($calles_array);
         // fin guardamos las calles
 
-        vdebug($calles, true, false, true);   
+        // guarda las observaciones
+/*        $data_obs = array(
+            'codcatas'=>$this->input->post('codigo_catastral'),
+            'observacion'=>$this->input->post('observaciones'),
+            'activo'=>1
+        );
+        
+        $this->db->insert('catastro.predio_observac', $data_obs);
+        redirect(base_url().'Edificacion/nuevo/'.$this->input->post('codigo_catastral'));
+*/        // fin guarda las observaciones
+
+
+        // vdebug($calles, true, false, true);   
 
     }
 

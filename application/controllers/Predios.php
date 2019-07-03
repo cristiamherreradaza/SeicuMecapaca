@@ -230,11 +230,11 @@ class Predios extends CI_Controller {
 			$datos = array();
 			$datos = $this->input->post();
 
-			$this->db->select('foto_id', 'codcatas', 'foto_plano_ubi');
-			$query = $this->db->get('catastro.predio_foto');
-			$data['fotos'] = $query->result();
+			// $this->db->select('foto_id', 'codcatas', 'foto_plano_ubi');
+			// $query = $this->db->get('catastro.predio_foto');
+			// $data['fotos'] = $query->result();
 
-			$this->load->view('predios/guarda', $data);
+			// $this->load->view('predios/guarda', $data);
 
 			$latitud_longitud = $this->input->post('latitud').', '.$this->input->post('longitud');
 
@@ -281,22 +281,14 @@ class Predios extends CI_Controller {
 
 			$this->predio_model->guarda_predio($datos_predio, $fotos, $servicios, $calles);
 
+			redirect(base_url("/predios/principal"));
+
 			// editamos la calle principal
 			// $this->db->set('gvia_tipo', 1);
 			// $this->db->where('codcatas', $this->input->post('codigo_catastral'));
 			// $this->db->where('gvia_id', $this->input->post('calle_principal'));
 			// $this->db->update('catastro.predio_via');
 			// editamos la calle principal
-
-			// guarda las observaciones
-			$data_obs = array(
-				'codcatas'=>$this->input->post('codigo_catastral'),
-				'observacion'=>$this->input->post('observaciones'),
-				'activo'=>1
-			);
-			$this->db->insert('catastro.predio_observac', $data_obs);
-			redirect(base_url().'Edificacion/nuevo/'.$this->input->post('codigo_catastral'));
-			// fin guarda las observaciones
 
 			// vdebug($datos['data']['codigo_catastral']);
 			// $this->db->insert('catastro.predio', $datos);
