@@ -51,16 +51,15 @@
                                         <div class="col-md-4 mb-3">
                                             <label for="validationCustom01">Persona</label>
                                             <!-- CONSULTA POR LA TABLA ORGANIGRAMA PERSONA -->
-                                            <?php $lista = $this->db->query("SELECT op.organigrama_persona_id, op.persona_id, p.persona_id, p.nombres, p.paterno
+                                            <?php $lista = $this->db->query("SELECT op.organigrama_persona_id, op.persona_id, p.persona_id, p.nombres, p.paterno, p.materno
                                                                             FROM tramite.organigrama_persona op, public.persona p
                                                                             WHERE op.organigrama_persona_id = '$idss'
-                                                                            AND op.persona_id = p.persona_id
-                                                                            ORDER BY op.organigrama_persona_id ASC")->row();
+                                                                            AND op.persona_id = p.persona_id")->row();
                                            
                                             ?>  
-                                                <select type="text" class="form-control" id="" name="organigrama_persona_id"/>
-                                                    <option value="<?php echo $lista->organigrama_persona_id ?>"><?php echo $lista->nombres ?> <?php echo $lista->paterno ?></option>
-                                                </select>
+                                            <input type="hidden" name="organigrama_persona_id" value="<?php echo $lista->organigrama_persona_id ?>" >
+                                            <input type="text" class="form-control" name="nombre" value="<?php echo $lista->nombres ?> <?php echo $lista->paterno ?> <?php echo $lista->materno ?>">
+
 
                                             <div class="invalid-feedback">
                                                 Please provide a valid city.

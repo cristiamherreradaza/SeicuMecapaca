@@ -22,6 +22,7 @@ class Tipo_tramite extends CI_Controller {
             $dato = $resi->persona_id;
             $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
 
+
             $consulta = $this->db->query("SELECT organigrama_persona_id
                                             FROM tramite.organigrama_persona
                                             WHERE fec_baja is NULL
@@ -137,8 +138,7 @@ class Tipo_tramite extends CI_Controller {
 	{
 		if($this->session->userdata("login")){
 			$datos = $this->input->post();
-
-				if(isset($datos))
+			if(isset($datos))
 			{
 				//OBTENER EL ID DEL USUARIO LOGUEADO
 				$id = $this->session->userdata("persona_perfil_id");
@@ -160,11 +160,9 @@ class Tipo_tramite extends CI_Controller {
 				$gestion = $datos['gestion'];
 				$this->tramite_model->insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_tramite_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $correlativo, $gestion);
 
-				$tramite = $this->db->query("SELECT *
-												FROM tramite.tramite
-												WHERE cite = '$cite'")->row();
+				$tramite = $this->db->query("SELECT * FROM tramite.tramite WHERE cite = '$cite'")->row();
 				$idTramite = $tramite->tramite_id;
-
+				
 				$config['upload_path']      = './public/assets/images/tramites';
 				$config['file_name']        = $adjunto;
 				$config['allowed_types']    = 'pdf';
@@ -176,14 +174,13 @@ class Tipo_tramite extends CI_Controller {
 				if ( ! $this->upload->do_upload('adjunto'))
 					{
 						$error = array('error' => $this->upload->display_errors());
-
+						redirect(base_url());
 						//$this->load->view('crud/organigrama', $error);
 					}
 				else
 					{
 						$data = array('upload_data' => $this->upload->data());
 						redirect('Derivaciones/nuevo/'.$idTramite);
-
 					}
 
 				//$this->session->set_flashdata('in', $idTramite);
@@ -198,9 +195,8 @@ class Tipo_tramite extends CI_Controller {
 	}
 
 	public function muestra_asignaciones(){
-		{
-			if($this->session->userdata("login")){
-			// $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
+		if($this->session->userdata("login")){
+		// $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
 			$id = $this->session->userdata("persona_perfil_id");
 			$resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
 			$dato = $resi->persona_id;
@@ -224,8 +220,93 @@ class Tipo_tramite extends CI_Controller {
 		}
 		else{
 			redirect(base_url());
+		}		
+	}
+
+	public function busqueda(){
+		if($this->session->userdata("login")){
+			$valores['cite']=NULL;
+		 	$valores['fecha']=NULL;
+		 	$valores['remitente']=NULL;
+		 	$valores['encontrados']=NULL;
+		    $this->load->view('admin/header');
+			$this->load->view('admin/menu');
+			$this->load->view('tramites/busqueda', $valores);
+			$this->load->view('admin/footer');
+			$this->load->view('predios/index_js');
 		}
+		else{
+			redirect(base_url());
+        }
+	}
+
+	public function encontrados(){
+		if($this->session->userdata("login")){
+		 	$cite = $this->input->post('cite');
+		 	$fecha = $this->input->post('fecha');  
+		 	$remitente = $this->input->post('remitente');
+		 	
+		 	if($cite != NULL){
+		 		if($fecha != NULL){
+		 			if($remitente != NULL){
+		 				$encontrados= $this->db->query("SELECT * FROM tramite.tramite WHERE cite like('%$cite%') AND DATE(fecha) = '$fecha' AND remitente like('%$remitente%')")->result();
+		 			}else{
+		 				$encontrados= $this->db->query("SELECT * FROM tramite.tramite WHERE cite like('%$cite%') AND DATE(fecha) = '$fecha' ")->result();
+		 			}
+		 		}else{
+		 			if($remitente != NULL){
+		 				$encontrados= $this->db->query("SELECT * FROM tramite.tramite WHERE cite like('%$cite%') AND remitente like('%$remitente%')")->result();
+		 			}else{
+		 				$encontrados= $this->db->query("SELECT * FROM tramite.tramite WHERE cite like('%$cite%') ")->result();
+		 			}
+		 		}
+		 	}else{
+		 		if($fecha != NULL){
+			 		if($remitente != NULL){
+			 			$encontrados= $this->db->query("SELECT * FROM tramite.tramite WHERE DATE(fecha) = '$fecha' AND remitente like('%$remitente%')")->result();
+			 		}else{
+			 			$encontrados= $this->db->query("SELECT * FROM tramite.tramite WHERE  DATE(fecha) = '$fecha' ")->result();
+			 		}
+			 	}else{
+			 		if($remitente != NULL){
+			 			$encontrados= $this->db->query("SELECT * FROM tramite.tramite WHERE remitente like('%$remitente%')")->result();
+			 		}else{
+			 			$encontrados= NULL;
+			 		}
+			 	}
+			 }
+		 	
+		 	$valores['cite']=$cite;
+		 	$valores['fecha']=$fecha;
+		 	$valores['remitente']=$remitente;
+		 	$valores['encontrados']=$encontrados;
+		 	
+		    $this->load->view('admin/header');
+			$this->load->view('admin/menu');
+			$this->load->view('tramites/busqueda', $valores);
+			$this->load->view('admin/footer');
+			$this->load->view('predios/index_js');
 		}
+		else{
+			redirect(base_url());
+        }
+	}
+
+	public function seguimiento($idTramite = null){
+		$data['flujo'] = $this->db->get_where('tramite.derivacion', array('tramite_id'=>$idTramite))->result_array();
+
+        //usuario que esta registrando
+        $id = $this->session->userdata("persona_perfil_id");
+        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+        $usu_creacion = $resi->persona_id;
+
+        $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
+
+        $this->load->view('admin/header');
+        $this->load->view('admin/menu');
+        $this->load->view('tramites/seguimiento', $data);
+        $this->load->view('admin/footer');
+        $this->load->view('predios/index_js');
 	}
 
 
