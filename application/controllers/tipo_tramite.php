@@ -210,7 +210,7 @@ class Tipo_tramite extends CI_Controller {
 			$this->db->order_by('total', 'desc'); 
 			$data['asignados'] = $this->db->get('inspeccion.asignacion')->result();
 
-			vdebug($data['asignados'], true, false, true);
+			//vdebug($data['asignados'], true, false, true);
 	
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');

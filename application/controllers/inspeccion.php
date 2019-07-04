@@ -172,8 +172,7 @@ class Inspeccion extends CI_Controller {
 		//$id_user=$resi[0]['persona_id'];
 		//$data['lista'] = $this->inspecciones_model->get_lista(); 
 		$data['lista'] = $this->inspecciones_model->get_lista_asign_id($idp); 
-		$data['verifica'] = $this->rol_model->verifica();   
-
+		$data['verifica'] = $this->rol_model->verifica();
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('inspecciones/lista_asign', $data);
@@ -183,6 +182,37 @@ class Inspeccion extends CI_Controller {
 		else{
 			redirect(base_url());
 		}
+	}
+
+	
+	public function enviar_mail()
+	{
+		if($this->session->userdata("login")){
+			$this->load->library('email');
+
+			$this->email->from('your@example.com', 'Your Name');
+			$this->email->to('rodrigosecko@gmail.com');
+			$this->email->cc('another@another-example.com');
+			$this->email->bcc('them@their-example.com');
+			
+			$this->email->subject('Email Test');
+			$this->email->message('Testing the email class.');
+			
+			$this->email->send();
+		}
+		else{
+			redirect(base_url());
+		}
+	}
+
+	public function lista_asign_id_modal()
+	{
+		//$data['lista'] = $this->inspecciones_model->get_lista_asign_id(4); 
+		$data['lista'] = $this->inspecciones_model->get_lista_asign_id(4); 
+ 
+
+		$this->load->view('inspecciones/modalasignaciones', $data);
+	
 	}
 
 

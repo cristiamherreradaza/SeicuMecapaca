@@ -45,14 +45,11 @@ class Pdf_controller extends CI_Controller {
 
         // Load HTML content
         $dompdf->loadHtml($html);
-        $dompdf->set_option('isRemoteEnabled', TRUE);
-        
+        $dompdf->set_option('isRemoteEnabled', TRUE);        
         // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4');
-        
+        $dompdf->setPaper('A4');        
         // Render the HTML as PDF
-        $dompdf->render();
-        
+        $dompdf->render();        
         // Output the generated PDF (1 = download and 0 = preview)
         $dompdf->stream("welcome.pdf", array("Attachment"=>0));
 	}

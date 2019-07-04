@@ -2,6 +2,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <div class="page-wrapper">
     <!-- ============================================================== -->
     <!-- Container fluid  -->
@@ -38,9 +39,15 @@
                                         </td>
                                         <td><?php echo $a->total; ?> </td>
                                         <td>
-                                        <a href="<?php echo base_url(); ?>Inspeccion/lista_asign_id/<?php echo $a->persona_id; ?>" class="btn btn-info footable-edit">
+                                            <a href="<?php echo base_url(); ?>Inspeccion/lista_asign_id/<?php echo $a->persona_id; ?>" class="btn btn-info footable-edit">
                                                     <span class="fas fa-search" aria-hidden="true"></span>
                                             </a>
+
+                                            <a data-toggle="modal" data-target="#myModal" class="btn btn-info footable-edit" onclick="javascript:load_marks(<?php echo $a->persona_id; ?>)">
+                		                        View
+                	                        </a>
+                                       
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -50,6 +57,30 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+//$(".modal-dialog").hide();
+function load_marks(stu_id)
+{
+    $.ajax({
+                type: "POST",
+                url: "<?php echo base_url().inspeccion/lista_asign_id_modal;?>",
+                data: "stu_id="+stu_id,
+                success: function (response) {
+                $(".displaycontent").html(response);                  
+                }
+            });
+}
+</script>
+
+<div class="modal fade displaycontent" id="myModal">
+
+<?php include('modalasignaciones.php');?>
+
+
+
+
+
 </div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
