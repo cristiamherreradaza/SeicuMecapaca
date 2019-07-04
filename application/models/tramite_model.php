@@ -57,7 +57,7 @@ class Tramite_model extends CI_Model {
 
 
 		$tramite = $this->db->get_where('tramite.tramite', array('tramite_id'=>$id_tramite))->row();
-		if($tramite->tipo_tramite_id == 14){
+		if($tramite->tipo_tramite_id == 10){
 			// $this->db->where('perfil_id', 5);
 			// $inspectores = $this->db->get('persona_perfil')->result();
 			// $array_inspectores = array();
@@ -78,7 +78,7 @@ class Tramite_model extends CI_Model {
 			// 	$minimo = min($array_inspectores);
 			// }
 			// $elegido = $this->get_where('')
-			// vdebug($cantidad_asignaciones[0]->persona_id, true, false, true);
+			//vdebug($cantidad_asignaciones[0]->persona_id, true, false, true);
 
 			$dia_siguiente = date('Y-m-d', strtotime(' +1 day'));
 

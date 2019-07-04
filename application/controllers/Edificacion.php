@@ -15,7 +15,6 @@ class Edificacion extends CI_Controller
         $this->load->model("rol_model");
         $this->load->library('pdf');
     }
-
     public function index()
     {
         if ($this->session->userdata("login")) {
@@ -24,9 +23,6 @@ class Edificacion extends CI_Controller
             redirect(base_url());
         }
     }
-
-
-
     public function nuevo($predio_id = null)
     {
         if ($this->session->userdata("login")) {
@@ -59,7 +55,6 @@ class Edificacion extends CI_Controller
             redirect(base_url());
         }
     }
-
     public function adicionar($predio_id = null)
     {
         if ($this->session->userdata("login")) {
@@ -101,7 +96,6 @@ class Edificacion extends CI_Controller
             redirect(base_url());
         }
     }
-
     public function create()
     {
         //vdebug($this->input-post());

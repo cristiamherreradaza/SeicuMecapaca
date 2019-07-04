@@ -32,7 +32,14 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                    <div id='calendar'></div>
+            <div class="col-md-12 col-lg-7">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                  
             </div>
         </div>
     </div>
