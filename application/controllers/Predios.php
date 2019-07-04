@@ -278,8 +278,9 @@ class Predios extends CI_Controller {
 
 			$servicios = $this->input->post('servicios');
 			$calles = $this->input->post('calles_colindantes');
+			$material_via = $this->input->post('mat_via_id');
 
-			$this->predio_model->guarda_predio($datos_predio, $fotos, $servicios, $calles);
+			$this->predio_model->guarda_predio($datos_predio, $fotos, $servicios, $calles, $material_via);
 
 			redirect(base_url("/predios/principal"));
 
@@ -439,20 +440,20 @@ class Predios extends CI_Controller {
 	public function editar($cod_catastral = null){
 
 		if($this->session->userdata("login")){
-			// vdebug($cod_catastral);
 			$data = $this->datos_combo();
-			$this->db->where('codcatas', $cod_catastral);
+			$this->db->where('predio_id', $cod_catastral);
 			$data['predio'] = $this->db->get('catastro.predio')->result();
+			// vdebug($data, true, false, true);
 
-			$this->db->where('codcatas', $cod_catastral);
-			$data['servicios'] = $this->db->get('catastro.predio_servicios')->result();
+			// $this->db->where('predio_id', $cod_catastral);
+			// $data['servicios'] = $this->db->get('catastro.predio_servicios')->result();
 
-			$this->db->select('catastro.predio_via.gvia_id, catastro.geo_vias.nombre, catastro.predio_via.gvia_tipo');
-			$this->db->from('catastro.predio_via');
-			$this->db->where('codcatas', $cod_catastral);
-			$this->db->join('catastro.geo_vias', 'catastro.geo_vias.gvia_id=catastro.predio_via.gvia_id');
+			// $this->db->select('catastro.predio_via.gvia_id, catastro.geo_vias.nombre, catastro.predio_via.gvia_tipo');
+			// $this->db->from('catastro.predio_via');
+			// $this->db->where('predio_id', $cod_catastral);
+			// $this->db->join('catastro.geo_vias', 'catastro.geo_vias.gvia_id=catastro.predio_via.gvia_id');
 			// $data['calles'] = $this->db->get('catastro.predio_via')->result();
-			$data['calles'] = $this->db->get()->result();
+			// $data['calles'] = $this->db->get()->result();
 			// vdebug($calles);
 
 			// vdebug($consulta);

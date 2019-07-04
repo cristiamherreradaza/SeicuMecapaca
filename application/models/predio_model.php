@@ -10,7 +10,7 @@ class Predio_model extends CI_Model {
         // $this->load->model("persona_model");
     }
 
-    public function guarda_predio($datos_predio = null, $fotos = null, $servicios = null, $calles = null){
+    public function guarda_predio($datos_predio = null, $fotos = null, $servicios = null, $calles = null, $material_via = null){
 
         // vdebug($calles, true, false, true);   
         $this->db->insert('catastro.predio', $datos_predio);
@@ -69,13 +69,15 @@ class Predio_model extends CI_Model {
             foreach ($calles_array as $ca) {
                 if ($ca == $this->input->post('calle_principal')) {
                     $tipo_calle = 1;
+                    $m_via = $material_via;
                 } else {
                     $tipo_calle = 0;
+                    $m_via = 8;
                 }
                 $data_calles = array(
                     'predio_id' => $id_cod_catastral,
                     'objectid_via' => 1,
-                    'matvia_id' => 1,
+                    'matvia_id' => $m_via,
                     'activo' => 1,
                     'gvia_id' => $ca,
                     'gvia_tipo' => $tipo_calle,

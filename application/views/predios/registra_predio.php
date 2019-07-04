@@ -315,7 +315,7 @@
                                             <div class="form-group">
                                                 <label for="zona">Material : <span class="text-danger">*</span></label>
                                                 <!-- <input type="text" class="form-control" id="zona" name="zona" required /> -->
-                                                <select class="custom-select form-control" id="forma_id" name="forma_id" required />
+                                                <select class="custom-select form-control" id="mat_via_id" name="mat_via_id" required />
                                                     <option value="">Seleccione material</option>
                                                     <?php foreach ($dc_materiales_via as $v): ?>
                                                     <option value="<?php echo $v->matvia_id; ?>">
