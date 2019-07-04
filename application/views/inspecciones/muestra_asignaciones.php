@@ -43,9 +43,6 @@
                                                     <span class="fas fa-search" aria-hidden="true"></span>
                                             </a>
 
-                                            <a data-toggle="modal" data-target="#myModal" class="btn btn-info footable-edit" onclick="javascript:load_marks(<?php echo $a->persona_id; ?>)">
-                		                        View
-                	                        </a>
                                        
                                         </td>
                                     </tr>
