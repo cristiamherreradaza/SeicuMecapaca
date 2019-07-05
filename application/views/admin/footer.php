@@ -107,13 +107,23 @@
     window.onload = function(){killerSession();}
  
     function killerSession(){
-    setTimeout("window.open('<?php echo base_url(); ?>login/logout','_top');",7000000);
+
+
+        var ratonParado = null;
+        var milisegundosLimite = 300000;
+
+         $(document).on('mousemove', function() {
+           clearTimeout(ratonParado);
+
+           ratonParado = setTimeout("window.open('<?php echo base_url(); ?>login/logout','_top');", milisegundosLimite);
+        });
+
+    // setTimeout("window.open('<?php echo base_url(); ?>login/logout','_top');",7000000);
+    // setTimeout("window.open('<?php echo base_url(); ?>login/logout','_top');",50000);
     }
     
     </script>
-
   
 </body>
 
 </html>
-
