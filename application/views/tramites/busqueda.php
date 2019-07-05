@@ -46,71 +46,7 @@
 
 
 
-
-
-
-
-
-
-
-
-                        <div class="col-md-12">
-                            <ul class="timeline collapse-lg">
-                                
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge warning"><img class="img-responsive" alt="user" src="../assets/images/users/2.jpg" alt="img"> </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Ritesh Deshmukh</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p><img class="img-responsive" alt="user" src="../assets/images/users/3.jpg" alt="img"></p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i> </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                                <li class="timeline-inverted">
-
-                                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i> </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                            
-
-
-
-
-
-                            
-
-
-
-
-
-
-
-
+                     
 
 
                         </div>

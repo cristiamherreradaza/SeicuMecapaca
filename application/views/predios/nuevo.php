@@ -54,6 +54,43 @@
                                 <div class="progress-bar bg-success" role="progressbar" style="width: 100%;height:15px;" role="progressbar"> 100% </div>
                             </div>
                             <p></p>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form id="login-form" action="http://magistratura.organojudicial.gob.bo/sinarepweb/index.php" method="post" target="_blank">
+                                                <p class="note">
+                                                    <label hidden="" for="LoginForm_usuario">Usuario</label>      
+                                                    <input hidden="" SIZE="45" name="LoginForm[username]" id="LoginForm_username" type="text" value="sarrieta" />      
+                                                    <div class="errorMessage" id="LoginForm_username_em_" style="display:none"></div>  
+                                                </p>
+                                                <div >
+                                                    <label hidden="" for="LoginForm_contrase&amp;ntilde;a">Contrase&ntilde;a</label>      
+                                                    <input hidden="" name="LoginForm[password]" id="LoginForm_password" type="password" value="3966115" />   
+                                                    <div class="errorMessage" id="LoginForm_password_em_" style="display:none"></div>       
+                                                   
+                                                </div>
+                                            
+                                                <div class="row buttons">
+                                                    <input type="submit" name="yt0" value="Ingresar a la pagina"  />
+                                                </div>
+
+                                            </form>
+                                </div>
+                                <div class="col-md-6">
+                                    <form id="elegir-form" action="http://magistratura.organojudicial.gob.bo/sinarepweb/index.php?r=buscarmatricula/resultado" method="post" target="_blank">        
+                                        Introduzca el numero completo de la matricula o los 12 primeros numeros para obtener resultados
+                                        <div class="row">
+                                            Nro Matricula
+                                            <input type="text" name="txtmatricula" id="txtmatricula">      
+                                        </div>      
+                                        <div class="row buttons">
+                                            <input type="submit" name="yt0" value="Consultar" />    
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                             <p class="hint">&nbsp;</p>
                             <?php echo form_open_multipart('ddrr/guardar', array('method'=>'POST')); ?>
                             <!-- <?php //echo form_open('ddrr/guardar', array('method' => 'POST')); ?> -->
                                 <div class="row">
@@ -114,6 +151,8 @@
                                                 <h3 class="text-info"><i class="fa fa-exclamation-circle"></i> Información</h3> Mientras el total del porcentaje de participacion no llegue al 100% no podra finalizar el registro.
                                             </div>
                                         <?php } ?>
+                                        
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="row" style="background-color: #f6f6f6;">
