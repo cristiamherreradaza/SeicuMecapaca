@@ -55,7 +55,7 @@
                             </div>
                             <p></p>
 
-
+<!-- 
                             <div class="row">
                                 <div class="col-md-6">
                                     <form id="login-form" action="http://magistratura.organojudicial.gob.bo/sinarepweb/index.php" method="post" target="_blank">
@@ -88,8 +88,9 @@
                                             <input type="submit" name="yt0" value="Consultar" />    
                                         </div>
                                     </form>
-                                </div>
-                            </div>
+                                </div> 
+                               
+                            </div>-->
                              <p class="hint">&nbsp;</p>
                             <?php echo form_open_multipart('ddrr/guardar', array('method'=>'POST')); ?>
                             <!-- <?php //echo form_open('ddrr/guardar', array('method' => 'POST')); ?> -->
@@ -151,6 +152,10 @@
                                                 <h3 class="text-info"><i class="fa fa-exclamation-circle"></i> Información</h3> Mientras el total del porcentaje de participacion no llegue al 100% no podra finalizar el registro.
                                             </div>
                                         <?php } ?>
+                                        <!-- <iframe src="http://magistratura.organojudicial.gob.bo/sinarepweb/index.php" title="iframe Example 1" width="100%" height="300"> -->
+                                        <iframe src="<?php echo base_url(); ?>Ddrr/mostrar" title="iframe Example 1" width="100%" height="300">
+                                            <p>Your browser does not support iframes.</p>
+                                        </iframe>
                                         
 
                                     </div>
@@ -161,19 +166,19 @@
                                                     <input type="hidden" class="form-control" name="predio_id" value="<?php echo $cod_catastral ?>" required />
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                           <!--  <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Numero de matricula folio : <span class="text-danger">*</span> </label>
                                                     <input type="text" class="form-control" name="nro_matricula_folio" required />
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
+                                            </div> -->
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Numero de folio : <span class="text-danger">*</span> </label>
                                                     <input type="text" id="nro_folio" class="form-control" name="nro_folio" placeholder="_.__._.__._______" title="Introducir numero de folio" input-mask="_.__._.__._______">
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Fecha de folio : <span class="text-danger">*</span> </label>
                                                     <input type="date" class="form-control date-inputmask" name="fecha_folio" required />

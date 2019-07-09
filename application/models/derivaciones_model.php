@@ -43,13 +43,14 @@ class Derivaciones_model extends CI_Model
         // vdebug($cargo, FALSE, FALSE, true);
     }
 
-    public function personal(){
+    public function personal($persona_id = null){
         $personal = $this->db->query("SELECT
         organigrama_persona_id AS id,
         UPPER(nombres || ' ' || paterno || ' ' || materno) AS nombre,
         UPPER(unidad) AS unidad,
         UPPER(descripcion) AS cargo
         FROM tramite.vista_organigrama_persona_cargo
+        WHERE persona_id != $persona_id
         ORDER BY nombres;")->result_array();
         return($personal);
     }

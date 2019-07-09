@@ -107,8 +107,7 @@ class Tipo_tramite extends CI_Controller {
 		$perfil_persona = $this->session->userdata('persona_perfil_id');
 		$datos_persona_perfil = $this->db->get_where('persona_perfil', array('persona_perfil_id'=>$perfil_persona))->result_array();
 		// vdebug($datos_persona_perfil, false, false, true);
-		$datos_organigrama_persona = $this->db->get_where(
-		    'tramite.organigrama_persona', 
+		$datos_organigrama_persona = $this->db->get_where('tramite.organigrama_persona', 
 		    array(
 		        'persona_id'=>$datos_persona_perfil[0]['persona_id'],
 		        'activo'=>1
@@ -170,7 +169,6 @@ class Tipo_tramite extends CI_Controller {
 				$config['max_size']         = 2048;
 
 				$this->load->library('upload', $config);
-
 				if ( ! $this->upload->do_upload('adjunto'))
 					{
 						$error = array('error' => $this->upload->display_errors());

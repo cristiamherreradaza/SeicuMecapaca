@@ -21,7 +21,7 @@ class Ddrr extends CI_Controller {
         $usu_creacion = $resi->persona_id;
 
 		$predio_id = $this->input->post('predio_id');
-		$nro_matricula_folio = $this->input->post('nro_matricula_folio');
+		$nro_matricula_folio = 0;
 		$nro_folio = $this->input->post('nro_folio');
 		$fecha_folio = $this->input->post('fecha_folio');
 		$superficie_legal = $this->input->post('superficie_legal');
@@ -72,6 +72,15 @@ class Ddrr extends CI_Controller {
 		$this->cart->destroy();
 		redirect('predios/index');
 		
+	}
+
+	public function mostrar(){
+		if($this->session->userdata("login")){
+			$this->load->view('tramites/sinarep');
+		}
+		else{
+			redirect(base_url());
+		}
 	}
    
 
