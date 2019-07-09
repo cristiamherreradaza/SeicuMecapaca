@@ -33,18 +33,17 @@
 	                        <blockquote style="background-color: #F2F2F2;">
 	                            <div class="row">
 	                                <div class="col-lg-6">
-		                              
 		                                <h6><?php 
-                                                // echo $f->fuente; 
-                                                $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['fuente']))->result_array();
-                                                $persona = $this->db->get_where('persona', array('persona_id'=>$organigrama_persona[0]['persona_id']))->result_array();
-                                                
-                                                // vdebug($organigrama_persona, false, false, true);
-                                                // vdebug($organigrama_persona[0]['persona_id'], false, false, true);
-                                                // vdebug($persona, false, false, true);
-                                                echo $persona[0]['nombres'].'&nbsp;';
-                                                echo $persona[0]['paterno'].'&nbsp;';
-                                                echo $persona[0]['materno'].'&nbsp;';
+                                            // echo $f->fuente; 
+                                            $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['fuente']))->result_array();
+                                            $persona = $this->db->get_where('persona', array('persona_id'=>$organigrama_persona[0]['persona_id']))->result_array();
+                                            
+                                            // vdebug($organigrama_persona, false, false, true);
+                                            // vdebug($organigrama_persona[0]['persona_id'], false, false, true);
+                                            // vdebug($persona, false, false, true);
+                                            echo $persona[0]['nombres'].'&nbsp;';
+                                            echo $persona[0]['paterno'].'&nbsp;';
+                                            echo $persona[0]['materno'].'&nbsp;';
                                          ?></h6>
                                          <h6><?php 
                                                 $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['fuente']))->result_array();
@@ -58,39 +57,48 @@
                                          <h6><?php echo $f['descripcion']; ?></h6>
                                          <h6><?php echo $f['fecha']; ?></h6>
 		                            </div>
-	                            <div class="col-lg-6">
-	                                
-	                                <h6><?php 
-                                        $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['destino']))->result_array();
-                                        $persona = $this->db->get_where('persona', array('persona_id'=>$organigrama_persona[0]['persona_id']))->result_array();
-                                        // vdebug($organigrama_persona, false, false, true);
-                                        // vdebug($organigrama_persona[0]['persona_id'], false, false, true);
-                                        // vdebug($persona, false, false, true);
-                                        echo $persona[0]['nombres'].'&nbsp;';
-                                        echo $persona[0]['paterno'].'&nbsp;';
-                                        echo $persona[0]['materno'].'&nbsp;';
-                                    ?></h6>
-                                    <h6><?php 
-                                                $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['destino']))->result_array();
-                                                $cargo = $this->db->get_where('tramite.cargo', array('cargo_id'=>$organigrama_persona[0]['cargo_id']))->result_array();
-                                                echo $cargo[0]['descripcion'].'&nbsp;';
-                                                
-                                         ?></h6>
-                                         <?php if ($f['estado'] == 0) {?>
-                                         	<a href=""  class="btn btn-primary footable-edit">Recibido/Derivado</a>
-                                         <?php }else{ ?>
-                                    		<a href=""  class="btn btn-primary footable-edit">Recibido/Pendiente</a>
-                                        <?php } ?>
-
-	                            </div>
+		                            <div class="col-lg-6">
+		                                
+		                                <h6><?php 
+	                                        $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['destino']))->result_array();
+	                                        $persona = $this->db->get_where('persona', array('persona_id'=>$organigrama_persona[0]['persona_id']))->result_array();
+	                                        // vdebug($organigrama_persona, false, false, true);
+	                                        // vdebug($organigrama_persona[0]['persona_id'], false, false, true);
+	                                        // vdebug($persona, false, false, true);
+	                                        echo $persona[0]['nombres'].'&nbsp;';
+	                                        echo $persona[0]['paterno'].'&nbsp;';
+	                                        echo $persona[0]['materno'].'&nbsp;';
+	                                    ?></h6>
+	                                    <h6><?php 
+	                                                $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['destino']))->result_array();
+	                                                $cargo = $this->db->get_where('tramite.cargo', array('cargo_id'=>$organigrama_persona[0]['cargo_id']))->result_array();
+	                                                echo $cargo[0]['descripcion'].'&nbsp;';
+	                                                
+	                                         ?></h6>
+	                                        <?php if ($f['estado'] == 0) {?>
+	                                         	<a href=""  class="btn btn-primary footable-edit">Recibido/Derivado</a>
+	                                        <?php } 
+	                                        if ($f['estado'] == 1) {?>
+	                                         	<a href=""  class="btn btn-primary footable-edit">Recibido/Pendiente</a>
+	                                        <?php } 
+	                                         if ($f['estado'] == 2) {?>
+	                                         	<a href=""  class="btn btn-primary footable-edit">Recibido/Archivado</a>
+	                                        <?php } ?>
+		                            </div>
 	                            </div>
 	                        </blockquote>   
                         <?php endforeach; ?>
-                           
+                         
+
+                        <center><a href="<?php echo base_url();?>tipo_tramite/busqueda" class="btn btn-info footable-edit" style="width: 50%;">Atras</a></center>  
                        
                     </div>
                 </div>
+
             </div>
+            
+            	
+            
         </div>
     </div>
 </div>

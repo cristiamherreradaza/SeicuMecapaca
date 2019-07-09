@@ -76,18 +76,22 @@
 
                             <div class="col-4">
                                 <div class="form-group">
+                                    <label>Archivo</label>
+                                    <input type="file" class="form-control" name="adjunto">
+                                </div>
+                               <!--  <div class="form-group">
                                     <div class="input-group input-file" name="Fichier1">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-success btn-choose" type="button">Choose</button>
+                                            <button class="btn btn-success btn-choose" type="button">Subir</button>
                                         </span>
                                         <input type="text" class="form-control" placeholder='Escoger Archivo' name="adjunto" />
                                         <span class="input-group-btn">
-                                             <button class="btn btn-warning btn-reset" type="button">Reset</button>
+                                             <button class="btn btn-warning btn-reset" type="button">Eliminar</button>
                                         </span>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label>Archivo</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -99,7 +103,7 @@
                                             <label class="custom-file-label" for="inputGroupFile01">Escoger Archivo</label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="col-4">

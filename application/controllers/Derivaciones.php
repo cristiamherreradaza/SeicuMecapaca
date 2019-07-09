@@ -46,7 +46,7 @@ class Derivaciones extends CI_Controller
             // vdebug($data['organigrama_id'], true, false, true);
 
             $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
-            $data['personas'] = $this->derivaciones_model->personal();
+            $data['personas'] = $this->derivaciones_model->personal($resi->persona_id);
 
             $this->load->view('admin/header');
             $this->load->view('admin/menu');
@@ -92,6 +92,16 @@ class Derivaciones extends CI_Controller
         $perfil_persona = $this->session->userdata('persona_perfil_id');
         $datos_persona_perfil = $this->db->get_where('persona_perfil', array('persona_perfil_id'=>$perfil_persona))->result_array();
         $idTramite = $this->input->post('idTramite');
+        
+        $anio= date("Y");
+        $datos = $this->db->query('SELECT max(adjunto) FROM tramite.derivacion')->row();
+        if($datos->max != NULL){
+            $cadena = substr($datos->max, 13)+1;
+            $adjunto='ARC-DER/'.$anio.'-'.$cadena;
+        }else{
+            $adjunto="ARC-DER/2019-1";
+        }
+        
         $this->db->select_max('derivacion_id');
         $this->db->where('tramite_id', $idTramite);
         $query = $this->db->get('tramite.derivacion')->result_array();
@@ -117,15 +127,30 @@ class Derivaciones extends CI_Controller
             'destino'=>$this->input->post('destino'),
             'estado'=>$estado,
             'cite'=>$cite_generado,
+            'adjunto' => $adjunto,
             'fecha'=>date("Y-m-d H:i:s"),
             'descripcion'=>$this->input->post('descripcion'),
         );
         $this->db->insert('tramite.derivacion', $data);
-        redirect(base_url().'derivaciones/listado');
+            $config['upload_path']      = './public/assets/images/tramites';
+            $config['file_name']        = $adjunto;
+            $config['allowed_types']    = 'pdf';
+            $config['overwrite']        = TRUE;
+            $config['max_size']         = 2048;
+
+        $this->load->library('upload', $config);
+        if ( ! $this->upload->do_upload('adjunto')){
+            $error = array('error' => $this->upload->display_errors());
+            redirect(base_url());
+            //$this->load->view('crud/organigrama', $error);
+        }else{
+            $data = array('upload_data' => $this->upload->data());
+            //redirect('Derivaciones/nuevo/'.$idTramite);
+            redirect(base_url().'derivaciones/listado');
+        }    
     }
 
-    public function listado(){
-
+    public function listado(){                                                                                              
         // $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
         $perfil_persona = $this->session->userdata('persona_perfil_id');
         $datos_persona_perfil = $this->db->get_where('persona_perfil', array('persona_perfil_id'=>$perfil_persona))->result_array();
@@ -159,7 +184,6 @@ class Derivaciones extends CI_Controller
     }
 
     public function ver($idTramite = null){
-
         $data['flujo'] = $this->db->get_where('tramite.derivacion', array('tramite_id'=>$idTramite))->result_array();
 
         //usuario que esta registrando
@@ -174,7 +198,27 @@ class Derivaciones extends CI_Controller
         $this->load->view('derivaciones/ver', $data);
         $this->load->view('admin/footer');
         $this->load->view('predios/index_js');
+    }
 
+    public function archivar($idTramite = null){
+        if($this->session->userdata("login")){
+            $id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
+            $data = array(
+                'estado' => 2,
+                'usu_modificacion' => $usu_creacion,
+                'fec_modificacion' => date("Y-m-d H:i:s")
+                
+            );
+            $this->db->where('tramite_id', $idTramite);
+            $this->db->where('estado', 1);
+            $this->db->update('tramite.derivacion', $data);
+            redirect(base_url().'derivaciones/listado');
+        }
+        else{
+            redirect(base_url());
+        }
     }
 
 }
