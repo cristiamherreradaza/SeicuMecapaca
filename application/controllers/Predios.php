@@ -66,9 +66,7 @@ class Predios extends CI_Controller {
 			//insertar datos de la persona logueada en la tabla logacceso
 		    $persona_perfil_id = $this->session->userdata("persona_perfil_id");
 		    $usuario = $this->session->userdata("usuario");
-
 		    $id = $this->db->query("SELECT * FROM credencial WHERE persona_perfil_id = '$persona_perfil_id' AND usuario = '$usuario'")->row();
-
 			$credencial_id = $id->credencial_id;
 
 			$acceso_inicio = date("Y-m-d H:i:s");
@@ -352,21 +350,21 @@ class Predios extends CI_Controller {
 	}
 
 
-	public function certificado($cod_catastral = null){
+	public function certificado($predio_id = null){
 		if($this->session->userdata("login")){
 
-		// $data['predio']=$this->db->get_where('catastro.predio', array('codcatas'=>$cod_catastral))->result();
+		// $data['predio']=$this->db->get_where('catastro.predio', array('codcatas'=>$predio_id))->result();
 		$this->db->select('*');
 		$this->db->from('catastro.predio');
-		$this->db->where('catastro.predio.codcatas', $cod_catastral);
-		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.codcatas=catastro.predio.codcatas');
+		$this->db->where('catastro.predio.predio_id', $predio_id);
+		$this->db->join('catastro.predio_foto', 'catastro.predio_foto.predio_id=catastro.predio.predio_id');
 		//$this->db->join('catastro.predio_ddrr', 'catastro.predio_ddrr.codcatas=catastro.predio.codcatas');
 		$data['predio'] = $this->db->get()->result();
 
-		$data['ddrr']= $this->db->query("SELECT * FROM catastro.predio_ddrr as pd WHERE pd.codcatas = '$cod_catastral'")->row();
-		$data['personas'] =$this->db->query("SELECT p.nombres, p.paterno, p.materno FROM catastro.predio_ddrr as pd JOIN catastro.predio_titular as pt ON pd.ddrr_id = pt.ddrr_id JOIN persona as p ON pt.persona_id=p.persona_id WHERE pt.activo=1 AND pd.codcatas = '$cod_catastral'")->result();
+		$data['ddrr']= $this->db->query("SELECT * FROM catastro.predio_ddrr as pd WHERE pd.predio_id = '$predio_id'")->row();
+		$data['personas'] =$this->db->query("SELECT p.nombres, p.paterno, p.materno FROM catastro.predio_ddrr as pd JOIN catastro.predio_titular as pt ON pd.ddrr_id = pt.ddrr_id JOIN persona as p ON pt.persona_id=p.persona_id WHERE pt.activo=1 AND pd.predio_id = '$predio_id'")->result();
 
-		$data['bloques'] = $this->db->query("SELECT y.bloque_id,y.codcatas,y.nro_bloque,y.nom_bloque,y.estado_fisico,y.altura,y.anio_cons,y.anio_remo,y.porcentaje_remo,y.destino_bloque_id,z.descripcion as desc_bloque_dest,y.uso_bloque_id,x.descripcion as desc_bloque_uso FROM catastro.bloque as y LEFT JOIN catastro.uso_bloque as x on x.uso_bloque_id=y.uso_bloque_id LEFT JOIN catastro.destino_bloque as z on z.destino_bloque_id=y.destino_bloque_id WHERE y.activo=1 and x.activo=1 and z.activo=1 and y.codcatas='$cod_catastral' order by y.nro_bloque asc")->result();
+		$data['bloques'] = $this->db->query("SELECT y.bloque_id,y.predio_id,y.nro_bloque,y.nom_bloque,y.estado_fisico,y.altura,y.anio_cons,y.anio_remo,y.porcentaje_remo,y.destino_bloque_id,z.descripcion as desc_bloque_dest,y.uso_bloque_id,x.descripcion as desc_bloque_uso FROM catastro.bloque as y LEFT JOIN catastro.uso_bloque as x on x.uso_bloque_id=y.uso_bloque_id LEFT JOIN catastro.destino_bloque as z on z.destino_bloque_id=y.destino_bloque_id WHERE y.activo=1 and x.activo=1 and z.activo=1 and y.predio_id='$predio_id' order by y.nro_bloque asc")->result();
 
 		// print_r($this->db->last_query());
 		// vdebug($data);
@@ -441,12 +439,18 @@ class Predios extends CI_Controller {
 
 		if($this->session->userdata("login")){
 			$data = $this->datos_combo();
+			
 			$this->db->where('predio_id', $cod_catastral);
 			$data['predio'] = $this->db->get('catastro.predio')->result();
 			// vdebug($data, true, false, true);
 
-			// $this->db->where('predio_id', $cod_catastral);
-			// $data['servicios'] = $this->db->get('catastro.predio_servicios')->result();
+			$this->db->where('predio_id', $cod_catastral);
+			$data['servicios'] = $this->db->get('catastro.predio_servicios')->result();
+
+			$this->db->where('predio_id', $cod_catastral);
+			$data['fotos'] = $this->db->get('catastro.predio_foto')->result();
+			// vdebug($data['fotos'], true, false, true);
+
 
 			// $this->db->select('catastro.predio_via.gvia_id, catastro.geo_vias.nombre, catastro.predio_via.gvia_tipo');
 			// $this->db->from('catastro.predio_via');

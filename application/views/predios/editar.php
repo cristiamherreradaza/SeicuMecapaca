@@ -41,7 +41,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                            <h4 class="card-title">Edita Registro de Predio</h4>
+                            <h4 class="card-title">Edita Registro de Predio </h4>
                             <h6 class="card-subtitle">Ingrese los datos del predio </h6>
                             <span class="metadata-marker" style="display: none;" data-region_tag="html-body"></span>
 
@@ -288,18 +288,18 @@
                                             <div class="form-group">
                                                 <label for="c_principal">Calle Principal : <span class="text-danger">*</span></label>
 
-                                                    <?php foreach ($calles as $key => $c): ?>
-                                                        <?php if ($c->gvia_tipo==1): ?>
-                                                            <?php  ?>
-                                                        <?php else: ?>        
-                                                        <?php endif ?>
+                                                    <?php //foreach ($calles as $key => $c): ?>
+                                                        <?php //if ($c->gvia_tipo==1): ?>
+                                                            <?php // ?>
+                                                        <?php //else: ?>        
+                                                        <?php //endif ?>
                                                         <div class="custom-control custom-radio">
-                                                            <input type="radio" id="customRadio_<?php echo $key; ?>" name="calle_principal" class="custom-control-input" <?php echo $c->gvia_tipo == 1 ?' checked ':'' ?> >
-                                                            <label class="custom-control-label" for="customRadio_<?php echo $key; ?>">
-                                                                <?php echo $c->nombre ?>
+                                                            <input type="radio" id="customRadio_<?php //echo $key; ?>" name="calle_principal" class="custom-control-input" <?php //echo $c->gvia_tipo == 1 ?' checked ':'' ?> >
+                                                            <label class="custom-control-label" for="customRadio_<?php //echo $key; ?>">
+                                                                <?php //echo $c->nombre ?>
                                                             </label>
                                                         </div>    
-                                                    <?php endforeach ?>
+                                                    <?php //endforeach ?>
                                                 <!-- <input type="text" class="form-control" id="c_principal" name="principal" required /> -->
                                             </div>
                                         </div>
@@ -394,19 +394,21 @@
                                                     <input type="checkbox" class="custom-control-input" id="customCheck99">
                                                     <label class="custom-control-label" for="customCheck99"><b>Selecciona Todos</b></label>
                                                 </div>
+                                                <?php // vdebug($servicios, false, false, true); ?>
                                                     <?php foreach ($listado_servicios as $key => $ls): ?>
 
                                                     <div class="custom-control custom-checkbox">
-                                                        <?php foreach ($servicios as $s): ?>
-                                                            <?php if ($s->servicio_id == $ls->servicio_id): ?>
+
+                                                        <?php  foreach ($servicios as $s): ?>
+                                                            <?php  if ($s->servicio_id == $ls->servicio_id): ?>
                                                                 <?php $seleccionado = "checked" ?>
                                                                 <?php break ?>
                                                             <?php else: ?>
                                                                 <?php $seleccionado = "" ?>
                                                             <?php endif ?>
-                                                        <?php endforeach ?>
+                                                        <?php  endforeach ?>
 
-                                                        <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>" <?php echo $seleccionado; ?> />
+                                                        <input type="checkbox" class="custom-control-input" name="servicios[<?php echo $key; ?>]" value="<?php  echo $ls->servicio_id; ?>" id="customCheck<?php echo $key; ?>" <?php echo $seleccionado; ?> />
                                                         <label class="custom-control-label" for="customCheck<?php echo $key; ?>"><?php echo $ls->descripcion ?></label>
                                                     </div>
                                                     <?php endforeach; ?>
@@ -429,6 +431,8 @@
                                     </div>
 
                                     <div class="col-md-3">
+                                        <?php $fotof = $fotos[0]->foto_fachada; ?>
+                                        <?php $fotop = $fotos[0]->foto_plano_ubi; ?>
 
                                         <div class="card">
                                             <div class="card-body">
@@ -437,9 +441,9 @@
                                                 <button type="button" class="btn waves-effect waves-light btn-sm btn-info">
                                                     <i class="fas fa-exclamation"></i>
                                                 </button>
-                                                    OJO Solo archivos jpg
+                                                    OJO Solo imagenes
                                                 </label>
-                                                <input type="file" id="input-file-now" class="dropify" name="foto_plano" data-allowed-file-extensions="jpg" required />
+                                                <input type="file" id="input-file-now" class="dropify" name="foto_plano" data-allowed-file-extensions="png jpg jpeg" data-default-file="<?php echo base_url("/public/assets/files/predios/$fotof"); ?>" />
                                             </div>
                                         </div>
                                         <div class="card">
@@ -449,9 +453,9 @@
                                                 <button type="button" class="btn waves-effect waves-light btn-sm btn-info">
                                                     <i class="fas fa-exclamation"></i>
                                                 </button>
-                                                    OJO Solo archivos jpg
+                                                    OJO Solo imagenes
                                                 </label>
-                                                <input type="file" id="input-file-now" class="dropify" name="foto_fachada" data-allowed-file-extensions="jpg" required />
+                                                <input type="file" id="input-file-now" class="dropify" name="foto_fachada" data-allowed-file-extensions="png jpg jpeg" data-default-file="<?php echo base_url("/public/assets/files/predios/$fotop"); ?>" required />
                                             </div>
                                         </div>
 
