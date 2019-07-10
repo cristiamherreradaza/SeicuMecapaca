@@ -66,10 +66,14 @@ class Tramite_model extends CI_Model {
 			// }
 			// $azar = array_rand($array_inspectores, 1);
 			// $elegido = $array_inspectores[$azar];
+			/*	
+			//consulta para escoger al inspector de acuerdo a la carga * antigua
 			$this->db->select('persona_id, COUNT(persona_id) as total');
 			$this->db->group_by('persona_id'); 
 			$this->db->order_by('total', 'asc'); 
 			$cantidad_asignaciones = $this->db->get('inspeccion.asignacion', 1)->result();
+			//consulta para escoger al inspector de acuerdo a la carga * antigua*/
+
 			// if($cantidad_asignaciones)
 			// vdebug($cantidad_asignaciones, true, false, true);
 			// $array_inspectores = array();
@@ -80,15 +84,45 @@ class Tramite_model extends CI_Model {
 			// $elegido = $this->get_where('')
 			//vdebug($cantidad_asignaciones[0]->persona_id, true, false, true);
 
+			//asignacion de inspecciones nueva usando las tablas asignacion y persona
+
+			$contador_asignaciones = $this->db->query("SELECT k.*  FROM
+			(SELECT j.persona_id,(CASE
+			WHEN j.total IS NULL THEN 0
+			ELSE j.total
+			END) FROM 
+			(SELECT d.*,b.total FROM 
+			(SELECT p.persona_id FROM persona_perfil p
+			LEFT JOIN
+			perfil o
+			on p.perfil_id=o.perfil_id
+			WHERE o.perfil='Inspector' or o.perfil='inspector' and p.activo=1  and o.activo=1
+			GROUP BY p.persona_id) as d
+			LEFT JOIN
+			(SELECT  A.persona_id,COUNT(A.persona_id) as total FROM inspeccion.asignacion A
+			WHERE A.activo=1
+			GROUP BY A.persona_id
+			ORDER BY total ASC
+			) as b
+			on b.persona_id=d.persona_id
+			ORDER BY b.total ASC) as j) as k
+			ORDER BY k.total asc limit 1
+			")->result();
+										
+			//fin de la consulta para asignar inspector	
+			
+			$ditrict = $this->db->query("SELECT * FROM catastro.geo_distritos ORDER BY  random()  limit 1")->row();
+
 			$dia_siguiente = date('Y-m-d', strtotime(' +1 day'));
 
 			$data = array(
 				'tramite_id'=>$id_tramite,
-				'persona_id'=>$cantidad_asignaciones[0]->persona_id,
+				'persona_id'=>$contador_asignaciones[0]->persona_id,
 				'tipo_asignacion_id'=>1,
 				'inicio'=>$dia_siguiente.' 08:30:00',
 				'fin'=>$dia_siguiente.' 12:30:00',
 				'activo'=>1,
+				'distrito'=>$ditrict->distrito,
 			);
 			$this->db->insert('inspeccion.asignacion', $data);
 

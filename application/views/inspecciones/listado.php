@@ -34,11 +34,11 @@
                             <tbody>
                                 <?php foreach ($asignacion as $asig): ?>
                                     <tr>
-                                        <?php $tra = $this->db->query("SELECT tt.tramite
+                                        <?php $tra = $this->db->query("SELECT t.cite
                                                                         FROM tramite.tramite t, tramite.tipo_tramite tt
                                                                         WHERE t.tramite_id = $asig->tramite_id 
                                                                         AND t.tipo_tramite_id = tt.tipo_tramite_id")->row();
-                                            $tra1 = $tra->tramite;
+                                            $tra1 = $tra->cite;
                                           ?>
                                         <td><?php echo $tra1; ?></td>
                                         <?php $var = $this->db->query("SELECT *

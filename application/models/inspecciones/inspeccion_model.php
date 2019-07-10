@@ -16,7 +16,6 @@ class Inspeccion_model extends CI_Model {
 		$id = $this->session->userdata("persona_perfil_id");
 	    $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
 	    $usu_creacion = $resi->persona_id;
-
 		$lista = $this->db->query("SELECT ins.* 
 									FROM inspeccion.asignacion ins, public.persona_perfil pub, public.perfil per
 									WHERE ins.persona_id = $usu_creacion 
@@ -24,7 +23,6 @@ class Inspeccion_model extends CI_Model {
 									AND pub.perfil_id = per.perfil_id
 									AND per.perfil = 'Inspector'
 									ORDER BY inicio ASC")->result();
-
 		if ($lista > 0) {
 			return $lista;
 		}

@@ -55,14 +55,12 @@ class Asignacion extends CI_Controller {
 		foreach ($inspectores as $i) {
 			array_push($array_inspectores, $i->persona_id);
 		}
-
 		// vdebug($array_inspectores, true, false, true);
 		$this->db->where_in('persona_id', $array_inspectores);
 		$data['inspectores'] = $this->db->get('persona')->result();
 		// vdebug($inspec, true, false, true);
-
-
 		$data['asignacion'] = $this->db->get_where('inspeccion.asignacion', array('asignacion_id' => $id_asignacion))->row();
+		$data['dist'] = $this->db->get('catastro.geo_distritos')->result();//todos los distritos
 		$this->load->view('admin/header');
 	    $this->load->view('admin/menu');
 	    $this->load->view('asignacion/edita', $data);

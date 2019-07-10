@@ -148,7 +148,17 @@ class Inspeccion extends CI_Controller {
 		//$id_user=$resi[0]['persona_id'];
 		//$data['lista'] = $this->inspecciones_model->get_lista(); 
 		$data['lista'] = $this->inspecciones_model->get_lista_asign(); 
-		$data['verifica'] = $this->rol_model->verifica();   
+		$data['verifica'] = $this->rol_model->verifica();  
+		$this->db->where('perfil_id', 5);
+		$inspectores = $this->db->get('persona_perfil')->result();
+		$array_inspectores = array();
+		foreach ($inspectores as $i) {
+			array_push($array_inspectores, $i->persona_id);
+		}
+		// vdebug($array_inspectores, true, false, true);
+		$this->db->where_in('persona_id', $array_inspectores);
+		$data['inspectores'] = $this->db->get('persona')->result();
+		$data['dist'] = $this->db->get('catastro.geo_distritos')->result();//todos los distritos
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');

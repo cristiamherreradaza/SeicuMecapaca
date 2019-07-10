@@ -19,19 +19,19 @@
                         <div class="card-body">
                             <?php //vdebug($asignacion, false, false, true); ?>
                             <?php echo form_open_multipart('asignacion/guarda_edicion', array('method'=>'POST')); ?>
-                                    <h4 class="card-title">Inspeccion</h4>
+                                    <h3 class="card-title">Inspeccion</h3>
                                     <div class="form-row">
                                     <input type="hidden" class="form-control" id="asignacion_id" name="asignacion_id" value="<?php echo $asignacion->asignacion_id; ?>">
 
                                     <div class="col-md-3 mb-3">
-                                        <label for="validationCustom02">
+                                        <label for="validationCustom02"><b>
                                             <?php 
                                                 $persona = $this->db->get_where("persona", array('persona_id'=>$asignacion->persona_id))->row(); 
                                                 // vdebug($tramite, false, false, true);
                                                 echo $persona->nombres.' ';
                                                 echo $persona->paterno.' ';
                                                 echo $persona->materno.' ';
-                                            ?>  
+                                            ?>  </b>
                                         </label>
                                         <div class="input-group">
                                                                                                                                     
@@ -47,8 +47,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3 mb-3">
-                                        <label for="validationCustom02">Tramite</label>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="validationCustom02"><b>  Tramite</b></label>
                                         <div class="input-group">
                                             <?php 
                                                 $tramite = $this->db->get_where("tramite.tramite", array('tramite_id'=>$asignacion->tramite_id))->row(); 
@@ -57,22 +57,44 @@
                                             ?>                                                                                            </div>
                                     </div>
 
-                                    <div class="col-md-3 mb-3">
-                                        <label for="validationCustomUsername">Tipo Documento</label>
-
-                                        <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
-                                        
+                                    <div class="col-md-2 mb-2">
+                                        <label for="validationCustomUsername"><b>Tipo Documento</b></label>
+                                        <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->                                        
                                         <div class="input-group">
                                             <?php 
                                                 $tipo_asignacion = $this->db->get_where("inspeccion.tipo_asignacion", array('tipo_asignacion_id'=>$asignacion->tipo_asignacion_id))->row(); 
                                                 // vdebug($tramite, false, false, true);
                                                 echo $tipo_asignacion->tipo;
-                                            ?>                                                                                            </div>
+                                            ?>
+                                        </div>
+                                    </div>
 
+                                    <div class="col-md-2 mb-2">
+                                        <label for="validationCustomUsername"><b>Distrito</b></label>
+                                        <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->                                        
+                                        <div class="input-group">
+                                            <?php 
+                                                $district = $this->db->get_where("inspeccion.asignacion", array('asignacion_id'=>$asignacion->asignacion_id))->row(); 
+                                                // vdebug($tramite, false, false, true);
+                                                echo $district->distrito;
+                                            ?>
+                                              <!--<select name="distrito" class="form-control">
+                                                <?php foreach ($dist as $i): ?>
+                                                    <?php if(($district->distrito)==$i->distrito):?>
+                                                    <option selected value="<?= $i->gid; ?>" >
+                                                    <?= $i->distrito ?>
+                                                    <?php else: ?>
+                                                        <option value="<?= $i->gid; ?>">
+                                                        <?= $i->distrito ?>                                                 
+                                                        </option>
+                                                    <?php endif ?>
+                                                <?php endforeach ?>
+                                            </select>-->
+                                        </div>
                                     </div>
 
                                     <div class="col-md-3 mb-3">
-                                        <label for="validationCustomUsername"><?= $asignacion->inicio ?></label>
+                                        <label for="validationCustomUsername"><b><?= $asignacion->inicio ?></b></label>
 
                                         <!-- CONSULTA POR LA TABLA TIPO DE DOCUMENTO -->
                                         

@@ -156,13 +156,18 @@ class Prueba extends CI_Controller {
         $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
         $usu_creacion = $resi->persona_id;
 
-        $lista = $this->db->query("SELECT ins.tipo_asignacion_id as title, ins.inicio as start, ins.fin as end  
+        /*$lista = $this->db->query("SELECT ins.tipo_asignacion_id as title, ins.inicio as start, ins.fin as end  
                                     FROM inspeccion.asignacion ins, public.persona_perfil pub, public.perfil per
                                     WHERE ins.persona_id = $usu_creacion 
                                     AND pub.persona_id = $usu_creacion
                                     AND pub.perfil_id = per.perfil_id
                                     AND per.perfil = 'Inspector'
-                                    ORDER BY inicio ASC")->result();
+                                    ORDER BY inicio ASC")->result();*/
+                                    $lista = $this->db->query("	SELECT t.cite as title,a.inicio as start,a.fin as end FROM inspeccion.asignacion a
+                                    LEFT JOIN tramite.tramite t
+                                    on a.tramite_id=t.tramite_id                                    
+                                    WHERE a.persona_id=$usu_creacion")->result();
+        
          echo json_encode($lista);
 
     }    
