@@ -110,7 +110,7 @@
 
 
         var ratonParado = null;
-        var milisegundosLimite = 300000;
+        var milisegundosLimite = 600000;
 
          $(document).on('mousemove', function() {
            clearTimeout(ratonParado);
