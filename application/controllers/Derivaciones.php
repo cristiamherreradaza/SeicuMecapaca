@@ -200,6 +200,30 @@ class Derivaciones extends CI_Controller
         $this->load->view('predios/index_js');
     }
 
+    public function editar(){
+        if($this->session->userdata("login")){
+            $id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
+            $idTramite = $this->input->post('id_tramite');
+            $data = array(
+                'referencia'=>$this->input->post('referencia'),
+                'remitente'=>$this->input->post('remitente'),
+                'procedencia'=>$this->input->post('procedencia'),
+                'fojas'=>$this->input->post('fojas'),
+                'anexos'=>$this->input->post('anexos'),
+                'usu_modificacion' => $usu_creacion,
+                'fec_modificacion'=>date("Y-m-d H:i:s"),
+            );
+            $this->db->where('tramite_id', $idTramite);
+            $this->db->update('tramite.tramite', $data);
+            redirect(base_url().'derivaciones/listado');
+        }
+        else{
+            redirect(base_url());
+        }
+    }
+
     public function archivar($idTramite = null){
         if($this->session->userdata("login")){
             $id = $this->session->userdata("persona_perfil_id");

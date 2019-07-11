@@ -8,19 +8,60 @@
                         <div class="row">
                             <div class="col-6">
                                 <h2 class="mb-0">CITE: <?php echo $tramite->cite; ?></h2>
-                                <h4 class="font-light mt-0">Referencia <?php echo $tramite->referencia; ?></h4>
+                                <h4 class="font-light mt-0"></h4>
                             </div>
                             <div class="col-6 align-self-center display-8 text-info text-right">Fecha: <?php echo date("Y-m-d",strtotime($tramite->fecha)); ?></div>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                REMITENTE: <?php echo $tramite->remitente; ?><br />
-                                ARCHIVO: <a href="<?php echo base_url(); ?>public/assets/images/tramites/<?php echo $tramite->adjunto.'.pdf';?>" target='_blank'><?php echo $tramite->adjunto.'.pdf'; ?></a>
+                        <!-- <form class="floating-labels mt-5"> -->
+                        <?php echo form_open('Derivaciones/editar', array('method'=>'POST')); ?>
+                            <div class="row floating-labels mt-5">
+                                <div class="col-6">
+                                    <div class="form-group mb-5">
+                                        <input type="text" class="form-control" id="referencia" name="referencia" value="<?php echo $tramite->referencia;?>" required>
+                                        <span class="bar"></span>
+                                        <label > REFERENCIA</label>
+                                    </div>
+                                    <div class="form-group mb-5">
+                                        <input type="text" class="form-control" name="remitente" id="remitente" value="<?php echo $tramite->remitente; ?>" required>
+                                        <span class="bar"></span>
+                                        <label for="input1"> REMITENTE</label>
+                                    </div>
+                                    <div class="form-group mb-5">
+                                        <input type="text" class="form-control" id="precedencia" name="procedencia" value="<?php echo $tramite->procedencia; ?>" required>
+                                        <span class="bar"></span>
+                                        <label for="input1"> PROCEDENCIA</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group mb-5">
+                                        <input type="text" class="form-control" id="fojas" name="fojas" value="<?php echo $tramite->fojas; ?>" required>
+                                        <span class="bar"></span>
+                                        <label for="input1"> FOJAS</label>
+                                    </div>
+                                    <div class="form-group mb-5">
+                                        <input type="text" class="form-control" id="anexos" name="anexos" value="<?php echo $tramite->anexos; ?>" required>
+                                        <span class="bar"></span>
+                                        <label for="input1"> ANEXOS</label>
+                                    </div>
+                                    <div class="form-group mb-5">
+                                        <input type="text" class="form-control" id="input1" value="<?php echo $tramite->adjunto.'.pdf';?>
+                                        " required> <!-- <a href="<?php //echo base_url(); ?>public/assets/images/tramites/<?php //echo $tramite->adjunto.'.pdf';?>" target='_blank'><?php //echo $tramite->adjunto.'.pdf'; ?></a> -->
+                                        <span class="bar"></span>
+                                        <label for="input1"> ARCHIVO</label>
+                                    </div>
+                                    <input type="hidden" name="id_tramite" value="<?php echo $tramite->tramite_id; ?>">
+                                   <!--  <div class="form-group">
+                                        <label>Archivo</label><?php //echo $tramite->adjunto.'.pdf'; ?>
+                                        <input type="file" class="form-control" name="adjunto" value="<?php //echo $tramite->adjunto.'.pdf'; ?>">
+                                    </div> -->
+                                    
+                                </div>
+                                <div>
+                                    <center><button type="submit" class="btn btn-primary">Guardar</button></center>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                PROCEDENCIA: <?php echo $tramite->procedencia; ?>
-                            </div>
-                        </div>
+                        </form>
+                        
                         
                     </div>
                 </div>
@@ -44,18 +85,17 @@
                                             echo $persona[0]['nombres'].'&nbsp;';
                                             echo $persona[0]['paterno'].'&nbsp;';
                                             echo $persona[0]['materno'].'&nbsp;';
-                                         ?></h6>
-                                         <h6><?php 
-                                                $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['fuente']))->result_array();
-                                                $cargo = $this->db->get_where('tramite.cargo', array('cargo_id'=>$organigrama_persona[0]['cargo_id']))->result_array();
-                                                echo $cargo[0]['descripcion'].'&nbsp;';
-                                                
-                                         ?></h6>
-                                         <?php if ($f['cite'] != null) {?>
+                                        ?></h6>
+                                        <h6><?php 
+                                            $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$f['fuente']))->result_array();
+                                            $cargo = $this->db->get_where('tramite.cargo', array('cargo_id'=>$organigrama_persona[0]['cargo_id']))->result_array();
+                                            echo $cargo[0]['descripcion'].'&nbsp;';
+                                        ?></h6>
+                                        <?php if ($f['cite'] != null) {?>
                                             <h6><?php echo $f['cite']; ?></h6>
-                                         <?php } ?>
-                                         <h6><?php echo $f['descripcion']; ?></h6>
-                                         <h6><?php echo $f['fecha']; ?></h6>
+                                        <?php } ?>
+                                        <h6><?php echo $f['descripcion']; ?></h6>
+                                        <h6><?php echo $f['fecha']; ?></h6>
                                     </div>
                                     <div class="col-lg-6">
                                         

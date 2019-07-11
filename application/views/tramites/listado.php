@@ -46,7 +46,7 @@
                                                 <a href="#" type="button" class="btn btn-danger footable-delete" title="Eliminar" >
                                                     <span class="fas fa-trash-alt" aria-hidden="true"></span>
                                                 </a>
-                                                <a href="<?php echo base_url(); ?>pdf_controller/pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-warning footable-edit" title="Imprimir" >
+                                                <a href="<?php echo base_url(); ?>pdf_controller/pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-warning footable-edit" title="Imprimir" target='_blank'>
                                                     <span class="fas fa-print" aria-hidden="true"></span>
                                                 </a>
                                                 <a href="<?php echo base_url(); ?>pdf_controller/ruta_pdf/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit" title="Hoja de ruta" target="_blank">

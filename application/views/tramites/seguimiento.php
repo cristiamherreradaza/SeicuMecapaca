@@ -14,11 +14,15 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                REMITENTE: <?php echo $tramite->remitente; ?><br />
-                                ARCHIVO: <a href="<?php echo base_url(); ?>public/assets/images/tramites/<?php echo $tramite->adjunto; ?>.pdf" target='_blank'><?php echo $tramite->adjunto; ?></a>
+                                REFERENCIA : &nbsp; &nbsp; &nbsp; &nbsp; <?php echo $tramite->referencia; ?><br/>
+                                REMITENTE : &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <?php echo $tramite->remitente; ?><br />
+                                PROCEDENCIA : &nbsp; &nbsp; <?php echo $tramite->procedencia; ?>
                             </div>
                             <div class="col-6">
-                                PROCEDENCIA: <?php echo $tramite->procedencia; ?>
+                                FOJAS : &nbsp; &nbsp; &nbsp; &nbsp; <?php echo $tramite->fojas; ?><br>
+                                ANEXOS : &nbsp; &nbsp; &nbsp; <?php echo $tramite->anexos; ?><br>
+                                ARCHIVO : &nbsp; &nbsp; <a href="<?php echo base_url(); ?>public/assets/images/tramites/<?php echo $tramite->adjunto.'.pdf';?>" target='_blank'><?php echo $tramite->adjunto.'.pdf'; ?></a>
+                                 
                             </div>
                         </div>
                         
