@@ -122,15 +122,34 @@ class Inspeccion extends CI_Controller {
 			$resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
 			$dato = $resi->persona_id;
 			$res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
-			//$id_user=$resi[0]['persona_id'];
-			//$data['lista'] = $this->inspecciones_model->get_lista(); 
-			$data['lista'] = $this->inspecciones_model->get_lista_id($dato);  
+			
+			//obtiene el perfil del usuario para los casos 1=superadmin,,2 =inspector
+			$perfil_user = $this->db->get_where('persona_perfil', array('persona_id' => $dato))->row();
+			$rol_user=$perfil_user->perfil_id;
+
+			if($rol_user==1)//rol de adm
+			{
+				$data['lista'] = $this->inspecciones_model->get_lista();  
+
+				$this->load->view('admin/header');
+				$this->load->view('admin/menu');
+				$this->load->view('inspecciones/lista_admin', $data);
+				$this->load->view('admin/footer');
+				$this->load->view('predios/index_js');
+
+			}
+
+			if($rol_user==5)//rol de inspector
+			{
+				$data['lista'] = $this->inspecciones_model->get_lista_id($dato);  
 	
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
 			$this->load->view('inspecciones/lista', $data);
 			$this->load->view('admin/footer');
 			$this->load->view('predios/index_js');
+			}					
+			
 		}
 		else{
 			redirect(base_url());
@@ -185,7 +204,7 @@ class Inspeccion extends CI_Controller {
 		$data['verifica'] = $this->rol_model->verifica();
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
-		$this->load->view('inspecciones/lista_asign', $data);
+		$this->load->view('inspecciones/lista_asignid', $data);
 		$this->load->view('inspecciones/footer');
 		$this->load->view('predios/index_js');
 		}

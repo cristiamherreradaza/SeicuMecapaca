@@ -59,7 +59,13 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                  
+                        <a  href="<?= base_url('tipo_tramite/muestra_asignaciones/'); ?>" >
+                                                       
+                                                
+                                                    <button  type="button" class="btn btn-info footable-edit" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')">
+                                                        <span class="fas fa-reply" aria-hidden="true">
+                                                        </span><b>  Volver</b>
+                                                    </button>       </a>
                     </div>
                 </div>
             </div>
