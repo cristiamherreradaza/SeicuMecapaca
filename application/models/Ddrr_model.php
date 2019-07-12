@@ -40,7 +40,7 @@ class Ddrr_model extends CI_Model {
 			);
 			$this->db->insert('catastro.predio_titular', $array);
 		}
-		$query = $this->db->query("UPDATE catastro.predio SET activo = 3 WHERE predio_id='predio_id'");
+		$query = $this->db->query("UPDATE catastro.predio SET activo = 3 WHERE predio_id='$predio_id'");
 	}
 
 	

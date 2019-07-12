@@ -29,6 +29,10 @@ class Derivaciones extends CI_Controller
         // echo 'Holas desde derivaciones';
     }
 
+    public function derivar($idTramite = null){
+        
+    }
+
     public function nuevo($idTramite = null)
     {
         // $idTramite = 13;
@@ -62,7 +66,6 @@ class Derivaciones extends CI_Controller
         // vdebug($idTramite, true, FALSE, TRUE);
 
         if($this->session->userdata("login")){
-
             //usuario que esta registrando
             $id = $this->session->userdata("persona_perfil_id");
             $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
@@ -70,7 +73,6 @@ class Derivaciones extends CI_Controller
             $organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('persona_id'=>$usu_creacion, 'activo'=>1))->result_array();
             $data['organigrama_id']=$organigrama_persona[0]['organigrama_id'];
             // vdebug($data['organigrama_id'], true, false, true);
-
             $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
             $persona = $this->db->query("SELECT persona_id FROM inspeccion.asignacion WHERE tramite_id = '$idTramite'")->row();
             //var_dump((int)$persona->persona_id);
