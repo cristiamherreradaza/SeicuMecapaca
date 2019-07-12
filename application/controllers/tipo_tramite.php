@@ -204,6 +204,7 @@ class Tipo_tramite extends CI_Controller {
 			// $data['lista'] = $this->inspecciones_model->get_lista();  
 			// $asignados = 
 			$this->db->select('persona_id, COUNT(persona_id) as total');
+			$this->db->where('activo',1);
 			$this->db->group_by('persona_id'); 
 			$this->db->order_by('total', 'desc'); 
 			$data['asignados'] = $this->db->get('inspeccion.asignacion')->result();

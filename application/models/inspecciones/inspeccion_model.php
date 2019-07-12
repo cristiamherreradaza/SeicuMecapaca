@@ -22,7 +22,8 @@ class Inspeccion_model extends CI_Model {
 									AND pub.persona_id = $usu_creacion
 									AND pub.perfil_id = per.perfil_id
 									AND per.perfil = 'Inspector'
-									ORDER BY inicio ASC")->result();
+									AND ins.activo=1
+									ORDER BY inicio desc")->result();
 		if ($lista > 0) {
 			return $lista;
 		}

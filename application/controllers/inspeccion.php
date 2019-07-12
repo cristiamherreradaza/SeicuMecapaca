@@ -36,8 +36,6 @@ class Inspeccion extends CI_Controller {
             $data['data_act'] = $this->inspecciones_model->get_data_act();   
             $data['data_inf'] = $this->inspecciones_model->get_data_inf();   
             $data['asignacion_id']=$ida;
-		  
-		            	
 		            	$this->load->view('admin/header');
 				        $this->load->view('admin/menu');
 				        $this->load->view('inspecciones/nuevo', $data);
@@ -251,8 +249,7 @@ class Inspeccion extends CI_Controller {
 	{
 		if($this->session->userdata("login")){
 			$datos = $this->input->post();
-
-				if(isset($datos))
+			if(isset($datos))
 			{
 				//OBTENER EL ID DEL USUARIO LOGUEADO
 				$id = $this->session->userdata("persona_perfil_id");
@@ -268,7 +265,6 @@ class Inspeccion extends CI_Controller {
                 else{
                     $bool=0;
                 }
-
                 $data = array(            
                     'asignacion_id' => $this->input->post('asignacion_id'), //input 
                     'tipo_actuacion_id' => $this->input->post('tipo_actuacion_id'), //input          
@@ -278,7 +274,18 @@ class Inspeccion extends CI_Controller {
                     'vobo' => $vobo,                          
                 );
                        
-                $this->db->insert('inspeccion.inspeccion', $data);				
+				$this->db->insert('inspeccion.inspeccion', $data);
+				
+				//cambiar el estado de la asignacion a activo=0 
+				//la inspeccion ya fue concluida
+
+				$data = array(
+					'activo' => 0
+				);
+			
+				$this->db->where('asignacion_id', $asignacion_id);
+				$this->db->update('inspeccion.asignacion', $data);
+
 
 					$config['upload_path']      = './public/assets/files/inspeccion';	               
                     $config['allowed_types']    = 'pdf';
@@ -307,13 +314,13 @@ class Inspeccion extends CI_Controller {
 	                else
 	                	{
 	                        $data = array('upload_data' => $this->upload->data());
-							redirect('inspeccion/listado/');
+							redirect('prueba/lis1/');
                         }
 	                
             	}
                     
                 ///
-                redirect(base_url().'inspeccion/listado/');                  
+                redirect(base_url().'prueba/lis1/');                  
 
 			}
 			
