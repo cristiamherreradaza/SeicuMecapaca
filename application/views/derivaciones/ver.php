@@ -43,17 +43,18 @@
                                         <span class="bar"></span>
                                         <label for="input1"> ANEXOS</label>
                                     </div>
-                                    <div class="form-group mb-5">
+                                   <!--  <div class="form-group mb-5">
                                         <input type="text" class="form-control" id="input1" value="<?php echo $tramite->adjunto.'.pdf';?>
-                                        " required> <!-- <a href="<?php //echo base_url(); ?>public/assets/images/tramites/<?php //echo $tramite->adjunto.'.pdf';?>" target='_blank'><?php //echo $tramite->adjunto.'.pdf'; ?></a> -->
-                                        <span class="bar"></span>
+                                        " required> --> <!-- <a href="<?php //echo base_url(); ?>public/assets/images/tramites/<?php //echo $tramite->adjunto.'.pdf';?>" target='_blank'><?php //echo $tramite->adjunto.'.pdf'; ?></a> -->
+                                        <!-- <span class="bar"></span>
                                         <label for="input1"> ARCHIVO</label>
-                                    </div>
+                                    </div> -->
                                     <input type="hidden" name="id_tramite" value="<?php echo $tramite->tramite_id; ?>">
                                    <!--  <div class="form-group">
                                         <label>Archivo</label><?php //echo $tramite->adjunto.'.pdf'; ?>
                                         <input type="file" class="form-control" name="adjunto" value="<?php //echo $tramite->adjunto.'.pdf'; ?>">
                                     </div> -->
+                                    ARCHIVO : &nbsp; &nbsp; <a href="<?php echo base_url(); ?>public/assets/images/tramites/<?php echo $tramite->adjunto.'.pdf';?>" target='_blank'><?php echo $tramite->adjunto.'.pdf'; ?></a>
                                     
                                 </div>
                                 <div>

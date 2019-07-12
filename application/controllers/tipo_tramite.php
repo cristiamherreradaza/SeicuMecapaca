@@ -177,8 +177,14 @@ class Tipo_tramite extends CI_Controller {
 					}
 				else
 					{
+						$tipo_tramite = $this->db->query("SELECT tramite FROM tramite.tipo_tramite WHERE tipo_tramite_id = '$tipo_tramite_id'")->row();
 						$data = array('upload_data' => $this->upload->data());
-						redirect('Derivaciones/nuevo/'.$idTramite);
+						if($tipo_tramite->tramite == 'Inspeccion'){
+							redirect('Derivaciones/inspectores/'.$idTramite);
+						}else{
+							redirect('Derivaciones/nuevo/'.$idTramite);
+						}
+						
 					}
 
 				//$this->session->set_flashdata('in', $idTramite);
