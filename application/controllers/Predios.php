@@ -278,9 +278,9 @@ class Predios extends CI_Controller {
 			$calles = $this->input->post('calles_colindantes');
 			$material_via = $this->input->post('mat_via_id');
 
-			$this->predio_model->guarda_predio($datos_predio, $fotos, $servicios, $calles, $material_via);
+			$predio_id = $this->predio_model->guarda_predio($datos_predio, $fotos, $servicios, $calles, $material_via);
 
-			redirect(base_url("/predios/principal"));
+			redirect(base_url("/edificacion/nuevo/$predio_id"));
 
 			// editamos la calle principal
 			// $this->db->set('gvia_tipo', 1);

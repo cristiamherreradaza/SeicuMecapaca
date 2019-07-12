@@ -85,6 +85,8 @@ class Predio_model extends CI_Model {
                 $this->db->insert('catastro.predio_via', $data_calles);
             }
         } 
+
+        return $id_cod_catastral;
         // vdebug($calles_array);
         // fin guardamos las calles
 
