@@ -38,7 +38,7 @@ class Ddrr extends CI_Controller {
 		$datos= $this->cart->contents();
 		$this->ddrr_model->insertarDDRR($predio_id, $nro_matricula_folio, $nro_folio, $fecha_folio, $superficie_legal, $nom_notario, $nro_testimonio, $fecha_testimonio, $partida, $partida_computarizada, $foja, $libro, $fecha_reg_libro, $datos, $usu_creacion);
 		$this->cart->destroy();
-		redirect('predios/index');
+		redirect('predios/principal');
 		
 		
 	}
