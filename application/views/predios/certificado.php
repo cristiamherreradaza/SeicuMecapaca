@@ -27,10 +27,10 @@
                                 <address>
                                     <!-- <h3> &nbsp;<b class="text-danger">Monster Admin</b></h3> -->
                                     <!-- <b class="text-muted ml-1">La Paz, 28 de febrero de 2019</b> -->
-                                        La Paz, 21 de marzo de 2019
+                                        La Paz, 12 de julio de 2019
                                         <br/> Tramite No 321456,
                                         <br/> <b>Certificacion de Datos Tecnicos No. 1245/2019</b>
-                                        <br/> Matricula: <?php echo $ddrr->nro_matricula_folio ?>
+                                        <br/> Matricula: <?php //echo $ddrr->nro_matricula_folio ?>
 
                                         <br/> Propietario(s): 
                                         <?php $cont=1 ?>
@@ -100,23 +100,28 @@
                             <div class="text-black" style="font-size: 28pt;">CODIGO CATASTRAL:  <?php print_r($predio[0]->codcatas); ?></div>
                         </div>
                     </div>
+                    <?php $fotof = $fotos[0]->foto_fachada; ?>
+                    <?php $fotop = $fotos[0]->foto_plano_ubi; ?>
+
                     Segun plan de URBANIZACION aprobado en fecha 16/05/2018 mediante R.M. No. 338/2014 de 21/10/2014 se tiene la siguiente informacion:
                     <table class="d-print-table">
                         <tr>
                             <td style="width: 610px;">
+                                <img src="<?php echo base_url("/public/assets/files/predios/$fotop"); ?>" style="width: 610px;">
                                 <?php
-                                    $foto_bytea_ubi = pg_unescape_bytea($predio[0]->foto_plano_ubi); 
-                                    $foto_64_ubi = base64_encode($foto_bytea_ubi);
+                                    // $foto_bytea_ubi = pg_unescape_bytea($predio[0]->foto_plano_ubi); 
+                                    // $foto_64_ubi = base64_encode($foto_bytea_ubi);
                                 ?>
-                                <?php echo "<img src='data:image/jpeg;base64, $foto_64_ubi' width='350px' />"; ?>
+                                <?php //echo "<img src='data:image/jpeg;base64, $foto_64_ubi' width='350px' />"; ?>
 
                                 <br />CROQUIS DEL PREDIO
                                 <br />
                                 <?php 
-                                    $foto_bytea_fachada = pg_unescape_bytea($predio[0]->foto_fachada); 
-                                    $foto_64_fachada = base64_encode($foto_bytea_fachada);
+                                    // $foto_bytea_fachada = pg_unescape_bytea($predio[0]->foto_fachada); 
+                                    // $foto_64_fachada = base64_encode($foto_bytea_fachada);
                                 ?>
-                                <?php echo "<img src='data:image/jpeg;base64, $foto_64_fachada' width='350px' />"; ?>
+                                <?php //echo "<img src='data:image/jpeg;base64, $foto_64_fachada' width='350px' />"; ?>
+                                <img src="<?php echo base_url("/public/assets/files/predios/$fotof"); ?>" style="width: 610px;">
                                 <br />FOTO DE FACHADA
                             </td>
                             <td>

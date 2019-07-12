@@ -368,6 +368,8 @@ class Predios extends CI_Controller {
 
 		// print_r($this->db->last_query());
 		// vdebug($data);
+		$this->db->where('predio_id', $predio_id);
+		$data['fotos'] = $this->db->get('catastro.predio_foto')->result();
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
