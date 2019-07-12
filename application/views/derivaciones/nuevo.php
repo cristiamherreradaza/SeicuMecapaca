@@ -76,6 +76,15 @@
 
                             <div class="col-4">
                                 <div class="form-group">
+                                    <label>Descripcion: </label>
+                                    <input type="text" class="form-control" name="descripcion">
+                                </div>
+                                <!-- <label>&nbsp;</label> -->
+                                <?php // echo $tramite->procedencia; ?>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group">
                                     <label>Archivo</label>
                                     <input type="file" class="form-control" name="adjunto">
                                 </div>
@@ -106,14 +115,7 @@
                                 </div> -->
                             </div>
 
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label>Descripcion: </label>
-                                    <input type="text" class="form-control" name="descripcion">
-                                </div>
-                                <!-- <label>&nbsp;</label> -->
-                                <?php // echo $tramite->procedencia; ?>
-                            </div>
+                            
                         </div>
 
                         <div class="row">

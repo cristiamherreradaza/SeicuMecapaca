@@ -73,7 +73,14 @@
                                     </select>
                                 </div>
                             </div>
-
+                             <div class="col-4">
+                                <div class="form-group">
+                                    <label>Descripcion: </label>
+                                    <input type="text" class="form-control" name="descripcion">
+                                </div>
+                                <!-- <label>&nbsp;</label> -->
+                                <?php // echo $tramite->procedencia; ?>
+                            </div>
                             <div class="col-4">
                                 <div class="form-group">
                                     <label>Archivo</label>
@@ -106,14 +113,7 @@
                                 </div> -->
                             </div>
 
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label>Descripcion: </label>
-                                    <input type="text" class="form-control" name="descripcion">
-                                </div>
-                                <!-- <label>&nbsp;</label> -->
-                                <?php // echo $tramite->procedencia; ?>
-                            </div>
+                           
                         </div>
 
                         <div class="row">
