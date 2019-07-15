@@ -85,7 +85,8 @@ class Tramite_model extends CI_Model {
 			//vdebug($cantidad_asignaciones[0]->persona_id, true, false, true);
 
 			//asignacion de inspecciones nueva usando las tablas asignacion y persona
-
+			//asignacion usando el perfil de inspector		
+			/*
 			$contador_asignaciones = $this->db->query("SELECT k.*  FROM
 			(SELECT j.persona_id,(CASE
 			WHEN j.total IS NULL THEN 0
@@ -108,8 +109,51 @@ class Tramite_model extends CI_Model {
 			ORDER BY b.total ASC) as j) as k
 			ORDER BY k.total asc limit 1
 			")->result();
-										
+						*/				
 			//fin de la consulta para asignar inspector	
+
+
+			//--------------
+			//asignacion usando el cargo inspector y tambien la persona debera tener el perfil de inspector		
+		
+			$contador_asignaciones = $this->db->query("SELECT k.*  FROM
+			(SELECT j.persona_id,(CASE
+			WHEN j.total IS NULL THEN 0
+			ELSE j.total
+			END) FROM 
+			(SELECT d.*,b.total FROM 
+			(SELECT g.* FROM
+				(SELECT persona_id FROM organigrama_persona
+				WHERE cargo_id=
+				(SELECT cargo_id FROM cargo
+				WHERE descripcion in ('inspector','Inspector','INSPECTOR'))) AS g
+				INNER JOIN
+			(SELECT p.persona_id FROM persona_perfil p
+			LEFT JOIN
+			perfil o
+			on p.perfil_id=o.perfil_id
+			WHERE o.perfil='Inspector' or o.perfil='inspector' or o.perfil='INSPECTOR' and p.activo=1  and o.activo=1
+			GROUP BY p.persona_id) as f
+			on g.persona_id=f.persona_id			
+			) as d
+			LEFT JOIN
+			(SELECT  A.persona_id,COUNT(A.persona_id) as total FROM inspeccion.asignacion A
+			WHERE A.activo=1
+			GROUP BY A.persona_id
+			ORDER BY total ASC
+			) as b
+			on b.persona_id=d.persona_id
+			ORDER BY b.total ASC			
+			) as j) as k
+			ORDER BY k.total asc limit 1
+			")->result();
+								
+			//fin de la consulta para asignar inspector	
+
+
+
+
+
 			
 			$ditrict = $this->db->query("SELECT * FROM catastro.geo_distritos ORDER BY  random()  limit 1")->row();
 
