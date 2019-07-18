@@ -123,9 +123,9 @@ class Tramite_model extends CI_Model {
 			END) FROM 
 			(SELECT d.*,b.total FROM 
 			(SELECT g.* FROM
-				(SELECT persona_id FROM organigrama_persona
+				(SELECT persona_id FROM tramite.organigrama_persona
 				WHERE cargo_id=
-				(SELECT cargo_id FROM cargo
+				(SELECT cargo_id FROM tramite.cargo
 				WHERE descripcion in ('inspector','Inspector','INSPECTOR'))) AS g
 				INNER JOIN
 			(SELECT p.persona_id FROM persona_perfil p
