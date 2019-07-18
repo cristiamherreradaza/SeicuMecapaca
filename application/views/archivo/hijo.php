@@ -38,11 +38,13 @@
 						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 						    <span class="navbar-toggler-icon"></span>
 						  </button>
-                          <?php foreach ($predios as $pre) {
-                                        # code...
-                                    ?>
+                          <?php foreach ($predios as $pre1) {
+                                        $abc = $this->db->query("SELECT *
+                                            FROM archivo.raiz
+                                            WHERE raiz_id = $pre1->raiz_id")->row();
+                                    }?>
 						  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-						    <a class="navbar-brand" href="#"><?php echo $pre->codcatas;  ?>-<?php echo $pre->predio_id;  ?></a>
+						    <a class="navbar-brand" href="#"><?php echo $abc->nombre;  ?></a>
 						    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 						    </ul>
 						    <form class="form-inline my-2 my-lg-0">
@@ -53,16 +55,19 @@
 						</nav>
                         <div class="card-body wizard-content">
                             	 <div class="row">
+
+                                    <?php foreach ($predios as $pre) { ?>
 				                    <!-- .col -->
 				                    <div class="col-md-6 col-lg-6 col-xlg-4">
 				                        <div class="card card-body">
 				                            <div class="row">
 				                                <div class="col-md-4 col-lg-3 text-center">
-				                                    <a href="<?= base_url('archivo/ingresar/'. $pre->predio_id); ?>"><img src="<?php echo base_url(); ?>public/assets/images/users/carpeta.jpg" alt="user" class="img-circle img-responsive"></a>
+				                                    <a href="<?= base_url('archivo/ingresar/'. $pre->hijo_id); ?>"><img src="<?php echo base_url(); ?>public/assets/images/users/carpeta.jpg" alt="user" class="img-circle img-responsive"></a>
 				                                </div>
 				                                <div class="col-md-8 col-lg-9">
-				                                    <h4 class="mb-0"><?php echo $pre->codcatas;  ?></h4> 
-				                                    <small>Codigo Catastral Anterior <?php echo $pre->codcatas_anterior; ?></small>
+				                                    <h4 class="mb-0"><?php echo $pre->nombre;  ?></h4> 
+				                                     <small>Descripcion 1: <?php echo $pre->descripcion1; ?></small>
+                                                    <small>Descripcion 2: <?php echo $pre->descripcion2; ?></small>
 				                                    <address>
 				                                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
 				                                        <br/>
@@ -73,12 +78,13 @@
 				                            </div>
 				                        </div>
 				                    </div>
-
+                                    
+                                    <?php } ?>
 
 				                  
 				                </div>
 
-                           <?php } ?>
+                           
 
                             
                         </div>

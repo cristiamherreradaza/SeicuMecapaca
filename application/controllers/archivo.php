@@ -30,18 +30,18 @@ class Archivo extends CI_Controller {
 
 			foreach ($lista['predios'] as $val) {
 					$carpeta = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id;
-					$documentos = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/DOCUMENTOS';
-					$imagenes = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/IMAGENES';
-					$planos = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/PLANOS';
+					$documentos = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/documentos';
+					$imagenes = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/imagenes';
+					$planos = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/planos';
 					// var_dump($carpeta);
 					if (!file_exists($carpeta)) {
 			    		mkdir($carpeta, 0777, true);
 			    		mkdir($documentos, 0777, true);
 			    		mkdir($imagenes, 0777, true);
 			    		mkdir($planos, 0777, true);
-					}
-					$nombre = $val->codcatas.'-'.$val->predio_id;
-					$array = array(
+
+			    		$nombre = $val->codcatas.'-'.$val->predio_id;
+						$array = array(
 						'nombre' =>$nombre,
 						'descripcion1' =>'descripcion1',
 						'descripcion2' =>'descripcion2',
@@ -49,13 +49,46 @@ class Archivo extends CI_Controller {
 						'activo' =>1
 						);
 					$this->db->insert('archivo.raiz', $array);
+					$lista2 = $this->db->query("SELECT * FROM archivo.raiz WHERE nombre = '$nombre'")->row();
+
+						$array1 = array(
+						'nombre' =>'documentos',
+						'descripcion1' =>'descripcion1',
+						'descripcion2' =>'descripcion2',
+						'raiz_id' =>$lista2->raiz_id,
+						'activo' =>1
+						);
+						$this->db->insert('archivo.hijo', $array1);
+
+						$array2 = array(
+						'nombre' =>'imagenes',
+						'descripcion1' =>'descripcion1',
+						'descripcion2' =>'descripcion2',
+						'raiz_id' =>$lista2->raiz_id,
+						'activo' =>1
+						);
+						$this->db->insert('archivo.hijo', $array2);
+
+						$array3 = array(
+						'nombre' =>'planos',
+						'descripcion1' =>'descripcion1',
+						'descripcion2' =>'descripcion2',
+						'raiz_id' =>$lista2->raiz_id,
+						'activo' =>1
+						);
+						$this->db->insert('archivo.hijo', $array3);
+
+					}
 
 			}
+
+			$listass['predios'] = $this->db->query("SELECT * FROM archivo.raiz")->result();
+
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
-			$this->load->view('archivo/gestion_archivo', $lista);
+			$this->load->view('archivo/raiz', $listass);
 			$this->load->view('admin/footer');
-				// }
+				
 				
 		}
 		else{
@@ -64,18 +97,18 @@ class Archivo extends CI_Controller {
 		
 	}
 
-	public function ingresar($predio_id)
+	public function ingresar($raiz_id)
 	{
 		if($this->session->userdata("login")){
 
 
 			$res['predios'] = $this->db->query("SELECT *
-									FROM catastro.predio
-									WHERE predio_id = $predio_id
+									FROM archivo.hijo
+									WHERE raiz_id = $raiz_id
 									")->result();
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
-			$this->load->view('archivo/dentro', $res);
+			$this->load->view('archivo/hijo', $res);
 			$this->load->view('admin/footer');
 		}
 		else{

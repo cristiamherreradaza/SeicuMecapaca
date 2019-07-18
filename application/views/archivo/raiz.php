@@ -59,11 +59,12 @@
 				                        <div class="card card-body">
 				                            <div class="row">
 				                                <div class="col-md-4 col-lg-3 text-center">
-				                                    <a href="<?= base_url('archivo/ingresar/'. $pre->predio_id); ?>"><img src="<?php echo base_url(); ?>public/assets/images/users/carpeta.jpg" alt="user" class="img-circle img-responsive"></a>
+				                                    <a href="<?= base_url('archivo/ingresar/'. $pre->raiz_id); ?>"><img src="<?php echo base_url(); ?>public/assets/images/users/carpeta.jpg" alt="user" class="img-circle img-responsive"></a>
 				                                </div>
 				                                <div class="col-md-8 col-lg-9">
-				                                    <h4 class="mb-0"><?php echo $pre->codcatas;  ?>-<?php echo $pre->predio_id;  ?></h4> 
-				                                    <small>Codigo Catastral Anterior: <?php echo $pre->codcatas_anterior; ?></small>
+				                                    <h4 class="mb-0"><?php echo $pre->nombre;  ?></h4> 
+				                                    <small>Descripcion 1: <?php echo $pre->descripcion1; ?></small>
+                                                    <small>Descripcion 2: <?php echo $pre->descripcion2; ?></small>
 				                                    <address>
 				                                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
 				                                    </address>
