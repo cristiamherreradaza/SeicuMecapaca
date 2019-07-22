@@ -112,7 +112,7 @@
                                                     <th style="display:none;">RowId</th>
                                                     <th>N°</th>
                                                     <th>Nombre</th>
-                                                    <th >Carnet de identidad</th>
+                                                    <th >Cedula de identidad</th>
                                                     <th >Porcentaje de participacion</th>
                                                     <th>Eliminar</th>
                                                 </tr>
@@ -287,7 +287,7 @@
                                                     <div class="row">
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
-                                                                <label for="ci"> Carnet : <span class="text-danger">*</span> </label>
+                                                                <label for="ci"> Cedula de identidad : <span class="text-danger">*</span> </label>
                                                                 <input type="text" class="form-control" id="ci1" name="ci1" />
                                                                 <small id="msg_error_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                                 <small id="msg_sucess_catastral" class="form-control-feedback" style="display: none; color: #31B404"></small>
@@ -360,7 +360,7 @@
                                                         <div class="col-md-12 ">
                                                             <div class="form-group">
                                                                 <label>Porcentaje : <span class="text-danger">*</span></label>
-                                                                <input type="number" class="form-control" id="porcen_parti1" name="porcen_parti1" value="<?php echo $i; ?>" max="<?php $i; ?>"/>
+                                                                <input type="text" class="form-control" id="porcen_parti1" name="porcen_parti1" value="<?php echo $i; ?>" max="<?php $i; ?>"/>
                                                                 <small id="msg_alerta_catastral" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                                 <small id="alerta-porcentaje" class="form-control-feedback" style="display: none; color: #ff0000"></small>
                                                                 <small id="no-valido" class="form-control-feedback" style="display: none; color: #ff0000"></small>
@@ -377,7 +377,7 @@
                                                     <button class="btn btn-danger" type="button"  data-dismiss="modal">Cerrar</button>
                                                 </div>
                                             <?php echo form_close(); ?>
-                                        </div>
+                                        </div> 
                                     </div>
                                 </div>
                             </div>
@@ -439,7 +439,7 @@
                     $("#msg_sucess_catastral").show();
                     $("#msg_alerta_catastral").show();
                         $("#ci").val(data.ci);
-                    $("#msg_sucess_catastral").html('Esta registrado en el segip la persona con carnet de identidad Numero: '+data.ci);
+                    $("#msg_sucess_catastral").html('Esta registrado en el segip la persona con cedula de identidad Numero: '+data.ci);
                     $('#nombres1').val(data.nombres);
                     $("#nombres1").prop("disabled", true);
                     $('#paterno1').val(data.paterno);
