@@ -61,9 +61,7 @@ class Reportes_m extends CI_Controller
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
     } 
 
-    public function pdf_nc($id=null)
-
-    
+    public function pdf_nc($id=null)    
     {
         date_default_timezone_set('America/La_Paz');
 
@@ -80,17 +78,17 @@ class Reportes_m extends CI_Controller
         $mes=date('F');
 
         if ($mes == "January") $mes = "Enero";
-if ($mes == "February") $mes = "Febrero";
-if ($mes == "March") $mes = "Marzo";
-if ($mes == "April") $mes = "Abril";
-if ($mes == "May") $mes = "Mayo";
-if ($mes == "June") $mes = "Junio";
-if ($mes == "July") $mes = "Julio";
-if ($mes == "August") $mes = "Agosto";
-if ($mes == "September") $mes = "Setiembre";
-if ($mes == "October") $mes = "Octubre";
-if ($mes == "November") $mes = "Noviembre";
-if ($mes == "December") $mes = "Diciembre";
+        if ($mes == "February") $mes = "Febrero";
+        if ($mes == "March") $mes = "Marzo";
+        if ($mes == "April") $mes = "Abril";
+        if ($mes == "May") $mes = "Mayo";
+        if ($mes == "June") $mes = "Junio";
+        if ($mes == "July") $mes = "Julio";
+        if ($mes == "August") $mes = "Agosto";
+        if ($mes == "September") $mes = "Setiembre";
+        if ($mes == "October") $mes = "Octubre";
+        if ($mes == "November") $mes = "Noviembre";
+        if ($mes == "December") $mes = "Diciembre";
 
         $data['datos_certificado'] = $this->db->query("SELECT g.*,k.*,f.*,d.* FROM tramite.informe_tecnico g
         LEFT JOIN
@@ -98,7 +96,7 @@ if ($mes == "December") $mes = "Diciembre";
         LEFT JOIN
         persona p
         on i.a=p.persona_id
-        WHERE informe_tecnico_id=1 ) as k
+        WHERE informe_tecnico_id=$id ) as k
         on g.informe_tecnico_id=k.informe_tecnico_id
         
         LEFT JOIN
@@ -107,7 +105,7 @@ if ($mes == "December") $mes = "Diciembre";
         LEFT JOIN
         persona p
         on i.via=p.persona_id
-        WHERE informe_tecnico_id=1) as f
+        WHERE informe_tecnico_id=$id) as f
         on g.informe_tecnico_id=f.informe_tecnico_id
         
         LEFT JOIN
@@ -115,12 +113,12 @@ if ($mes == "December") $mes = "Diciembre";
         LEFT JOIN
         persona p
         on i.de=p.persona_id
-        WHERE informe_tecnico_id=1) as d
+        WHERE informe_tecnico_id=$id ) as d
         on d.informe_tecnico_id=g.informe_tecnico_id
-        WHERE g.informe_tecnico_id=1")->row();   
+        WHERE g.informe_tecnico_id=$id")->row();   
         
         $tiempo= $this->db->query("SELECT EXTRACT(day from fecha_testimonio)as dia,EXTRACT(MONTH from fecha_testimonio)as mes,EXTRACT(YEAR from fecha_testimonio)as anio  FROM tramite.informe_tecnico 
-        WHERE informe_tecnico_id=1")->row();
+        WHERE informe_tecnico_id=$id")->row();
 
         $data['dia_not']=$tiempo->dia;
         $mes_n=$tiempo->mes;
@@ -201,7 +199,7 @@ if ($mes == "December") $mes = "Diciembre";
         LEFT JOIN
         persona p
         on i.a=p.persona_id
-        WHERE informe_tecnico_id=1 ) as k
+        WHERE informe_tecnico_id=$id ) as k
         on g.informe_tecnico_id=k.informe_tecnico_id
         
         LEFT JOIN
@@ -210,7 +208,7 @@ if ($mes == "December") $mes = "Diciembre";
         LEFT JOIN
         persona p
         on i.via=p.persona_id
-        WHERE informe_tecnico_id=1) as f
+        WHERE informe_tecnico_id=$id) as f
         on g.informe_tecnico_id=f.informe_tecnico_id
         
         LEFT JOIN
@@ -218,12 +216,12 @@ if ($mes == "December") $mes = "Diciembre";
         LEFT JOIN
         persona p
         on i.de=p.persona_id
-        WHERE informe_tecnico_id=1) as d
+        WHERE informe_tecnico_id=$id) as d
         on d.informe_tecnico_id=g.informe_tecnico_id
-        WHERE g.informe_tecnico_id=1")->row();
+        WHERE g.informe_tecnico_id=$id")->row();
 
         $tiempo= $this->db->query("SELECT EXTRACT(day from fecha_testimonio)as dia,EXTRACT(MONTH from fecha_testimonio)as mes,EXTRACT(YEAR from fecha_testimonio)as anio  FROM tramite.informe_tecnico 
-        WHERE informe_tecnico_id=1")->row();
+        WHERE informe_tecnico_id=$id")->row();
 
         $data['dia_not']=$tiempo->dia;
         $mes_n=$tiempo->mes;
