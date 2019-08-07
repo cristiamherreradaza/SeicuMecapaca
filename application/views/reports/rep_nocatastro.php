@@ -144,7 +144,8 @@
 	        <p align="center"><?php echo strtoupper ($datos_certificado->solicitante); ?> con CI.	<?php echo $datos_certificado->ci.'.'; ?>	          </p>
 	        <p>por el que solicita Certificación de <b>NO CATASTRO</b> de su propiedad, predio de terreno, ubicado en:	          </p>
 	        <p> <center><b><?php echo strtoupper( $datos_certificado->ubicacion); ?></b></center></p>
-	        <p align="justify"> MECAPACA, PROVINCIA MURILLO, DEPARTAMENTO DE LA PAZ, con la superficie de <?php echo $datos_certificado->superficie_testimonio; ?> m² según documento, y				<?php echo $datos_certificado->superficie_medicion; ?>		m²	según medición.</p>
+	        <p align="justify"> MECAPACA, PROVINCIA MURILLO, DEPARTAMENTO DE LA PAZ, con la superficie de <?php echo $datos_certificado->superficie_testimonio; ?> m² según documento, y
+            				<?php echo $datos_certificado->superficie_medicion; ?>		m²	según medición.</p>
           
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
             Que la impetrante, acreditando su interés legal, ha presentado en calidad de prueba

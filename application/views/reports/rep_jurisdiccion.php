@@ -152,21 +152,22 @@
 	        <p align="center"><?php echo strtoupper ($datos_certificado->solicitante); ?> con CI.	<?php echo $datos_certificado->ci.'.'; ?></p>
 	        <p>por el que solicita Certificación de <b>JURISDICCIÓN</b> de su propiedad, predio de terreno, ubicado en:	          </p>
 	        <p> <center><b><?php echo strtoupper( $datos_certificado->ubicacion); ?></b></center></p>
-	        <p align="justify"> MECAPACA, PROVINCIA MURILLO, DEPARTAMENTO DE LA PAZ, con la superficie de 1.000,00 m² según documento, y 1.000,00 m² según medición.</p>
+	        <p align="justify"> MECAPACA, PROVINCIA MURILLO, DEPARTAMENTO DE LA PAZ, con la superficie de <?php echo $datos_certificado->superficie_testimonio; ?> m²  según documento, 
+            y <?php echo $datos_certificado->superficie_medicion; ?> m² según medición.</p>
           
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
             Que la impetrante, acreditando su interés legal, ha presentado en calidad de prueba
-            Testimonio de propiedad (fotocopia simple) de la escritura pública Nº 237/2002 de fecha 16 de abril de 2002 expedido
+            Testimonio de propiedad (fotocopia simple) de la escritura pública Nº <?php echo $datos_certificado->nro_testimonio; ?>  de fecha <?php echo $dia_not. ' de '.$mes_not. ' de '.$anio_not; ?> expedido
             ante la Notaría de Fe pública N° 10	a cargo del Dr(a). I. CAROLA AYOROA MANTILLA</p>
           
-	        <p>Con una superficie de				1.000,00		m²	según documento, y				1.000,00			m²	según medición.</p>
-	        <p>registrado en Derechos Reales con el folio Nº								2.01.0.99.0036254				VIGENTE.</p>
+	        <p>Con una superficie de				 <?php echo $datos_certificado->superficie_testimonio; ?>	m²	según documento, y				 <?php echo $datos_certificado->superficie_medicion; ?>			m²	según medición.</p>
+	        <p>registrado en Derechos Reales con el folio Nº   <?php echo $datos_certificado->nro_folio; ?>	  VIGENTE.</p>
          
 	        <p> <b><u>SE CERTIFICA:</u> </b>    </p>
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
-            Que según el informe técnico Nº	01090/2019 expedido por el Arq. Gilberto López Quispe, Técnico de 
+            Que según el informe técnico Nº	<?php echo $datos_certificado->cite; ?>  expedido por el Arq. <?php echo ucfirst (strtolower($datos_certificado->nom_de)).' '. ucfirst (strtolower($datos_certificado->pat_de)).' '.ucfirst (strtolower($datos_certificado->mat_de)); ?>, Técnico de 
             la Unidad de Catastro y Cartografía del Gobierno Autónomo Municipal de Mecapaca, se infiere que el
-             TERRENO, se encuentra ubicado en:				<b>HACIENDA AVIRCATO</b>			</p>
+             TERRENO, se encuentra ubicado en:				<b><?php echo $datos_certificado->ubicacion; ?></b>			</p>
          
 	        <p align="center"> <b>• LA PROPIEDAD EN CUESTION SE ENCUENTRA EN LA JURISDICCION MUNICIPAL DEL GOBIERNO AUTONOMO MUNICIPAL DE MECAPACA.</b> </p>
           
@@ -189,7 +190,7 @@
         <tr>
           <td align="justify" width="5%" class="glosa">
           
-             Arq. Gilberto López Q.
+             Arq. <?php echo ucfirst (strtolower($datos_certificado->nom_de)).' '.ucfirst (strtolower($datos_certificado->pat_de)).' '.ucfirst (strtolower($datos_certificado->mat_de)); ?>
        
           <br >
           G.A.M.M.- P.C.C.</td>

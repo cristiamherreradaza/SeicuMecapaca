@@ -222,6 +222,31 @@ if ($mes == "December") $mes = "Diciembre";
         on d.informe_tecnico_id=g.informe_tecnico_id
         WHERE g.informe_tecnico_id=1")->row();
 
+        $tiempo= $this->db->query("SELECT EXTRACT(day from fecha_testimonio)as dia,EXTRACT(MONTH from fecha_testimonio)as mes,EXTRACT(YEAR from fecha_testimonio)as anio  FROM tramite.informe_tecnico 
+        WHERE informe_tecnico_id=1")->row();
+
+        $data['dia_not']=$tiempo->dia;
+        $mes_n=$tiempo->mes;
+
+
+
+        if ($mes_n == "1") $mes_n = "Enero";
+        if ($mes_n == "2") $mes_n = "Febrero";
+        if ($mes_n == "3") $mes_n = "Marzo";
+        if ($mes_n == "4") $mes_n = "Abril";
+        if ($mes_n == "5") $mes_n = "Mayo";
+        if ($mes_n == "6") $mes_n = "Junio";
+        if ($mes_n == "7") $mes_n = "Julio";
+        if ($mes_n == "8") $mes_n = "Agosto";
+        if ($mes_n == "9") $mes_n = "Setiembre";
+        if ($mes_n == "10") $mes_n = "Octubre";
+        if ($mes_n == "11") $mes_n = "Noviembre";
+        if ($mes_n == "12") $mes_n = "Diciembre";
+
+
+        $data['mes_not']=$mes_n;
+        $data['anio_not']=$tiempo->anio;
+
 
 
         $this->load->view('reports/rep_jurisdiccion',$data);
