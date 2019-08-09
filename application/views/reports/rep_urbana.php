@@ -49,8 +49,7 @@
         .information {
             background-color: #60A7A6;
             color: #FFF;
-            font-size: 10px;
-            line-height:14px;
+            line-height:7px;
         }
 
         .information .logo {
@@ -148,30 +147,19 @@
             Que la solicitud presentada por:
          																	
 	        <p align="center"><?php echo strtoupper ($datos_certificado->solicitante); ?> con CI.	<?php echo $datos_certificado->ci.'.'; ?>	          </p>
-	        <p>por el que solicita Certificación de <b>SUPERFICIE</b> de su propiedad, predio de terreno, ubicado en:	          </p>
-	        <p> <center><b><?php echo strtoupper( $datos_certificado->ubicacion); ?>  URBANIZACION <?php echo strtoupper( $datos_certificado->urbanizacion); ?>  
-            LOTE <?php echo strtoupper( $datos_certificado->lote); ?> MANZANO <?php echo strtoupper( $datos_certificado->manzana); ?></b></center></p>
+	        <p>por el que solicita Certificación de <b>AREA RURAL</b> de su propiedad, predio de terreno, ubicado en:	          </p>
+	        <p> <center><b><?php echo strtoupper( $datos_certificado->ubicacion); ?></b></center></p>
 	        <p align="justify"> MECAPACA, PROVINCIA MURILLO, DEPARTAMENTO DE LA PAZ, con la superficie de <?php echo $datos_certificado->superficie_testimonio; ?> m² según documento, y
             				<?php echo $datos_certificado->superficie_medicion; ?>		m²	según medición.</p>
           
-	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
-            Que la impetrante, acreditando su interés legal, ha presentado en calidad de prueba
-            Testimonio de propiedad (fotocopia simple) de la escritura pública Nº <?php echo $datos_certificado->nro_testimonio; ?> de fecha <?php echo $dia_not. ' de '.$mes_not. ' de '.$anio_not; ?>  expedido
-            ante la Notaría de Fe pública N° <?php echo $datos_certificado->notaria; ?>	a cargo del Dr(a). <?php echo strtoupper($datos_certificado->notario); ?></p>
-          
-	        <p>Con una superficie de			 <?php echo $datos_certificado->superficie_testimonio; ?> m²	según documento, y				 <?php echo $datos_certificado->superficie_medicion; ?> 			m²	según medición.</p>
-	        <p>registrado en Derechos Reales con el folio Nº <?php echo $datos_certificado->nro_folio; ?> VIGENTE.</p>
          
 	        <p> <b><u>SE CERTIFICA:</u> </b>    </p>
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
             Que según el informe técnico Nº	<?php echo $datos_certificado->cite; ?> expedido por el Arq. <?php echo ucfirst (strtolower($datos_certificado->nom_de)).' '. ucfirst (strtolower($datos_certificado->pat_de)).' '.ucfirst (strtolower($datos_certificado->mat_de)); ?>, Técnico de 
             la Unidad de Catastro y Cartografía del Gobierno Autónomo Municipal de Mecapaca, se infiere que el
-             TERRENO, se encuentra ubicado en: 				<b><?php echo strtoupper( $datos_certificado->ubicacion); ?>  URBANIZACION <?php echo strtoupper( $datos_certificado->urbanizacion); ?>  
-            LOTE <?php echo strtoupper( $datos_certificado->lote); ?> MANZANO <?php echo strtoupper( $datos_certificado->manzana); ?></b>			</p>
+             TERRENO, se encuentra ubicado en: 				<b><?php echo strtoupper( $datos_certificado->ubicacion); ?></b>			</p>
          
-	        <p align="center"> <b> <img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="36" />   • LA SUPERFICIE EN CUESTION SE ENCUENTRA UBICADA EN EX HACIENDA HUAJCHILLA, URBANIZACIÓN LAS PALMERAS II, 
-            LOTE 3-B, MANZANO B, CON UNA SUPERFICIE DE 715,16 M2 SEGÚN MEDICION REGISTRADO EN LA UNIDAD DE CATASTRO, DEL GOBIERNO AUTONOMO MUNICIPAL DE MECAPACA.																		
-                </b> </p>
+	        <p align="center"> <b>  <img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" /> •  QUE LA PROPIEDAD EN CUESTION SE ENCUENTRA EN AREA RURAL CORRESPONDIENTE AL GOBIERNO AUTONOMO MUNICIPAL DE MECAPACA.</b> </p>
           
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
             Por lo que PROCEDE LA CERTIFICACION del mismo, para vía informativa de Derechos Reales.</p>
@@ -209,7 +197,7 @@
 <div class="information" style="position: absolute; bottom: 0;">
     <table width="100%">
         <tr>
-            <td align="left" style="width: 80%;" class="pie_pagina">
+        <td align="left" style="width: 80%;" class="pie_pagina">
             GOBIERNO AUTÓNOMO MUNICIPAL DE MECAPACA
        <br>
             DEPARTAMENTO DE CATASTRO

@@ -64,6 +64,11 @@
             font-size: 10px;
             line-height:14px;
         }
+
+        .pie_pagina {
+            font-size: 10px;
+            line-height:14px;
+        }
         .titulo {
             font-size: 13px;
             line-height:18px;
@@ -159,7 +164,7 @@
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
             Que según el informe técnico Nº	<?php echo $datos_certificado->cite; ?> expedido por el Arq. <?php echo ucfirst (strtolower($datos_certificado->nom_de)).' '. ucfirst (strtolower($datos_certificado->pat_de)).' '.ucfirst (strtolower($datos_certificado->mat_de)); ?>, Técnico de 
             la Unidad de Catastro y Cartografía del Gobierno Autónomo Municipal de Mecapaca, se infiere que el
-             TERRENO, se encuentra ubicado en: 				<b><?php echo $datos_certificado->ubicacion; ?></b>			</p>
+             TERRENO, se encuentra ubicado en: 				<b><?php echo strtoupper( $datos_certificado->ubicacion); ?></b>			</p>
          
 	        <p align="center"> <b>• EL GOBIERNO AUTONOMO MUNICIPAL DE MECAPACA NO CUENTA CON SISTEMA DE CATASTRO POR EL MOMENTO, POR TANTO, NO EMITE CERTIFICACION CATASTRAL.</b> </p>
           
@@ -201,13 +206,15 @@
 <div class="information" style="position: absolute; bottom: 0;">
     <table width="100%">
         <tr>
-            <td align="left" style="width: 80%;">
+        <td align="left" style="width: 80%;" class="pie_pagina">
             GOBIERNO AUTÓNOMO MUNICIPAL DE MECAPACA
-            <p>
+       <br>
             DEPARTAMENTO DE CATASTRO
-            </p>
-            <p>Telf.: (591)-XXXXXXXX</p>
-            <p>mecapaca.site</p>
+         <br>
+            Telf.: (591)-XXXXXXXX
+            <br>
+            mecapaca.site
+            
             </td>
             
         </tr>
