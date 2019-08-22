@@ -11,8 +11,8 @@
 
         body {
            
-            margin: 28pt 56pt 24pt 56pt;
-
+           background-image: url('<?php echo base_url(); ?>public/assets/images/reportes/menbrete.png');
+           background-repeat: no-repeat; 
         }
 
         * {
@@ -39,7 +39,7 @@
         }
 
         .invoice table {
-            margin: 15px;
+            margin: 80px;
         }
 
         .invoice h3 {
@@ -82,34 +82,9 @@
 
 </head>
 <body>
-
-<div class="information">
-    <table width="100%">
-        <tr>
-            <td align="left" style="width: 70%;">
-             
-              
-
-
-
-             
-                   La Paz <?php echo $dia_l.', '.$dia.' de '.$mes_l.' de '.$anio; ?>                 
-              
-
-
-            </td>
-            <td align="center">
-               
-            <img src="<?php echo base_url(); ?>public/assets/images/reportes/logo.png" alt="Logo" width="96" class="logo"/>
-            </td>
-            <td align="right" style="width: 80%;">
-
-                <h3>MECAPACA</h3>
-               
-            </td>
-        </tr>
-
-    </table>
+<br><br><br>
+<div>
+ 
 </div>
 
 
@@ -172,7 +147,7 @@
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
             Es cuanto certificamos en honor a la verdad para fines consiguientes del interesado.																	
 	          <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
-              Es dado en el Palacio Consistorial de Mecapaca el día:  <?php echo $dia_l.', '.$dia.' de '.$mes_l.' de '.$anio; ?>							
+              Es dado en el Palacio Consistorial de Mecapaca el día:  <?php echo $dia_linf.', '.$dia_inf.' de '.$mes_inf.' de '.$anio; ?>   							
               </p>
         
             <br>  
@@ -194,22 +169,6 @@
  
 </div>
 
-<div class="information" style="position: absolute; bottom: 0;">
-    <table width="100%">
-        <tr>
-        <td align="left" style="width: 80%;" class="pie_pagina">
-            GOBIERNO AUTÓNOMO MUNICIPAL DE MECAPACA
-       <br>
-            DEPARTAMENTO DE CATASTRO
-         <br>
-            Telf.: (591)-XXXXXXXX
-            <br>
-            mecapaca.site
-            
-            </td>
-            
-        </tr>
-    </table>
-</div>
+
 </body>
 </html>
