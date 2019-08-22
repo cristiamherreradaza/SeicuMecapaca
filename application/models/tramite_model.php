@@ -215,4 +215,52 @@ class Tramite_model extends CI_Model {
         $this->db->where('zonaurb_id', $zonaurb_id);
         return $this->db->update('catastro.zona_urbana', $data);
     }
+
+    public function insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos, $linea_nivel, $autorizacion_cerco, $aprobacion_plano, $visado_plano, $fotocopia_plano, $resolucion, $certificacion, $aprobacion_contruccion, $total)
+	{	
+		$array = array(
+			'cite' =>$cite,
+			'fecha_proforma' =>$fecha_proforma,
+			'propietario1' =>$propietario1,
+			'propietario2' =>$propietario2,
+			'ubicacion' =>$ubicacion,
+			'lote' =>$lote,
+			'superficie_total' =>$superficie_total,
+			'manzano' =>$manzano,
+			'urbanizacion' =>$urbanizacion,
+			'jurisdicion' =>$jurisdicion,
+			'seccion_municipal' =>$seccion_municipal,
+			'provincia' =>$provincia,
+			'departamento' =>$departamento,
+			'codigo_catastral' =>$codigo_catastral,
+			'fecha' =>$fecha,
+			'matricula_folio_real' =>$matricula_folio_real,
+			'valido_por' =>$valido_por,
+			'uso_predio' =>$uso_predio,
+			'tipo_tramite' =>$tipo_tramite,
+			'a' =>$a,
+			'ci' =>$ci,
+			'metros_construidos' =>$metros_construidos,
+			'linea_nivel' =>$linea_nivel,
+			'autorizacion_cerco' =>$autorizacion_cerco,
+			'aprobacion_plano' =>$aprobacion_plano,
+			'visado_plano' =>$visado_plano,
+			'fotocopia_plano' =>$fotocopia_plano,
+			'resolucion' =>$resolucion,
+			'certificacion' =>$certificacion,
+			'aprobacion_contruccion' =>$aprobacion_contruccion,
+			'total' =>$total
+			);
+		$this->db->insert('tramite.proforma', $array);
+	}
+
+	public function buscacite( $cite ){
+		$con = $this->db->query("SELECT * FROM tramite.informe_tecnico WHERE cite = '$cite'");
+	    if($con)
+	        return $con->row();
+	    else
+	    	return null;
+	 }
+
+    
 }

@@ -10,6 +10,7 @@ class Prueba extends CI_Controller {
        
         $this->load->model("inspecciones/inspeccion_model");
         $this->load->model("rol_model");
+        $this->load->model("Prueba_model");
     }
 
     public function principal()    
@@ -220,5 +221,73 @@ class Prueba extends CI_Controller {
             redirect(base_url());
         }
     }
+
+   
+
+    function valorEnLetras($x)
+    {
+    if ($x<0) { $signo = "menos ";}
+    else      { $signo = "";}
+    $x = abs ($x);
+    $C1 = $x;
+
+    $G6 = floor($x/(1000000));  // 7 y mas
+
+    $E7 = floor($x/(100000));
+    $G7 = $E7-$G6*10;   // 6
+
+    $E8 = floor($x/1000);
+    $G8 = $E8-$E7*100;   // 5 y 4
+
+    $E9 = floor($x/100);
+    $G9 = $E9-$E8*10;  //  3
+
+    $E10 = floor($x);
+    $G10 = $E10-$E9*100;  // 2 y 1
+
+
+    $G11 = round(($x-$E10)*100,0);  // Decimales
+    //////////////////////
+    $H6 = $this->Prueba_model->unidades($G6);
+
+    if($G7==1 AND $G8==0) { $H7 = "Cien "; }
+    else {    $H7 = $this->Prueba_model->decenas($G7); }
+
+    $H8 = $this->Prueba_model->unidades($G8);
+
+    if($G9==1 AND $G10==0) { $H9 = "Cien "; }
+    else {    $H9 = $this->Prueba_model->decenas($G9); }
+
+    $H10 = $this->Prueba_model->unidades($G10);
+
+    if($G11 < 10) { $H11 = "0".$G11; }
+    else { $H11 = $G11; }
+
+    /////////////////////////////
+        if($G6==0) { $I6=" "; }
+    elseif($G6==1) { $I6="Millón "; }
+             else { $I6="Millones "; }
+             
+    if ($G8==0 AND $G7==0) { $I8=" "; }
+             else { $I8="Mil "; }
+             
+    $I10 = "Pesos ";
+    $I11 = "/100 BOLIVIANOS ";
+    // $C3 = $signo.$H6.$I6.$H7.$H8.$I8.$H9.$H10.$I10.$H11.$I11;
+    $C3 = $signo.$H6.$I6.$H7.$H8.$I8.$H9.$H10.$H11.$I11;
+    $str = strtoupper($C3);
+    echo $str;
+    //return $C3; //Retornar el resultado
+
+    }
+
+     public function letras()
+    {
+        // $this->load->view('admin/header');
+        // $this->load->view('admin/menu');
+        $this->load->view('prueba');
+        // $this->load->view('admin/footer');
+    }
+
 
 }

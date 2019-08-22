@@ -116,4 +116,7 @@
   'material design icons' => array(
     'normal' => $fontDir . '\872cf0214e8262a61eb239c3d30d051c',
   ),
+  'dropify' => array(
+    'normal' => $fontDir . '\2440be1f1ee40d064ee7068093be6be1',
+  ),
 ) ?>
