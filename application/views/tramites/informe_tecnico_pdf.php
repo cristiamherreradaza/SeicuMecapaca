@@ -1,232 +1,704 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 	<head>
-	    <title>Reporte</title>
-	<style type="text/css">
-		h4{
-			padding-bottom: -20px;	
-		}
-		h5{
-			padding-bottom: -25px;
-		}
-		.linea{
-			padding: 3px;
-		}
-		.referencias1, .cuadro{
-			display: inline;
-		}
-		.referencias{
-			text-align: left;
-			margin-left: 235px;
-			padding-top: -13px;
-			
-		}
-		.referencias1{
-			text-align: right;
-			margin-left: 16%;
-
-		}
-		.cuadro{
-			box-sizing: border-box;
-		 	width: 370px;
-		  	border: 1px solid red;
-		  	border-style: dotted;
-			border-color: black;
-			background-color: #e2e2e2;
-		  	float: right;
-		 	margin-right: 90px;
-		}
-		.columna1, .columna2, .columna3, .columna4, .columna5, .columna6{
-			display: inline;
-		}
-		.columna1{
-			margin-left: 20px;
-		}
-		.division{
-			padding-bottom: 4px;
-		}
-
-
-		.contenido1, .contenido2{
-			display: inline;
-			text-align: center;
-		}
-		.contenido1{
-			padding-left: 40px;
-			width: 50%;
-		}
-		.contenido2{
-			padding-left: 30px;
-			width: 50%;
-		}
-		.contenido{
-			padding-left: 10px;
-		}
-		.subcontenido, .subcontenido1{
-			display: inline;
-		}
-		.subcontenido{
-			padding-bottom: 5px;
-		}
-		.particion1, .particion{
-			display: inline;
-		}
-		.particion1{
-
-		}
-		.particion2{
-			
-		}
-		
-	</style>
+	    <meta charset="UTF-8">
+	    <title>Informe tecnico</title>
+	    <style type="text/css">
+	       .orden{
+	       		padding-bottom: -5px;
+	       		padding-top: -10px;
+	       }
+	    </style>
 	</head>
 	<body>
-	    <div>
-	        <div>
-	          	<p>
-	          		<img src="<?php echo base_url().'public/assets/images/logo.png' ;?>" style=" float: left; height: 80px; width: 130px;">
-	            	<img src="<?php echo base_url().'public/assets/images/pmgm.jpg' ;?>"  style=" float: right; height: 80px; width: 130px;">
-					<center>            
-						<h5 style="padding-top: 10px;">ESTADO PLURINACIONAL DE BOLIVIA <br>MINISTERIO DE OBRAS PUBLICAS, SERVICIOS Y VIVIENDA <br>VICEMINSTERIO DE VIVIENDA Y URBANISMO </h5>
-					</center>		
-	          	</p>
-	        </div>
-	        <div>
-	        	<h3 style="text-align: center; padding: -20px;">INFORME TECNICO</h3>
-	          	<h4 style="text-align: center; ">CITE : GAMM-SMDT-TEC-N° <?php echo $tramite->cite; ?></h4>
-	          	<div class="linea">
-	          		<div class="referencias1">A  : </div> <div class="cuadro" ><?php echo $a->nombre; ?></div>
-	          		<div class="referencias"> <b><?php echo $a->cargo; ?></b></div>
-	          	</div>
-	          	<div class="linea">
-	          		<div class="referencias1">VIA : </div> <div class="cuadro" > <?php echo $via->nombre; ?> </div>
-	          		<div class="referencias"><b><?php echo $via->cargo;?></b></div>
-	          	</div>
-	          	<div class="linea">
-	          		<div class="referencias1">DE : </div> <div class="cuadro" > <?php echo $de->nombres; ?> <?php echo $de->paterno; ?> <?php echo $de->materno; ?> </div>
-	          		<div class="referencias"> <b> <?php echo $cargo->descripcion;?></b></div>
-	          	</div>
-	          	<div class="linea">
-	          		<div class="referencias1">REFERENCIA</div> : <div class="cuadro" ><?php echo $tramite->referencia; ?></div>
-	          	</div>
-	       		<div class="linea">
-	       			<div class="referencias1">FECHA </div> : <div class="cuadro" > <?php echo $tramite->fecha_informe; ?></div>
-	       		</div>
-	       		<div class="linea">
-	       			<div class="referencias1">PROCESADOR </div> : <div class="cuadro" > <?php echo $procesador->cargo; ?>	 <?php echo $procesador->nombre; ?></div>
-	       		</div>
-	          	<h4 ><b><u>ANTECEDENTES</u></b></h4>
-	          	<h5>Se da curso a la siguiente solicitud</h5>
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: 107px:">GAMM : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 20px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"> <?php echo $tramite->correlativo ?></div>
-	          		<div class="columna3" style="margin-left: 20px;">DE FECHA : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 250px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->fecha_solicitud ?></div>
-	          	</div>
-	          	
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: 55px:">SOLICITANTE : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 10px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"> <?php echo $tramite->solicitante ?></div>
-	          		<div class="columna3" style="margin-right: 0px;">CI : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 150px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->ci ?></div>
-	          	</div>
-	          	<div class="division">
-	          		<div class="columna3" style="margin-left: 0px;">OBJETO DE TRAMITE : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 494px; border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"> <?php echo $tipo_tramite->tramite ?></div>
-	          	</div>
-	          	<div class="division">
-	          		<div class="columna3" style="margin-left: 68px;">UBICACION : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 494px; border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"> <?php echo $tramite->ubicacion ?></div>
-	          	</div>
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: 119px:">LOTE : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 20px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"> <?php echo $tramite->lote ?></div>
-	          		<div class="columna3" style="margin-left: 20px;">URBANIZACION : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 250px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->urbanizacion ?></div>
-	          	</div>
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: 79px:">MANZANO : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 20px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"> <?php echo $tramite->manzana ?></div>
-	          		<div class="columna3" style="margin-left: 20px;">COMUNIDAD : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 250px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->comunidad ?></div>
-	          	</div>
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: -2px:">SUPERFICIE SEGUN TESTIMONIO : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 0px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"><?php echo $tramite->superficie_testimonio ?> m2</div>
-	          		<div class="columna3" style="margin-left: -2px;">SUPERFICIE SEGUN MEDICION : </div>
-	          		<div class="columna4" style="box-sizing: border-box; padding: 0px; ;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->superficie_medicion ?> m2</div>
-	          	</div>
+		<div>
+            <table width="100%">
+                <tr>
+                    <td align="left" style="width: 15%; text-align: center;"></td>
+                    <td align="center" style="width: 70%; text-align: center; font-family:1Arial;">
+                        <h3 id="indice" style="font-size: 11px; height: 7px;"><b>GOBIERNO AUTONOMO MUNICIPAL DE MECAPACA</b></h3>
+                        <h3 align="center" style="font-size: 11px; height: 7px; font-family:1Calibri;">SECRETARIA MUNICIPAL DEL DEPARTAMENTO T&Eacute;CNICO</h3>
+                        <h3 align="center" style="font-size: 11px; height: 10px; font-family:1Calibri;">UNIDAD DE CATASTRO Y CARTOGRAF&Iacute;A</h3>
+                        <h3 align="center" style="font-size: 20px; height: 5px; font-family:1Calibri;"><b>INFORME TECNICO</b></h3>
+                    </td>
+                    <td align="right" style="width: 15%; text-align: center;">
+                        <img align="right" src="<?php echo base_url(); ?>public/assets/images/reportes/logo.png" alt="Logo" width="96" class="logo"/>
+                    </td>
+                </tr>
+            </table>       
+            <div>
+            	<table width="100%">
+                    <tr>
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">CITE : GAMM-SMDT-TEC-N°</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 8%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="8" value="<?php echo $tramite->cite; ?>">
+                            </div>
+                        </td>                                       
+                    </tr>
+               	</table>
+            	<table width="100%">
+                    <tr>
+                        <td align="left" style="width: 25%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">A : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 75%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $a->nombre; ?>">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3"></label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                            	<b><?php echo $a->cargo; ?></b>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="left" style="width: 40%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">VIA : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 60%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $via->nombre; ?>">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3"></label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                            	<b><?php echo $via->cargo; ?></b>
+                            </div>
+                        </td>
+                    </tr>
+                   
+                   <tr>
+                        <td align="left" style="width: 40%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">DE : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 60%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $de->nombres; ?> <?php echo $de->paterno; ?> <?php echo $de->materno; ?>">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3"></label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                            	<b><?php echo $cargo->descripcion; ?></b>
+                            </div>
+                        </td>
+                    </tr>
 
-	          	<h4><b><u>DOCUMENTACION PRESENTADA</u></b></h4>
-	          	<h5><b>CARNET DE IDENTIDAD</b></h5>
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: 55px:">A FAVOR DE : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 10px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"> <?php echo $tramite->solicitante ?></div>
-	          		<div class="columna3" style="margin-right: 0px;">CI : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 150px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->ci ?></div>
-	          	</div>
-	          	<h5><b>FOLIO</b></h5>
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: 119px:">N° : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 20px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"> <?php echo $tramite->nro_folio ?></div>
-	          		<div class="columna3" style="margin-left: 20px;">SUPERFICIE : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 210px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->superficie_testimonio ?> m2</div>
-	          	</div>
-	          	<div class="division">
-	          		<div class="columna3" style="margin-left: 42px;">A FAVOR DE : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 517px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->solicitante ?></div>
-	          	</div>
-	          	<h5><b>TESTIMONIO DE PROPIEDAD</b></h5>
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: 119px:">N° : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 20px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"><?php echo $tramite->nro_testimonio ?></div>
-	          		<div class="columna3" style="margin-left: 10px;">NOTARIA N° : </div>
-	          		<div class="columna4" style="box-sizing: border-box; padding: 20px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"><?php echo $tramite->notaria ?></div>
-		 			<div class="columna5" style="margin-left: 40px;">FECHA : </div>
-	          		<div class="columna6" style="box-sizing: border-box;width: 110px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->fecha_testimonio ?></div>
-	          	</div>
-	          	<div class="division">
-	          		<div class="columna3" style="margin-left: 17px;">NOTARIO DR(A) : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 517px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->notario ?></div>
-	          	</div>
-	          	<div class="division">
-	          		<div class="columna3" style="margin-left: 42px;">A FAVOR DE : </div>
-	          		<div class="columna4" style="box-sizing: border-box;width: 517px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->solicitante ?></div>
-	          	</div>
-	          	<h5><b>IMPUESTOS</b></h5>
-	          	<div class="division">
-	          		<div class="columna4" style="box-sizing: border-box;width: 617px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->impuestos ?></div>
-	          		
-	          	</div>
-	          	<h4><b><u>CARACTERISTICAS DE LA PROPIEDAD</u></b></h4>
-	          	<div class="division">
-	          		<div class="columna1" style="margin-left: -2px:">SUPERFICIE SEGUN TESTIMONIO : </div>
-	          		<div class="columna2" style="box-sizing: border-box; padding: 0px; border: 1px solid black; border-style: dotted; background-color: #e2e2e2;"><?php echo $tramite->superficie_testimonio ?> m2</div>
-	          		<div class="columna3" style="margin-left: -2px;">SUPERFICIE SEGUN MEDICION : </div>
-	          		<div class="columna4" style="box-sizing: border-box; padding: 0px; ;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->superficie_medicion ?> m2</div>
-	          	</div>	
-	          	<h4><b><u>OBSERVACIONES</u></b></h4>
-	          	<div class="division">
-	          		<div class="columna4" style="box-sizing: border-box;width: 617px;border: 1px solid black;border-style: dotted;background-color: #e2e2e2;float: right;
-		 			margin-right: 30px;"><?php echo $tramite->observaciones ?></div>
-	          		
-	          	</div>
-	          	
-	    	</div>
+                    <tr>
+                        <td align="left" style="width: 40%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">REF : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 60%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $tramite->referencia; ?>">
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td align="left" style="width: 40%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">FECHA : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 60%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $tramite->fecha_informe; ?>">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 40%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">PROCESADOR : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="left" style="width: 60%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $procesador->cargo; ?>	 <?php echo $procesador->nombre; ?>">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+         	    <table width="100%">
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <h3 style="font-size: 11px; height: 5px;"><b><u>ANTECEDENTES</u></b></h3>
+                        </td>
+                    </tr>
+                </table>                                
+               	<table width="100%">
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">GAMM : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="10" value="<?php echo $tramite->correlativo ?>">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">DE FECHA :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->fecha_solicitud ?>">
+                            </div>
+                        </td>                                        
+                    </tr>
+               	</table>
+               	<table width="100%">
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">SOLICITANTE : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" <?php echo $tramite->solicitante ?>">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">CI :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->ci ?>">
+                            </div>
+                        </td>                                        
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3"></label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" 0 ">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">CI :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value=" ' ' ">
+                            </div>
+                        </td>                                        
+                    </tr>
+               	</table>
+               	 <table width="100%">
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <div style="font-size: 11px; height: 15px; text-align: right;">
+                                <label>OBJETO DE TRAMITE : </label>
+                            </div>     
+                        </td>
+                        <td align="center" style="width: 72%;">
+                            <div style="font-size: 11px; height: 15px; ">
+                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="<?php echo $tipo_tramite->tramite ?>">
+                            </div>
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <div style="font-size: 11px; height: 15px; text-align: right;">
+                                <label>UBICACION : </label>
+                            </div>     
+                        </td>
+                        <td align="center" style="width: 72%;">
+                            <div style="font-size: 11px; height: 15px; ">
+                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="<?php echo $tramite->ubicacion ?>">
+                            </div>
+                        </td>
+                       
+                    </tr>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td align="left" style="width: 25%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">LOTE : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="12" value=" <?php echo $tramite->lote ?>">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 25%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">URBANIZACION :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->urbanizacion ?>">
+                            </div>
+                        </td>                                        
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">MANZANO</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="12" value="<?php echo $tramite->manzana ?>">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">COMUNIDAD :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->comunidad ?>">
+                            </div>
+                        </td>                                        
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">SUPERFICIE SEGUN TESTIMONIO : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-6" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="12" value="<?php echo $tramite->superficie_testimonio ?> m2">
+                            </div>
+                        </td>
+
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">SUPERFICIE SEGUN MEDICION : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-6" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->superficie_medicion ?> m2">
+                            </div>
+                        </td>                                        
+                    </tr>
+               	</table>
+               	<table width="100%">
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <h3 style="font-size: 11px; height: 5px;"><b><u>DOCUMENTACION PRESENTADA</u></b></h3>
+                        </td>
+                    </tr>
+                </table>
+                <table class="orden" width="100%">
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <h3 style="font-size: 11px; height: 5px;"><b>CARNET DE IDENTIDAD</b></h3>         
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">A FAVOR DE : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" <?php echo $tramite->solicitante ?>">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">CI :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->ci ?>">
+                            </div>
+                        </td>                                        
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3"></label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" 0 ">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">CI :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value=" ' ' ">
+                            </div>
+                        </td>                                        
+                    </tr>
+               	</table>
+               	<table class="orden" width="100%">
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <h3 style="font-size: 11px; height: 5px;"><b>FOLIO</b></h3>         
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">N° : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="10" value="<?php echo $tramite->nro_folio?>">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">SUPERFICIE :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->superficie_testimonio ?> m2">
+                            </div>
+                        </td>                                        
+                    </tr>
+               	</table>
+               	<table width="100%">
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">A FAVOR DE : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" <?php echo $tramite->solicitante ?>">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">CI :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->ci ?>">
+                            </div>
+                        </td>                                        
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3"></label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" 0 ">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">CI :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value=" ' ' ">
+                            </div>
+                        </td>                                        
+                    </tr>
+               	</table>
+               	<table class="orden" width="100%">
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <h3 style="font-size: 11px; height: 5px;"><b>TESTIMONIO DE PROPIEDAD</b></h3>         
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td align="left" style="width: 20%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
+                                    <label class="control-label text-right col-md-3">N° : </label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 15%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="10" value="<?php echo $tramite->nro_testimonio ?>">
+                            </div>
+                        </td>
+
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">NOTARIA N° :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->notaria ?>">
+                            </div>
+                        </td>      
+                        <td align="center" style="width: 13%;">
+                            <div class="col-lg-11 col-md-12">
+                                <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
+                                    <label class="control-label text-right col-md-3">FECHA :</label>
+                                    
+                                </div>
+                            </div>            
+                        </td>
+                        <td align="center" style="width: 30%;">
+                            <div class="col-md-9" style="font-size: 11px; height: 15px;">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->fecha_testimonio ?>">
+                            </div>
+                        </td>                                   
+                    </tr>
+               	</table>
+               	<table width="100%">
+               		<tr>
+                        <td align="left" style="width: 28%;">
+                            <div style="font-size: 11px; height: 15px; text-align: right;">
+                                <label>NOTARIO DR(A) : </label>
+                            </div>     
+                        </td>
+                        <td align="center" style="width: 72%;">
+                            <div style="font-size: 11px; height: 15px; ">
+                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="<?php echo $tramite->notario ?>">
+                            </div>
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <div style="font-size: 11px; height: 15px; text-align: right;">
+                                <label>A FAVOR DE : </label>
+                            </div>     
+                        </td>
+                        <td align="center" style="width: 72%;">
+                            <div style="font-size: 11px; height: 15px; ">
+                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="<?php echo $tramite->solicitante ?>">
+                            </div>
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <div style="font-size: 11px; height: 15px; text-align: right;">
+                                <label></label>
+                            </div>     
+                        </td>
+                        <td align="center" style="width: 72%;">
+                            <div style="font-size: 11px; height: 15px; ">
+                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="0">
+                            </div>
+                        </td>
+                       
+                    </tr>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <h3 style="font-size: 11px; height: 5px;"><b>IMPUESTOS</b></h3>         
+                        </td>
+                        <td align="center" style="width: 72%;">
+                            <div style="font-size: 11px; height: 15px; ">
+                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="<?php echo $tramite->impuestos ?>">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+             	<table width="100%">
+                    <tr>
+                        <td align="left" style="width: 28%;">
+                            <h3 style="font-size: 11px; height: 5px;"><b>OBSERVACIONES</b></h3>         
+                        </td>
+                        <td align="center" style="width: 72%;">
+                            <div style="font-size: 11px; height: 15px; ">
+                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="<?php echo $tramite->observaciones ?>">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%">
+                    <tr>
+                        <td align="center" style="width: 33%; height: 15px;">
+                            <div class="form-group row" style="font-size: 71%; line-height: 70px;">
+                                <label class="control-label text-right col-md-3">U. CATRASTO-CART.</label>
+                            </div>    
+                        </td>
+                     
+                    </tr>
+                </table>
+            </div>                                                               
+		</div>
 	</body>
 </html>
