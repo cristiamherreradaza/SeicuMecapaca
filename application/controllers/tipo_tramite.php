@@ -316,9 +316,9 @@ class Tipo_tramite extends CI_Controller {
         $this->load->view('predios/index_js');
 	}
 
-	public function proforma(){
+	public function proforma($id=null){
 		if($this->session->userdata("login")){
-			$valores['cite']=NULL;
+			$valores['cite']=$id;
 		 	$valores['fecha']=NULL;
 		 	$valores['remitente']=NULL;
 		 	$valores['encontrados']=NULL;
@@ -377,7 +377,7 @@ class Tipo_tramite extends CI_Controller {
 				$aprobacion_contruccion = $datos['aprobacion_contruccion'];
 				$total = $datos['total'];
 				$this->tramite_model->insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos, $linea_nivel, $autorizacion_cerco, $aprobacion_plano, $visado_plano, $fotocopia_plano, $resolucion, $certificacion, $aprobacion_contruccion, $total);
-				redirect('tipo_tramite/proforma');
+				redirect('tipo_tramite/consulta_proforma/'.$cite);
 
 			}
 		}
@@ -505,10 +505,15 @@ class Tipo_tramite extends CI_Controller {
 
 	}
 
-	public function consulta_proforma(){
+	public function consulta_proforma($id=null){
 		
 		$datos = $this->input->post();
-		$cite = $datos['cite'];
+		if($id!=null){
+			$cite = $id;
+		}else{
+			$cite = $datos['cite'];
+		}
+		
 		// var_dump($cite);
 
 		$valores['proforma'] = $this->db->query("SELECT *
@@ -520,7 +525,7 @@ class Tipo_tramite extends CI_Controller {
 			$valores['cite'] = $cite;
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
-			$this->load->view('tramites/proforma_1', $valores);
+			$this->load->view('tramites/proforma_prueba', $valores);
 			$this->load->view('admin/footer');
 			$this->load->view('predios/index_js');
 		}

@@ -28,8 +28,8 @@
                                     </div>
                                     
                                 </div>
-                                <button type="submit" class="btn btn-primary">Buscar</button>
-                                <!-- <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bd-example-modal-lg" id="citebutton" type="submit">Buscar</button> -->
+                                <button type="submit" class="btn btn-info">Buscar</button>
+                                <button class="btn btn-success" type="button" data-toggle="modal" data-target=".bd-example-modal-lg" id="citebutton" type="submit">Adicionar</button>
                             </form>
                         </div>
                     </div>
