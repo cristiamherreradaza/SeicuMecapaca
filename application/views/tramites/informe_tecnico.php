@@ -30,9 +30,9 @@
                                     </h3>
                                     <div>
                                         <input type="hidden" name="organigrama_persona_id" value="" >
-                                        <div class="form-group mt-5 row">
-                                            <label for="example-text-input" class="col-2 col-form-label">CITE: GAMM-SMDT-TEC-Nº </label>
-                                            <div class="col-10">
+                                        <div class="form-group  row">
+                                            <label for="example-text-input" class="col-3 col-form-label">CITE: GAMM-SMDT-TEC-Nº </label>
+                                            <div class="col-9">
                                                 <input type="text" class="form-control" id="cite" name="cite" required>
                                             </div>
                                         </div>
@@ -58,7 +58,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group mt-5 row">
+                                        <div class="form-group  row">
                                             <label for="example-text-input" class="col-2 col-form-label">Referencia</label>
                                             <div class="col-10">
                                                 <input class="form-control" type="text" id="referencia" name="referencia" required>
@@ -84,18 +84,18 @@
                                         </div>
                                     </div>
                                     
-                                        <div class="col-md-12 mb-form-group mb-5">
-                                            ANTECEDENTES <br>   
-                                        Da curso a la siguiente solicitud <br/>
+                                        <div class="col-md-12 mb-form-group" style="padding-top: 30px; padding-bottom: 20px;">
+                                            <u><b>ANTECEDENTES</b></u> <br>   
+                                        <b>Da curso a la siguiente solicitud</b> <br/>
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group mt-5 row col-6">
-                                                <label for="example-text-input" class="col-2 col-form-label">GAMM</label>
-                                                <div class="col-8">
+                                        <div class="row" >
+                                            <div class="form-group row col-6">
+                                                <label for="example-text-input" class="col-3 col-form-label">GAMM</label>
+                                                <div class="col-9">
                                                     <input class="form-control" type="text" id="correlativo" name="correlativo" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-5 row col-6">
+                                            <div class="form-group row col-6">
                                                 <label for="example-text-input" class="col-3 col-form-label">De fecha</label>
                                                 <div class="col-9">
                                                     <input class="form-control" type="text" id="fecha_solicitud" name="fecha_solicitud" required>
@@ -103,13 +103,13 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group mt-5 row col-8">
+                                            <div class="form-group  row col-8">
                                                 <label for="example-text-input" class="col-2 col-form-label">Solicitante</label>
                                                 <div class="col-10">
                                                     <input class="form-control" type="text" id="solicitante" name="solicitante" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-5 row col-4">
+                                            <div class="form-group  row col-4">
                                                 <label for="example-text-input" class="col-2 col-form-label">CI</label>
                                                 <div class="col-10">
                                                     <input class="form-control" type="text" id="ci" name="ci" required>
@@ -130,23 +130,23 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 form-group mb-5" id="listas">    
+                                        <div class="col-md-12 form-group" id="listas">    
                                             
                                         </div>
-                                        <div class="form-group mt-5 row ">
+                                        <div class="form-group row ">
                                             <label for="example-text-input" class="col-2 col-form-label">Ubicacion</label>
                                             <div class="col-10">
                                                 <input class="form-control" type="text" id="ubicacion" name="ubicacion">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group mt-5 row col-6">
+                                            <div class="form-group row col-6">
                                                 <label for="example-text-input" class="col-3 col-form-label">Lote</label>
                                                 <div class="col-9">
                                                     <input class="form-control" type="text" id="lote" name="lote">
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-5 row col-6">
+                                            <div class="form-group row col-6">
                                                 <label for="example-text-input" class="col-3 col-form-label">Urbanizacion</label>
                                                 <div class="col-9">
                                                     <input class="form-control" type="text" id="urbanizacion" name="urbanizacion">
@@ -154,13 +154,13 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group mt-5 row col-6">
+                                            <div class="form-group row col-6">
                                                 <label for="example-text-input" class="col-3 col-form-label">Manzano</label>
                                                 <div class="col-9">
                                                     <input class="form-control" type="text" id="manzana" name="manzana">
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-5 row col-6">
+                                            <div class="form-group row col-6">
                                                 <label for="example-text-input" class="col-3 col-form-label">Comunidad</label>
                                                 <div class="col-9">
                                                     <input class="form-control" type="text" id="comunidad" name="comunidad">
@@ -168,13 +168,13 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group mt-5 row col-6">
+                                            <div class="form-group row col-6">
                                                 <label for="example-text-input" class="col-6 col-form-label">Superficie segun testimonio</label>
                                                 <div class="col-6">
                                                     <input class="form-control" type="text" id="superficie_testimonio" name="superficie_testimonio" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-5 row col-6">
+                                            <div class="form-group row col-6">
                                                 <label for="example-text-input" class="col-6 col-form-label">Superficie segun medicion</label>
                                                 <div class="col-6">
                                                     <input class="form-control" type="text" id="superficie_medicion" name="superficie_medicion" required>
@@ -184,33 +184,33 @@
                                         
                                         
 
-                                        <div class="col-md-12 mb-form-group mb-5">
-                                            DOCUMENTACION PRESENTADA <br>
-                                            Folio
+                                        <div class="col-md-12 mb-form-group " style="padding-top: 30px; padding-bottom: 20px;">
+                                            <u><b>DOCUMENTACION PRESENTADA</b></u> <br>
+                                            <b>Folio</b>
                                         </div>
-                                        <div class="form-group mt-5 row">
+                                        <div class="form-group row">
                                             <label for="example-text-input" class="col-2 col-form-label">N°  </label>
                                             <div class="col-10">
                                                 <input class="form-control" type="text" id="nro_folio" name="nro_folio" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 mb-form-group mb-5">
-                                            Testimonio de propiedad
+                                        <div class="col-md-12 mb-form-group" style="padding-top: 30px; padding-bottom: 20px;">
+                                            <b>Testimonio de propiedad</b>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group mt-5 row col-4">
+                                            <div class="form-group row col-4">
                                                 <label for="example-text-input" class="col-4 col-form-label">N°</label>
                                                 <div class="col-8">
                                                     <input class="form-control" type="text" id="nro_testimonio" name="nro_testimonio" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-5 row col-4">
+                                            <div class="form-group row col-4">
                                                 <label for="example-text-input" class="col-4 col-form-label">Notaria</label>
                                                 <div class="col-8">
                                                     <input class="form-control" type="text" id="notaria" name="notaria" required>
                                                 </div>
                                             </div>
-                                            <div class="form-group mt-5 row col-4">
+                                            <div class="form-group row col-4">
                                                 <label for="example-text-input" class="col-4 col-form-label">Fecha</label>
                                                 <div class="col-8">
                                                     <input class="form-control" type="text" id="fecha_testimonio" name="fecha_testimonio" required>
@@ -218,26 +218,26 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="form-group mt-5 row">
+                                        <div class="form-group row">
                                             <label for="example-text-input" class="col-2 col-form-label">Notario Dr(a)</label>
                                             <div class="col-10">
                                                 <input class="form-control" type="text" id="notario" name="notario" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 mb-form-group mb-5">
-                                            Impuestos
+                                        <div class="col-md-12 mb-form-group ">
+                                            <b>Impuestos</b>
                                         </div>
 
-                                        <div class="form-group mt-5 row">
+                                        <div class="form-group row">
                                             <label for="example-text-input" class="col-2 col-form-label">Años</label>
                                             <div class="col-10">
                                                 <input class="form-control" type="text"id="impuestos" name="impuestos" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 mb-form-group mb-5">
-                                            OBSERVACIONES
+                                        <div class="col-md-12 mb-form-group ">
+                                            <u><b>OBSERVACIONES</b></u>
                                         </div>
-                                        <div class="form-group mt-5 row">
+                                        <div class="form-group  row">
                                             <label for="example-text-input" class="col-2 col-form-label">Observaciones</label>
                                             <div class="col-10">
                                                 <input class="form-control" type="text" id="observaciones" name="observaciones" required>
@@ -260,14 +260,14 @@
                 <div class="card" style="background: #0489B1;">
                     <div class="card-body">
                         <div class="d-flex flex-row">
-                            <div class=""><img src="<?php echo base_url(); ?>public/assets/images/users/1.jpg" alt="user" class="img-circle" width="100"></div>
+                            <!-- <div class=""><img src="<?php echo base_url(); ?>public/assets/images/users/1.jpg" alt="user" class="img-circle" width="100"></div> -->
                             <div class="pl-3">
-                                <h3 style="color: white;" class="font-medium">Daniel Kristeen</h3>
-                                <h6 style="color: white;">UIUX Designer</h6>
+                                <h3 style="color: white;" class="font-medium">Forma de llenar el formulario</h3>
+                                <!-- <h6 style="color: white;">UIUX Designer</h6> -->
                             </div>
                         </div>
                         <div class="row mt-5">
-                            <div class="col border-right">
+                            <!-- <div class="col border-right">
                                 <h2 style="color: white;" class="font-light">14</h2>
                                 <h6 style="color: white;" >Photos</h6></div>
                             <div class="col border-right">
@@ -275,7 +275,9 @@
                                 <h6 style="color: white;">Videos</h6></div>
                             <div class="col">
                                 <h2 style="color: white;" class="font-light">145</h2>
-                                <h6 style="color: white;" >Tasks</h6></div>
+                                <h6 style="color: white;" >Tasks</h6></div> -->
+                            
+
                         </div>
                     </div>
                     <div>
@@ -288,26 +290,26 @@
     </div>
 </div>
  <script>
-                                function CargarProductos(val)
-                                {   
+    function CargarProductos(val)
+    {   
 
-                                    $.ajax({
-                                        type: "GET",
-                                        url: '<?php echo base_url(); ?>tipo_tramite/ajax_verifica1/',
-                                        data: 'param1='+val,
-                                        success: function(resp){
-                                            //alert(resp[resp.length]);
-                                            asistente = JSON.parse(resp);
-                                            $('.borrar').remove();
-                                            for (var i = 0; i < asistente.length; i++) {
+        $.ajax({
+            type: "GET",
+            url: '<?php echo base_url(); ?>tipo_tramite/ajax_verifica1/',
+            data: 'param1='+val,
+            success: function(resp){
+                //alert(resp[resp.length]);
+                asistente = JSON.parse(resp);
+                $('.borrar').remove();
+                for (var i = 0; i < asistente.length; i++) {
 
-                                                $('#listas').append('<div class="borrar"> <input type="checkbox" id="requisitos['+i+']" name="requisitos['+i+']" value="'+asistente[i]['requisito_id']+'"> '+asistente[i]['descripcion']+' </div>');
-                                                //console.log(asistente[i]['descripcion']);
-                                            }
-                                        }
-                                    });
-                                }
-                            </script>
+                    $('#listas').append('<div class="borrar"> <input type="checkbox" id="requisitos['+i+']" name="requisitos['+i+']" value="'+asistente[i]['requisito_id']+'"> '+asistente[i]['descripcion']+' </div>');
+                    //console.log(asistente[i]['descripcion']);
+                }
+            }
+        });
+    }
+</script>
 
 <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap&libraries=drawing" async defer></script>
