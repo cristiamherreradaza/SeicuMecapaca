@@ -506,13 +506,21 @@ class Tipo_tramite extends CI_Controller {
 	}
 
 	public function consulta_proforma($id=null){
+
+		if($this->input->post()){
+			$datos = $this->input->post();	
+			$cite = $datos['cite'];	
+		}else{
+			$cite=0;
+		}
+			
 		
-		$datos = $this->input->post();
+		
 		if($id!=null){
 			$cite = $id;
-		}else{
-			$cite = $datos['cite'];
 		}
+
+		
 		
 		// var_dump($cite);
 
