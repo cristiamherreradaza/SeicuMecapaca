@@ -34,19 +34,23 @@
         <!-- ============================================================== -->
 
         <?php foreach ($predios as $pre1) {
-                                        // $abc = $this->db->query("SELECT *
-                                        //     FROM archivo.raiz
-                                        //     WHERE raiz_id = $pre1->raiz_id")->row();
-
+                                        
                                             $abc = $this->db->query("SELECT *
+                                                FROM archivo.documento
+                                                WHERE hijo_id = $pre1->hijo_id
+                                                AND activo = 1")->result();
+
+                                            $nob = $this->db->query("SELECT *
                                                 FROM archivo.hijo
                                                 WHERE raiz_id = $pre1->raiz_id
-                                                AND activo = 1")->result();
+                                                AND activo = 1")->row();
 
-                                            $abcd = $this->db->query("SELECT *
-                                                FROM archivo.documento
-                                                WHERE raiz_id = $pre1->raiz_id
-                                                AND activo = 1")->result();
+                                            $nobb = $this->db->query("SELECT *
+                                                FROM archivo.raiz
+                                                WHERE raiz_id = $nob->raiz_id
+                                                AND activo = 1")->row();
+                                            $nombree = $nobb->nombre;
+
                                     }?>
         <div class="row">
             <div class="col-12">
@@ -54,14 +58,14 @@
                     <div class="card-body">
                         <h4 class="card-title">Archivos <b> <?php echo $pre1->nombre; ?></b></h4>
                         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-						    <span class="navbar-toggler-icon"></span>
-						  </button>
+                          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
                           
-						  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                                     
                             
-						    <a class="navbar-brand" href="#"><button type="button" class="btn btn-dark btn-circle btn-xl" data-toggle="modal" data-target="#modalCarpeta"><i class="fas fa-folder-open"></i> </button> Carpeta</a>
+                           
                             <a class="navbar-brand" href="#"><button type="button" class="btn btn-danger btn-circle btn-xl" data-toggle="modal" data-target="#modalPdf"><i class="fas fa-file-pdf"></i> </button> Pdf</a>
                             <a class="navbar-brand" href="#"><button type="button" class="btn btn-info btn-circle btn-xl" data-toggle="modal" data-target="#modalWord"><i class="fas fa-file-word"></i> </button> Word</a>
                             <a class="navbar-brand" href="#"><button type="button" class="btn btn-success btn-circle btn-xl" data-toggle="modal" data-target="#modalExcel"><i class="fas fa-file-excel"></i> </button> Excel</a>
@@ -72,72 +76,28 @@
 
 
                               
-						    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-						    </ul>
-						    <?php echo form_open('archivo/buscar', array('method'=>'POST', 'class'=>'form-inline my-2 my-lg-0')); ?>
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            </ul>
+                            <?php echo form_open('archivo/buscar', array('method'=>'POST', 'class'=>'form-inline my-2 my-lg-0')); ?>
                             <!-- <a class="navbar-brand" href=""><button type="button" class="btn btn-warning btn-circle btn-xl" onclick="atras()"><i class="fas fa-arrow-left"></i> </button> Atr&aacute;s</a> -->
                               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="buscador" id="buscador">
                               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                             </form>
-						  </div>
-						</nav>
+                          </div>
+                        </nav>
 
                             <div class="row el-element-overlay">
-                                    <!-- VISTA DE CARPETAS -->
-                                    <?php foreach ($abc as $pre) {
-                                        $imagen = 'public/assets/images/archivo/'.$pre->tipo.'.jpg';
-                                        $datos = $pre->hijo_id."||".
-                                                 $pre->nombre."||".
-                                                 $pre->descripcion1."||".
-                                                 $pre->descripcion2."||".
-                                                 $pre->tipo."||".
-                                                 $pre->raiz_id;
-                                                 // $pre->hijo_id;
-                                    ?>
-                                        
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="card">
-                                                <div class="el-card-item card card-body">
-                                                    <div class="row">
-                                                        <div class="el-card-avatar el-overlay-1 col-md-4 col-lg-3 text-center"> <img src="<?php echo base_url(); ?><?php echo $imagen; ?>" alt="user" class="img-circle img-responsive">
-                                                            <div class="el-overlay">
-                                                                <ul class="el-info">
-
-                                                                    <!--  -->
-                                                                    <li><a class="btn default btn-outline image-popup-vertical-fit" href="<?= base_url('archivo/ingresarhijo/'. $pre->hijo_id); ?>"><i class="icon-login"></i></a></li>
-                                                                    <li><a class="btn default btn-outline" href="javascript:void(0);" data-toggle="modal" data-target="#modalEdicion" onclick="agregarform('<?php echo $datos ?>')"><i class="icon-pencil"></i></a></li>
-                                                                    <li><a class="btn default btn-outline" href="<?= base_url('archivo/eliminarhijo/'. $pre->hijo_id); ?>" alt="alert" class="img-responsive model_img" id="sa-params11" onclick="alerta('<?php echo $pre->hijo_id ?>')"><i class="icon-trash"></i></a></li>
-                                                                    <li><a class="btn default btn-outline image-popup-vertical-fit" href="<?= base_url('archivo/ingresar/'. $pre->hijo_id); ?>"><i class="icon-share-alt"></i></a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8 col-lg-9">
-                                                            <h4 class="mb-0"><?php echo $pre->nombre;  ?></h4> 
-                                                            <small>Descripcion 1: <?php echo $pre->descripcion1; ?></small>
-                                                            <br>
-                                                            <small>Descripcion 2: <?php echo $pre->descripcion2; ?></small>
-                                                            <address>
-                                                                795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                                                 
-                                                            </address>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
-
                                     <!-- VISTA DE ARCHIVOS -->
 
-                                     <?php foreach ($abcd as $pre2) {
+                                     <?php foreach ($abc as $pre2) {
                                         $imagen = 'public/assets/images/archivo/'.$pre2->carpeta.'.jpg';
                                         $datos1 = $pre2->documento_id."||".
-                                                 $pre2->nombre."||".
-                                                 $pre2->descripcion1."||".
-                                                 $pre2->descripcion2."||".
-                                                 $pre2->carpeta."||".
-                                                 $pre2->raiz_id."||".
-                                                 $pre2->hijo_id;
+                                                  $pre2->nombre."||".
+                                                  $pre2->descripcion1."||".
+                                                  $pre2->descripcion2."||".
+                                                  $pre2->carpeta."||".
+                                                  $pre2->raiz_id."||".  
+                                                  $pre2->hijo_id;
 
                                     ?>
 
@@ -148,7 +108,7 @@
                                                         <div class="el-card-avatar el-overlay-1 col-md-4 col-lg-3 text-center"> <img src="<?php echo base_url(); ?><?php echo $imagen; ?>" alt="user" class="img-circle img-responsive">
                                                             <div class="el-overlay">
                                                                 <ul class="el-info">
-                                                                    <?php $varr = 'public/assets/archivos/'.$pre1->nombre.'/'.$pre2->nombre.'.'.$pre2->extension; 
+                                                                    <?php $varr = 'public/assets/archivos/'.$nombree.'/'.$pre1->nombre.'/'.$pre2->nombre.'.'.$pre2->extension; 
                                                                           $supervar = urldecode($varr);
                                                                     ?>
 
@@ -170,6 +130,8 @@
                                                             <address>
                                                                 795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
 
+                                                    
+
                                                              
                                                             </address>
                                                         </div>
@@ -181,94 +143,6 @@
 
                             </div>
 
-                            <div id="modalCarpeta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        
-                                        <div class="modal-body">
-                                           <?php echo form_open('archivo/insertarhijo', array('method'=>'POST')); ?>
-
-                                                <div class="form-group">
-                                                    <input type="text" hidden="" id="nombre_raiz" name="nombre_raiz" value="<?php echo $pre1->nombre; ?>">
-                                                </div>
-
-                                                 <div class="form-group">
-                                                    <input type="text" hidden="" id="raiz_id" name="raiz_id" value="<?php echo $pre1->raiz_id; ?>">
-                                                </div>
-                                              
-                                                <div class="form-group">
-                                                    <label for="recipient-name" class="control-label">Nombre:</label>
-                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
-                                                    <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
-                                                    <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
-                                                </div>
-                                                
-                                                
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="modalEdicion" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        
-                                        <div class="modal-body">
-                                           <?php echo form_open('archivo/updatehijo', array('method'=>'POST')); ?>
-
-                                                <div class="form-group">
-                                                    <input type="text" hidden="" id="hijo_idc" name="hijo_id">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" hidden="" id="raiz_idc" name="raiz_id">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="recipient-name" class="control-label">Nombre:</label>
-                                                    <input type="text" class="form-control" id="nombrec" name="nombre" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
-                                                    <textarea class="form-control" id="descripcion1c" name="descripcion1" required></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
-                                                    <textarea class="form-control" id="descripcion2c" name="descripcion2" required></textarea>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Tipo de Carpeta</label>
-                                                        <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1" id="tipoc" name="tipo">
-                                                            <option value="carpeta">Carpeta</option>
-                                                            <option value="carpeta_llena">Carpeta Llena</option>
-                                                            <option value="carpeta_vacia">Carpeta Vacia</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
 
                             <div id="modalEdicion1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog">
@@ -280,9 +154,15 @@
                                                 <div class="form-group">
                                                     <input type="text" hidden="" id="raiz_id1" name="raiz_id">
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <input type="text" hidden="" id="hijo_id1" name="hijo_id">
+                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <input type="text" hidden="" id="documento_id1" name="documento_id">
                                                 </div>
+                                                
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="control-label">Nombre:</label>
                                                     <input type="text" class="form-control" id="nombre1" name="nombre" required>
@@ -318,11 +198,16 @@
 
                                                 
                                                 <div class="form-group">
-                                                    <input type="text" hidden="" id="nombre_raiz" name="nombre_raiz" value="<?php echo $pre1->nombre; ?>">
+                                                    <input type="text" hidden="" id="nombre_hijo" name="nombre_hijo" value="<?php echo $pre1->nombre; ?>">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <input type="text" hidden="" id="raiz_id" name="raiz_id" value="<?php echo $pre1->raiz_id; ?>">
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <input type="text" hidden="" id="hijo_id" name="hijo_id" value="<?php echo $pre1->hijo_id; ?>">
                                                 </div>
                                                 
                                                 
@@ -377,12 +262,17 @@
                                         <div class="modal-body">
                                            <?php echo form_open_multipart('archivo/do_upload', array('method'=>'POST')); ?>
 
-                                                <div class="form-group">
-                                                    <input type="text" hidden="" id="nombre_raiz" name="nombre_raiz" value="<?php echo $pre1->nombre; ?>">
+                                               <div class="form-group">
+                                                    <input type="text" hidden="" id="nombre_hijo" name="nombre_hijo" value="<?php echo $pre1->nombre; ?>">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <input type="text" hidden="" id="raiz_id" name="raiz_id" value="<?php echo $pre1->raiz_id; ?>">
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <input type="text" hidden="" id="hijo_id" name="hijo_id" value="<?php echo $pre1->hijo_id; ?>">
                                                 </div>
                                                 
                                                 <div class="form-group">
@@ -436,12 +326,17 @@
                                         <div class="modal-body">
                                            <?php echo form_open_multipart('archivo/do_upload', array('method'=>'POST')); ?>
 
-                                                 <div class="form-group">
-                                                    <input type="text" hidden="" id="nombre_raiz" name="nombre_raiz" value="<?php echo $pre1->nombre; ?>">
+                                                <div class="form-group">
+                                                    <input type="text" hidden="" id="nombre_hijo" name="nombre_hijo" value="<?php echo $pre1->nombre; ?>">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <input type="text" hidden="" id="raiz_id" name="raiz_id" value="<?php echo $pre1->raiz_id; ?>">
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <input type="text" hidden="" id="hijo_id" name="hijo_id" value="<?php echo $pre1->hijo_id; ?>">
                                                 </div>
                                                 
                                                 <div class="form-group">
@@ -495,13 +390,20 @@
                                         <div class="modal-body">
                                           <?php echo form_open_multipart('archivo/do_upload', array('method'=>'POST')); ?>
 
-                                                <div class="form-group">
-                                                    <input type="text" hidden="" id="nombre_raiz" name="nombre_raiz" value="<?php echo $pre1->nombre; ?>">
+                                               <div class="form-group">
+                                                    <input type="text" hidden="" id="nombre_hijo" name="nombre_hijo" value="<?php echo $pre1->nombre; ?>">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <input type="text" hidden="" id="raiz_id" name="raiz_id" value="<?php echo $pre1->raiz_id; ?>">
                                                 </div>
+
+
+                                                <div class="form-group">
+                                                    <input type="text" hidden="" id="hijo_id" name="hijo_id" value="<?php echo $pre1->hijo_id; ?>">
+                                                </div>
+
+                                              
                                                 
                                                 <div class="form-group">
                                                     <input type="text" hidden="" id="carpeta" name="carpeta" value="jpg">
@@ -554,12 +456,17 @@
                                         <div class="modal-body">
                                            <?php echo form_open_multipart('archivo/do_upload', array('method'=>'POST')); ?>
 
-                                                <div class="form-group">
-                                                    <input type="text" hidden="" id="nombre_raiz" name="nombre_raiz" value="<?php echo $pre1->nombre; ?>">
+                                               <div class="form-group">
+                                                    <input type="text" hidden="" id="nombre_hijo" name="nombre_hijo" value="<?php echo $pre1->nombre; ?>">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <input type="text" hidden="" id="raiz_id" name="raiz_id" value="<?php echo $pre1->raiz_id; ?>">
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <input type="text" hidden="" id="hijo_id" name="hijo_id" value="<?php echo $pre1->hijo_id; ?>">
                                                 </div>
                                                 
                                                 <div class="form-group">
@@ -704,19 +611,6 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>public/assets/plugins/edit/ubicacionscript.js"></script>
 
-    <script>
-        function agregarform(datos)
-        {
-             d=datos.split('||');
-              $('#hijo_idc').val(d[0]);
-              $('#nombrec').val(d[1]);
-              $('#descripcion1c').val(d[2]);
-              $('#descripcion2c').val(d[3]);
-              $('#tipoc').val(d[4]);
-              $('#raiz_idc').val(d[5]);
-        }
-
-    </script>
     
     <script>
     function agregarform1(datos1)
@@ -728,6 +622,7 @@
               $('#descripcion21').val(d1[3]);
               $('#carpeta1').val(d1[4]);
               $('#raiz_id1').val(d1[5]);
+              $('#hijo_id1').val(d1[6]);
 
         }
      </script>
@@ -789,4 +684,3 @@
         },
     });
     </script>
-    

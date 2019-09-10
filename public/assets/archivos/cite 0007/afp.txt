@@ -1,0 +1,57 @@
+CREATE TABLE "archivo"."raiz" (
+  "raiz_id" SERIAL,
+  "nombre" varchar(150) COLLATE "pg_catalog"."default" NOT NULL,
+  "descripcion1" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "descripcion2" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "predio_id" int4 NOT NULL,
+  "activo" int4 NOT NULL DEFAULT 1,
+  "usu_creacion" int4,
+  "usu_modificacion" int4,
+  "usu_eliminacion" int4,
+  "fec_creacion" timestamp(6) DEFAULT ('now'::text)::timestamp without time zone,
+  "fec_modificacion" timestamp(6),
+  "fec_eliminacion" timestamp(6),
+  CONSTRAINT "pk_raiz" PRIMARY KEY ("raiz_id")
+)
+;
+
+CREATE TABLE "archivo"."hijo" (
+  "hijo_id" SERIAL,
+  "nombre" varchar(150) COLLATE "pg_catalog"."default" NOT NULL,
+  "descripcion1" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "descripcion2" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "raiz_id" int4 NOT NULL,
+  "activo" int4 NOT NULL DEFAULT 1,
+  "usu_creacion" int4,
+  "usu_modificacion" int4,
+  "usu_eliminacion" int4,
+  "fec_creacion" timestamp(6) DEFAULT ('now'::text)::timestamp without time zone,
+  "fec_modificacion" timestamp(6),
+  "fec_eliminacion" timestamp(6),
+  CONSTRAINT "pk_hijo" PRIMARY KEY ("hijo_id")
+)
+;
+
+CREATE TABLE "archivo"."documento" (
+  "documento_id" SERIAL,
+  "nombre" varchar(150) COLLATE "pg_catalog"."default" NOT NULL,
+  "descripcion1" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "descripcion2" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "raiz_id" int4,
+  "hijo_id" int4,
+  "carpeta" varchar(100) COLLATE "pg_catalog"."default" NOT NULL,
+  "adjunto" varchar(250) COLLATE "pg_catalog"."default" NOT NULL,
+  "extension" varchar(250) COLLATE "pg_catalog"."default" NOT NULL,
+  "url" varchar(250) COLLATE "pg_catalog"."default" NOT NULL,
+  "activo" int4 NOT NULL DEFAULT 1,
+  "usu_creacion" int4,
+  "usu_modificacion" int4,
+  "usu_eliminacion" int4,
+  "fec_creacion" timestamp(6) DEFAULT ('now'::text)::timestamp without time zone,
+  "fec_modificacion" timestamp(6),
+  "fec_eliminacion" timestamp(6),
+  CONSTRAINT "pk_documento" PRIMARY KEY ("documento_id")
+)
+;
+
+

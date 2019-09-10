@@ -110,7 +110,7 @@
 
 
         var ratonParado = null;
-        var milisegundosLimite = 600000;
+        var milisegundosLimite = 900000;    //15 minutos para q se cierre la session
 
          $(document).on('mousemove', function() {
            clearTimeout(ratonParado);
