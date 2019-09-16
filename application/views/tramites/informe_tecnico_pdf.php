@@ -142,14 +142,14 @@
                         <td align="left" style="width: 40%;">
                             <div class="col-lg-11 col-md-12">
                                 <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
-                                    <label class="control-label text-right col-md-3">REF : </label>
+                                    <label class="control-label text-right col-md-3">REFERENCIA : </label>
                                     
                                 </div>
                             </div>            
                         </td>
                         <td align="left" style="width: 60%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $tramite->referencia; ?>">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="Tramite <?php echo $tramite->nro_tramite; ?>">
                             </div>
                         </td>
                     </tr>
@@ -163,9 +163,13 @@
                                 </div>
                             </div>            
                         </td>
+                        <?php setlocale(LC_TIME, "spanish");
+                            $mi_fecha = str_replace("/", "-", $tramite->fecha_informe);           
+                            $Nueva_Fecha = date("d-m-Y", strtotime($mi_fecha));             
+                            $Mes_Anyo = strftime("%A, %d de %B de %Y", strtotime($Nueva_Fecha));?>
                         <td align="left" style="width: 60%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $tramite->fecha_informe; ?>">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="40" value="<?php echo $Mes_Anyo; ?>">
                             </div>
                         </td>
                     </tr>
@@ -204,7 +208,7 @@
                         </td>
                         <td align="center" style="width: 15%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                 <input type="text" class="form-control" id="lote" name="lote" size="10" value="<?php echo $tramite->correlativo ?>">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="10" value="<?php echo $tramite->nro_tramite; ?>">
                             </div>
                         </td>
 
@@ -216,9 +220,12 @@
                                 </div>
                             </div>            
                         </td>
+                        <?php $fecha_nueva = str_replace("/", "-", $tramite->fecha_solicitud);           
+                            $fecha_t = date("d-m-Y", strtotime($fecha_nueva));             
+                            $fecha_mod = strftime("%A, %d de %B de %Y", strtotime($fecha_t)); ?>
                         <td align="center" style="width: 30%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->fecha_solicitud ?>">
+                                <input type="text" id="superficie_total" name="superficie_total" size="28" value="<?php echo $fecha_mod; ?>">
                             </div>
                         </td>                                        
                     </tr>
@@ -264,7 +271,7 @@
                         </td>
                         <td align="center" style="width: 15%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" 0 ">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" <?php echo $tramite->solicitante2; ?>">
                             </div>
                         </td>
 
@@ -278,7 +285,7 @@
                         </td>
                         <td align="center" style="width: 30%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                <input type="text" id="superficie_total" name="superficie_total" size="12" value=" ' ' ">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value=" <?php echo $tramite->ci2; ?> ">
                             </div>
                         </td>                                        
                     </tr>
@@ -345,7 +352,7 @@
                         <td align="left" style="width: 20%;">
                             <div class="col-lg-11 col-md-12">
                                 <div class="form-group row" style="font-size: 11px; height: 15px; text-align: right;">
-                                    <label class="control-label text-right col-md-3">MANZANO</label>
+                                    <label class="control-label text-right col-md-3">MANZANO : </label>
                                     
                                 </div>
                             </div>            
@@ -359,7 +366,7 @@
                         <td align="center" style="width: 13%;">
                             <div class="col-lg-11 col-md-12">
                                 <div class="form-group row" style="font-size: 11px; height: 15px;text-align: right;">
-                                    <label class="control-label text-right col-md-3">COMUNIDAD :</label>
+                                    <label class="control-label text-right col-md-3">COMUNIDAD : </label>
                                     
                                 </div>
                             </div>            
@@ -455,7 +462,7 @@
                         </td>
                         <td align="center" style="width: 15%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" 0 ">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" <?php echo $tramite->solicitante2 ?> ">
                             </div>
                         </td>
 
@@ -469,7 +476,7 @@
                         </td>
                         <td align="center" style="width: 30%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                <input type="text" id="superficie_total" name="superficie_total" size="12" value=" ' ' ">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->ci2 ?>">
                             </div>
                         </td>                                        
                     </tr>
@@ -553,7 +560,7 @@
                         </td>
                         <td align="center" style="width: 15%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value=" 0 ">
+                                 <input type="text" class="form-control" id="lote" name="lote" size="30" value="<?php echo $tramite->solicitante2 ?>">
                             </div>
                         </td>
 
@@ -567,7 +574,7 @@
                         </td>
                         <td align="center" style="width: 30%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                <input type="text" id="superficie_total" name="superficie_total" size="12" value=" ' ' ">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->ci2 ?>">
                             </div>
                         </td>                                        
                     </tr>
@@ -616,9 +623,10 @@
                                 </div>
                             </div>            
                         </td>
+                        <?php $fecha_test = date("d-m-Y",strtotime($tramite->fecha_testimonio)); ?>
                         <td align="center" style="width: 30%;">
                             <div class="col-md-9" style="font-size: 11px; height: 15px;">
-                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $tramite->fecha_testimonio ?>">
+                                <input type="text" id="superficie_total" name="superficie_total" size="12" value="<?php echo $fecha_test; ?>">
                             </div>
                         </td>                                   
                     </tr>
@@ -658,7 +666,7 @@
                         </td>
                         <td align="center" style="width: 72%;">
                             <div style="font-size: 11px; height: 15px; ">
-                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="0">
+                                <input type="text" id="jurisdicion" name="jurisdicion" size="55" value="<?php echo $tramite->solicitante2 ?>">
                             </div>
                         </td>
                        

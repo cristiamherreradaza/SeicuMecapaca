@@ -649,6 +649,7 @@ class Tipo_tramite extends CI_Controller {
 			$fuente = $datos_organigrama_persona[0]['organigrama_persona_id'];
 			// vdebug($datos_organigrama_persona, true, false, true);
 			$this->db->where('de', $fuente);
+			$this->db->where('activo', 1);
 			$this->db->order_by('fecha_informe', 'DESC');
 			$query = $this->db->get('tramite.informe_tecnico');
 			// vdebug($query, false, false, true);
@@ -662,9 +663,7 @@ class Tipo_tramite extends CI_Controller {
 			$this->load->view('tramites/lista_informes', $data);
 			$this->load->view('admin/footer');
 			$this->load->view('predios/index_js');
-
-		}
-		else{
+		}else{
 			redirect(base_url());
         }
 	}
@@ -708,6 +707,100 @@ class Tipo_tramite extends CI_Controller {
 		else{
 			redirect(base_url());
         }
+	}
+
+	public function editar($idTramite = null){
+		if($this->session->userdata("login")){
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $datos['personas'] = $this->derivaciones_model->personal($resi->persona_id);
+            $datos['tramites'] = $this->db->query("SELECT * FROM tramite.informe_tecnico WHERE informe_tecnico_id='$idTramite'")->row();
+            $valor=(int)$datos['tramites']->a;
+            $a=$this->db->query("SELECT persona_id FROM tramite.organigrama_persona WHERE organigrama_persona_id = '$valor'")->row();	          
+            $datos['a']=$this->db->query("SELECT organigrama_persona_id AS id, UPPER(nombres || ' ' || paterno || ' ' || materno) AS nombre, UPPER(unidad) AS unidad, UPPER(descripcion) AS cargo FROM tramite.vista_organigrama_persona_cargo WHERE persona_id = '$a->persona_id'")->row();
+            $valor=(int)$datos['tramites']->via;
+            $via=$this->db->query("SELECT persona_id FROM tramite.organigrama_persona WHERE organigrama_persona_id = '$valor'")->row();
+            $datos['via']=$this->db->query("SELECT organigrama_persona_id AS id, UPPER(nombres || ' ' || paterno || ' ' || materno) AS nombre, UPPER(unidad) AS unidad, UPPER(descripcion) AS cargo FROM tramite.vista_organigrama_persona_cargo WHERE persona_id = '$via->persona_id'")->row();
+            $valor=(int)$datos['tramites']->procesador;
+            $procesador=$this->db->query("SELECT persona_id FROM tramite.organigrama_persona WHERE organigrama_persona_id = '$valor'")->row();
+            $datos['procesador']=$this->db->query("SELECT organigrama_persona_id AS id, UPPER(nombres || ' ' || paterno || ' ' || materno) AS nombre, UPPER(unidad) AS unidad, UPPER(descripcion) AS cargo FROM tramite.vista_organigrama_persona_cargo WHERE persona_id = '$procesador->persona_id'")->row();
+			$this->load->view('admin/header');
+	        $this->load->view('admin/menu');
+	        $this->load->view('tramites/editar_informe', $datos);
+	        $this->load->view('admin/footer');
+	        $this->load->view('predios/index_js');
+		}else{
+			redirect(base_url());
+        }
+	}
+	public function guardar_edicion(){
+		if($this->session->userdata("login")){
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $dato = $resi->persona_id;
+            $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
+            $consulta = $this->db->query("SELECT organigrama_persona_id FROM tramite.organigrama_persona WHERE fec_baja is NULL AND persona_id = '$res->persona_id'")->row();
+            $fec = date("Y-m-d");
+            $informe =$this->input->post('informe_id'); 
+            $array = array(
+				'cite' => $this->input->post('cite'),
+				'a' =>$this->input->post('a'),
+				'via' => $this->input->post('via'),
+				'de' => $consulta->organigrama_persona_id,
+				'nro_tramite' =>$this->input->post('nro_tramite'),
+				'fecha_informe' => $fec,
+				'solicitante' => $this->input->post('solicitante'),
+				'ci' => $this->input->post('ci'),
+				'solicitante2' => $this->input->post('solicitante2'),
+				'ci2' => $this->input->post('ci2'),
+				'tramite_id' => $this->input->post('tipo_tramite_id'),
+				'ubicacion' =>$this->input->post('ubicacion'),
+				'lote' =>$this->input->post('lote'),
+				'urbanizacion' =>$this->input->post('urbanizacion'),
+				'manzana' => $this->input->post('manzana'),
+				'comunidad'=>$this->input->post('comunidad'),
+				'superficie_testimonio'=>$this->input->post('superficie_testimonio'),
+				'superficie_medicion'=>$this->input->post('superficie_medicion'),
+				'nro_folio'=> $this->input->post('nro_folio'),
+				'nro_testimonio'=> $this->input->post('nro_testimonio'),
+				'notaria'=>$this->input->post('notaria'),
+				'fecha_testimonio'=> $this->input->post('fecha_testimonio'),
+				'notario'=> $this->input->post('notario'),
+				'impuestos'=> $this->input->post('impuestos'),
+				'observaciones'=>$this->input->post('observaciones'),
+				'procesador'=>$this->input->post('procesador'),
+				'fecha_solicitud'=>$this->input->post('fecha_solicitud'),
+				'usu_modificacion' => $dato,
+				'fec_modificacion' => date("Y-m-d H:i:s") 
+			);
+			$this->db->where('informe_tecnico_id', $informe);
+        	$this->db->update('tramite.informe_tecnico', $array);
+            //$this->db->insert('tramite.informe_tecnico', $array);
+			redirect('tipo_tramite/lista');
+		}else{
+			redirect(base_url());
+        }
+	}
+
+	public function eliminar_informe($idTramite = NULL){
+		if($this->session->userdata("login")){
+		 	//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_eliminacion = $resi->persona_id;
+	        $fec_eliminacion = date("Y-m-d H:i:s"); 
+
+		    $data = array(
+	            'activo' => 0,
+	            'usu_eliminacion' => $usu_eliminacion,
+	            'fec_eliminacion' => $fec_eliminacion
+	        );
+	        $this->db->where('informe_tecnico_id', $idTramite);
+	        $this->db->update('tramite.informe_tecnico', $data);
+	        redirect('tipo_tramite/lista');
+		}else{
+			redirect(base_url());
+        }	
 	}
 
 //***************************************FIN DE INFORME TECNICO***********************************************

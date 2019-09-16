@@ -10,7 +10,7 @@
                                 <h2 class="mb-0">CITE: <?php echo $tramite->cite; ?></h2>
                                 <h4 class="font-light mt-0">Referencia <?php echo $tramite->referencia; ?></h4>
                             </div>
-                            <div class="col-6 align-self-center display-8 text-info text-right">Fecha: <?php echo date("Y-m-d",strtotime($tramite->fecha)); ?></div>
+                            <div class="col-6 align-self-center display-8 text-info text-right">Fecha: <?php echo date("d-m-Y",strtotime($tramite->fecha)); ?></div>
                         </div>
                         <div class="row">
                             <div class="col-6">

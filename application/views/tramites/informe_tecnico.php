@@ -42,8 +42,8 @@
                                                 <select class="custom-select col-12" id="a" name="a" required>
                                                     <option value=""></option>
                                                     <?php foreach ($personas as $key => $p): ?>
-                                                        <option value="<?php echo $p['id'] ?>"><?php echo $p['nombre']; ?> - <?php echo $p['cargo']; ?> (<?php echo $p['unidad']; ?></option>
-                                                        <?php endforeach ?>
+                                                        <option value="<?php echo $p['id'] ?>"><?php echo $p['nombre']; ?> - <?php echo $p['cargo']; ?> (<?php echo $p['unidad']; ?>)</option>
+                                                    <?php endforeach ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -59,18 +59,16 @@
                                             </div>
                                         </div>
                                         <div class="form-group  row">
-                                            <label for="example-text-input" class="col-2 col-form-label">Referencia</label>
+                                            <label for="example-text-input" class="col-2 col-form-label">Nro. de tramite</label>
                                             <div class="col-10">
-                                                <input class="form-control" type="text" id="referencia" name="referencia" required>
+                                                <input class="form-control" type="text" id="nro_tramite" name="nro_tramite" required>
                                             </div>
                                         </div>
-
-                                        <?php $fecha= date('d-m-Y'); ?>
-                                        <!-- <div class="col-md-12 mb-form-group mb-5">
+                                        <!--<?php $fecha //= date('d-m-Y'); ?>
+                                         <div class="col-md-12 mb-form-group mb-5">
                                             <input type="text" class="form-control" id="fecha_tramite" name="fecha_tramite" value="<?php echo $fecha ?>" required>
                                             <label >Fecha<span class="text-danger">*</span></label>
                                         </div> -->
-                                        
                                         <div class="form-group row">
                                             <label for="example-month-input2" class="col-2 col-form-label">Procesador : </label>
                                             <div class="col-10">
@@ -83,29 +81,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                        <div class="col-md-12 mb-form-group" style="padding-top: 30px; padding-bottom: 20px;">
+                                    <div class="col-md-12 mb-form-group" style="padding-top: 30px; padding-bottom: 20px;">
                                             <u><b>ANTECEDENTES</b></u> <br>   
                                         <b>Da curso a la siguiente solicitud</b> <br/>
                                         </div>
                                         <div class="row" >
-                                            <div class="form-group row col-6">
-                                                <label for="example-text-input" class="col-3 col-form-label">GAMM</label>
+                                            <div class="form-group row col-12">
+                                                <label for="example-text-input" class="col-3 col-form-label">Fecha de solicitud</label>
                                                 <div class="col-9">
-                                                    <input class="form-control" type="text" id="correlativo" name="correlativo" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row col-6">
-                                                <label for="example-text-input" class="col-3 col-form-label">De fecha</label>
-                                                <div class="col-9">
-                                                    <input class="form-control" type="text" id="fecha_solicitud" name="fecha_solicitud" required>
+                                                    <input class="form-control" type="date" id="fecha_solicitud" name="fecha_solicitud" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group  row col-8">
-                                                <label for="example-text-input" class="col-2 col-form-label">Solicitante</label>
-                                                <div class="col-10">
+                                                <label for="example-text-input" class="col-3 col-form-label">Solicitante 1</label>
+                                                <div class="col-9">
                                                     <input class="form-control" type="text" id="solicitante" name="solicitante" required>
                                                 </div>
                                             </div>
@@ -116,7 +107,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+                                        <div class="row">
+                                            <div class="form-group  row col-8">
+                                                <label for="example-text-input" class="col-3 col-form-label">Solicitante 2</label>
+                                                <div class="col-9">
+                                                    <input class="form-control" type="text" id="solicitante2" name="solicitante2" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group  row col-4">
+                                                <label for="example-text-input" class="col-2 col-form-label">CI</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" id="ci2" name="ci2" >
+                                                </div>
+                                            </div>
+                                        </div>
                                         <?php $lista2 = $this->db->query("SELECT * FROM tramite.tipo_tramite  WHERE activo = '1' ORDER BY tipo_tramite_id ASC")->result();
                                             ?>
                                         <div class="form-group row">
@@ -182,8 +186,6 @@
                                             </div>
                                         </div>
                                         
-                                        
-
                                         <div class="col-md-12 mb-form-group " style="padding-top: 30px; padding-bottom: 20px;">
                                             <u><b>DOCUMENTACION PRESENTADA</b></u> <br>
                                             <b>Folio</b>
@@ -213,7 +215,7 @@
                                             <div class="form-group row col-4">
                                                 <label for="example-text-input" class="col-4 col-form-label">Fecha</label>
                                                 <div class="col-8">
-                                                    <input class="form-control" type="text" id="fecha_testimonio" name="fecha_testimonio" required>
+                                                    <input class="form-control" type="date" id="fecha_testimonio" name="fecha_testimonio" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -240,7 +242,7 @@
                                         <div class="form-group  row">
                                             <label for="example-text-input" class="col-2 col-form-label">Observaciones</label>
                                             <div class="col-10">
-                                                <input class="form-control" type="text" id="observaciones" name="observaciones" required>
+                                                <input class="form-control" type="text" id="observaciones" name="observaciones" >
                                             </div>
                                         </div>
 
