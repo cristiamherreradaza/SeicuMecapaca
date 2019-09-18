@@ -25,7 +25,7 @@ class Reportes_m extends CI_Controller
     {
         if ($this->session->userdata("login")) {
 
-            redirect(base_url() . "activos/nuevo");
+            redirect(base_url() );
         } else {
             redirect(base_url());
         }
@@ -43,29 +43,44 @@ class Reportes_m extends CI_Controller
  
     public function pdftest()
     {
+        if ($this->session->userdata("login")) {
+
         $this->load->view('user_list');
         $html = $this->output->get_output();
         $this->load->library('pdf');
         $this->dompdf->loadHtml($html);
-        $this->dompdf->setPaper('A4', 'landscape');
+        $this->dompdf->setPaper('letter', 'landscape');
         $this->dompdf->render();
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+         
+        } else {
+            redirect(base_url());
+        }
+
+
     }
 
     public function pdf()
     {
-        $this->load->view('reports/rep_nocatastro');
+        if ($this->session->userdata("login")) {
+
+              $this->load->view('reports/rep_nocatastro');
         $html = $this->output->get_output();
         $this->load->library('pdf');
         $this->dompdf->loadHtml($html);
-        $this->dompdf->setPaper('A4', 'portrait');
+        $this->dompdf->setPaper('letter', 'portrait');
         $this->dompdf->render();
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+        } else {
+            redirect(base_url());
+        }
+      
     } 
 
     public function pdf_nc($id=null)    
     {
-        date_default_timezone_set('America/La_Paz');
+        if ($this->session->userdata("login")) {
+            date_default_timezone_set('America/La_Paz');
 
         // Define key-value array
         $days_dias = array(
@@ -87,7 +102,7 @@ class Reportes_m extends CI_Controller
         if ($mes == "June") $mes = "Junio";
         if ($mes == "July") $mes = "Julio";
         if ($mes == "August") $mes = "Agosto";
-        if ($mes == "September") $mes = "Setiembre";
+        if ($mes == "September") $mes = "Septiembre";
         if ($mes == "October") $mes = "Octubre";
         if ($mes == "November") $mes = "Noviembre";
         if ($mes == "December") $mes = "Diciembre";
@@ -133,7 +148,7 @@ class Reportes_m extends CI_Controller
         if ($mes_n == "6") $mes_n = "Junio";
         if ($mes_n == "7") $mes_n = "Julio";
         if ($mes_n == "8") $mes_n = "Agosto";
-        if ($mes_n == "9") $mes_n = "Setiembre";
+        if ($mes_n == "9") $mes_n = "Septiembre";
         if ($mes_n == "10") $mes_n = "Octubre";
         if ($mes_n == "11") $mes_n = "Noviembre";
         if ($mes_n == "12") $mes_n = "Diciembre";
@@ -165,7 +180,7 @@ class Reportes_m extends CI_Controller
         if ($mes_i == "6") $mes_i = "Junio";
         if ($mes_i == "7") $mes_i = "Julio";
         if ($mes_i == "8") $mes_i = "Agosto";
-        if ($mes_i == "9") $mes_i = "Setiembre";
+        if ($mes_i == "9") $mes_i = "Septiembre";
         if ($mes_i == "10") $mes_i = "Octubre";
         if ($mes_i == "11") $mes_i = "Noviembre";
         if ($mes_i == "12") $mes_n = "Diciembre";
@@ -196,11 +211,20 @@ class Reportes_m extends CI_Controller
         $this->dompdf->setPaper('letter', 'portrait');
         $this->dompdf->render();
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+
+            
+        } else {
+            redirect(base_url());
+        }
+
+
+        
     }  
 
     public function pdf_j($id=null)    
     {
-        date_default_timezone_set('America/La_Paz');
+        if ($this->session->userdata("login")) {
+            date_default_timezone_set('America/La_Paz');
         // Define key-value array
         $days_dias = array(
         'Monday'=>'Lunes',
@@ -220,7 +244,7 @@ class Reportes_m extends CI_Controller
         if ($mes == "June") $mes = "Junio";
         if ($mes == "July") $mes = "Julio";
         if ($mes == "August") $mes = "Agosto";
-        if ($mes == "September") $mes = "Setiembre";
+        if ($mes == "September") $mes = "Septiembre";
         if ($mes == "October") $mes = "Octubre";
         if ($mes == "November") $mes = "Noviembre";
         if ($mes == "December") $mes = "Diciembre";
@@ -274,7 +298,7 @@ class Reportes_m extends CI_Controller
         if ($mes_n == "6") $mes_n = "Junio";
         if ($mes_n == "7") $mes_n = "Julio";
         if ($mes_n == "8") $mes_n = "Agosto";
-        if ($mes_n == "9") $mes_n = "Setiembre";
+        if ($mes_n == "9") $mes_n = "Septiembre";
         if ($mes_n == "10") $mes_n = "Octubre";
         if ($mes_n == "11") $mes_n = "Noviembre";
         if ($mes_n == "12") $mes_n = "Diciembre";
@@ -301,7 +325,7 @@ class Reportes_m extends CI_Controller
         if ($mes_i == "6") $mes_i = "Junio";
         if ($mes_i == "7") $mes_i = "Julio";
         if ($mes_i == "8") $mes_i = "Agosto";
-        if ($mes_i == "9") $mes_i = "Setiembre";
+        if ($mes_i == "9") $mes_i = "Septiembre";
         if ($mes_i == "10") $mes_i = "Octubre";
         if ($mes_i == "11") $mes_i = "Noviembre";
         if ($mes_i == "12") $mes_n = "Diciembre";
@@ -334,11 +358,19 @@ class Reportes_m extends CI_Controller
         $this->dompdf->setPaper('letter', 'portrait');
         $this->dompdf->render();
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+
+            
+        } else {
+            redirect(base_url());
+        }
+
+        
     } 
     
     public function pdf_sup($id=null)    
     {
-        date_default_timezone_set('America/La_Paz');
+        if ($this->session->userdata("login")) {
+            date_default_timezone_set('America/La_Paz');
 
         // Define key-value array
         $days_dias = array(
@@ -360,7 +392,7 @@ class Reportes_m extends CI_Controller
         if ($mes == "June") $mes = "Junio";
         if ($mes == "July") $mes = "Julio";
         if ($mes == "August") $mes = "Agosto";
-        if ($mes == "September") $mes = "Setiembre";
+        if ($mes == "September") $mes = "Septiembre";
         if ($mes == "October") $mes = "Octubre";
         if ($mes == "November") $mes = "Noviembre";
         if ($mes == "December") $mes = "Diciembre";
@@ -408,7 +440,7 @@ class Reportes_m extends CI_Controller
         if ($mes_n == "6") $mes_n = "Junio";
         if ($mes_n == "7") $mes_n = "Julio";
         if ($mes_n == "8") $mes_n = "Agosto";
-        if ($mes_n == "9") $mes_n = "Setiembre";
+        if ($mes_n == "9") $mes_n = "Septiembre";
         if ($mes_n == "10") $mes_n = "Octubre";
         if ($mes_n == "11") $mes_n = "Noviembre";
         if ($mes_n == "12") $mes_n = "Diciembre";
@@ -444,7 +476,7 @@ class Reportes_m extends CI_Controller
         if ($mes_i == "6") $mes_i = "Junio";
         if ($mes_i == "7") $mes_i = "Julio";
         if ($mes_i == "8") $mes_i = "Agosto";
-        if ($mes_i == "9") $mes_i = "Setiembre";
+        if ($mes_i == "9") $mes_i = "Septiembre";
         if ($mes_i == "10") $mes_i = "Octubre";
         if ($mes_i == "11") $mes_i = "Noviembre";
         if ($mes_i == "12") $mes_n = "Diciembre";
@@ -477,11 +509,18 @@ class Reportes_m extends CI_Controller
         $this->dompdf->setPaper('letter', 'portrait');
         $this->dompdf->render();
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+
+            
+        } else {
+            redirect(base_url());
+        }
+        
     } 
 
     public function pdf_urb($id=null)    
     {
-        date_default_timezone_set('America/La_Paz');
+        if ($this->session->userdata("login")) {
+            date_default_timezone_set('America/La_Paz');
 
         // Define key-value array
         $days_dias = array(
@@ -503,7 +542,7 @@ class Reportes_m extends CI_Controller
         if ($mes == "June") $mes = "Junio";
         if ($mes == "July") $mes = "Julio";
         if ($mes == "August") $mes = "Agosto";
-        if ($mes == "September") $mes = "Setiembre";
+        if ($mes == "September") $mes = "Septiembre";
         if ($mes == "October") $mes = "Octubre";
         if ($mes == "November") $mes = "Noviembre";
         if ($mes == "December") $mes = "Diciembre";
@@ -551,7 +590,7 @@ class Reportes_m extends CI_Controller
         if ($mes_n == "6") $mes_n = "Junio";
         if ($mes_n == "7") $mes_n = "Julio";
         if ($mes_n == "8") $mes_n = "Agosto";
-        if ($mes_n == "9") $mes_n = "Setiembre";
+        if ($mes_n == "9") $mes_n = "Septiembre";
         if ($mes_n == "10") $mes_n = "Octubre";
         if ($mes_n == "11") $mes_n = "Noviembre";
         if ($mes_n == "12") $mes_n = "Diciembre";
@@ -585,7 +624,7 @@ class Reportes_m extends CI_Controller
         if ($mes_i == "6") $mes_i = "Junio";
         if ($mes_i == "7") $mes_i = "Julio";
         if ($mes_i == "8") $mes_i = "Agosto";
-        if ($mes_i == "9") $mes_i = "Setiembre";
+        if ($mes_i == "9") $mes_i = "Septiembre";
         if ($mes_i == "10") $mes_i = "Octubre";
         if ($mes_i == "11") $mes_i = "Noviembre";
         if ($mes_i == "12") $mes_n = "Diciembre";
@@ -618,6 +657,12 @@ class Reportes_m extends CI_Controller
         $this->dompdf->setPaper('letter', 'portrait');
         $this->dompdf->render();
         $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
+
+            
+        } else {
+            redirect(base_url());
+        }
+        
     } 
 
 
@@ -626,6 +671,7 @@ class Reportes_m extends CI_Controller
 
     public function html($id=null)
     {
+        if ($this->session->userdata("login")) {
             date_default_timezone_set('America/La_Paz');
 
         // Define key-value array
@@ -648,7 +694,7 @@ class Reportes_m extends CI_Controller
         if ($mes == "June") $mes = "Junio";
         if ($mes == "July") $mes = "Julio";
         if ($mes == "August") $mes = "Agosto";
-        if ($mes == "September") $mes = "Setiembre";
+        if ($mes == "September") $mes = "Septiembre";
         if ($mes == "October") $mes = "Octubre";
         if ($mes == "November") $mes = "Noviembre";
         if ($mes == "December") $mes = "Diciembre";
@@ -694,7 +740,7 @@ class Reportes_m extends CI_Controller
         if ($mes_n == "6") $mes_n = "Junio";
         if ($mes_n == "7") $mes_n = "Julio";
         if ($mes_n == "8") $mes_n = "Agosto";
-        if ($mes_n == "9") $mes_n = "Setiembre";
+        if ($mes_n == "9") $mes_n = "Septiembre";
         if ($mes_n == "10") $mes_n = "Octubre";
         if ($mes_n == "11") $mes_n = "Noviembre";
         if ($mes_n == "12") $mes_n = "Diciembre";
@@ -726,7 +772,7 @@ class Reportes_m extends CI_Controller
         if ($mes_i == "6") $mes_i = "Junio";
         if ($mes_i == "7") $mes_i = "Julio";
         if ($mes_i == "8") $mes_i = "Agosto";
-        if ($mes_i == "9") $mes_i = "Setiembre";
+        if ($mes_i == "9") $mes_i = "Septiembre";
         if ($mes_i == "10") $mes_i = "Octubre";
         if ($mes_i == "11") $mes_i = "Noviembre";
         if ($mes_i == "12") $mes_n = "Diciembre";
@@ -758,45 +804,105 @@ $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"
            
           $data['dia_linf']=$nombredia;
         $this->load->view('reports/rep_nocatastro',$data);    
+
+            
+        } else {
+            redirect(base_url());
+        }
+
+
+            
     }  
 
     public function proforma($id=null)    
     {
-        // date_default_timezone_set('America/La_Paz');
-        // // Define key-value array
-        // $days_dias = array(
-        // 'Monday'=>'Lunes',
-        // 'Tuesday'=>'Martes',
-        // 'Wednesday'=>'Miércoles',
-        // 'Thursday'=>'Jueves',
-        // 'Friday'=>'Viernes',
-        // 'Saturday'=>'Sábado',
-        // 'Sunday'=>'Domingo'
-        // );
-        // $mes=date('F');
-        // if ($mes == "January") $mes = "Enero";
-        // if ($mes == "February") $mes = "Febrero";
-        // if ($mes == "March") $mes = "Marzo";
-        // if ($mes == "April") $mes = "Abril";
-        // if ($mes == "May") $mes = "Mayo";
-        // if ($mes == "June") $mes = "Junio";
-        // if ($mes == "July") $mes = "Julio";
-        // if ($mes == "August") $mes = "Agosto";
-        // if ($mes == "September") $mes = "Setiembre";
-        // if ($mes == "October") $mes = "Octubre";
-        // if ($mes == "November") $mes = "Noviembre";
-        // if ($mes == "December") $mes = "Diciembre";
-        // $data['dia']=date('d');
-        // $data['dia_l']=$days_dias[date('l')];
-        // $data['mes']=  date('m');
-        // $data['mes_l']= $mes;
-        // $data['anio']=date('Y');         
-        // $dia =  $days_dias[date('l')];
+       
         // var_dump($id);
+
+        date_default_timezone_set('America/La_Paz');
+
+        // Define key-value array
+        $days_dias = array(
+        'Monday'=>'Lunes',
+        'Tuesday'=>'Martes',
+        'Wednesday'=>'Miércoles',
+        'Thursday'=>'Jueves',
+        'Friday'=>'Viernes',
+        'Saturday'=>'Sábado',
+        'Sunday'=>'Domingo'
+        );
+        $mes=date('F');
+
+        if ($mes == "January") $mes = "Enero";
+        if ($mes == "February") $mes = "Febrero";
+        if ($mes == "March") $mes = "Marzo";
+        if ($mes == "April") $mes = "Abril";
+        if ($mes == "May") $mes = "Mayo";
+        if ($mes == "June") $mes = "Junio";
+        if ($mes == "July") $mes = "Julio";
+        if ($mes == "August") $mes = "Agosto";
+        if ($mes == "September") $mes = "Septiembre";
+        if ($mes == "October") $mes = "Octubre";
+        if ($mes == "November") $mes = "Noviembre";
+        if ($mes == "December") $mes = "Diciembre";
+
+        $data['dia']=date('d');
+        $data['dia_l']=$days_dias[date('l')];
+        $data['mes']=  date('m');
+        $data['mes_l']= $mes;
+        $data['anio']=date('Y');   
 
         $data['proforma'] = $this->db->query("SELECT * FROM tramite.proforma WHERE proforma_id = '$id'")->row();
         $total = $this->db->query("SELECT * FROM tramite.proforma WHERE proforma_id = '$id'")->row();
-        $data['hoy'] = date("d/m/Y");
+
+
+        //fecha informe
+
+        $tiempo = $this->db->query("SELECT  EXTRACT(day from fecha_proforma)as dia,EXTRACT(MONTH from fecha_proforma)as mes,EXTRACT(YEAR from fecha_proforma)as anio FROM tramite.proforma WHERE proforma_id = '$id'")->row();
+
+        $data['dia_not']=$tiempo->dia;
+        $mes_n=$tiempo->mes;
+
+        if ($mes_n == "1") $mes_n = "Enero";
+        if ($mes_n == "2") $mes_n = "Febrero";
+        if ($mes_n == "3") $mes_n = "Marzo";
+        if ($mes_n == "4") $mes_n = "Abril";
+        if ($mes_n == "5") $mes_n = "Mayo";
+        if ($mes_n == "6") $mes_n = "Junio";
+        if ($mes_n == "7") $mes_n = "Julio";
+        if ($mes_n == "8") $mes_n = "Agosto";
+        if ($mes_n == "9") $mes_n = "Septiembre";
+        if ($mes_n == "10") $mes_n = "Octubre";
+        if ($mes_n == "11") $mes_n = "Noviembre";
+        if ($mes_n == "12") $mes_n = "Diciembre";
+
+         $data['mes_not']=$mes_n;
+        $data['anio_not']=$tiempo->anio;
+        //$data['dia_not_l']=$days_dias[$tiempo->dia];
+
+          /*dia literal*/
+         $fecha_inf= $this->db->query("SELECT * FROM tramite.proforma WHERE proforma_id = $id")->row();
+
+         $fecha=$fecha_inf->fecha_proforma;
+
+          $fecha = substr($fecha, 0, 10);
+          $numeroDia = date('d', strtotime($fecha));
+          $dia_infor = date('l', strtotime($fecha));
+          $mes = date('F', strtotime($fecha));
+          $anio = date('Y', strtotime($fecha));
+          $dias_ES = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
+          $dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+          $nombredia = str_replace($dias_EN, $dias_ES, $dia_infor);
+          $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+          $meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+          $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
+
+           
+          $data['dia_not_l']=$nombredia;
+
+        //fin de fecha
+
+     
         // var_dump($hoy);
         // $hoy['hoyy'] = date('d,m,Y');
         

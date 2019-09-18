@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Reporte de no Catastro</title>
+    <title>Certificado de superficie</title>
 
     <style type="text/css">
         @page {
@@ -146,8 +146,7 @@
              TERRENO, se encuentra ubicado en: 				<b><?php echo strtoupper( $datos_certificado->ubicacion); ?>  URBANIZACION <?php echo strtoupper( $datos_certificado->urbanizacion); ?>  
             LOTE <?php echo strtoupper( $datos_certificado->lote); ?> MANZANO <?php echo strtoupper( $datos_certificado->manzana); ?></b>			</p>
          
-	        <p align="center"> <b> <img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="36" />   • LA SUPERFICIE EN CUESTION SE ENCUENTRA UBICADA EN EX HACIENDA HUAJCHILLA, URBANIZACIÓN LAS PALMERAS II, 
-            LOTE 3-B, MANZANO B, CON UNA SUPERFICIE DE 715,16 M2 SEGÚN MEDICION REGISTRADO EN LA UNIDAD DE CATASTRO, DEL GOBIERNO AUTONOMO MUNICIPAL DE MECAPACA.																		
+	        <p align="center"> <b> <img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="36" />   • <?php echo strtoupper($datos_certificado->glosa)  ?> 																		
                 </b> </p>
           
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
@@ -161,7 +160,7 @@
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
             Es cuanto certificamos en honor a la verdad para fines consiguientes del interesado.																	
 	          <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
-              Es dado en el Palacio Consistorial de Mecapaca el día:  <?php echo $dia_linf.', '.$dia_inf.' de '.$mes_inf.' de '.$anio; ?>   							
+              Es dado en el Palacio Consistorial de Mecapaca el día:  <?php echo $dia_l.', '.$dia.' de '.$mes_l.' de '.$anio; ?>  							
               </p>
         
             <br>  

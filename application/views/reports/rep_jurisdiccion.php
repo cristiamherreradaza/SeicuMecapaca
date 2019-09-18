@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Reporte de no Catastro</title>
+    <title>Certificado de Jurisdiccion</title>
 
     <style type="text/css">
         @page {
@@ -165,7 +165,7 @@
 	        <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
             Es cuanto certificamos en honor a la verdad para fines consiguientes del interesado.																	
 	          <p><img src="<?php echo base_url(); ?>public/assets/images/reportes/blank.png" alt="Logo" width="26" class="logo"/>
-              Es dado en el Palacio Consistorial de Mecapaca el día:   <?php echo $dia_linf.', '.$dia_inf.' de '.$mes_inf.' de '.$anio; ?>  							
+              Es dado en el Palacio Consistorial de Mecapaca el día:   <?php echo $dia_l.', '.$dia.' de '.$mes_l.' de '.$anio; ?>  							
               </p>             
            </td>
        

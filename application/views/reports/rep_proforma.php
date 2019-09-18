@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Reporte de no Catastro</title>
+    <title>Proforma de Pago</title>
 
     <style type="text/css">
        /*#id{
@@ -67,7 +67,7 @@
                                                 </td>
                                                 <td align="right" style="width: 40%; text-align: center;">
                                                     <div style="font-size: 11px; height: 7px;">
-                                                        <input type="text" name="fecha_proforma" size="20" value="<?php echo $proforma->fecha_proforma ?>">
+                                                        <input type="text" name="fecha_proforma" size="20" value="<?php echo $dia_not_l.', '.$dia_not.' de '.$mes_not.' de '.$anio_not; ?> ">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -714,7 +714,7 @@
                                                 </td>
                                                 <td align="left" style="width: 30%; ">
                                                       <div class="form-group row" style="font-size: 71%; line-height: 5px;">
-                                                        <label class="control-label text-right col-md-3">jueves, <?php echo $hoy; ?></label>
+                                                        <label class="control-label text-right col-md-3"><?php echo $dia_l.', '.$dia.' de '.$mes_l.' de '.$anio; ?> </label>
                                                     </div>    
                                                 </td>
                                             </tr>
