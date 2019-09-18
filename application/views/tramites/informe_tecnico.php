@@ -134,9 +134,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 form-group" id="listas">    
-                                            
-                                        </div>
+                                       
                                         <div class="form-group row ">
                                             <label for="example-text-input" class="col-2 col-form-label">Ubicacion</label>
                                             <div class="col-10">
@@ -245,6 +243,15 @@
                                                 <input class="form-control" type="text" id="observaciones" name="observaciones" >
                                             </div>
                                         </div>
+                                        <div class="col-md-12 mb-form-group ">
+                                            Glosa del certificado de superficie (Datos del predio anterior)
+                                        </div>
+                                        <div class="form-group  row">
+                                            
+                                            <div class="col-12">
+                                                <textarea rows="3" class="form-control" type="text" id="glosa" name="glosa" placeholder="LA SUPERFICE EN CUESTION SE ENCUENTRA UBICADA EN EX HACIENDA HUAJCHILLA, URBANIZACION LAS PALMERAS II, LOTE 3-B, MANZANO B, CON UNA SUPERFICIE DE 715,16 M2 SEGUN MEDICION REGISTRADO EN LA UNIDAD DE CATASTRO, DEL GOBIERNO AUTONOMO MUNICIPAL DE MECAPACA"></textarea>
+                                            </div>
+                                        </div>
 
                                     <div class="row">
                                         <div class="col-md-12">
@@ -291,27 +298,6 @@
         </div>
     </div>
 </div>
- <script>
-    function CargarProductos(val)
-    {   
-
-        $.ajax({
-            type: "GET",
-            url: '<?php echo base_url(); ?>tipo_tramite/ajax_verifica1/',
-            data: 'param1='+val,
-            success: function(resp){
-                //alert(resp[resp.length]);
-                asistente = JSON.parse(resp);
-                $('.borrar').remove();
-                for (var i = 0; i < asistente.length; i++) {
-
-                    $('#listas').append('<div class="borrar"> <input type="checkbox" id="requisitos['+i+']" name="requisitos['+i+']" value="'+asistente[i]['requisito_id']+'"> '+asistente[i]['descripcion']+' </div>');
-                    //console.log(asistente[i]['descripcion']);
-                }
-            }
-        });
-    }
-</script>
 
 <script src="<?php echo base_url(); ?>public/assets/plugins/jquery/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw8R4L-CtMu9XuQBiymIEs6UEc715P2eA&callback=initMap&libraries=drawing" async defer></script>

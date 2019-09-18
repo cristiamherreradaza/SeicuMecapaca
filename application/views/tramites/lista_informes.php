@@ -10,7 +10,7 @@
                                 <tr>
                                     <th>FECHA</th>
                                     <th>CITE</th>
-                                    <th>REFERENCIA</th>
+                                    <th>NUMERO DE TRAMITE</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </thead>
@@ -18,7 +18,7 @@
                                 <tr>
                                     <th>FECHA</th>
                                     <th>CITE</th>
-                                    <th>REFERENCIA</th>
+                                    <th>NUMERO DE TRAMITE</th>
                                     <th>ACCIONES</th>
                                 </tr>
                             </tfoot>

@@ -589,47 +589,42 @@ class Tipo_tramite extends CI_Controller {
             $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
             $dato = $resi->persona_id;
             $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
-            $consulta = $this->db->query("SELECT organigrama_persona_id
-                                            FROM tramite.organigrama_persona
-                                            WHERE fec_baja is NULL
-                                            AND persona_id = '$res->persona_id'
-                                            ")->row();
-             $fec = date("Y-m-d"); 
-            
+            $consulta = $this->db->query("SELECT organigrama_persona_id FROM tramite.organigrama_persona WHERE fec_baja is NULL AND persona_id='$res->persona_id'")->row();
+            $fec = date("Y-m-d"); 
             $array = array(
-            'informe_tecnico_id' => 2,
-			'cite' => $this->input->post('cite'),
-			'a' =>$this->input->post('a'),
-			'via' => $this->input->post('via'),
-			'de' => $consulta->organigrama_persona_id,
-			'referencia' =>$this->input->post('referencia'),
-			'fecha_informe' => $fec,
-			'solicitante' => $this->input->post('solicitante'),
-			'ci' => $this->input->post('ci'),
-			'tramite_id' => $this->input->post('tipo_tramite_id'),
-			'ubicacion' =>$this->input->post('ubicacion'),
-			'lote' =>$this->input->post('lote'),
-			'urbanizacion' =>$this->input->post('urbanizacion'),
-			'manzana' => $this->input->post('manzana'),
-			'comunidad'=>$this->input->post('comunidad'),
-			'superficie_testimonio'=>$this->input->post('superficie_testimonio'),
-			'superficie_medicion'=>$this->input->post('superficie_medicion'),
-			'nro_folio'=> $this->input->post('nro_folio'),
-			'nro_testimonio'=> $this->input->post('nro_testimonio'),
-			'notaria'=>$this->input->post('notaria'),
-			'fecha_testimonio'=> $this->input->post('fecha_testimonio'),
-			'notario'=> $this->input->post('notario'),
-			'impuestos'=> $this->input->post('impuestos'),
-			'observaciones'=>$this->input->post('observaciones'),
-			'procesador'=>$this->input->post('procesador'),
-			'correlativo'=>$this->input->post('correlativo'),
-			'fecha_solicitud'=>$this->input->post('fecha_solicitud'),
+				'cite' => $this->input->post('cite'),
+				'a' =>$this->input->post('a'),
+				'via' => $this->input->post('via'),
+				'de' => $consulta->organigrama_persona_id,
+				'fecha_informe' => $fec,
+				'solicitante' => $this->input->post('solicitante'),
+				'ci' => $this->input->post('ci'),
+				'tramite_id' => $this->input->post('tipo_tramite_id'),
+				'ubicacion' =>$this->input->post('ubicacion'),
+				'lote' =>$this->input->post('lote'),
+				'urbanizacion' =>$this->input->post('urbanizacion'),
+				'manzana' => $this->input->post('manzana'),
+				'comunidad'=>$this->input->post('comunidad'),
+				'superficie_testimonio'=>$this->input->post('superficie_testimonio'),
+				'superficie_medicion'=>$this->input->post('superficie_medicion'),
+				'nro_folio'=> $this->input->post('nro_folio'),
+				'nro_testimonio'=> $this->input->post('nro_testimonio'),
+				'notaria'=>$this->input->post('notaria'),
+				'fecha_testimonio'=> $this->input->post('fecha_testimonio'),
+				'notario'=> $this->input->post('notario'),
+				'impuestos'=> $this->input->post('impuestos'),
+				'observaciones'=>$this->input->post('observaciones'),
+				'procesador'=>$this->input->post('procesador'),
+				'nro_tramite'=>$this->input->post('nro_tramite'),
+				'solicitante2'=>$this->input->post('solicitante2'),
+				'ci2'=>$this->input->post('ci2'),
+				'fecha_solicitud'=>$this->input->post('fecha_solicitud'),
+				'glosa'=>$this->input->post('glosa'),
+				'usu_creacion'=>$dato
 			);
-
             $this->db->insert('tramite.informe_tecnico', $array);
-			redirect('tipo_tramite/informe_tecnico');
-		}
-		else{
+			redirect('tipo_tramite/lista');
+		}else{
 			redirect(base_url());
         }
 	}
@@ -653,7 +648,6 @@ class Tipo_tramite extends CI_Controller {
 			$this->db->order_by('fecha_informe', 'DESC');
 			$query = $this->db->get('tramite.informe_tecnico');
 			// vdebug($query, false, false, true);
-
 			$data['mis_tramites'] = $query->result();
 			//$data['verifica'] = $this->rol_model->verifica();
 			//var_dump($usu_creacion);
@@ -717,13 +711,14 @@ class Tipo_tramite extends CI_Controller {
             $datos['tramites'] = $this->db->query("SELECT * FROM tramite.informe_tecnico WHERE informe_tecnico_id='$idTramite'")->row();
             $valor=(int)$datos['tramites']->a;
             $a=$this->db->query("SELECT persona_id FROM tramite.organigrama_persona WHERE organigrama_persona_id = '$valor'")->row();	          
-            $datos['a']=$this->db->query("SELECT organigrama_persona_id AS id, UPPER(nombres || ' ' || paterno || ' ' || materno) AS nombre, UPPER(unidad) AS unidad, UPPER(descripcion) AS cargo FROM tramite.vista_organigrama_persona_cargo WHERE persona_id = '$a->persona_id'")->row();
+            $datos['a']=$this->derivaciones_model->encontrado($a->persona_id);
+
             $valor=(int)$datos['tramites']->via;
             $via=$this->db->query("SELECT persona_id FROM tramite.organigrama_persona WHERE organigrama_persona_id = '$valor'")->row();
-            $datos['via']=$this->db->query("SELECT organigrama_persona_id AS id, UPPER(nombres || ' ' || paterno || ' ' || materno) AS nombre, UPPER(unidad) AS unidad, UPPER(descripcion) AS cargo FROM tramite.vista_organigrama_persona_cargo WHERE persona_id = '$via->persona_id'")->row();
+            $datos['via']=$this->derivaciones_model->encontrado($via->persona_id);
             $valor=(int)$datos['tramites']->procesador;
             $procesador=$this->db->query("SELECT persona_id FROM tramite.organigrama_persona WHERE organigrama_persona_id = '$valor'")->row();
-            $datos['procesador']=$this->db->query("SELECT organigrama_persona_id AS id, UPPER(nombres || ' ' || paterno || ' ' || materno) AS nombre, UPPER(unidad) AS unidad, UPPER(descripcion) AS cargo FROM tramite.vista_organigrama_persona_cargo WHERE persona_id = '$procesador->persona_id'")->row();
+            $datos['procesador']=$this->derivaciones_model->encontrado($procesador->persona_id);
 			$this->load->view('admin/header');
 	        $this->load->view('admin/menu');
 	        $this->load->view('tramites/editar_informe', $datos);
@@ -740,15 +735,14 @@ class Tipo_tramite extends CI_Controller {
             $dato = $resi->persona_id;
             $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
             $consulta = $this->db->query("SELECT organigrama_persona_id FROM tramite.organigrama_persona WHERE fec_baja is NULL AND persona_id = '$res->persona_id'")->row();
-            $fec = date("Y-m-d");
             $informe =$this->input->post('informe_id'); 
             $array = array(
 				'cite' => $this->input->post('cite'),
 				'a' =>$this->input->post('a'),
 				'via' => $this->input->post('via'),
-				'de' => $consulta->organigrama_persona_id,
 				'nro_tramite' =>$this->input->post('nro_tramite'),
-				'fecha_informe' => $fec,
+				'procesador'=>$this->input->post('procesador'),
+				'fecha_solicitud'=>$this->input->post('fecha_solicitud'),
 				'solicitante' => $this->input->post('solicitante'),
 				'ci' => $this->input->post('ci'),
 				'solicitante2' => $this->input->post('solicitante2'),
@@ -768,8 +762,7 @@ class Tipo_tramite extends CI_Controller {
 				'notario'=> $this->input->post('notario'),
 				'impuestos'=> $this->input->post('impuestos'),
 				'observaciones'=>$this->input->post('observaciones'),
-				'procesador'=>$this->input->post('procesador'),
-				'fecha_solicitud'=>$this->input->post('fecha_solicitud'),
+				'glosa'=>$this->input->post('glosa'),
 				'usu_modificacion' => $dato,
 				'fec_modificacion' => date("Y-m-d H:i:s") 
 			);

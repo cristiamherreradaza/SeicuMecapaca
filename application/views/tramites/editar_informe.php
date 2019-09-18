@@ -40,7 +40,7 @@
                                             <label for="example-month-input2" class="col-2 col-form-label">A : </label>
                                             <div class="col-10">
                                                 <select class="custom-select col-12" id="a" name="a" required>
-                                                    <option value="<?php echo $tramites->via ?>"><?php echo $via->nombre;?> - <?php echo $via->cargo;?> (<?php echo $via->unidad;?>)</option>
+                                                    <option value="<?php echo $tramites->a ?>"><?php echo $a->nombre;?> - <?php echo $a->cargo;?> (<?php echo $a->unidad;?>)</option>
                                                     <?php foreach ($personas as $key => $p): ?>
                                                         <option value="<?php echo $p['id'] ?>"><?php echo $p['nombre']; ?> - <?php echo $p['cargo']; ?> (<?php echo $p['unidad']; ?>)</option>
                                                     <?php endforeach ?>
@@ -51,7 +51,7 @@
                                             <label for="example-month-input2" class="col-2 col-form-label">VIA : </label>
                                             <div class="col-10">
                                                 <select class="custom-select col-12" id="via" name="via" required>
-                                                    <option value="<?php echo $tramites->via ?>"><?php echo $a->nombre;?> - <?php echo $a->cargo;?> (<?php echo $a->unidad;?>)</option>
+                                                    <option value="<?php echo $tramites->via ?>"><?php echo $via->nombre;?> - <?php echo $via->cargo;?> (<?php echo $via->unidad;?>)</option>
                                                     <?php foreach ($personas as $key => $p): ?>
                                                         <option value="<?php echo $p['id'] ?>"><?php echo $p['nombre']; ?> - <?php echo $p['cargo']; ?> (<?php echo $p['unidad']; ?>)</option>
                                                     <?php endforeach ?>
@@ -73,7 +73,7 @@
                                             <label for="example-month-input2" class="col-2 col-form-label">Procesador : </label>
                                             <div class="col-10">
                                                 <select class="custom-select col-12"  id="procesador" name="procesador" required>
-                                                    <option value="<?php echo $tramites->via ?>"><?php echo $procesador->nombre;?> - <?php echo $procesador->cargo;?> (<?php echo $procesador->unidad;?>)</option>
+                                                    <option value="<?php echo $tramites->procesador ?>"><?php echo $procesador->nombre;?> - <?php echo $procesador->cargo;?> (<?php echo $procesador->unidad;?>)</option>
                                                     <?php foreach ($personas as $key => $p): ?>
                                                         <option value="<?php echo $p['id'] ?>"><?php echo $p['nombre']; ?> - <?php echo $p['cargo']; ?> (<?php echo $p['unidad']; ?>)</option>
                                                     <?php endforeach ?>
@@ -239,6 +239,15 @@
                                     <label for="example-text-input" class="col-2 col-form-label">Observaciones</label>
                                     <div class="col-10">
                                         <input class="form-control" type="text" id="observaciones" name="observaciones" value="<?php echo $tramites->observaciones; ?>">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-form-group ">
+                                    Glosa del certificado de superficie (Datos del predio anterior)
+                                </div>
+                                <div class="form-group  row">
+                                    
+                                    <div class="col-12">
+                                        <textarea rows="3" class="form-control" type="text" id="glosa" name="glosa"><?php echo $tramites->glosa; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="row">
