@@ -32,10 +32,10 @@ class Archivo extends CI_Controller {
 			$lista['predios'] = $this->db->query("SELECT * FROM catastro.predio")->result();
 
 			foreach ($lista['predios'] as $val) {
-					$car = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id;
-					$documentos = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/documentos';
-					$imagenes = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/imagenes';
-					$planos = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/planos';
+					$car = base_url().'public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id;
+					$documentos = base_url().'public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/documentos';
+					$imagenes = base_url().'public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/imagenes';
+					$planos = base_url().'public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/planos';
 					// var_dump($carpeta);
 					if (!file_exists($car)) {
 			    		mkdir($car, 0777, true);
@@ -153,7 +153,7 @@ class Archivo extends CI_Controller {
 				if ($veri->nombre) {
 					redirect('archivo');
 				}else{
-					$car = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$nombre;
+					$car = base_url().'public/assets/archivos/'.$nombre;
 					mkdir($car, 0777, true);
 
 
@@ -187,12 +187,12 @@ class Archivo extends CI_Controller {
 		    $descripcion2 = $this->input->post('descripcion2');
 		    $carpeta = $this->input->post('carpeta');
 
-	        $antiguo = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$ant;
-	        $nuevo = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$nombre;
+	        $antiguo = base_url().'public/assets/archivos/'.$ant;
+	        $nuevo = base_url().'public/assets/archivos/'.$nombre;
 
-			// $documentos = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/documentos';
-			// $imagenes = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/imagenes';
-			// $planos = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/planos';
+			// $documentos = base_url().'public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/documentos';
+			// $imagenes = base_url().'public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/imagenes';
+			// $planos = base_url().'public/assets/archivos/'.$val->codcatas.'-'.$val->predio_id.'/planos';
 			// var_dump($carpeta);
 		    //		mkdir($carpeta, 0777, true);
 		    //  		mkdir($documentos, 0777, true);
@@ -276,7 +276,7 @@ class Archivo extends CI_Controller {
 				}else{
 
 
-				$car = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$nombre_raiz.'/'.$nombre;
+				$car = base_url().'public/assets/archivos/'.$nombre_raiz.'/'.$nombre;
 				mkdir($car, 0777, true);
 
 
@@ -315,7 +315,7 @@ class Archivo extends CI_Controller {
 		    $tipo = $this->input->post('tipo');
 
 	        $antiguo = 'C:/xampp/htdocs/CodeigniterPMGM/public/assets/archivos/'.$nombre_raiz.'/'.$ant;
-	        $nuevo = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$nombre_raiz.'/'.$nombre;
+	        $nuevo = base_url().'public/assets/archivos/'.$nombre_raiz.'/'.$nombre;
 	     
 
 		    rename($antiguo, $nuevo);
@@ -522,7 +522,7 @@ class Archivo extends CI_Controller {
 			   
 
 		        $antiguo = 'C:/xampp/htdocs/CodeigniterPMGM/public/assets/archivos/'.$nombre_raiz.'/'.$nombre_hijo.'/'.$ant.'.'.$ext;
-		        $nuevo = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$nombre_raiz.'/'.$nombre_hijo.'/'.$nombre.'.'.$ext;
+		        $nuevo = base_url().'public/assets/archivos/'.$nombre_raiz.'/'.$nombre_hijo.'/'.$nombre.'.'.$ext;
 			    rename($antiguo, $nuevo);
 			    
 			    $actualizar = $this->archivo_model->actualizardocumento($documento_id, $nombre, $descripcion1, $descripcion2, $adjunto, $url);
@@ -552,7 +552,7 @@ class Archivo extends CI_Controller {
 			   
 
 		        $antiguo = 'C:/xampp/htdocs/CodeigniterPMGM/public/assets/archivos/'.$nombre_raiz.'/'.$ant.'.'.$ext;
-		        $nuevo = 'C:\xampp\htdocs\CodeigniterPMGM\public/assets/archivos/'.$nombre_raiz.'/'.$nombre.'.'.$ext;
+		        $nuevo = base_url().'public/assets/archivos/'.$nombre_raiz.'/'.$nombre.'.'.$ext;
 			    rename($antiguo, $nuevo);
 			    
 			    $actualizar = $this->archivo_model->actualizardocumento($documento_id, $nombre, $descripcion1, $descripcion2, $adjunto, $url);

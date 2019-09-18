@@ -47,8 +47,10 @@ class Usuario_model extends CI_Model {
 
 	public function insertar_usuario($nombres, $paterno, $materno, $ci, $fec_nacimiento)
 	{	
-		
-		$array = array(
+
+		$id = $this->db->query("SELECT * FROM persona WHERE ci = '$ci'")->row();
+		if (!$id) {
+			$array = array(
 			'nombres' =>$nombres,
 			'paterno' =>$paterno,
 			'materno' =>$materno,
@@ -56,6 +58,8 @@ class Usuario_model extends CI_Model {
 			'fec_nacimiento' =>$fec_nacimiento
 			);
 		$this->db->insert('public.persona', $array);
+		}
+		
 	}
 
 	public function insertar_persona_perfil($persona_id, $perfil_id)
