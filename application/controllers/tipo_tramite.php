@@ -337,6 +337,7 @@ class Tipo_tramite extends CI_Controller {
 	public function insertar()
 	{
 		if($this->session->userdata("login")){
+			vdebug($this->input->post(), true, false, false, true);
 			$datos = $this->input->post();
 			if(isset($datos))
 			{
@@ -794,6 +795,24 @@ class Tipo_tramite extends CI_Controller {
 		}else{
 			redirect(base_url());
         }	
+	}
+
+	public function nueva_proforma($informe_tecnico_id = null)
+	{
+		$informe = $this->db->get_where('tramite.informe_tecnico', array('informe_tecnico_id'=>$informe_tecnico_id))->row_array();
+		$tramite = $this->db->get_where('tramite.tramite', array('tramite_id'=>$informe['tramite_id']))->row_array();
+		$rubros = $this->db->get('tramite.rubros')->result_array();
+		$data['informe']=$informe;
+		$data['tramite']=$tramite;
+		$data['rubros']=$rubros;
+
+		// vdebug($tramite, true, false, true);
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		$this->load->view('tramites/nueva_proforma', $data);
+		$this->load->view('admin/footer');
+		$this->load->view('predios/index_js');
+		
 	}
 
 //***************************************FIN DE INFORME TECNICO***********************************************

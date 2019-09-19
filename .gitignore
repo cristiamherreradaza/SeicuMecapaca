@@ -32,3 +32,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 public/assets/images/tramites/
 public/assets/files/predios/
+
+database.sample.php
