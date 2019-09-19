@@ -29,7 +29,7 @@
                                             <tr>
                                                 <th>nro</th>
                                                 <th>Tipo Tramite</th>
-                                                <th>Unidad</th>
+                                                <th>Persona</th>
                                                 <th>Orden</th>
                                                 <th>Flujo</th>                                                
                                                 <th>Estado</th>                                                         
@@ -40,13 +40,13 @@
                                             <?php $i=1;?>
                                             <?php foreach ($data_flujo as $row) { $datos = $row->flujo_id."||".
                                              $row->tipo_tramite_id."||".
-                                            $row->organigrama_id."||".
+                                            $row->organigrama_persona_id."||".
                                             $row->orden."||".
                                             $row->flujo; ?>
                                             <tr>
                                                 <td ><?php echo $i++;?></td>
                                                 <td><?php echo $row->tramite; ?></td>
-                                                <td><?php echo $row->unidad; ?></td>
+                                                <td><?php echo $row->nombreusuer; ?></td>
                                                 <td><?php echo $row->orden; ?></td>
                                                 <td><?php echo $row->flujo; ?></td>
                                                 <td>                                                                                               
@@ -93,11 +93,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                    <label for="location1">Unidad :<span class="text-danger"> *</span></label>
+                                    <label for="location1">Persona :<span class="text-danger"> *</span></label>
                                     <select class="custom-select form-control" id="organigrama_id" name="organigrama_id">
                                         <option value="">Seleccione Opcion</option>
                                         <?php foreach ($data_org as $tp) : ?>
-                                            <option value="<?php echo $tp->organigrama_id; ?>"><?php echo $tp->unidad; ?></option>
+                                            <option value="<?php echo $tp->organigrama_persona_id; ?>"><?php echo $tp->nombreusuer; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     </div>
@@ -145,7 +145,7 @@
                                     <select class="custom-select form-control" id="organigrama_id_e" name="organigrama_id_e">
                                         <option value="">Seleccione Opcion</option>
                                         <?php foreach ($data_org as $tp) : ?>
-                                            <option value="<?php echo $tp->organigrama_id; ?>"><?php echo $tp->unidad; ?></option>
+                                            <option value="<?php echo $tp->organigrama_persona_id; ?>"><?php echo $tp->nombreusuer; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     </div>

@@ -37,7 +37,7 @@ class Flujo extends CI_Controller
         
             $data = array(
             'tipo_tramite_id' => $this->input->post('tipo_tramite_id'), //input
-            'organigrama_id' => $this->input->post('organigrama_id'), //input
+            'organigrama_persona_id' => $this->input->post('organigrama_id'), //input
             'orden' => $this->input->post('orden'), //input
             'flujo' => $this->input->post('flujo'), //input        
             'activo' => '1',
@@ -59,7 +59,7 @@ class Flujo extends CI_Controller
 
             $data = array(				
 				'tipo_tramite_id' => $this->input->post('tipo_tramite_id_e'), //input
-            'organigrama_id' => $this->input->post('organigrama_id_e'), //input
+            'organigrama_persona_id' => $this->input->post('organigrama_id_e'), //input
             'orden' => $this->input->post('orden_e'), //input
             'flujo' => $this->input->post('flujo_e'), //input                    
          

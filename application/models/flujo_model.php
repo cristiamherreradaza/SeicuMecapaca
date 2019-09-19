@@ -7,16 +7,21 @@ class Flujo_model extends CI_Model {
         $this->load->database();
     }   
     function get_data() {//obtiene los datos de la tabla requisito en array result
-        $query = $this->db->query('SELECT t.*,o.unidad,e.tramite from tramite.flujo  t
+        $query = $this->db->query("SELECT t.*,o.*,e.tramite,concat(p.nombres,' ',p.paterno,' ',p.materno) as nombreusuer from  tramite.flujo  t
         LEFT JOIN 
-        tramite.organigrama o
-        on t.organigrama_id=o.organigrama_id
+        tramite.organigrama_persona o
+        on t.organigrama_persona_id=o.organigrama_persona_id
+                
         LEFT JOIN
         tramite.tipo_tramite e
         on t.tipo_tramite_id=e.tipo_tramite_id
+                
+                LEFT JOIN
+                public.persona p
+                on o.persona_id=p.persona_id
         
         
-        WHERE t.activo=1');
+        WHERE t.activo=1");
         return $query->result();
     }
 
@@ -26,8 +31,12 @@ class Flujo_model extends CI_Model {
         return $query->result();
     }
     function get_organigrama() {//obtiene los datos de la tabla tipotramite en array result
-        $query = $this->db->query('SELECT * FROM
-        tramite.organigrama');
+        $query = $this->db->query("SELECT o.*,concat(p.nombres,' ' ,p.paterno,' ',p.materno) as nombreusuer FROM
+        tramite.organigrama_persona o
+                LEFT JOIN
+                public.persona p
+                on o.persona_id=p.persona_id
+        ");
         return $query->result();
     }
 }
