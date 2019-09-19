@@ -467,13 +467,13 @@
                                             </tr>
 
                                         </table>
-                                        <?php $i=4;?>
+
                                         <?php foreach ($rubros as $valor) { ?>
                                          <table width="100%">
                                             <tr>
                                                 <td align="left" style="width: 100%;">
                                                     <div class="form-group row" style="font-size: 11px; line-height: 5px;">
-                                                        <label class="control-label text-right col-md-3"><b><?php echo 'RUBRO '.$i; ?></b></label>
+                                                        <label class="control-label text-right col-md-3"><b>RUBRO 4</b></label>
                                                     </div>     
                                                 </td>
                                             </tr>
@@ -483,12 +483,7 @@
                                             <tr>
                                                 <td align="left" style="width: 70%;">
                                                     <div class="form-group row" style="font-size: 11px; line-height: 5px;">
-                                                        <label class="control-label text-right col-md-3"><?php echo strtoupper($valor->rubro) ?></label>
-                                                    </div>  
-                                                </td>
-                                                <td align="left" style="width: 70%;">
-                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px;">
-                                                        <label class="control-label text-right col-md-3">...........................................................................................  Bs.</label>
+                                                        <label class="control-label text-right col-md-3"><?php echo strtoupper($valor->proforma_rubro_id) ?> ...................................................................................................................  Bs.</label>
                                                     </div>  
                                                 </td>
                                                 <td align="center" style="width: 30%;">
@@ -500,7 +495,6 @@
                                             </tr>
 
                                         </table>
-                                        <?php $i++;?>
 
                                             
                                        <?php 
@@ -509,10 +503,214 @@
 
 
                                        
-                                         
-                                        
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 100%;">
+                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px;">
+                                                        <label class="control-label text-right col-md-3"><b>RUBRO 4</b></label>
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 70%;">
+                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px;">
+                                                        <label class="control-label text-right col-md-3">LINEA Y NIVEL ...................................................................................................................  Bs.</label>
+                                                    </div>  
+                                                </td>
+                                                <td align="center" style="width: 30%;">
+                                                    <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
+                                                        <input type="text" class="form-control" id="linea_nivel" name="linea_nivel" value="<?php echo $proforma->linea_nivel ?>">
+                                                    </div> 
+                                                </td>
+                                               
+                                            </tr>
+
+                                        </table>
+
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 100%;">
+                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px;">
+                                                        <label class="control-label text-right col-md-3"><b>RUBRO 5</b></label>
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
                                             
-                                  
+                                            <table width="100%">
+                                                <tr>
+                                                    <td align="left" style="width: 70%;">
+                                                        <div class="form-group row" style="font-size: 71%; line-height: 5px; ">
+                                                            <label class="control-label text-right col-md-3">AUTORIZACION DE MURO DE CERCO .....................................................................  Bs.</label>
+                                                        </div>     
+                                                    </td>
+                                                    <td align="center" style="width: 30%; height: 15px;">
+                                                        <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
+                                                            <input type="text" class="form-control" id="autorizacion_cerco" name="autorizacion_cerco" value="<?php echo $proforma->autorizacion_cerco ?>">
+                                                        </div>
+                                                    </td>
+                                                   
+                                                </tr>
+
+                                            </table>
+                                         
+                                            <!-- <h3 class="box-title" style="font-size: 11px; height: 5px;background-color: red;"><b>RUBRO 6</b></h3> -->
+                                            <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 100%;">
+                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px; ">
+                                                        <label class="control-label text-right col-md-3"><b>RUBRO 6</b></label>
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                            <table width="100%">
+                                                <tr>
+                                                    <td align="left" style="width: 70%;">
+                                                        <div class="form-group row" style="font-size: 71%; line-height: 5px; ">
+                                                            <label class="control-label text-right col-md-3">APROBACION DE PLANO DE DIVISION Y PARTICION .........................................  Bs.</label>
+                                                        </div>     
+                                                    </td>
+                                                    <td align="center" style="width: 30%; ">
+                                                        <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
+                                                            <input type="text" class="form-control" id="aprobacion_plano" name="aprobacion_plano" value="<?php echo $proforma->aprobacion_plano ?>">
+                                                        </div>
+                                                    </td>
+                                                   
+                                                </tr>
+
+                                            </table>
+                                           <table width="100%">
+                                                <tr>
+                                                    <td align="left" style="width: 100%;">
+                                                        <div class="form-group row" style="font-size: 11px; line-height: 5px; ">
+                                                            <label class="control-label text-right col-md-3"><b>RUBRO 7</b></label>
+                                                        </div>     
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+                                            <table width="100%">
+                                                <tr>
+                                                    <td align="left" style="width: 70%;">
+                                                        <div class="form-group row" style="font-size: 71%; line-height: 5px; ">
+                                                            <label class="control-label text-right col-md-3">VISADO Y APROBACION DE PLANO DE LOTE .......................................................  Bs.</label>
+                                                        </div>     
+                                                    </td>
+                                                    <td align="center" style="width: 30%; ">
+                                                        <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
+                                                            <input type="text" class="form-control" id="visado_plano" name="visado_plano" value="<?php echo $proforma->visado_plano ?>">
+                                                        </div>
+                                                    </td>
+                                                   
+                                                </tr>
+
+                                            </table>
+
+
+                                            <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 100%;">
+                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px; ">
+                                                        <label class="control-label text-right col-md-3"><b>RUBRO 8</b></label>
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table width="100%">
+                                                <tr>
+                                                    <td align="left" style="width: 70%;">
+                                                        <div class="form-group row" style="font-size: 71%; line-height: 5px;">
+                                                            <label class="control-label text-right col-md-3">FOTOCOPIA LEGALIZADA DE PLANO ......................................................................  Bs.</label>
+                                                        </div>     
+                                                    </td>
+                                                    <td align="center" style="width: 30%; ">
+                                                        <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
+                                                            <input type="text" class="form-control" id="fotocopia_plano" name="fotocopia_plano" value="<?php echo $proforma->fotocopia_plano ?>">
+                                                        </div>
+                                                    </td>
+                                                   
+                                                </tr>
+
+                                            </table>
+
+                                            <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 100%;">
+                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px; ">
+                                                        <label class="control-label text-right col-md-3"><b>RUBRO 9</b></label>
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 70%;">
+                                                    <div class="form-group row" style="font-size: 71%; line-height: 5px; ">
+                                                        <label class="control-label text-right col-md-3">RESOLUCION ..................................................................................................................  Bs.</label>
+                                                    </div>     
+                                                </td>
+                                                <td align="center" style="width: 30%; ">
+                                                    <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
+                                                        <input type="text" class="form-control" id="resolucion" name="resolucion" value="<?php echo $proforma->resolucion ?>">
+                                                    </div>
+                                                </td>
+                                               
+                                            </tr>
+
+                                        </table>
+                                            
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 100%;">
+                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px; ">
+                                                        <label class="control-label text-right col-md-3"><b>RUBRO 10</b></label>
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 70%;">
+                                                    <div class="form-group row" style="font-size: 71%; line-height: 5px; ">
+                                                        <label class="control-label text-right col-md-3">CERTIFICACION .............................................................................................................  Bs.</label>
+                                                    </div>     
+                                                </td>
+                                                <td align="center" style="width: 30%; ">
+                                                    <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
+                                                        <input type="text" class="form-control" id="certificacion" name="certificacion" value="<?php echo $proforma->certificacion ?>">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 100%;">
+                                                    <div class="form-group row" style="font-size: 11px; line-height: 5px; ">
+                                                        <label class="control-label text-right col-md-3"><b>RUBRO 11</b></label>
+                                                    </div>     
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table width="100%">
+                                            <tr>
+                                                <td align="left" style="width: 70%;">
+                                                    <div class="form-group row" style="font-size: 71%; line-height: 5px; ">
+                                                        <label class="control-label text-right col-md-3">APROBACIÓN DE PLANOS DE CONSTRUCCIÓN ....................................................  Bs.</label>
+                                                    </div>     
+                                                </td>
+                                                <td align="center" style="width: 30%;">
+                                                    <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
+                                                        <input type="text" class="form-control" id="certificacion" name="certificacion" value="<?php echo $proforma->aprobacion_contruccion ?>">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+
                                          
                                         <table width="100%">
                                             <tr>
