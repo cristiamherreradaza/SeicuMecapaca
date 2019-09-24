@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.137.213',
+	'hostname' => 'localhost',
 	'username' => 'postgres',
-	'password' => '4332051Lp*',
-	'database' => 'seiculibre',
+	'password' => 'root',
+	'database' => 'seiculibre_local',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
