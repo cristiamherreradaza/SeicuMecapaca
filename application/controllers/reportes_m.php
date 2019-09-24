@@ -911,6 +911,12 @@ $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"
         $data['totales'] = $supertotal;
         // echo $totales;
 
+        //rubros
+        $rubro = $this->db->query("SELECT r.*,t.* FROM tramite.proforma_rubro r
+LEFT JOIN
+tramite.rubros t
+on r.rubros_id=t.rubros_id WHERE r.proforma_id = '$id'")->result();
+        $data['rubros'] = $rubro;
         $this->load->view('reports/rep_proforma',$data);
         $html = $this->output->get_output();
         $this->load->library('pdf');
