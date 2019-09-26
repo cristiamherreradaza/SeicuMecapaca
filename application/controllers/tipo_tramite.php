@@ -368,16 +368,22 @@ class Tipo_tramite extends CI_Controller {
 				$a = $datos['a'];
 				$ci = $datos['ci'];
 				$metros_construidos = $datos['metros_construidos'];
-				$linea_nivel = $datos['linea_nivel'];
-				$autorizacion_cerco = $datos['autorizacion_cerco'];
-				$aprobacion_plano = $datos['aprobacion_plano'];
-				$visado_plano = $datos['visado_plano'];
-				$fotocopia_plano = $datos['fotocopia_plano'];
-				$resolucion = $datos['resolucion'];
-				$certificacion = $datos['certificacion'];
-				$aprobacion_contruccion = $datos['aprobacion_contruccion'];
-				$total = $datos['total'];
-				$this->tramite_model->insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos, $linea_nivel, $autorizacion_cerco, $aprobacion_plano, $visado_plano, $fotocopia_plano, $resolucion, $certificacion, $aprobacion_contruccion, $total);
+
+				$this->tramite_model->insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos );
+
+				// HASTA AQUI SE GUARDA LOS DATOS EN LA TABLA PROFORMA DE PAGO
+
+
+				// $linea_nivel = $datos['linea_nivel'];
+				// $autorizacion_cerco = $datos['autorizacion_cerco'];
+				// $aprobacion_plano = $datos['aprobacion_plano'];
+				// $visado_plano = $datos['visado_plano'];
+				// $fotocopia_plano = $datos['fotocopia_plano'];
+				// $resolucion = $datos['resolucion'];
+				// $certificacion = $datos['certificacion'];
+				// $aprobacion_contruccion = $datos['aprobacion_contruccion'];
+				// $total = $datos['total'];
+				
 				redirect('tipo_tramite/consulta_proforma/'.$cite);
 
 			}
@@ -800,7 +806,7 @@ class Tipo_tramite extends CI_Controller {
 	public function nueva_proforma($informe_tecnico_id = null)
 	{
 		$informe = $this->db->get_where('tramite.informe_tecnico', array('informe_tecnico_id'=>$informe_tecnico_id))->row_array();
-		$tramite = $this->db->get_where('tramite.tramite', array('tramite_id'=>$informe['tramite_id']))->row_array();
+		$tramite = $this->db->get_where('tramite.tramite', array('tramite_id'=>$informe['tipo_tramite_id']))->row_array();
 		$rubros = $this->db->get('tramite.rubros')->result_array();
 		$data['informe']=$informe;
 		$data['tramite']=$tramite;

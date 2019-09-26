@@ -216,7 +216,7 @@ class Tramite_model extends CI_Model {
         return $this->db->update('catastro.zona_urbana', $data);
     }
 
-    public function insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos, $linea_nivel, $autorizacion_cerco, $aprobacion_plano, $visado_plano, $fotocopia_plano, $resolucion, $certificacion, $aprobacion_contruccion, $total)
+    public function insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos)
 	{	
 		$array = array(
 			'cite' =>$cite,
@@ -240,16 +240,7 @@ class Tramite_model extends CI_Model {
 			'tipo_tramite' =>$tipo_tramite,
 			'a' =>$a,
 			'ci' =>$ci,
-			'metros_construidos' =>$metros_construidos,
-			'linea_nivel' =>$linea_nivel,
-			'autorizacion_cerco' =>$autorizacion_cerco,
-			'aprobacion_plano' =>$aprobacion_plano,
-			'visado_plano' =>$visado_plano,
-			'fotocopia_plano' =>$fotocopia_plano,
-			'resolucion' =>$resolucion,
-			'certificacion' =>$certificacion,
-			'aprobacion_contruccion' =>$aprobacion_contruccion,
-			'total' =>$total
+			'metros_construidos' =>$metros_construidos
 			);
 		$this->db->insert('tramite.proforma', $array);
 	}

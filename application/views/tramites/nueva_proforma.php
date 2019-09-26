@@ -17,7 +17,7 @@
                                 <div class="col-md-3 offset-md-2">
                                     <div class="form-group">
                                         <!-- <label>City</label> -->
-                                        <input type="text" class="form-control" id="cite1" name="cite" required>
+                                        <input type="text" class="form-control" id="cite1" name="cite" value="<?php echo $informe['cite'] ?>" required>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -221,7 +221,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-4">CI.</label>
                                         <div class="col-md-6" >
-                                            <input type="text" class="form-control" id="ci" name="ci" required>
+                                            <input type="text" class="form-control" id="ci" name="ci" value="<?php echo $informe['ci'] ?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -351,7 +351,7 @@
 
             var fila = 
                         '<h3 id="fila_' + cont_n + '">RUBRO '+cont_n+'</h3>\
-                        <div class="row" id="fila' + cont_n + '">\
+                        <div class="row" id="fila' + cont_n + '" >\
                             <div class="col-md-5">'+rubro+'</div>\
                             <div class="col-md-2"><input type="text" class="form-control subtotal" id="sub_'+rubro_id+'" name="'+rubro_id+'" readonly /></div>\
                             <div class="col-md-2"><input type="text" class="form-control superficie" id="superficie_'+rubro_id+'" name="superficie_'+rubro_id+'" onkeyup="multiplica('+rubro_id+');" /></div>\
