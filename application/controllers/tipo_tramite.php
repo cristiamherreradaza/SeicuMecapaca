@@ -337,7 +337,7 @@ class Tipo_tramite extends CI_Controller {
 	public function insertar()
 	{
 		if($this->session->userdata("login")){
-			vdebug($this->input->post(), true, false, false, true);
+			//vdebug($this->input->post(), true, false, false, true);
 			$datos = $this->input->post();
 			if(isset($datos))
 			{
@@ -368,8 +368,9 @@ class Tipo_tramite extends CI_Controller {
 				$a = $datos['a'];
 				$ci = $datos['ci'];
 				$metros_construidos = $datos['metros_construidos'];
+				$total_pro = $datos['total'];
 
-				$this->tramite_model->insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos );
+				$this->tramite_model->insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos,$total_pro );
 
 				// HASTA AQUI SE GUARDA LOS DATOS EN LA TABLA PROFORMA DE PAGO
 
@@ -383,6 +384,34 @@ class Tipo_tramite extends CI_Controller {
 				// $certificacion = $datos['certificacion'];
 				// $aprobacion_contruccion = $datos['aprobacion_contruccion'];
 				// $total = $datos['total'];
+
+				//captura de datos para la tabla bloque_piso
+
+				$proforma_id = $this->db->query("SELECT  * FROM tramite.proforma WHERE activo=1 ORDER BY proforma_id desc LIMIT 1 ")->row();
+
+
+	            $cont = 0;
+	            $costo_total = $this->input->post('costo_total');
+	            $superficie = $this->input->post('superficie');
+	            $costo = $this->input->post('costo');	  
+	            $rubros_id = $this->input->post('rubros_ids');          
+	            for ($j = 0; $j < count($costo_total); $j++) {
+	                $proforma_rubro = array(	                
+	                'superficie' => $superficie[$j],
+	                'costo' => $costo[$j],
+	                'total' => $costo_total[$j],
+	                'rubros_id'=>$rubros_id[$j],	
+	                'proforma_id'=>  $proforma_id->proforma_id          
+	               
+	            );
+	                $this->db->insert('tramite.proforma_rubro', $proforma_rubro);
+	            }
+
+	            //fin de insertar datos en tabla bloque_piso
+
+
+
+
 				
 				redirect('tipo_tramite/consulta_proforma/'.$cite);
 

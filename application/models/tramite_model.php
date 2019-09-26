@@ -216,7 +216,7 @@ class Tramite_model extends CI_Model {
         return $this->db->update('catastro.zona_urbana', $data);
     }
 
-    public function insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos)
+    public function insertar_proforma($cite, $fecha_proforma, $propietario1, $propietario2, $ubicacion, $lote, $superficie_total, $manzano, $urbanizacion, $jurisdicion, $seccion_municipal, $provincia, $departamento, $codigo_catastral, $fecha, $matricula_folio_real, $valido_por, $uso_predio, $tipo_tramite, $a, $ci, $metros_construidos,$total)
 	{	
 		$array = array(
 			'cite' =>$cite,
@@ -240,7 +240,8 @@ class Tramite_model extends CI_Model {
 			'tipo_tramite' =>$tipo_tramite,
 			'a' =>$a,
 			'ci' =>$ci,
-			'metros_construidos' =>$metros_construidos
+			'metros_construidos' =>$metros_construidos,
+			'total'=>$total
 			);
 		$this->db->insert('tramite.proforma', $array);
 	}

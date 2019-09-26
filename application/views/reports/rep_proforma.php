@@ -493,7 +493,7 @@
                                                 </td>
                                                 <td align="center" style="width: 30%;">
                                                     <div class="col-md-3" style="font-size: 11px; line-height: 10px;">
-                                                        <input type="text" class="form-control" id="linea_nivel" name="linea_nivel" value="<?php echo $valor->costo ?>">
+                                                        <input type="text" class="form-control" id="linea_nivel" name="linea_nivel" value="<?php echo $valor->total ?>">
                                                     </div> 
                                                 </td>
                                                
