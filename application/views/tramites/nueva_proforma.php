@@ -355,7 +355,7 @@
                             <div class="col-md-5">'+rubro+'</div>\
                             <div class="col-md-2"><input type="text" class="form-control subtotal" id="sub_'+rubro_id+'" name="costo_total[]" readonly /></div>\
                             <div class="col-md-2"><input type="text" class="form-control superficie" id="superficie_'+rubro_id+'" name="superficie[]" onkeyup="multiplica('+rubro_id+');" /></div>\
-                            <input type="hidden" class="form-control subtotal"  name="rubros_ids[]" value="'+rubro_id+'" readonly />\
+                            <input type="hidden" class="form-control"  name="rubros_ids[]" value="'+rubro_id+'" readonly />\
                             <div class="col-md-2"><input type="text" class="form-control precio" id="precio_'+rubro_id+'" name="costo[]" value="'+costo+'" readonly /></div>\
                             <div class="col-md-1"><button type="button" cLass="btn btn-danger" onclick="eliminar(' + cont_n + ');"><span class="fas fa-times" aria-hidden="true"></span></button></div>\
                         </div>';
