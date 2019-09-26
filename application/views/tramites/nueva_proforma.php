@@ -124,7 +124,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-5">SECCI&Oacute;N MUNICIPAL</label>
                                         <div class="col-md-7">
-                                            <input type="text" class="form-control" id="seccion_municipal" name="seccion_municipal" placeholder="2da  SECC. GAMM." required>
+                                            <input type="text" class="form-control" id="seccion_municipal" name="seccion_municipal" required>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-4">PROVINCIA</label>
                                         <div class="col-md-6" >
-                                            <input type="text" class="form-control" id="provincia" name="provincia" placeholder="MURILLO" required>
+                                            <input type="text" class="form-control" id="provincia" name="provincia" required>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                                     <div class="form-group row">
                                         <label class="control-label text-right col-md-5">DEPARTAMENTO</label>
                                         <div class="col-md-7">
-                                            <input type="text" class="form-control" id="departamento" name="departamento"  placeholder="LA PAZ" required>
+                                            <input type="text" class="form-control" id="departamento" name="departamento" required>
                                         </div>
                                     </div>
                                 </div>

@@ -29,7 +29,7 @@
                                     
                                 </div>
                                 <button type="submit" class="btn btn-info">Buscar</button>
-                                <button class="btn btn-success" type="button" data-toggle="modal" data-target=".bd-example-modal-lg" id="citebutton" type="submit">Adicionar</button>
+                                <!-- <button class="btn btn-success" type="button" data-toggle="modal" data-target=".bd-example-modal-lg" id="citebutton" type="submit">Adicionar</button> -->
                             </form>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body">
-                            <?php if ($proforma == NULL) {?>
+                            <?php if ($proformas == NULL) {?>
                                 <table id="bandeja_entrada" class="table table-bordered table-striped" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
@@ -75,6 +75,10 @@
                                     </thead>
                                   
                                     <tbody>
+                                        <?php foreach($proformas as $proforma){
+                                                
+                                            ?>
+                                       
                                         <?php $cont =1;?>
                                         
                                             <tr>                                                <td>
@@ -95,7 +99,9 @@
                                                     </a>
                                                 </tr>   
 
-                                        
+                                        <?php 
+                                         }
+                                        ?>
                                     </tbody>
                                 </table>
                             <?php } ?> 

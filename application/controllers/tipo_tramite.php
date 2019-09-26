@@ -549,20 +549,13 @@ class Tipo_tramite extends CI_Controller {
 		}else{
 			$cite=0;
 		}
-			
-		
-		
 		if($id!=null){
 			$cite = $id;
 		}
-
-		
-		
 		// var_dump($cite);
-
-		$valores['proforma'] = $this->db->query("SELECT *
+		$valores['proformas'] = $this->db->query("SELECT *
 									FROM tramite.proforma
-									WHERE cite ='$cite'")->row();
+									WHERE cite ='$cite'")->result();
 		if ($valores) {
 
 			// var_dump($valores);
