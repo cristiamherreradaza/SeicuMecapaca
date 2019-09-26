@@ -48,7 +48,7 @@
 
                                         <table width="100%">
                                             <tr >
-                                                <td align="left" style="width: 20%; text-align: center;">
+                                                <td align="left" style="width: 10%; text-align: center;">
 
                                                 </td>
                                                 <td align="center" style="width: 15%; text-align: center; ">
@@ -65,9 +65,9 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td align="right" style="width: 40%; text-align: center;">
-                                                    <div style="font-size: 11px; height: 7px;">
-                                                        <input type="text" name="fecha_proforma" size="20" value="<?php echo $dia_not_l.', '.$dia_not.' de '.$mes_not.' de '.$anio_not; ?> ">
+                                                <td align="right" style="width: 65%; text-align: center;">
+                                                    <div style="font-size: 10px; height: 6px;">
+                                                        <input type="text" name="fecha_proforma" size="40" value="<?php echo $dia_not_l.', '.$dia_not.' de '.$mes_not.' de '.$anio_not; ?> ">
                                                     </div>
                                                 </td>
                                             </tr>
