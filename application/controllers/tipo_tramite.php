@@ -10,11 +10,13 @@ class Tipo_tramite extends CI_Controller {
 		$this->load->model("tramite_model");
 		$this->load->model("derivaciones_model");
 		$this->load->model("rol_model");
+		$this->load->model("persona_model");
         $this->load->helper('vayes_helper');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pdf');
 	}
 
+	//++++++++++++++++++++++++CREAR TRAMITE++++++++++++++++++++++++++++++++
 	public function tipo_tramite(){
 		if($this->session->userdata("login")){
 			//$lista['verifica'] = $this->rol_model->verifica();
@@ -23,88 +25,144 @@ class Tipo_tramite extends CI_Controller {
             $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
             $dato = $resi->persona_id;
             $res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
-
-
-            $consulta = $this->db->query("SELECT organigrama_persona_id
-                                            FROM tramite.organigrama_persona
-                                            WHERE fec_baja is NULL
-                                            AND persona_id = '$res->persona_id'
-                                            ")->row();
-		            if ($consulta) {
-		            	$ids['idss'] = $consulta->organigrama_persona_id;
-		            	$this->load->view('admin/header');
-				        $this->load->view('admin/menu');
-				        $this->load->view('tramites/tramite', $ids);
-				        $this->load->view('admin/footer');
-				        
-		            }else
-		            {
-		            	redirect(base_url()."prueba/sin_permisos");
-		            }
-			
-       		}
-		else{
-			redirect(base_url());
-        }	
-		
-	}
-
-
-	public function index()
-	{
-		if($this->session->userdata("login")){
-			redirect(base_url()."tipo_tramite/tipo_tramite");
-		}
-		else{
-			redirect(base_url());
-        }	
-		
-	}	
-
-	 public function update()     
-	{   
-		if($this->session->userdata("login")){
-			//OBTENER EL ID DEL USUARIO LOGUEADO
-			$id = $this->session->userdata("persona_perfil_id");
-	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-	        $usu_modificacion = $resi->persona_id;
-	        $fec_modificacion = date("Y-m-d H:i:s"); 
-
-		    $zonaurb_id = $this->input->post('zonaurb_id');
-		    $descripcion = $this->input->post('descripcion');
-		   // var_dump($zonaurb_id);
-
-		    $actualizar = $this->zona_urbana_model->actualizar($zonaurb_id, $descripcion, $usu_modificacion, $fec_modificacion);
-		  	redirect('Zona_urbana');
-		}
-		else{
+            $consulta = $this->db->query("SELECT organigrama_persona_id FROM tramite.organigrama_persona WHERE fec_baja is NULL AND persona_id = '$res->persona_id'")->row();
+            $ids['personas'] = $this->derivaciones_model->personal($resi->persona_id);
+            if ($consulta) {
+            	$ids['idss'] = $consulta->organigrama_persona_id;
+            	$this->load->view('admin/header');
+		        $this->load->view('admin/menu');
+		        $this->load->view('tramites/tramite', $ids);
+		        $this->load->view('admin/footer');
+		        
+            }else{
+            	redirect(base_url()."prueba/sin_permisos");
+            }
+       	}else{
 			redirect(base_url());
         }	
 	}
-	
 
-	public function eliminar()
-	{
+	public function do_upload(){
 		if($this->session->userdata("login")){
-		 	//OBTENER EL ID DEL USUARIO LOGUEADO
-			$id = $this->session->userdata("persona_perfil_id");
-	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-	        $usu_eliminacion = $resi->persona_id;
-	        $fec_eliminacion = date("Y-m-d H:i:s"); 
+			$datos = $this->input->post();
+			if(isset($datos)){
+				//OBTENER EL ID DEL USUARIO LOGUEADO
+				$id = $this->session->userdata("persona_perfil_id");
+	            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	            $usu_creacion = $resi->persona_id;
+	            $organigrama_persona=$this->db->query("SELECT organigrama_persona_id FROM tramite.organigrama_persona WHERE persona_id='$usu_creacion'")->row();
+	            //corregir error aqui organigrama
+				$organigrama_persona_id = $organigrama_persona->organigrama_persona_id;
+				$tipo_documento_id = 1;
+				$tipo_tramite_id = $datos['tipo_tramite_id'];
+				$cite = $datos['cite'];
+				$fecha = $datos['fecha'];
+				$fojas = 0;
+				$anexos = 0;
+				$remitente = $datos['remitente'];
+				$procedencia = '0';
+				$referencia = '0';
+				$adjunto = $datos['cite_sin'];
+				$destino = $datos['destino'];
+				$correlativo = $datos['correlativo'];
+				$gestion = $datos['gestion'];
+				$tipo_solicitante = $datos['tipo_solicitante'];
+				$via_solicitud = 'Oficina';
+				$solicitante_id = $datos['solicitante_id'];
+				$observaciones = $datos['observaciones'];
+				$requisitos=$datos['requisitos'];
+				$tipo = $this->input->post('boton');
+				$this->Tramite_model->insertar_tramite_nuevo($organigrama_persona_id, $tipo_documento_id, $tipo_tramite_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $destino, $correlativo, $gestion, $tipo_solicitante, $via_solicitud, $solicitante_id, $observaciones, $requisitos, $tipo);
+				$tramite = $this->db->query("SELECT * FROM tramite.tramite WHERE cite = '$cite'")->row();
+				$idTramite = $tramite->tramite_id;
 
-		    $u = $this->uri->segment(3);
-		    $this->zona_urbana_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
-		    redirect('Zona_urbana');
-		}
-		else{
+				//COMIENZO PARA CREAR CARPETA PARA EL ARCHIVO DIGITAL
+				if ($tipo_tramite_id === '1') {
+
+					$partes = explode("/", $cite); 
+					$citee = end($partes); 
+
+					$car = FCPATH.'public/assets/archivos/'.$citee;
+							if (!file_exists($car)) {
+					    		mkdir($car, 0777, true);
+
+					    		$nombre = $citee;
+								$array = array(
+								'nombre' =>$nombre,
+								'descripcion1' =>'descripcion1',
+								'descripcion2' =>'descripcion2',
+								'activo' =>1,
+								'carpeta' => 'carpeta'
+								);
+								$vari = $this->db->insert('archivo.raiz', $array);
+						}
+					$config['upload_path']      = './public/assets/archivos/'.$citee;
+					$config['file_name']        = $adjunto;
+					$config['allowed_types']    = 'pdf';
+					$config['overwrite']        = TRUE;
+					$config['max_size']         = 2048;
+
+					$id = $this->db->query("SELECT *
+											FROM archivo.raiz
+											WHERE nombre like '$citee'")->row();
+					$raiz_id = $id->raiz_id;
+					$url = './public/assets/archivos/'.$citee.'/'.$adjunto;
+
+					$array = array(
+								'nombre' =>$adjunto,
+								'descripcion1' =>'descripcion1',
+								'descripcion2' =>'descripcion2',
+								'raiz_id' =>$raiz_id,
+								'carpeta' =>'pdf',
+								'adjunto' =>$adjunto,
+								'extension' =>'pdf',
+								'url' =>$url,
+								'activo' => '1',
+								);
+
+							// var_dump($array);
+					$this->db->insert('archivo.documento', $array);
+
+				}
+				else
+				{
+					$config['upload_path']      = './public/assets/images/tramites';
+					$config['file_name']        = $adjunto;
+					$config['allowed_types']    = 'pdf';
+					$config['overwrite']        = TRUE;
+					$config['max_size']         = 2048;
+
+				}
+						
+				// HASTA AQUI
+				
+				
+
+				$this->load->library('upload', $config);
+				if ( ! $this->upload->do_upload('adjunto')){
+					$error = array('error' => $this->upload->display_errors());
+					redirect(base_url());
+					//$this->load->view('crud/organigrama', $error);
+				}else{
+					$tipo_tramite = $this->db->query("SELECT tramite FROM tramite.tipo_tramite WHERE tipo_tramite_id = '$tipo_tramite_id'")->row();
+					$data = array('upload_data' => $this->upload->data());
+					if($tipo_tramite->tramite == 'Inspeccion'){
+						redirect('Derivaciones/inspectores/'.$idTramite);
+					}else{
+						// redirect('Derivaciones/nuevo/'.$idTramite);
+						redirect('Tipo_tramite/listado');
+					}
+				}
+				$this->session->set_flashdata('in', $idTramite);	
+			}
+		}else{
 			redirect(base_url());
         }	
-
 	}
+//++++++++++++++++++++FIN DE CREAR TRAMITE++++++++++++++++++++++++++++++++++++++++
 
-	 
-	public function listado()
-	{
+//+++++++++++++++++++LISTA DE TRAMITES++++++++++++++++++++++++++++++++++++++++++++
+	public function listado(){
 		// $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
 		$perfil_persona = $this->session->userdata('persona_perfil_id');
 		$datos_persona_perfil = $this->db->get_where('persona_perfil', array('persona_perfil_id'=>$perfil_persona))->result_array();
@@ -119,14 +177,13 @@ class Tipo_tramite extends CI_Controller {
 		$fuente = $datos_organigrama_persona[0]['organigrama_persona_id'];
 		// vdebug($datos_organigrama_persona, true, false, true);
 		$this->db->where('tramite.tramite.organigrama_persona_id', $fuente);
+		$this->db->where('tramite.activo', 1);
 		$this->db->order_by('tramite.tramite.fec_creacion', 'DESC');
 		$query = $this->db->get('tramite.tramite');
 		// vdebug($query, false, false, true);
-
 		$data['mis_tramites'] = $query->result();
 		$data['verifica'] = $this->rol_model->verifica();
 		//var_dump($usu_creacion);
-
 		$this->load->view('admin/header');
 		$this->load->view('admin/menu');
 		$this->load->view('tramites/listado', $data);
@@ -134,102 +191,52 @@ class Tipo_tramite extends CI_Controller {
 		$this->load->view('predios/index_js');
 	}
 
-
-	public function do_upload()
-	{
+	public function ver($idTramite = null){
 		if($this->session->userdata("login")){
-			$datos = $this->input->post();
-			if(isset($datos))
-			{
-				//OBTENER EL ID DEL USUARIO LOGUEADO
-				$id = $this->session->userdata("persona_perfil_id");
-	            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-	            $usu_creacion = $resi->persona_id;
+			$data['flujo'] = $this->db->get_where('tramite.derivacion', array('tramite_id'=>$idTramite))->result_array();
+	        //usuario que esta registrando
+	        $id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_creacion = $resi->persona_id;
 
-				$organigrama_persona_id = $datos['organigrama_persona_id'];
-				$tipo_documento_id = $datos['tipo_documento_id'];
-				$tipo_tramite_id = $datos['tipo_tramite_id'];
-				$cite = $datos['cite'];
-				$fecha = $datos['fecha'];
-				$fojas = $datos['fojas'];
-				$anexos = $datos['anexos'];
-				$remitente = $datos['remitente'];
-				$procedencia = $datos['procedencia'];
-				$referencia = $datos['referencia'];
-				$adjunto = $datos['cite_sin'];
-				$correlativo = $datos['correlativo'];
-				$gestion = $datos['gestion'];
-				$this->tramite_model->insertar_tramite($organigrama_persona_id, $tipo_documento_id, $tipo_tramite_id, $cite, $fecha, $fojas, $anexos, $remitente, $procedencia, $referencia, $usu_creacion, $adjunto, $correlativo, $gestion);
-
-				$tramite = $this->db->query("SELECT * FROM tramite.tramite WHERE cite = '$cite'")->row();
-				$idTramite = $tramite->tramite_id;
-				
-				$config['upload_path']      = './public/assets/images/tramites';
-				$config['file_name']        = $adjunto;
-				$config['allowed_types']    = 'pdf';
-				$config['overwrite']        = TRUE;
-				$config['max_size']         = 2048;
-
-				$this->load->library('upload', $config);
-				if ( ! $this->upload->do_upload('adjunto'))
-					{
-						$error = array('error' => $this->upload->display_errors());
-						redirect(base_url());
-						//$this->load->view('crud/organigrama', $error);
-					}
-				else
-					{
-						$tipo_tramite = $this->db->query("SELECT tramite FROM tramite.tipo_tramite WHERE tipo_tramite_id = '$tipo_tramite_id'")->row();
-						$data = array('upload_data' => $this->upload->data());
-						if($tipo_tramite->tramite == 'Inspeccion'){
-							redirect('Derivaciones/inspectores/'.$idTramite);
-						}else{
-							redirect('Derivaciones/nuevo/'.$idTramite);
-						}
-						
-					}
-
-				//$this->session->set_flashdata('in', $idTramite);
-							
-			}
-			
-		}
-		else{
+	        $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
+	        $data['tipo_tramite']= $this->db->query("SELECT tt.tramite FROM tramite.tramite tr JOIN tramite.tipo_tramite tt ON tr.tipo_tramite_id=tt.tipo_tramite_id  WHERE tr.tramite_id = '$idTramite'")->row();
+	        $data['requisitos']= $this->db->query("SELECT tt.descripcion FROM tramite.tramite_requisito tr JOIN tramite.requisito tt ON tr.requisito_id=tt.requisito_id  WHERE tr.tramite_id = '$idTramite'")->result();
+	        $data['cedula']=$this->db->query("SELECT cp.ci FROM tramite.tramite tr JOIN public.persona cp ON tr.solicitante_id=cp.persona_id  WHERE tr.tramite_id = '$idTramite'")->row();
+	        $this->load->view('admin/header');
+	        $this->load->view('admin/menu');
+	        $this->load->view('tramites/editar', $data);
+	        $this->load->view('admin/footer');
+	        $this->load->view('predios/index_js');
+		}else{
 			redirect(base_url());
         }	
-
 	}
 
-	public function muestra_asignaciones(){
-		if($this->session->userdata("login")){
-		// $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
-			$id = $this->session->userdata("persona_perfil_id");
-			$resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-			$dato = $resi->persona_id;
-			$res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
-			//$id_user=$resi[0]['persona_id'];
-			//$data['lista'] = $this->inspecciones_model->get_lista(); 
-			// $data['lista'] = $this->inspecciones_model->get_lista();  
-			// $asignados = 
-			$this->db->select('persona_id, COUNT(persona_id) as total');
-			$this->db->where('activo',1);
-			$this->db->group_by('persona_id'); 
-			$this->db->order_by('total', 'desc'); 
-			$data['asignados'] = $this->db->get('inspeccion.asignacion')->result();
+	public function editar(){
+        if($this->session->userdata("login")){
+            $id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
+            $idTramite = $this->input->post('id_tramite');
+            $data = array(
+                'tipo_solicitante'=>$this->input->post('tipo_solicitante'),
+                'solicitante_id'=>$this->input->post('solicitante_id'),
+                'remitente'=>$this->input->post('remitente'),
+                'observaciones'=>$this->input->post('observaciones'),
+                'usu_modificacion' => $usu_creacion,
+                'fec_modificacion'=>date("Y-m-d H:i:s"),
+            );
+            $this->db->where('tramite_id', $idTramite);
+            $this->db->update('tramite.tramite', $data);
+            redirect(base_url().'tipo_tramite/listado');
+        }else{
+            redirect(base_url());
+        }
+    }
+//++++++++++++++++++++++++FIN DE LISTA DE TRAMITES+++++++++++++++++++++++++++++++
 
-			//vdebug($data['asignados'], true, false, true);
-	
-			$this->load->view('admin/header');
-			$this->load->view('admin/menu');
-			$this->load->view('inspecciones/muestra_asignaciones', $data);
-			$this->load->view('admin/footer');
-			$this->load->view('predios/index_js');
-		}
-		else{
-			redirect(base_url());
-		}		
-	}
-
+//++++++++++++++++++++++++BUSQUEDA DE TRAMITES+++++++++++++++++++++++++++++++++++
 	public function busqueda(){
 		if($this->session->userdata("login")){
 			$valores['cite']=NULL;
@@ -237,12 +244,11 @@ class Tipo_tramite extends CI_Controller {
 		 	$valores['remitente']=NULL;
 		 	$valores['encontrados']=NULL;
 		    $this->load->view('admin/header');
-			$this->load->view('admin/menu');
+			$this->load->view('admin/menu');	
 			$this->load->view('tramites/busqueda', $valores);
 			$this->load->view('admin/footer');
 			$this->load->view('predios/index_js');
-		}
-		else{
+		}else{
 			redirect(base_url());
         }
 	}
@@ -252,7 +258,6 @@ class Tipo_tramite extends CI_Controller {
 		 	$cite = $this->input->post('cite');
 		 	$fecha = $this->input->post('fecha');  
 		 	$remitente = $this->input->post('remitente');
-		 	
 		 	if($cite != NULL){
 		 		if($fecha != NULL){
 		 			if($remitente != NULL){
@@ -282,58 +287,83 @@ class Tipo_tramite extends CI_Controller {
 			 		}
 			 	}
 			 }
-		 	
 		 	$valores['cite']=$cite;
 		 	$valores['fecha']=$fecha;
 		 	$valores['remitente']=$remitente;
 		 	$valores['encontrados']=$encontrados;
-		 	
 		    $this->load->view('admin/header');
 			$this->load->view('admin/menu');
 			$this->load->view('tramites/busqueda', $valores);
 			$this->load->view('admin/footer');
 			$this->load->view('predios/index_js');
-		}
-		else{
+		}else{
 			redirect(base_url());
         }
 	}
 
+//++++++++++++++++++++++FIN DE BUSQUEDA DE TRAMITES++++++++++++++++++++++++++++++++
+
+//+++++++++++++++++++++++SEGUIMIENTO DE TRAMITES+++++++++++++++++++++++++++++++++
 	public function seguimiento($idTramite = null){
-		$data['flujo'] = $this->db->get_where('tramite.derivacion', array('tramite_id'=>$idTramite))->result_array();
-
-        //usuario que esta registrando
-        $id = $this->session->userdata("persona_perfil_id");
-        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
-        $usu_creacion = $resi->persona_id;
-
-        $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
-
-        $this->load->view('admin/header');
-        $this->load->view('admin/menu');
-        $this->load->view('tramites/seguimiento', $data);
-        $this->load->view('admin/footer');
-        $this->load->view('predios/index_js');
-	}
-
-	public function proforma($id=null){
 		if($this->session->userdata("login")){
-			$valores['cite']=$id;
-		 	$valores['fecha']=NULL;
-		 	$valores['remitente']=NULL;
-		 	$valores['encontrados']=NULL;
-		    $this->load->view('admin/header');
-			$this->load->view('admin/menu');
-			$this->load->view('tramites/proforma', $valores);
-			$this->load->view('admin/footer');
-			$this->load->view('predios/index_js');
-		}
-		else{
-			redirect(base_url());
+            $data['flujo'] = $this->db->get_where('tramite.derivacion', array('tramite_id'=>$idTramite))->result_array();
+            //usuario que esta registrando
+            $id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
+
+            $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
+            $data['tipo_tramite']= $this->db->query("SELECT tt.tramite FROM tramite.tramite tr JOIN tramite.tipo_tramite tt ON tr.tipo_tramite_id=tt.tipo_tramite_id  WHERE tr.tramite_id = '$idTramite'")->row();
+            $data['requisitos']= $this->db->query("SELECT tt.descripcion FROM tramite.tramite_requisito tr JOIN tramite.requisito tt ON tr.requisito_id=tt.requisito_id  WHERE tr.tramite_id = '$idTramite'")->result();
+            $data['cedula']=$this->db->query("SELECT cp.ci FROM tramite.tramite tr JOIN public.persona cp ON tr.solicitante_id=cp.persona_id  WHERE tr.tramite_id = '$idTramite'")->row();
+            $this->load->view('admin/header');
+	        $this->load->view('admin/menu');
+	        $this->load->view('tramites/seguimiento', $data);
+	        $this->load->view('admin/footer');
+	        $this->load->view('predios/index_js');
+        }else{
+            redirect(base_url());
+        }   
+		// $data['flujo'] = $this->db->get_where('tramite.derivacion', array('tramite_id'=>$idTramite))->result_array();
+  //       //usuario que esta registrando
+  //       $id = $this->session->userdata("persona_perfil_id");
+  //       $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+  //       $usu_creacion = $resi->persona_id;
+
+  //       $data['tramite'] = $this->db->get_where('tramite.tramite', array('tramite_id' => $idTramite))->row();
+
+  //       $this->load->view('admin/header');
+  //       $this->load->view('admin/menu');
+  //       $this->load->view('tramites/seguimiento', $data);
+  //       $this->load->view('admin/footer');
+  //       $this->load->view('predios/index_js');
+	}
+//+++++++++++++++++++++++FIN DE SEGUIMIENTO DE TRAMITES+++++++++++++++++++++++++
+
+//+++++++++++++++++++++++ELIMINAR TRAMITE++++++++++++++++++++++++++++++++++++++
+	public function eliminar_tramite($idTramite = null){
+		if($this->session->userdata("login")){
+            $id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $usu_creacion = $resi->persona_id;
+            $data = array(
+                'activo' => 0,
+                'usu_eliminacion' => $usu_creacion,
+                'fec_eliminacion' => date("Y-m-d H:i:s")
+                
+            );
+            $this->db->where('tramite_id', $idTramite);
+            $this->db->where('activo', 1);
+            $this->db->update('tramite.tramite', $data);
+            redirect(base_url().'tipo_tramite/listado');
+        }else{
+            redirect(base_url());
         }
 	}
+//++++++++++++++++++++++FIN DE ELIMINAR TRAMITE++++++++++++++++++++++++++++++++
 
 
+<<<<<<< Updated upstream
 	public function insertar()
 	{
 		if($this->session->userdata("login")){
@@ -414,139 +444,39 @@ class Tipo_tramite extends CI_Controller {
 
 				
 				redirect('tipo_tramite/consulta_proforma/'.$cite);
+=======
+>>>>>>> Stashed changes
 
-			}
-		}
-		else{
+		
+	public function update(){   
+		if($this->session->userdata("login")){
+			//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_modificacion = $resi->persona_id;
+	        $fec_modificacion = date("Y-m-d H:i:s"); 
+		    $zonaurb_id = $this->input->post('zonaurb_id');
+		    $descripcion = $this->input->post('descripcion');
+		   // var_dump($zonaurb_id);
+		    $actualizar = $this->zona_urbana_model->actualizar($zonaurb_id, $descripcion, $usu_modificacion, $fec_modificacion);
+		  	redirect('Zona_urbana');
+		}else{
 			redirect(base_url());
         }	
-
-	 }
-
-	 public function ajax_verifica(){
-		$cite = $this->input->get("param1");
-		var_dump('hola');
-		// $this->db->where()
-		//$this->db->where('ci', $ci);
-		$verifica_cod = $this->tramite_model->buscaci($ci);
-		var_dump($verifica_cod);
-		// print_r($ci);
-		//  print_r($verifica_cod->result());die;
-		// if (count($verifica_cod) > 0) {
-		if ($verifica_cod) {
-			$respuesta = array('ci'=>$ci, 'nombres' => $verifica_cod->nombres, 'paterno' => $verifica_cod->paterno, 'materno' => $verifica_cod->materno, 'fec_nacimiento'=>$verifica_cod->fecha, 'persona_id'=>$verifica_cod->persona_id, 'direccion' =>$verifica_cod->direccion, 'email'=>$verifica_cod->email, 'telefono_fijo'=>$verifica_cod->telefono_fijo, 'telefono_celular'=>$verifica_cod->telefono_celular, 'estado'=>'si');
-			echo json_encode($respuesta);
-		}else{
-			$TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhNzAzYTlhZjcxZDY0NDMzOWJiNDM3ODEyYjIwODY0MyJ9.KAXS_8G3BznwFBR0dLZHfVQc2LkZI5fiTK6TN-meAZ4';
-			//configura la solicitud, también se puede usar CURLOPT_URL
-			
-			//echo "<br>--->".$paramnumero;
-			//echo "<br>--->".$paramfecha;
-			// antiguo URL
-			$CURL = curl_init('https://ws.agetic.gob.bo/segip/v2/personas/'.$ci);
-			// nuevo URL
-			//$CURL = curl_init('https://ws.agetic.gob.bo/segip/v3/personas/'.$paramnumero.'?fechaNacimiento='.$paramfecha);
-			// Devuelve los datos / resultados como una cadena en lugar de datos sin procesar
-			curl_setopt($CURL, CURLOPT_RETURNTRANSFER, true);
-			// Una buena práctica para que la gente sepa quién está accediendo a sus servidores. Ver https://en.wikipedia.org/wiki/User_agent
-			//curl_setopt($CURL, CURLOPT_USERAGENT, 'YourScript/0.1 (contact@email)');
-			// Establezca sus encabezados de autenticación
-			curl_setopt($CURL, CURLOPT_HTTPHEADER, array(
-			    'Content-Type: application/json',
-			    'Authorization: Bearer '.$TOKEN
-			));
-			
-			// Obtener datos / resultados codificados Ver CURLOPT_RETURNTRANSFER
-			$dataSEGIP = curl_exec($CURL);
-			// Obtener información sobre la solicitud
-			$infoSEGIP = curl_getinfo($CURL);
-			// Cierre el recurso curl para liberar recursos del sistema
-			curl_close($CURL);
-
-			$arraySEGIPN0 = json_decode($dataSEGIP, true);
-			$arraySEGIPN1 = $arraySEGIPN0['ConsultaDatoPersonaEnJsonResult'];
-			$arraySEGIPN2 = $arraySEGIPN1['DatosPersonaEnFormatoJson'];
-			$datos_persona = json_decode($arraySEGIPN2, true);
-			$caso = $arraySEGIPN1['CodigoRespuesta'];
-			if ($caso == 2) {
-				$respuesta = array('ci'=>$ci, 'nombres' =>$datos_persona['Nombres'], 'paterno' =>$datos_persona['PrimerApellido'], 'materno' =>$datos_persona['SegundoApellido'], 'fec_nacimiento'=>$datos_persona['FechaNacimiento'], 'estado'=>'segip');
-				echo json_encode($respuesta);
-			}else{
-				$respuesta = array('ci'=>$ci, 'estado'=>'no');
-				echo json_encode($respuesta);
-			}
-				
-		}	
 	}
-
-	public function ver($cite){
+	public function eliminar(){
 		if($this->session->userdata("login")){
-			
-			$valorr = $cite;
-			var_dump($valorr);
-			// $valor = $this->db->query("SELECT *
-			// 							FROM tramite.proforma
-			// 							WHERE cite ='$cite'")->row();
-			// echo json_encode($valor);
+		 	//OBTENER EL ID DEL USUARIO LOGUEADO
+			$id = $this->session->userdata("persona_perfil_id");
+	        $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+	        $usu_eliminacion = $resi->persona_id;
+	        $fec_eliminacion = date("Y-m-d H:i:s"); 
 
-			// var_dump($cite);
-
-		 // 	$valores['proforma']=$this->db->query("SELECT p.*, i.*
-		 // 											FROM tramite.proforma p, tramite.informe_tecnico i
-		 // 											WHERE p.cite = '$cite' 
-		 // 											OR i.cite = '$cite'")->row();
-		 // 	$valores['remitente']=NULL;
-		 // 	$valores['encontrados']=NULL;
-		 //    $this->load->view('admin/header');
-			// $this->load->view('admin/menu');
-			// $this->load->view('tramites/proforma', $valores);
-			// $this->load->view('admin/footer');
-			// $this->load->view('predios/index_js');
-		}
-		else{
-			redirect(base_url());
-        }
-	}
-
-
-	public function ajx(){
-
-		$cite = $this->input->get("param1");
-
-		$valor = $this->db->query("SELECT *
-									FROM tramite.proforma
-									WHERE cite ='$cite'")->row();
-		if ($valor) {
-
-			$respuesta = array('cite'=>$cite, 'fecha_proforma' => $valor->fecha_proforma, 'propietario1' => $valor->propietario1, 'propietario2' => $valor->propietario2, 'ubicacion'=>$valor->ubicacion, 'lote'=>$valor->lote, 'superficie_total' =>$valor->superficie_total, 'manzano'=>$valor->manzano, 'urbanizacion'=>$valor->urbanizacion, 'jurisdicion'=>$valor->jurisdicion, 'seccion_municipal'=>$valor->seccion_municipal, 'provincia'=>$valor->provincia, 'departamento'=>$valor->departamento, 'codigo_catastral'=>$valor->codigo_catastral, 'fecha'=>$valor->fecha, 'matricula_folio_real'=>$valor->matricula_folio_real, 'valido_por'=>$valor->valido_por, 'uso_predio'=>$valor->uso_predio, 'tipo_tramite'=>$valor->tipo_tramite, 'a'=>$valor->a,'ci'=>$valor->ci, 'metros_construidos'=>$valor->metros_construidos, 'linea_nivel'=>$valor->linea_nivel, 'autorizacion_cerco'=>$valor->autorizacion_cerco, 'aprobacion_plano'=>$valor->aprobacion_plano, 'visado_plano'=>$valor->visado_plano,  'fotocopia_plano'=>$valor->fotocopia_plano, 'resolucion'=>$valor->resolucion, 'certificacion'=>$valor->certificacion, 'aprobacion_contruccion'=>$valor->aprobacion_contruccion, 'total'=>$valor->total);
-
-		echo json_encode($respuesta);
-		}
-		else
-		{
-			$valor1 = $this->db->query("SELECT *
-											FROM tramite.informe_tecnico
-											WHERE cite ='$cite'")->row();
-			if ($valor1) {
-				$respuesta = array('cite'=>$cite, 'fecha_proforma' => $valor1->fecha_informe, 'propietario1' => $valor1->solicitante, 'ubicacion' => $valor1->ubicacion, 'lote'=>$valor1->lote, 'superficie_total' =>$valor1->superficie_medicion, 'manzano'=>$valor1->manzana, 'urbanizacion'=>$valor1->urbanizacion, 'matricula_folio_real'=>$valor1->nro_folio, 'a'=>$valor1->solicitante, 'ci'=>$valor1->ci);
-
-					echo json_encode($respuesta);
-			}
-			else{
-				$respuesta = array();
-				echo json_encode($respuesta);
-			}
-		}
-		
-
-	}
-
-	public function consulta_proforma($id=null){
-
-		if($this->input->post()){
-			$datos = $this->input->post();	
-			$cite = $datos['cite'];	
+		    $u = $this->uri->segment(3);
+		    $this->zona_urbana_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
+		    redirect('Zona_urbana');
 		}else{
+<<<<<<< Updated upstream
 			$cite=0;
 		}
 		if($id!=null){
@@ -560,39 +490,105 @@ class Tipo_tramite extends CI_Controller {
 
 			// var_dump($valores);
 			$valores['cite'] = $cite;
+=======
+			redirect(base_url());
+        }	
+	}
+	 
+	public function muestra_asignaciones(){
+		if($this->session->userdata("login")){
+		// $this->db->order_by('tramite.derivacion.fec_creacion', 'DESC');
+			$id = $this->session->userdata("persona_perfil_id");
+			$resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+			$dato = $resi->persona_id;
+			$res = $this->db->get_where('persona', array('persona_id' => $dato))->row();
+			//$id_user=$resi[0]['persona_id'];
+			//$data['lista'] = $this->inspecciones_model->get_lista(); 
+			// $data['lista'] = $this->inspecciones_model->get_lista();  
+			// $asignados = 
+			$this->db->select('persona_id, COUNT(persona_id) as total');
+			$this->db->where('activo',1);
+			$this->db->group_by('persona_id'); 
+			$this->db->order_by('total', 'desc'); 
+			$data['asignados'] = $this->db->get('inspeccion.asignacion')->result();
+			//vdebug($data['asignados'], true, false, true);
+>>>>>>> Stashed changes
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
-			$this->load->view('tramites/proforma_prueba', $valores);
+			$this->load->view('inspecciones/muestra_asignaciones', $data);
 			$this->load->view('admin/footer');
 			$this->load->view('predios/index_js');
-		}
-		else{
-
-			$valor1['proforma1'] = $this->db->query("SELECT *
-											FROM tramite.informe_tecnico
-											WHERE cite ='$cite'")->row();
-		}
+		}else{
+			redirect(base_url());
+		}		
 	}
 
-	public function ajax_verifica1(){
+	/*public function ajax_verifica1_ante(){
 		$ci = $this->input->get("param1");
 		// $this->db->where()
 		//$this->db->where('ci', $ci);
 		$respuesta = $this->db->query("SELECT requisito_id, descripcion FROM tramite.requisito WHERE tipo_tramite_id = '".$ci."'")->result();
-		
 		//var_dump($respuesta);
-		
 		// echo json_encode($respuesta);
 		// $respuesta = array('ci'=>$ci, 'nombres' =>$datos_persona['Nombres'], 'paterno' =>$datos_persona['PrimerApellido'], 'materno' =>$datos_persona['SegundoApellido'], 'fec_nacimiento'=>$datos_persona['FechaNacimiento'], 'estado'=>'segip');
 		// echo json_encode($respuesta);
 		
 		// $respuesta = array('ci'=>$ci, 'estado'=>'no');
 		echo json_encode($respuesta);
+	}*/
+
+	public function ajax_verifica1(){
+		$tramite_id = $this->input->get("param1");
+		$respuesta['persona'] = $this->db->query("SELECT requisito_id, descripcion FROM tramite.requisito WHERE tipo_tramite_id = '".$tramite_id."'")->result();
+
+		$respuesta['derivacion'] = $this->db->query("SELECT nombres|| ' '|| paterno||' '||' '||materno as nombre, unidad, descripcion, organigrama_persona_id FROM tramite.vista_organigrama_persona_cargo WHERE organigrama_persona_id in (SELECT organigrama_persona_id FROM tramite.flujo WHERE tipo_tramite_id='".$tramite_id."' AND orden = (SELECT min(orden) FROM tramite.flujo WHERE tipo_tramite_id='".$tramite_id."'));")->result();
+
+		//var_dump($respuesta['datos']);
+		//$respuesta['derivacion']= $valores;
+
+		// $busca_derivacion = $this->db->select('derivacion_id, tramite_id, fuente, destino, orden')->where('tramite_id', $tramite_id)->order_by('derivacion_id',"desc")->limit(1)->get('tramite.derivacion')->row_array();
+		// if ($busca_derivacion) {
+		// 	$siguiente = $busca_derivacion['orden']+1;
+		// 	$siguiente_persona = $this->db->get_where('tramite.flujo', array('tipo_tramite_id'=>$tramite_id, 'orden'=>$siguiente))->row_array();	
+		// 	if ($siguiente_persona) {
+		// 		$organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$siguiente_persona['organigrama_persona_id']))->row_array();	
+
+		// 		$persona = $this->db->select('tramite.organigrama_persona.organigrama_persona_id, persona.nombres, persona.paterno, persona.materno, tramite.cargo.descripcion');
+		// 			$this->db->from('tramite.organigrama_persona');
+		// 			$this->db->join('persona', 'tramite.organigrama_persona.persona_id = persona.persona_id');
+		// 			$this->db->join('tramite.cargo', 'tramite.organigrama_persona.cargo_id = cargo.cargo_id');
+		// 			$this->db->where('organigrama_persona_id', $organigrama_persona['organigrama_persona_id']);
+		// 			$q = $this->db->get()->result_array();
+		// 		// vdebug($q, true, false, true);
+				
+		// 		$respuesta['persona_derivacion'] = $q;
+		// 	} else {
+		// 		// no tiene configuracion
+		// 		$respuesta['persona_derivacion'] = '';
+		// 	}
 			
+		// } else {
+		// 	// no tiene derivacion
+
+		// 	$flujo = $this->db->get_where('tramite.flujo', array('tipo_tramite_id'=>$tramite_id))->row_array();	
+		// 	$organigrama_persona = $this->db->get_where('tramite.organigrama_persona', array('organigrama_persona_id'=>$flujo['organigrama_persona_id']))->row_array();	
+		// 	// vdebug($organigrama_persona, true, false, true);
+
+		// 		$persona = $this->db->select('tramite.organigrama_persona.organigrama_persona_id, persona.nombres, persona.paterno, persona.materno, tramite.cargo.descripcion');
+		// 			$this->db->from('tramite.organigrama_persona');
+		// 			$this->db->join('persona', 'tramite.organigrama_persona.persona_id = persona.persona_id');
+		// 			$this->db->join('tramite.cargo', 'tramite.organigrama_persona.cargo_id = cargo.cargo_id');
+		// 			$this->db->where('organigrama_persona_id', $organigrama_persona['organigrama_persona_id']);
+		// 			$q = $this->db->get()->result_array();
+		// 		// vdebug($q, true, false, true);
+				
+		// 	$respuesta['persona_derivacion'] = $q;
+
+			
+		//}
+		// $respuesta['persona_derivacion'] = $this->db->get_where('tramite.flujo', array('tipo_tramite_id'=>$ci))->result_array();
+		echo json_encode($respuesta);
 	}
-
-
-
 
 	//**************************************INFORME TECNICO*****************************************************
 
@@ -612,6 +608,18 @@ class Tipo_tramite extends CI_Controller {
         }
 	}
 
+	public function verificarCedula(){
+		$ci = $this->input->get("param1");
+		$verifica_cod = $this->persona_model->buscaci($ci);
+		if ($verifica_cod) {
+			$respuesta = array('ci'=>$ci, 'nombres'=>$verifica_cod->nombres.' '.$verifica_cod->paterno.' '.$verifica_cod->materno, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
+			echo json_encode($respuesta);
+		}else{
+			$respuesta = array('ci'=>$ci, 'estado'=>'no');
+			echo json_encode($respuesta);
+		}	
+	}
+
 	public function guardar_informe(){
 		if($this->session->userdata("login")){
 			$id = $this->session->userdata("persona_perfil_id");
@@ -626,8 +634,8 @@ class Tipo_tramite extends CI_Controller {
 				'via' => $this->input->post('via'),
 				'de' => $consulta->organigrama_persona_id,
 				'fecha_informe' => $fec,
-				'solicitante' => $this->input->post('solicitante'),
-				'ci' => $this->input->post('ci'),
+				//'solicitante' => $this->input->post('solicitante'),
+				//'ci' => $this->input->post('ci'),
 				'tipo_tramite_id' => $this->input->post('tipo_tramite_id'),
 				'ubicacion' =>$this->input->post('ubicacion'),
 				'lote' =>$this->input->post('lote'),
@@ -645,13 +653,48 @@ class Tipo_tramite extends CI_Controller {
 				'observaciones'=>$this->input->post('observaciones'),
 				'procesador'=>$this->input->post('procesador'),
 				'nro_tramite'=>$this->input->post('nro_tramite'),
-				'solicitante2'=>$this->input->post('solicitante2'),
-				'ci2'=>$this->input->post('ci2'),
+				//'solicitante2'=>$this->input->post('solicitante2'),
+				//'ci2'=>$this->input->post('ci2'),
 				'fecha_solicitud'=>$this->input->post('fecha_solicitud'),
 				'glosa'=>$this->input->post('glosa'),
+				'fecha_aprobacion_plano'=>$this->input->post('fecha_aprobacion_plano'),
+				'certificacion_comunidad'=>$this->input->post('certificacion_comunidad'),
+				'otra_documentacion'=>$this->input->post('otra_documentacion'),
+				'tipo_via'=>$this->input->post('tipo_via'),
+				'energia'=>$this->input->post('energia'),
+				'agua'=>$this->input->post('agua'),
+				'telefono'=>$this->input->post('telefono'),
+				'alcantarillado'=>$this->input->post('alcantarillado'),
+				'construccion'=>$this->input->post('construccion'),
+				'superficie_construida'=>$this->input->post('superficie_construida'),
 				'usu_creacion'=>$dato
 			);
             $this->db->insert('tramite.informe_tecnico', $array);
+            $cite=$this->input->post('cite');
+            $tramite = $this->db->query("SELECT * FROM tramite.informe_tecnico WHERE cite = '$cite'")->row();
+			$idTramite = $tramite->informe_tecnico_id;
+
+			$cadena =array(
+				'informe_persona_id'=>	1,
+				'informe_tecnico_id'=>$idTramite,
+				'persona_id'=>$this->input->post('persona_id1'),
+				'fecha'=>$fec,
+				'tipo'=>'Propietario',
+				'usu_creacion'=> $dato
+			);
+			$this->db->insert('tramite.informe_persona', $cadena);
+
+			if ($this->input->post('persona_id1')!= NULL) {
+				$cadena1 =array(
+					'informe_persona_id'=>	1,
+					'informe_tecnico_id'=>$idTramite,
+					'persona_id'=>$this->input->post('persona_id2'),
+					'fecha'=>$fec,
+					'tipo'=>'Vendedor',
+					'usu_creacion'=> $dato
+				);
+				$this->db->insert('tramite.informe_persona', $cadena1);
+			}
 			redirect('tipo_tramite/lista');
 		}else{
 			redirect(base_url());
@@ -707,8 +750,15 @@ class Tipo_tramite extends CI_Controller {
 			$data['procesador'] = $this->db->query("SELECT ca.descripcion cargo, (pe.nombres||' '||pe.paterno||' '||pe.materno) nombre FROM tramite.informe_tecnico it JOIN tramite.organigrama_persona op ON op.organigrama_persona_id = it.procesador JOIN tramite.cargo ca ON op.cargo_id=ca.cargo_id JOIN persona pe ON op.persona_id= pe.persona_id
 				WHERE it.informe_tecnico_id = '$idTramite'")->row();
 			$data['tipo_tramite']=$this->db->query("SELECT tt.tramite FROM tramite.informe_tecnico it JOIN tramite.tipo_tramite tt ON it.tipo_tramite_id=tt.tipo_tramite_id WHERE it.informe_tecnico_id='$idTramite'")->row();
-			$dompdf = new Dompdf\Dompdf();
 
+			$data['propietarios']=$this->db->query("SELECT per.nombres||' '||per.paterno||' '||per.materno as nombre, inp.persona_id, per.ci FROM tramite.informe_persona inp JOIN public.persona per ON inp.persona_id=per.persona_id WHERE  tipo='Propietario' AND informe_tecnico_id='$idTramite'")->row();
+			
+			if($data['tipo_tramite']->tramite == 'Transferencia'){
+				$data['vendedor']=$this->db->query("SELECT per.nombres||' '||per.paterno||' '||per.materno as nombre, inp.persona_id, per.ci FROM tramite.informe_persona inp JOIN public.persona per ON inp.persona_id=per.persona_id WHERE  tipo='Vendedor' AND informe_tecnico_id='$idTramite'")->row();
+				//var_dump('entro');
+			}
+
+			$dompdf = new Dompdf\Dompdf();
 			$this->load->view('tramites/informe_tecnico_pdf', $data);
 	        
 	        // Get output html
@@ -726,13 +776,12 @@ class Tipo_tramite extends CI_Controller {
 	        
 	        // Output the generated PDF (1 = download and 0 = preview)
 	        $dompdf->stream("Informe tecnico.pdf", array("Attachment"=>0));
-		}
-		else{
+		}else{
 			redirect(base_url());
         }
 	}
 
-	public function editar($idTramite = null){
+	public function editar_informe($idTramite = null){
 		if($this->session->userdata("login")){
 			$id = $this->session->userdata("persona_perfil_id");
             $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();

@@ -48,7 +48,7 @@
                                                 <a href="<?php echo base_url();?>reportes_m/pdf_urb/<?php echo $mt->informe_tecnico_id;?>" class="btn btn-primary footable-edit" title="certificado de area urbana" target="_blank">
                                                     <span class="fas fa-print" aria-hidden="true"></span>
                                                 </a>
-                                                <a href="<?php echo base_url();?>tipo_tramite/editar/<?php echo $mt->informe_tecnico_id;?>" class="btn btn-warning footable-edit" title="certificado de area urbana">
+                                                <a href="<?php echo base_url();?>tipo_tramite/editar_informe/<?php echo $mt->informe_tecnico_id;?>" class="btn btn-warning footable-edit" title="certificado de area urbana">
                                                     <span class="fas fa-edit" aria-hidden="true"></span>
                                                 </a>
                                                 <a href="<?php echo base_url();?>tipo_tramite/eliminar_informe/<?php echo $mt->informe_tecnico_id;?>" class="eliminarInforme btn btn-danger footable-delete" title="Eliminar informe" >
