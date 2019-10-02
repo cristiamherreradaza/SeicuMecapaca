@@ -1,19 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tipo_tramite extends CI_Controller {
+class tipo_tramite extends CI_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->load->library('session');
-		$this->load->model("tramite_model");
-		$this->load->model("derivaciones_model");
-		$this->load->model("rol_model");
-		$this->load->model("persona_model");
+		$this->load->model("Tramite_model");
+		$this->load->model("Derivaciones_model");
+		$this->load->model("Rol_model");
+		$this->load->model("Persona_model");
         $this->load->helper('vayes_helper');
         $this->load->helper(array('form', 'url'));
         $this->load->library('pdf');
+	}
+	public function index(){
+		if($this->session->userdata("login")){
+			redirect(base_url()."tipo_tramite/tipo_tramite");
+		}else{
+			redirect(base_url());
+        }	
 	}
 
 	//++++++++++++++++++++++++CREAR TRAMITE++++++++++++++++++++++++++++++++
@@ -33,7 +40,6 @@ class Tipo_tramite extends CI_Controller {
 		        $this->load->view('admin/menu');
 		        $this->load->view('tramites/tramite', $ids);
 		        $this->load->view('admin/footer');
-		        
             }else{
             	redirect(base_url()."prueba/sin_permisos");
             }
@@ -362,8 +368,6 @@ class Tipo_tramite extends CI_Controller {
 	}
 //++++++++++++++++++++++FIN DE ELIMINAR TRAMITE++++++++++++++++++++++++++++++++
 
-
-<<<<<<< Updated upstream
 	public function insertar()
 	{
 		if($this->session->userdata("login")){
@@ -444,9 +448,8 @@ class Tipo_tramite extends CI_Controller {
 
 				
 				redirect('tipo_tramite/consulta_proforma/'.$cite);
-=======
->>>>>>> Stashed changes
 
+}}}
 		
 	public function update(){   
 		if($this->session->userdata("login")){
@@ -476,7 +479,6 @@ class Tipo_tramite extends CI_Controller {
 		    $this->zona_urbana_model->eliminar($u, $usu_eliminacion, $fec_eliminacion);
 		    redirect('Zona_urbana');
 		}else{
-<<<<<<< Updated upstream
 			$cite=0;
 		}
 		if($id!=null){
@@ -490,7 +492,6 @@ class Tipo_tramite extends CI_Controller {
 
 			// var_dump($valores);
 			$valores['cite'] = $cite;
-=======
 			redirect(base_url());
         }	
 	}
@@ -512,7 +513,6 @@ class Tipo_tramite extends CI_Controller {
 			$this->db->order_by('total', 'desc'); 
 			$data['asignados'] = $this->db->get('inspeccion.asignacion')->result();
 			//vdebug($data['asignados'], true, false, true);
->>>>>>> Stashed changes
 			$this->load->view('admin/header');
 			$this->load->view('admin/menu');
 			$this->load->view('inspecciones/muestra_asignaciones', $data);
@@ -610,7 +610,7 @@ class Tipo_tramite extends CI_Controller {
 
 	public function verificarCedula(){
 		$ci = $this->input->get("param1");
-		$verifica_cod = $this->persona_model->buscaci($ci);
+		$verifica_cod = $this->Persona_model->buscaci($ci);
 		if ($verifica_cod) {
 			$respuesta = array('ci'=>$ci, 'nombres'=>$verifica_cod->nombres.' '.$verifica_cod->paterno.' '.$verifica_cod->materno, 'persona_id'=>$verifica_cod->persona_id, 'estado'=>'si');
 			echo json_encode($respuesta);

@@ -127,7 +127,7 @@
                                                     <input class="form-control" type="text" id="solicitante" name="solicitante" required>
                                                 </div>
                                             </div>
-                                            <input type="text" name="persona_id1" id="persona_id1">
+                                            <input type="hidden" name="persona_id1" id="persona_id1">
                                         </div>
                                         <div id="listas">
                                           
@@ -151,7 +151,7 @@
                                                         <input class="form-control" type="text" id="vendedor" name="vendedor" >
                                                     </div>
                                                 </div>
-                                                <input type="text" name="persona_id2" id="persona_id2">
+                                                <input type="hidden" name="persona_id2" id="persona_id2">
                                             </div>
                                             <div id="listas2">
                                             </div>
@@ -501,7 +501,7 @@
                                         <div class="form-group  row col-4">\
                                             <label for="example-text-input" class="col-2 col-form-label">CI</label>\
                                             <div class="col-10">\
-                                                <input class="form-control" type="text" id="ci'+x+'" name="ci[]">'+x+'\
+                                                <input class="form-control" type="text" id="ci'+x+'" name="ci[]">\
                                             </div>\
                                         </div>\
                                         <div class="form-group  row col-7">\
@@ -510,6 +510,7 @@
                                                 <input class="form-control" type="text" id="solicitante'+x+'" name="solicitante[]">\
                                             </div>\
                                         </div>\
+                                        <input type="hidden" name="persona_id1" id="persona_id1">\
                                         <a href="#" class="remover_campo">Remover</a>\
                                     </div>');
                 
@@ -533,15 +534,16 @@
                                         <div class="form-group  row col-4">\
                                             <label for="example-text-input" class="col-2 col-form-label">CI</label>\
                                             <div class="col-10">\
-                                                <input class="form-control" type="text" id="ci2'+x+'" name="ci2[]" required>\
+                                                <input class="form-control" type="text" id="ci2'+x+'" name="ci2" required>\
                                             </div>\
                                         </div>\
                                         <div class="form-group  row col-7">\
                                             <label for="example-text-input" class="col-3 col-form-label">Solicitante</label>\
                                             <div class="col-9">\
-                                                <input class="form-control" type="text" id="vendedor'+x+'" name="vendedor[]" required>\
+                                                <input class="form-control" type="text" id="vendedor'+x+'" name="vendedor" required>\
                                             </div>\
                                         </div>\
+                                        <input type="hidden" name="persona_id2" id="persona_id2">\
                                         <a href="#" class="remover_campo2">Remover</a>\
                                     </div>');
                 x++;
