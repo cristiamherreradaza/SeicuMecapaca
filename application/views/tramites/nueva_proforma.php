@@ -384,6 +384,7 @@
         $("#sub_"+rubro).val(subtotal);
         console.log(subtotal);
         $("#rubro_id").val(""); //id
+
         sumar();
     }
 

@@ -367,7 +367,7 @@ class Tipo_tramite extends CI_Controller {
 	public function insertar()
 	{
 		if($this->session->userdata("login")){
-			//vdebug($this->input->post(), true, false, false, true);
+			// vdebug($this->input->post(), true, false, false, true);
 			$datos = $this->input->post();
 			if(isset($datos))
 			{
