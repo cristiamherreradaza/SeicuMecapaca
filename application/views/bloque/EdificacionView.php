@@ -52,12 +52,18 @@
                             <p></p>
                          <!-- Step 1 -->
                          <h2></h2>
-                         <a  class=" btn btn-success" href="<?php echo site_url('edificacion/adicionar'); ?>/<?php echo $predio_id; ?>" align="right"><i class="mdi mdi-plus"></i> Agregar Bloque</a>
+                         <a  class=" btn btn-success" href="<?php echo site_url('Edificacion/adicionar'); ?>/<?php echo $predio_id; ?>" align="right"><i class="mdi mdi-plus"></i> Agregar Bloque</a>
 
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Bloques Registrados</h4>
+
+                              
+
+
                                         <h6 class="card-subtitle">...</h6>
+
+                                     
                                         <div class="table-responsive m-t-40">
                                             <table id="bloque_table" class="table table-bordered table-striped">
                                                 <thead>
@@ -85,8 +91,13 @@
                                                         <td><?php echo $row->desc_bloque_dest; ?></td>
                                                         <td><?php echo $row->desc_bloque_uso; ?> </td>
                                                         <td>
-                                                            <a <?php echo $verifica['modificacion1'];?>="<?php echo site_url('edificacion/update'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->predio_id; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>
-                                                            <a <?php echo $verifica['baja'];?>="<?php echo site_url('edificacion/delete'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->predio_id; ?>"><button type="button" class="btn btn-danger"><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
+                                                            <a <?php echo $verifica['modificacion1'];?>="<?php echo site_url('Edificacion/update'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->predio_id; ?>"><button type="button" class="btn btn-warning"><span class="fas fas fa-edit" aria-hidden="true"></span></button></a>
+
+                                                            <a <?php echo $verifica['baja'];?>="<?php echo site_url('Edificacion/delete'); ?>/<?php echo $row->bloque_id; ?>/<?php echo $row->predio_id; ?>"><button type="button" class="btn btn-danger" ><span class="fas fa-trash-alt" aria-hidden="true"></span></button></a>
+                                                       
+
+                                                              
+                                                                
                                                         </td>
                                                     </tr>
                                                     <?php 

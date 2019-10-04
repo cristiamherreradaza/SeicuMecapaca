@@ -73,11 +73,8 @@
                                     $cant = $longgrupo / 3;
                                     $cantgrupos = round($cant, 0);
 
-
                                     $count2 = 0; //contador de los ciclos
-
-                                    $pos = 0; //posicion final de la ultima grid                                                                        
-
+                                    $pos = 0; //posicion final de la ultima grid
 
                                     for ($i = 0; $i < $max; $i++) { ?>
 
@@ -478,9 +475,11 @@
                                     <div class="col-md-8">
                                         <div class="form-group">                                            
                                             <label for="wfirstName2">Estado Fisico : <span class="text-danger"> *  <small> </small> </span> </label>
-                                            <?php foreach ($estado_fis as $ef) : ?>                                             
+                                            <select class="custom-select form-control" id="estado_fisico" name="estado_fisico" required>                                            
+                                                <?php foreach ($estado_fis as $ef) : ?>                                             
                                                 <option value="<?php echo $ef; ?>"><?php echo $ef; ?></option>                                            
                                                 <?php endforeach; ?>
+                                            </select>
                                             <!--<input type="text" class="form-control"  id="estado_fisico" name="estado_fisico"  required>-->
                                         </div>
                                     </div>
@@ -584,8 +583,11 @@
                                     </div>
                                 </div>
 						
-							<div class="col-md-12" align="right">
-                            
+							<div class="col-md-12">
+                                <br>
+                            <div class="alert alert-warning"> <i class="ti-info-alt"></i> Debera almenos agregar un nivel al bloque para poder guardar los cambios 
+                                            
+                                        </div>
 							</div>
 							
 							<div class="col-md-12" align="right">
@@ -660,6 +662,7 @@
 
     function eliminar(index) {
         total = total - 1;
+       
         $("#fila" + index).remove();
         evaluar();
     }

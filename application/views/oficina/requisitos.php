@@ -10,8 +10,6 @@
         </div>
     </div>
 </section>
-
-
 <style type="text/css">
   body {
     color: #2c3e50;

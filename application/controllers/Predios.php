@@ -46,7 +46,6 @@ class Predios extends CI_Controller {
 			$perfil = $persona_perfil->perfil_id;
 
 
-
 					$this->load->view('admin/header');
 					$this->load->view('admin/menu');
 					$this->load->view('admin/index');
@@ -605,6 +604,27 @@ class Predios extends CI_Controller {
 	    echo $this->email->print_debugger();
 
 	    // $this->load->view('email_view');
+	}
+
+	public function consulta(){
+		// vdebug($consulta);
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		// $this->load->view('predios/nuevo', $data);
+		$this->load->view('predios/consulta');
+		$this->load->view('admin/footer');
+		$this->load->view('predios/registra_js');
+	}
+
+	public function form_fusion(){
+
+		$this->load->view('admin/header');
+		$this->load->view('admin/menu');
+		// $this->load->view('predios/nuevo', $data);
+		$this->load->view('predios/form_fusion');
+		$this->load->view('admin/footer');
+		$this->load->view('predios/registra_js');
+
 	}
 
 }

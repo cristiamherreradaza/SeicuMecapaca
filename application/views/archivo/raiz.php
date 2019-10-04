@@ -81,9 +81,9 @@
                                                         </div>
                                                         <div class="col-md-8 col-lg-9">
                                                             <h4 class="mb-0"><?php echo $pre->nombre;  ?></h4> 
-                                                            <small>Descripcion 1: <?php echo $pre->descripcion1; ?></small>
+                                                            <small>Nombre del Propietario:  <?php echo $pre->descripcion1; ?></small>
                                                             <br>
-                                                            <small>Descripcion 2: <?php echo $pre->descripcion2; ?></small>
+                                                            <small>C.I. del Propietario:  <?php echo $pre->descripcion2; ?></small>
                                                             <address>
                                                                 795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
                                                             </address>
@@ -106,15 +106,15 @@
                                                     <input type="text" hidden="" id="raiz_id" name="raiz_id">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="recipient-name" class="control-label">Nombre:</label>
+                                                    <label for="recipient-name" class="control-label">Nombre: </label>
                                                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario: </label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario: </label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-6">
@@ -148,15 +148,15 @@
                                            <?php echo form_open('archivo/insertarraiz', array('method'=>'POST')); ?>
                                                 
                                                 <div class="form-group">
-                                                    <label for="recipient-name" class="control-label">Nombre:</label>
+                                                    <label for="recipient-name" class="control-label">Nombre: </label>
                                                     <input type="text" class="form-control" id="nombree" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario: </label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario: </label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-6">
@@ -199,8 +199,8 @@
                                                 </div>
                                                 <div class="col-md-8 col-lg-9">
                                                     <h4 class="mb-0"><?php echo $pre->nombre;  ?></h4> 
-                                                    <small>Descripcion 1: <?php echo $pre->descripcion1; ?></small>
-                                                    <small>Descripcion 2: <?php echo $pre->descripcion2; ?></small>
+                                                    <small>Nombre del Propietario:  <?php echo $pre->descripcion1; ?></small>
+                                                    <small>C.I. del Propietario:  <?php echo $pre->descripcion2; ?></small>
                                                     <address>
                                                         795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
                                                     </address>

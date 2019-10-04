@@ -27,7 +27,7 @@ class Predio_via_model extends CI_Model {
 	{	
 		
 		$array = array(
-			'predio_id' =>$codcatas,
+			'codcatas' =>$codcatas,
 			'objectid_via' =>$objectid_via,
 			'matvia_id' =>$matvia_id,
 			'usu_creacion' =>$usu_creacion
@@ -67,7 +67,7 @@ class Predio_via_model extends CI_Model {
     public function actualizar($via_id, $codcatas, $objectid_via, $matvia_id, $usu_modificacion, $fec_modificacion)
     {
         $data = array(
-            'predio_id' => $codcatas,
+            'codcatas' => $codcatas,
             'objectid_via' => $objectid_via,
             'matvia_id' => $matvia_id,
             'usu_modificacion' => $usu_modificacion,

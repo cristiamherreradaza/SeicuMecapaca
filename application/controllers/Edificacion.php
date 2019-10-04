@@ -8,11 +8,11 @@ class Edificacion extends CI_Controller
         parent::__construct();
         $this->load->model("Edificacion_model");
         $this->load->library('session');
-        $this->load->model('tipopredio_model');
+        $this->load->model('Tipopredio_model');
         //$this->load->model("logacceso_model");
         $this->load->helper('url_helper');
         $this->load->helper('vayes_helper');
-        $this->load->model("rol_model");
+        $this->load->model("Rol_model");
         $this->load->library('pdf');
     }
     public function index()
@@ -23,7 +23,7 @@ class Edificacion extends CI_Controller
             redirect(base_url());
         }
     }
-    public function nuevo($predio_id = null)
+    public function nuevo($predio_id = null, $msj=null)
     {
         if ($this->session->userdata("login")) {
             //
@@ -33,7 +33,7 @@ class Edificacion extends CI_Controller
             //$ip = $this->logacceso_model->ip_publico();
             //$this->logacceso_model->insertar_logacceso($credencial_id, $acceso_inicio, $ip);
             //$cod='123456789';
-            $data['verifica'] = $this->rol_model->verifica();
+            $data['verifica'] = $this->Rol_model->verifica();
             $data['result_array'] = $this->Edificacion_model->getAllData();
             $data['bloques'] = $this->Edificacion_model->get_Bloque($predio_id);
             $data['grupos_subgrupos'] = $this->Edificacion_model->get_grupos_subgrupos();
@@ -42,11 +42,17 @@ class Edificacion extends CI_Controller
             $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
             $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
             $data['cod_catastral'] = $this->Edificacion_model->get_cod_catastral($predio_id);
+            $data['msj'] = 1;
+
+            if($msj==null){
+                $data['msj'] = 0;
+            }            
             //$data['cod_catastral'] = 12;
+            
             $data['predio_id'] = $predio_id;
             $this->load->view('admin/header');
             $this->load->view('admin/menu');
-            $this->load->view('bloque/edificacionView', $data);
+            $this->load->view('bloque/EdificacionView', $data);
             $this->load->view('bloque/validar');//footer
             //$this->load->view('admin/footer');
             $this->load->view('bloque/jtables');
@@ -174,7 +180,8 @@ class Edificacion extends CI_Controller
                 $this->db->insert('catastro.bloque_elemento_cons', $bloque_elem_cons);
             }
             // fin guardamos los servicios
-            redirect(base_url() . 'Edificacion/nuevo/' . $this->input->post('predio_id'));
+            redirect(base_url() . 'Edificacion/nuevo/' . $this->input->post('predio_id') .'/1');
+           
         } else {
             redirect(base_url());
         }
@@ -184,7 +191,7 @@ class Edificacion extends CI_Controller
     {
         if ($this->session->userdata("login")) {
             $query = $this->db->query("UPDATE catastro.predio SET activo = 2 WHERE predio_id='$predio_id'");
-            redirect(base_url() . 'predios/nuevo/' . $predio_id);
+            redirect(base_url() . 'Predios/nuevo/' . $predio_id);
         } else {
             redirect(base_url());
         }
@@ -203,8 +210,9 @@ class Edificacion extends CI_Controller
             $data['destino_bloque'] = $this->Edificacion_model->get_Destino_bloque();
             $data['destino_uso'] = $this->Edificacion_model->get_Uso_bloque();
             $data['tipo_planta'] = $this->Edificacion_model->get_tipo_planta();
-            $data['cod_catastral'] = $this->Edificacion_model->get_cod_catastral($predio_id);   
-            $data['estado_fis']  = array('Bueno', 'Regular', 'Malo','Muy Malo (En ruinas)');        
+            $data['cod_catastral'] = $this->Edificacion_model->get_cod_catastral($predio_id); 
+            
+            $data['estado_fis']  = array('Bueno', 'Regular', 'Malo','Muy Malo (En ruinas)');
             $this->load->view('admin/header');
             $this->load->view('admin/menu');
             $this->load->view('bloque/bloque_edicion', $data);
