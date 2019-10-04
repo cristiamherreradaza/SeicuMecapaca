@@ -55,7 +55,7 @@
                                         <tbody>
                                             <?php foreach($predio_via as $lis){
                                                 $datos = $lis->via_id."||".
-                                                         $lis->predio_id."||".
+                                                         $lis->codcatas."||".
                                                          $lis->objectid_via."||".
                                                          $lis->matvia_id;
                                             ?>
@@ -63,7 +63,7 @@
                                             <?php $lista = $this->db->get_where('catastro.matvia', array('matvia_id' => $lis->matvia_id))->row();
                                              ?>
                                                 <td><?php echo $i++;?></td>
-                                                <td><?php echo $lis->predio_id;?></td>
+                                                <td><?php echo $lis->codcatas;?></td>
                                                 <td><?php echo $lis->objectid_via;?></td>
                                                 <td><?php echo $lista->descripcion;?></td>
                                                 <td>
@@ -115,7 +115,7 @@
 
                             <div class="form-group">
                                 <label for="recipient-name" class="control-label">C&oacute;digo Catrastal</label>
-                                <input type="text" class="form-control" id="codcatas" name="codcatas" value="<?php echo $lis->predio_id;?>">
+                                <input type="text" class="form-control" id="codcatas" name="codcatas" value="<?php echo $lis->codcatas;?>">
                             </div>
 
                              <div class="form-group">

@@ -467,7 +467,7 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <label for="location1">Destino :<span class="text-danger"> *<small> (destino inicial del bloque)</small></span></label>
+                                            <label for="location1">Destino :<span class="text-danger"> * <small> (destino inicial del bloque)</small></span></label>
                                             <select class="custom-select form-control" id="destino_bloque_id" name="destino_bloque_id" required>
                                             <option value="<?php echo $destino_bloque_id; ?>" selected><?php echo $desc_bloque_dest; ?></option>
                                                 <?php foreach ($destino_bloque as $d) : ?>
@@ -498,6 +498,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="wfirstName2">Estado Fisico : <span class="text-danger"> *  <small> </small> </span> </label>
+
                                             <select class="custom-select form-control" id="estado_fisico" name="estado_fisico" required>
                                             <option value="<?php echo $estado_fisico; ?>" selected><?php echo $estado_fisico; ?></option>
                                                 <?php foreach ($estado_fis as $ef) : ?>
@@ -633,7 +634,10 @@
 
 
                                 <div class="col-md-12" align="right">
-                            
+                                    <br>
+                                 <div class="alert alert-warning"> <i class="ti-info-alt"></i> Debera almenos agregar un nivel al bloque para poder guardar los cambios 
+                                            
+                                        </div>
                                 </div>
 
                                 <div class="col-md-12" align="right">

@@ -1,20 +1,10 @@
-<!-- ============================================================== -->
-<!-- Start Page Content -->
-<!-- ============================================================== -->
 <div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
     <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">ASIGNADOS</h4></h4>
-                        <?php //vdebug($mis_tramites, true, false, true); ?>
+                        <h4 class="card-title">ASIGNADOS</h4>
                         <table id="bandeja_entrada" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
@@ -62,10 +52,20 @@
                                     <td><?php echo $mt->descripcion; ?></td>
                                     <td>
                                         <div class="btn-group btn-group-xs" role="group">
-                                            <a href="<?php echo base_url(); ?>derivaciones/nuevo/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit" title="Derivar">
-                                              <span class="fas fa-paper-plane" aria-hidden="true"></span>
-                                            </a>
-                                            <a href="<?php echo base_url();?>derivaciones/archivar/<?php echo $mt->tramite_id;?>" class="btn btn-warning footable-edit" title="Archivar">
+                                          <?php
+                                          $valor = $this->db->query("SELECT tipo_tramite_id FROM tramite.tramite WHERE tramite_id='$mt->tramite_id'")->row();
+
+                                          $maximo = $this->db->query("SELECT max(orden) FROM tramite.derivacion WHERE tramite_id='$mt->tramite_id'")->row();
+                                          $orden_nuevo=$maximo->max+1;
+                                          $lista =$this->db->query("SELECT count(organigrama_persona_id) nro FROM tramite.flujo WHERE tipo_tramite_id='$valor->tipo_tramite_id' AND orden='$orden_nuevo'")->row();
+                                          
+                                          if((int)$lista->nro !=0){?>
+                                              <a href="<?php echo base_url(); ?>derivaciones/nuevo/<?php echo $mt->tramite_id; ?>" class="btn btn-success footable-edit" title="Derivar">
+                                                <span class="fas fa-paper-plane" aria-hidden="true"></span>
+                                              </a>                                            
+                                          <?php }?>
+                                            
+                                            <a href="<?php echo base_url();?>derivaciones/archivar/<?php echo $mt->tramite_id;?>" class="eliminarorganigrama btn btn-warning footable-edit" title="Archivar">
                                                 <span class="fas fa-archive" aria-hidden="true"></span>
                                             </a>
                                             <a href="<?php echo base_url(); ?>derivaciones/ver/<?php echo $mt->tramite_id; ?>" class="btn btn-primary footable-edit" title="Seguimiento">
@@ -148,4 +148,28 @@
            ]
        });
        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+</script>
+<script src="<?php echo base_url(); ?>public/assets/plugins/sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript">
+    $('.eliminarorganigrama').on("click", function(e) {
+          e.preventDefault();
+          var url = $(this).attr('href');
+          Swal({
+          title: 'Está seguro?',
+          text: "No podrá recuperar una vez sea archivado!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+           cancelButtonText: "No, Cancelar!",
+          confirmButtonText: 'Si, archivar!'
+        }).then((result) => {
+          if (result.value) {
+                window.location.replace(url);
+                swal("Archivado!", "Su información ha sido archivado!", "success");
+          }else{
+            swal("Cancelado", "Su información no se archivo! :)", "error");
+          }
+        });
+    });    
 </script>

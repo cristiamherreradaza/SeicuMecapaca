@@ -54,14 +54,14 @@
                     <div class="card-body">
                         <h4 class="card-title">Archivos <b> <?php echo $pre1->nombre; ?></b></h4>
                         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-						  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-						    <span class="navbar-toggler-icon"></span>
-						  </button>
+                          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
                           
-						  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                                     
                             
-						    <a class="navbar-brand" href="#"><button type="button" class="btn btn-dark btn-circle btn-xl" data-toggle="modal" data-target="#modalCarpeta"><i class="fas fa-folder-open"></i> </button> Carpeta</a>
+                            <a class="navbar-brand" href="#"><button type="button" class="btn btn-dark btn-circle btn-xl" data-toggle="modal" data-target="#modalCarpeta"><i class="fas fa-folder-open"></i> </button> Carpeta</a>
                             <a class="navbar-brand" href="#"><button type="button" class="btn btn-danger btn-circle btn-xl" data-toggle="modal" data-target="#modalPdf"><i class="fas fa-file-pdf"></i> </button> Pdf</a>
                             <a class="navbar-brand" href="#"><button type="button" class="btn btn-info btn-circle btn-xl" data-toggle="modal" data-target="#modalWord"><i class="fas fa-file-word"></i> </button> Word</a>
                             <a class="navbar-brand" href="#"><button type="button" class="btn btn-success btn-circle btn-xl" data-toggle="modal" data-target="#modalExcel"><i class="fas fa-file-excel"></i> </button> Excel</a>
@@ -72,15 +72,15 @@
 
 
                               
-						    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-						    </ul>
-						    <?php echo form_open('archivo/buscar', array('method'=>'POST', 'class'=>'form-inline my-2 my-lg-0')); ?>
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            </ul>
+                            <?php echo form_open('archivo/buscar', array('method'=>'POST', 'class'=>'form-inline my-2 my-lg-0')); ?>
                             <!-- <a class="navbar-brand" href=""><button type="button" class="btn btn-warning btn-circle btn-xl" onclick="atras()"><i class="fas fa-arrow-left"></i> </button> Atr&aacute;s</a> -->
                               <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="buscador" id="buscador">
                               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                             </form>
-						  </div>
-						</nav>
+                          </div>
+                        </nav>
 
                             <div class="row el-element-overlay">
                                     <!-- VISTA DE CARPETAS -->
@@ -113,9 +113,9 @@
                                                         </div>
                                                         <div class="col-md-8 col-lg-9">
                                                             <h4 class="mb-0"><?php echo $pre->nombre;  ?></h4> 
-                                                            <small>Descripcion 1: <?php echo $pre->descripcion1; ?></small>
+                                                            <small>Nombre del Propietario: <?php echo $pre->descripcion1; ?></small>
                                                             <br>
-                                                            <small>Descripcion 2: <?php echo $pre->descripcion2; ?></small>
+                                                            <small>C.I. del Propietario: <?php echo $pre->descripcion2; ?></small>
                                                             <address>
                                                                 795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
                                                                  
@@ -148,14 +148,13 @@
                                                         <div class="el-card-avatar el-overlay-1 col-md-4 col-lg-3 text-center"> <img src="<?php echo base_url(); ?><?php echo $imagen; ?>" alt="user" class="img-circle img-responsive">
                                                             <div class="el-overlay">
                                                                 <ul class="el-info">
-                                                                    <?php $varr = 'public/assets/archivos/'.$pre1->nombre.'/'.$pre2->nombre.'.'.$pre2->extension; 
-                                                                          $supervar = urldecode($varr);
+                                                                    <?php $varr = base_url().'public/assets/archivos/'.$pre1->nombre.'/'.$pre2->nombre.'.'.$pre2->extension; 
+                                                                        
+                                                                        $supervar = urldecode($varr);
                                                                     ?>
 
-
-
                                                                     <!--  -->
-                                                                    <li><a class="btn default btn-outline image-popup-vertical-fit" href="<?php echo base_url(); ?><?php echo $supervar; ?>" target="_blank"><i class="icon-login"></i></a></li>
+                                                                    <li><a class="btn default btn-outline image-popup-vertical-fit" data-toggle="modal" data-target="#Modaluno"  onclick="alerta1('<?php echo $supervar ?>')"><i class="icon-login"></i></a></li>
                                                                     <li><a class="btn default btn-outline" href="javascript:void(0);" data-toggle="modal" data-target="#modalEdicion1" onclick="agregarform1('<?php echo $datos1 ?>')"><i class="icon-pencil"></i></a></li>
                                                                     <li><a class="btn default btn-outline" href="<?= base_url('archivo/eliminardocumento/'. $pre2->documento_id); ?>" alt="alert" class="img-responsive model_img" id="sa-params11" onclick="alerta('<?php echo $pre2->hijo_id ?>')"><i class="icon-trash"></i></a></li>
                                                                     <li><a class="btn default btn-outline image-popup-vertical-fit" href="<?= base_url('archivo/ingresar/'. $pre2->hijo_id); ?>"><i class="icon-share-alt"></i></a></li>
@@ -164,9 +163,9 @@
                                                         </div>
                                                         <div class="col-md-8 col-lg-9">
                                                             <h4 class="mb-0"><?php echo $pre2->nombre;  ?></h4> 
-                                                            <small>Descripcion 1: <?php echo $pre2->descripcion1; ?></small>
+                                                            <small>Nombre: <?php echo $pre2->descripcion1; ?></small>
                                                             <br>
-                                                            <small>Descripcion 2: <?php echo $pre2->descripcion2; ?></small>
+                                                            <small>Carnet de Identidad: <?php echo $pre2->descripcion2; ?></small>
                                                             <address>
                                                                 795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
 
@@ -180,6 +179,38 @@
                                     <?php } ?>
 
                             </div>
+                            
+
+                            <!-- VISTA PREVIA -->
+                            <div id="Modaluno" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-lg">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h4 class="modal-title">Vista Previa</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            
+                                        </div>
+                                        <div class="modal-body">
+
+
+                                                <div class="form-group">
+                                                    <input type="text" hidden="" class="form-control" id="valor1" required value="<?php echo $supervar; ?>">
+                                                </div>
+
+                                                <embed src="<?php echo $supervar; ?>" target="_blank" frameborder="0" width="100%" height="400px">
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- HASTA AQUI -->
 
                             <div id="modalCarpeta" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                 <div class="modal-dialog">
@@ -201,11 +232,11 @@
                                                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 
@@ -240,11 +271,11 @@
                                                     <input type="text" class="form-control" id="nombrec" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion1c" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion2c" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-6">
@@ -288,11 +319,11 @@
                                                     <input type="text" class="form-control" id="nombre1" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion11" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion21" name="descripcion2" required></textarea>
                                                 </div>
 
@@ -335,11 +366,11 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-12 mb-6">
@@ -394,11 +425,11 @@
                                                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-12 mb-6">
@@ -453,11 +484,11 @@
                                                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-12 mb-6">
@@ -512,11 +543,11 @@
                                                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-12 mb-6">
@@ -571,11 +602,11 @@
                                                     <input type="text" class="form-control" id="nombre" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-12 mb-6">
@@ -618,11 +649,11 @@
                                                     <input type="text" class="form-control" id="nombree" name="nombre" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 1:</label>
+                                                    <label for="message-text" class="control-label">Nombre del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion1" name="descripcion1" required></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="message-text" class="control-label">Descripcion 2:</label>
+                                                    <label for="message-text" class="control-label">C.I. del Propietario:</label>
                                                     <textarea class="form-control" id="descripcion2" name="descripcion2" required></textarea>
                                                 </div>
                                                 <div class="col-md-6">
@@ -728,6 +759,17 @@
               $('#descripcion21').val(d1[3]);
               $('#carpeta1').val(d1[4]);
               $('#raiz_id1').val(d1[5]);
+
+        }
+     </script>
+
+      <script>
+    function alerta1(datos2)
+        {
+            var abc = datos2;
+
+            $('#valor1').val(abc);
+            
 
         }
      </script>
