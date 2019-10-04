@@ -345,7 +345,6 @@ class tipo_tramite extends CI_Controller {
   //       $this->load->view('predios/index_js');
 	}
 //+++++++++++++++++++++++FIN DE SEGUIMIENTO DE TRAMITES+++++++++++++++++++++++++
-
 //+++++++++++++++++++++++ELIMINAR TRAMITE++++++++++++++++++++++++++++++++++++++
 	public function eliminar_tramite($idTramite = null){
 		if($this->session->userdata("login")){
