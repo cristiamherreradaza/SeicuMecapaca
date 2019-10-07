@@ -119,4 +119,7 @@
   'dropify' => array(
     'normal' => $fontDir . '\2440be1f1ee40d064ee7068093be6be1',
   ),
+  'open sans' => array(
+    'normal' => $fontDir . '\bf11512877ef2223afd06e89358ef2fc',
+  ),
 ) ?>
