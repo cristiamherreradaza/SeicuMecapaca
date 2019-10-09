@@ -607,6 +607,28 @@ class tipo_tramite extends CI_Controller {
         }
 	}
 
+	public function informe_tecnico_bueno(){
+		if($this->session->userdata("login")){
+			$id = $this->session->userdata("persona_perfil_id");
+            $resi = $this->db->get_where('persona_perfil', array('persona_perfil_id' => $id))->row();
+            $fecha = date('Y');
+
+            $abc = $this->db->get_where('tramite.cite', array('tipo' => 'informe tecnico', 'gestion' => $fecha, 'activo' => '1'))->row();
+            $num = $abc->correlativo + 1;
+            $numero = str_pad($num, 5, "0", STR_PAD_LEFT);
+            $datos['nro_cite'] = $numero.'/'.$fecha;
+            $datos['personas'] = $this->derivaciones_model->personal($resi->persona_id);
+			$this->load->view('admin/header');
+	        $this->load->view('admin/menu');
+	        $this->load->view('tramites/informe_tecnico_bueno', $datos);
+	        $this->load->view('admin/footer');
+	        $this->load->view('predios/index_js');
+		}
+		else{
+			redirect(base_url());
+        }
+	}
+
 	public function verificarCedula(){
 		$ci = $this->input->get("param1");
 		$verifica_cod = $this->Persona_model->buscaci($ci);
